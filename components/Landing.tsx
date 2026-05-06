@@ -113,6 +113,12 @@ export function Landing() {
           >
             Why
           </button>
+          <button
+            onClick={() => router.push("/settings")}
+            className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
+          >
+            Settings
+          </button>
           <a
             href="https://github.com/vaibhav4046/cogniloop"
             target="_blank"
