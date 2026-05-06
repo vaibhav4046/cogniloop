@@ -17,47 +17,50 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           padding: "80px",
-          fontFamily: "system-ui, sans-serif",
-          position: "relative",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div style={{ display: "flex", alignItems: "center", fontSize: "32px", fontWeight: 700 }}>
           <div
             style={{
-              width: "32px",
-              height: "32px",
+              width: "20px",
+              height: "20px",
               borderRadius: "50%",
-              border: "4px solid #a78bfa",
-              borderTopColor: "transparent",
-              transform: "rotate(45deg)",
+              background: "#a78bfa",
+              marginRight: "16px",
             }}
           />
-          <div style={{ fontSize: "28px", fontWeight: 600, letterSpacing: "-0.02em" }}>
-            Cogniloop
-          </div>
+          Cogniloop
         </div>
 
-        <div style={{ display: "flex", marginTop: "auto", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "120px",
+          }}
+        >
           <div
             style={{
-              fontSize: "76px",
-              fontWeight: 600,
-              letterSpacing: "-0.025em",
+              display: "flex",
+              flexWrap: "wrap",
+              fontSize: "84px",
+              fontWeight: 700,
               lineHeight: 1.05,
-              maxWidth: "1000px",
+              maxWidth: "1040px",
             }}
           >
-            The AI tutor that{" "}
-            <span style={{ color: "#a78bfa" }}>refuses</span> to give you the answer.
+            <span>The AI tutor that&nbsp;</span>
+            <span style={{ color: "#a78bfa" }}>refuses</span>
+            <span>&nbsp;to give you the answer.</span>
           </div>
 
           <div
             style={{
-              fontSize: "26px",
+              display: "flex",
+              fontSize: "28px",
               color: "#8a8f96",
-              marginTop: "30px",
-              lineHeight: 1.4,
-              maxWidth: "950px",
+              marginTop: "40px",
+              maxWidth: "1000px",
             }}
           >
             Active recall · Feynman technique · 6 curriculum packs · Free, no signup
@@ -66,17 +69,15 @@ export default async function Image() {
 
         <div
           style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "80px",
             display: "flex",
-            gap: "10px",
-            fontSize: "18px",
+            justifyContent: "space-between",
+            marginTop: "auto",
+            fontSize: "20px",
             color: "#565b62",
-            fontFamily: "monospace",
           }}
         >
-          cogniloop · github.com/vaibhav4046/cogniloop
+          <div style={{ display: "flex" }}>github.com/vaibhav4046/cogniloop</div>
+          <div style={{ display: "flex" }}>cogniloop · 2026</div>
         </div>
       </div>
     ),
