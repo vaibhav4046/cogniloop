@@ -11,10 +11,13 @@ import { pushHistory, bumpStreak } from "@/lib/storage";
 import { encodeShare } from "@/lib/share";
 import { runStart, runTurn, runReport, type ReportData } from "@/lib/sessionLogic";
 import { getSettings } from "@/lib/settings";
+import { fetchJson } from "@/lib/fetchRetry";
 import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
   Round,
+  SessionStartResponse,
+  SessionTurnResponse,
   Evaluation,
   ConceptStrength,
 } from "@/lib/types";
@@ -63,13 +66,22 @@ export function Session() {
       setErrMsg(null);
       try {
         const settings = getSettings();
-        const data = await runStart(
-          { topic: t, notes: n, modeId: m },
-          {
-            userGroqKey: settings.groqKey,
-            preferredProvider: settings.preferredProvider,
-          }
-        );
+        const useBrowserDirect =
+          !!settings.groqKey?.trim() ||
+          settings.preferredProvider === "pollinations";
+        const data = useBrowserDirect
+          ? await runStart(
+              { topic: t, notes: n, modeId: m },
+              {
+                userGroqKey: settings.groqKey,
+                preferredProvider: settings.preferredProvider,
+              }
+            )
+          : await fetchJson<SessionStartResponse>("/api/session/start", {
+              topic: t,
+              notes: n,
+              modeId: m,
+            });
         setConcepts(data.concepts);
         setRounds([data.firstRound]);
         setPhase("answering");
@@ -181,20 +193,32 @@ export function Session() {
 
     try {
       const settings = getSettings();
-      const data = await runTurn(
-        {
-          topic,
-          notes,
-          modeId,
-          concepts,
-          rounds: updatedRounds,
-          answer: answer.trim(),
-        },
-        {
-          userGroqKey: settings.groqKey,
-          preferredProvider: settings.preferredProvider,
-        }
-      );
+      const useBrowserDirect =
+        !!settings.groqKey?.trim() ||
+        settings.preferredProvider === "pollinations";
+      const data = useBrowserDirect
+        ? await runTurn(
+            {
+              topic,
+              notes,
+              modeId,
+              concepts,
+              rounds: updatedRounds,
+              answer: answer.trim(),
+            },
+            {
+              userGroqKey: settings.groqKey,
+              preferredProvider: settings.preferredProvider,
+            }
+          )
+        : await fetchJson<SessionTurnResponse>("/api/session/turn", {
+            topic,
+            notes,
+            modeId,
+            concepts,
+            rounds: updatedRounds,
+            answer: answer.trim(),
+          });
 
       const evaluatedRounds = updatedRounds.map((r, i) =>
         i === lastIdx ? { ...r, evaluation: data.evaluation } : r
@@ -224,17 +248,26 @@ export function Session() {
     const finalConcepts = cs ?? concepts;
     try {
       const settings = getSettings();
-      const data = await runReport(
-        {
-          topic,
-          concepts: finalConcepts,
-          rounds: finalRounds,
-        },
-        {
-          userGroqKey: settings.groqKey,
-          preferredProvider: settings.preferredProvider,
-        }
-      );
+      const useBrowserDirect =
+        !!settings.groqKey?.trim() ||
+        settings.preferredProvider === "pollinations";
+      const data = useBrowserDirect
+        ? await runReport(
+            {
+              topic,
+              concepts: finalConcepts,
+              rounds: finalRounds,
+            },
+            {
+              userGroqKey: settings.groqKey,
+              preferredProvider: settings.preferredProvider,
+            }
+          )
+        : await fetchJson<ReportData>("/api/session/report", {
+            topic,
+            concepts: finalConcepts,
+            rounds: finalRounds,
+          });
       setReport(data);
       setPhase("report");
       localStorage.removeItem("cl:session");
