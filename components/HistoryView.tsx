@@ -30,6 +30,7 @@ function dayKey(ts: number): string {
 export function HistoryView() {
   const [records, setRecords] = useState<SessionRecord[]>([]);
   const [streak, setStreak] = useState<StreakData | null>(null);
+  const [loaded, setLoaded] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
   const [importErr, setImportErr] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -37,6 +38,7 @@ export function HistoryView() {
   useEffect(() => {
     setRecords(getHistory());
     setStreak(getStreak());
+    setLoaded(true);
   }, []);
 
   function onClear() {
@@ -183,7 +185,16 @@ export function HistoryView() {
           {importErr && (
             <div className="text-[12px] text-[var(--bad)] mb-3">{importErr}</div>
           )}
-          {records.length === 0 ? (
+          {!loaded ? (
+            <div className="flex flex-col gap-2" aria-busy="true" aria-label="Loading sessions">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="card p-4">
+                  <div className="skeleton h-[14px] w-2/3 mb-2.5" />
+                  <div className="skeleton h-[11px] w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : records.length === 0 ? (
             <div className="card p-8 text-center">
               <div className="text-[34px] mb-3" aria-hidden>↻</div>
               <div className="text-[15px] font-medium tracking-tight mb-1">
