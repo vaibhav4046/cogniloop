@@ -9,13 +9,12 @@ import { ReadAloud } from "./ReadAloud";
 import { ModePicker } from "./ModePicker";
 import { pushHistory, bumpStreak } from "@/lib/storage";
 import { encodeShare } from "@/lib/share";
-import { fetchJson } from "@/lib/fetchRetry";
+import { runStart, runTurn, runReport, type ReportData } from "@/lib/sessionLogic";
+import { getSettings } from "@/lib/settings";
 import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
   Round,
-  SessionStartResponse,
-  SessionTurnResponse,
   Evaluation,
   ConceptStrength,
 } from "@/lib/types";
@@ -28,15 +27,6 @@ type Phase =
   | "ending"
   | "report"
   | "error";
-
-interface ReportData {
-  headline: string;
-  mastered: string[];
-  shaky: string[];
-  weak: string[];
-  studyPlan: { concept: string; action: string; minutes: number }[];
-  feynmanPrompt: string;
-}
 
 const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   weak: "var(--bad)",
@@ -72,11 +62,14 @@ export function Session() {
       setPhase("starting");
       setErrMsg(null);
       try {
-        const data = await fetchJson<SessionStartResponse>("/api/session/start", {
-          topic: t,
-          notes: n,
-          modeId: m,
-        });
+        const settings = getSettings();
+        const data = await runStart(
+          { topic: t, notes: n, modeId: m },
+          {
+            userGroqKey: settings.groqKey,
+            preferredProvider: settings.preferredProvider,
+          }
+        );
         setConcepts(data.concepts);
         setRounds([data.firstRound]);
         setPhase("answering");
@@ -187,14 +180,21 @@ export function Session() {
     setRounds(updatedRounds);
 
     try {
-      const data = await fetchJson<SessionTurnResponse>("/api/session/turn", {
-        topic,
-        notes,
-        modeId,
-        concepts,
-        rounds: updatedRounds,
-        answer: answer.trim(),
-      });
+      const settings = getSettings();
+      const data = await runTurn(
+        {
+          topic,
+          notes,
+          modeId,
+          concepts,
+          rounds: updatedRounds,
+          answer: answer.trim(),
+        },
+        {
+          userGroqKey: settings.groqKey,
+          preferredProvider: settings.preferredProvider,
+        }
+      );
 
       const evaluatedRounds = updatedRounds.map((r, i) =>
         i === lastIdx ? { ...r, evaluation: data.evaluation } : r
@@ -223,11 +223,18 @@ export function Session() {
     const finalRounds = rs ?? rounds;
     const finalConcepts = cs ?? concepts;
     try {
-      const data = await fetchJson<ReportData>("/api/session/report", {
-        topic,
-        concepts: finalConcepts,
-        rounds: finalRounds,
-      });
+      const settings = getSettings();
+      const data = await runReport(
+        {
+          topic,
+          concepts: finalConcepts,
+          rounds: finalRounds,
+        },
+        {
+          userGroqKey: settings.groqKey,
+          preferredProvider: settings.preferredProvider,
+        }
+      );
       setReport(data);
       setPhase("report");
       localStorage.removeItem("cl:session");
@@ -289,7 +296,7 @@ export function Session() {
               {errMsg ?? "Unknown error"}
             </div>
             <div className="text-[11px] text-[var(--fg-dim)] mb-5 leading-relaxed">
-              The free LLM endpoint can rate-limit. Retry usually fixes it. Set GROQ_API_KEY in env for a stable backup.
+              The free LLM endpoint can rate-limit. Retry usually fixes it. For unlimited speed and quality, paste a free Groq API key in <a href="/settings" className="underline">Settings</a> (60 sec at console.groq.com).
             </div>
             <div className="flex gap-2 justify-center">
               <button
