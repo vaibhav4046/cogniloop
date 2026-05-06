@@ -1,5 +1,9 @@
 # Cogniloop
 
+<p align="center">
+  <a href="https://cogniloop-vaibhav4046s-projects.vercel.app"><img src="docs/screenshots/hero.png" alt="AI tutor that refuses to give answers" width="100%" /></a>
+</p>
+
 > The AI tutor that **refuses** to give you the answer.
 
 Most AI study tools summarize content for you — and quietly destroy your understanding. Cogniloop does the opposite: it forces **active recall** through the Feynman technique, drills you with Socratic questions, evaluates your explanations, and adapts each round to your blind spots.
