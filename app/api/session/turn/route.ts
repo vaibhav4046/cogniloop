@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { chat, extractJson } from "@/lib/llm";
+import { chat, extractJson, wrapUntrustedNotes } from "@/lib/llm";
 import { SYSTEM_CORE, EVALUATE_AND_NEXT, modePromptForId } from "@/lib/prompts";
+import { getClientKey, rateCheck } from "@/lib/rateLimit";
 import type { Round, Concept, SessionTurnResponse } from "@/lib/types";
 
 export const runtime = "edge";
@@ -16,6 +17,15 @@ interface TurnBody {
 }
 
 export async function POST(req: NextRequest) {
+  const key = getClientKey(req);
+  const rl = rateCheck(key);
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: `Rate limit exceeded. Try again in ${Math.ceil(rl.resetMs / 1000)}s.` },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(rl.resetMs / 1000)) } }
+    );
+  }
+
   let body: TurnBody;
   try {
     body = (await req.json()) as TurnBody;
@@ -36,7 +46,7 @@ export async function POST(req: NextRequest) {
 
   const userPayload = JSON.stringify({
     topic: body.topic,
-    notes_excerpt: body.notes.slice(0, 4000),
+    notes_block: wrapUntrustedNotes(body.notes.slice(0, 4000)),
     concepts: body.concepts,
     history: body.rounds.map((r) => ({
       id: r.id,
@@ -63,8 +73,13 @@ export async function POST(req: NextRequest) {
       { temperature: 0.4, jsonMode: true }
     );
     const parsed = extractJson<SessionTurnResponse>(raw);
+    if (!parsed.evaluation || typeof parsed.evaluation.score !== "number") {
+      throw new Error("Malformed evaluation");
+    }
     if (parsed.nextRound) parsed.nextRound.createdAt = Date.now();
-    return NextResponse.json(parsed);
+    return NextResponse.json(parsed, {
+      headers: { "X-RateLimit-Remaining": String(rl.remaining) },
+    });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "unknown";
     return NextResponse.json({ error: `Turn failed: ${msg}` }, { status: 502 });

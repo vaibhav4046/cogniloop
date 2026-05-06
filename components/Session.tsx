@@ -9,6 +9,7 @@ import { ReadAloud } from "./ReadAloud";
 import { ModePicker } from "./ModePicker";
 import { pushHistory, bumpStreak } from "@/lib/storage";
 import { encodeShare } from "@/lib/share";
+import { fetchJson } from "@/lib/fetchRetry";
 import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
@@ -71,16 +72,11 @@ export function Session() {
       setPhase("starting");
       setErrMsg(null);
       try {
-        const res = await fetch("/api/session/start", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ topic: t, notes: n, modeId: m }),
+        const data = await fetchJson<SessionStartResponse>("/api/session/start", {
+          topic: t,
+          notes: n,
+          modeId: m,
         });
-        if (!res.ok) {
-          const j = await res.json().catch(() => ({}));
-          throw new Error(j.error ?? `HTTP ${res.status}`);
-        }
-        const data = (await res.json()) as SessionStartResponse;
         setConcepts(data.concepts);
         setRounds([data.firstRound]);
         setPhase("answering");
@@ -91,6 +87,14 @@ export function Session() {
     },
     []
   );
+
+  const retryStart = useCallback(() => {
+    if (topic || notes) {
+      void startSession(topic, notes, modeId);
+    } else {
+      router.replace("/");
+    }
+  }, [topic, notes, modeId, startSession, router]);
 
   useEffect(() => {
     const raw = sessionStorage.getItem("cl:pending");
@@ -183,23 +187,14 @@ export function Session() {
     setRounds(updatedRounds);
 
     try {
-      const res = await fetch("/api/session/turn", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          topic,
-          notes,
-          modeId,
-          concepts,
-          rounds: updatedRounds,
-          answer: answer.trim(),
-        }),
+      const data = await fetchJson<SessionTurnResponse>("/api/session/turn", {
+        topic,
+        notes,
+        modeId,
+        concepts,
+        rounds: updatedRounds,
+        answer: answer.trim(),
       });
-      if (!res.ok) {
-        const j = await res.json().catch(() => ({}));
-        throw new Error(j.error ?? `HTTP ${res.status}`);
-      }
-      const data = (await res.json()) as SessionTurnResponse;
 
       const evaluatedRounds = updatedRounds.map((r, i) =>
         i === lastIdx ? { ...r, evaluation: data.evaluation } : r
@@ -228,20 +223,11 @@ export function Session() {
     const finalRounds = rs ?? rounds;
     const finalConcepts = cs ?? concepts;
     try {
-      const res = await fetch("/api/session/report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          topic,
-          concepts: finalConcepts,
-          rounds: finalRounds,
-        }),
+      const data = await fetchJson<ReportData>("/api/session/report", {
+        topic,
+        concepts: finalConcepts,
+        rounds: finalRounds,
       });
-      if (!res.ok) {
-        const j = await res.json().catch(() => ({}));
-        throw new Error(j.error ?? `HTTP ${res.status}`);
-      }
-      const data = (await res.json()) as ReportData;
       setReport(data);
       setPhase("report");
       localStorage.removeItem("cl:session");
@@ -307,7 +293,7 @@ export function Session() {
             </div>
             <div className="flex gap-2 justify-center">
               <button
-                onClick={() => location.reload()}
+                onClick={rounds.length === 0 ? retryStart : () => location.reload()}
                 className="btn-primary px-4 py-2 rounded-lg text-sm"
               >
                 Retry

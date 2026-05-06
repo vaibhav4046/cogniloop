@@ -1,17 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { chat, extractJson } from "@/lib/llm";
+import { chat, extractJson, wrapUntrustedNotes } from "@/lib/llm";
 import {
   SYSTEM_CORE,
   EXTRACT_AND_FIRST_QUESTION,
   modePromptForId,
   startingDifficultyForMode,
 } from "@/lib/prompts";
+import { getClientKey, rateCheck } from "@/lib/rateLimit";
 import type { SessionStartResponse } from "@/lib/types";
 
 export const runtime = "edge";
 export const maxDuration = 30;
 
 export async function POST(req: NextRequest) {
+  const key = getClientKey(req);
+  const rl = rateCheck(key);
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: `Rate limit exceeded. Try again in ${Math.ceil(rl.resetMs / 1000)}s.` },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(rl.resetMs / 1000)) } }
+    );
+  }
+
   let body: { topic?: string; notes?: string; modeId?: string };
   try {
     body = await req.json();
@@ -35,8 +45,8 @@ export async function POST(req: NextRequest) {
 
   const startDiff = startingDifficultyForMode(modeId);
   const userPayload = JSON.stringify({
-    topic: topic || "(none provided — infer from notes)",
-    notes: notes || "(none — generate from general knowledge of the topic)",
+    topic: topic || "(infer from notes)",
+    notes_block: wrapUntrustedNotes(notes),
     startingDifficulty: startDiff,
   });
 
@@ -51,6 +61,9 @@ export async function POST(req: NextRequest) {
       { temperature: 0.5, jsonMode: true }
     );
     const parsed = extractJson<SessionStartResponse>(raw);
+    if (!parsed.concepts?.length || !parsed.firstRound?.question) {
+      throw new Error("Malformed model output (missing fields)");
+    }
     parsed.firstRound.createdAt = Date.now();
     parsed.firstRound.difficulty = (parsed.firstRound.difficulty ?? startDiff) as 1 | 2 | 3 | 4 | 5;
     parsed.concepts = parsed.concepts.map((c) => ({
@@ -59,7 +72,9 @@ export async function POST(req: NextRequest) {
       attempts: 0,
       lastScore: 0,
     }));
-    return NextResponse.json(parsed);
+    return NextResponse.json(parsed, {
+      headers: { "X-RateLimit-Remaining": String(rl.remaining) },
+    });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "unknown";
     return NextResponse.json({ error: `Session start failed: ${msg}` }, { status: 502 });

@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cogniloop-vaibhav4046s-projects.vercel.app"),
   title: "Cogniloop — The AI tutor that refuses to give you the answer",
   description:
     "Active-recall AI tutor. Feynman technique. Concept tracker. Streaks. Curriculum templates for JEE, NEET, GATE, MCAT. Free, no signup, no API keys. 100% client-side.",

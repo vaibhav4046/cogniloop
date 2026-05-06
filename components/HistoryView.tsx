@@ -10,6 +10,7 @@ import {
   type SessionRecord,
   type StreakData,
 } from "@/lib/storage";
+import { useRef } from "react";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -30,6 +31,8 @@ export function HistoryView() {
   const [records, setRecords] = useState<SessionRecord[]>([]);
   const [streak, setStreak] = useState<StreakData | null>(null);
   const [confirmClear, setConfirmClear] = useState(false);
+  const [importErr, setImportErr] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setRecords(getHistory());
@@ -45,6 +48,54 @@ export function HistoryView() {
     clearHistory();
     setRecords([]);
     setConfirmClear(false);
+  }
+
+  function exportAll() {
+    const blob = new Blob(
+      [
+        JSON.stringify(
+          {
+            v: 1,
+            exportedAt: Date.now(),
+            history: getHistory(),
+            streak: getStreak(),
+          },
+          null,
+          2
+        ),
+      ],
+      { type: "application/json" }
+    );
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `cogniloop-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function onImportClick() {
+    setImportErr(null);
+    fileRef.current?.click();
+  }
+
+  async function onImportFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (data?.v !== 1) throw new Error("Wrong file version");
+      if (!Array.isArray(data.history)) throw new Error("Missing history");
+      localStorage.setItem("cl:history", JSON.stringify(data.history));
+      if (data.streak) localStorage.setItem("cl:streak", JSON.stringify(data.streak));
+      setRecords(data.history);
+      setStreak(data.streak ?? null);
+    } catch (err) {
+      setImportErr(err instanceof Error ? err.message : "Import failed");
+    } finally {
+      if (fileRef.current) fileRef.current.value = "";
+    }
   }
 
   const days = buildHeatmap(streak?.daysActive ?? []);
@@ -94,21 +145,44 @@ export function HistoryView() {
         </div>
 
         <div className="mt-8">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
             <h2 className="text-[15px] font-medium tracking-tight">
               Sessions ({records.length})
             </h2>
-            {records.length > 0 && (
+            <div className="flex items-center gap-2 flex-wrap">
+              <input
+                ref={fileRef}
+                type="file"
+                accept="application/json"
+                className="hidden"
+                onChange={onImportFile}
+              />
               <button
-                onClick={onClear}
-                className={`btn-ghost text-xs px-3 py-1.5 rounded-md ${
-                  confirmClear ? "!border-[var(--bad)] !text-[var(--bad)]" : ""
-                }`}
+                onClick={onImportClick}
+                className="btn-ghost text-xs px-3 py-1.5 rounded-md"
               >
-                {confirmClear ? "Click again to confirm" : "Clear all"}
+                Import backup
               </button>
-            )}
+              {records.length > 0 && (
+                <button onClick={exportAll} className="btn-ghost text-xs px-3 py-1.5 rounded-md">
+                  Export backup
+                </button>
+              )}
+              {records.length > 0 && (
+                <button
+                  onClick={onClear}
+                  className={`btn-ghost text-xs px-3 py-1.5 rounded-md ${
+                    confirmClear ? "!border-[var(--bad)] !text-[var(--bad)]" : ""
+                  }`}
+                >
+                  {confirmClear ? "Click again to confirm" : "Clear all"}
+                </button>
+              )}
+            </div>
           </div>
+          {importErr && (
+            <div className="text-[12px] text-[var(--bad)] mb-3">{importErr}</div>
+          )}
           {records.length === 0 ? (
             <div className="card p-6 text-center">
               <div className="text-[var(--fg-muted)] text-sm">

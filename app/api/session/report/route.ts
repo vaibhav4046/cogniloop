@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { chat, extractJson } from "@/lib/llm";
 import { SYSTEM_CORE, FINAL_REPORT } from "@/lib/prompts";
+import { getClientKey, rateCheck } from "@/lib/rateLimit";
 import type { Concept, Round } from "@/lib/types";
 
 export const runtime = "edge";
@@ -22,6 +23,15 @@ interface ReportResponse {
 }
 
 export async function POST(req: NextRequest) {
+  const key = getClientKey(req);
+  const rl = rateCheck(key);
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: `Rate limit exceeded. Try again in ${Math.ceil(rl.resetMs / 1000)}s.` },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(rl.resetMs / 1000)) } }
+    );
+  }
+
   let body: ReportBody;
   try {
     body = (await req.json()) as ReportBody;
@@ -50,7 +60,14 @@ export async function POST(req: NextRequest) {
       { temperature: 0.3, jsonMode: true }
     );
     const parsed = extractJson<ReportResponse>(raw);
-    return NextResponse.json(parsed);
+    parsed.mastered ??= [];
+    parsed.shaky ??= [];
+    parsed.weak ??= [];
+    parsed.studyPlan ??= [];
+    parsed.feynmanPrompt ??= "Reflect on what you understood least clearly today and write 200 words explaining it to a 12-year-old.";
+    return NextResponse.json(parsed, {
+      headers: { "X-RateLimit-Remaining": String(rl.remaining) },
+    });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "unknown";
     return NextResponse.json({ error: `Report failed: ${msg}` }, { status: 502 });
