@@ -200,6 +200,38 @@ export const CURRICULA: Curriculum[] = [
       },
     ],
   },
+  {
+    id: "system-design",
+    name: "System Design",
+    region: "Self-study · Engineering",
+    blurb: "Distributed systems, databases, APIs, scaling — interview-ready.",
+    subjects: [
+      {
+        name: "Core Concepts",
+        topics: [
+          "CAP theorem — consistency, availability, partition tolerance",
+          "Load balancing — algorithms, health checks, sticky sessions",
+          "Caching strategies — LRU, write-through, CDN, cache invalidation",
+          "Database sharding and replication",
+          "SQL vs NoSQL trade-offs",
+          "Message queues and pub/sub — Kafka, RabbitMQ",
+          "Consistent hashing and virtual nodes",
+          "Rate limiting algorithms — token bucket, leaky bucket",
+        ],
+      },
+      {
+        name: "Design Problems",
+        topics: [
+          "Design a URL shortener (TinyURL)",
+          "Design a social media news feed",
+          "Design a distributed key-value store",
+          "Design a notification service",
+          "Design an API rate limiter",
+          "Design a file storage system (Dropbox / S3)",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getCurriculum(id: string): Curriculum | undefined {
