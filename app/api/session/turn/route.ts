@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { chat, extractJson } from "@/lib/llm";
-import { SYSTEM_CORE, EVALUATE_AND_NEXT } from "@/lib/prompts";
+import { SYSTEM_CORE, EVALUATE_AND_NEXT, modePromptForId } from "@/lib/prompts";
 import type { Round, Concept, SessionTurnResponse } from "@/lib/types";
 
 export const runtime = "edge";
@@ -12,6 +12,7 @@ interface TurnBody {
   concepts: Concept[];
   rounds: Round[];
   answer: string;
+  modeId?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -55,6 +56,7 @@ export async function POST(req: NextRequest) {
     const raw = await chat(
       [
         { role: "system", content: SYSTEM_CORE },
+        { role: "system", content: modePromptForId(body.modeId) },
         { role: "system", content: EVALUATE_AND_NEXT },
         { role: "user", content: userPayload },
       ],

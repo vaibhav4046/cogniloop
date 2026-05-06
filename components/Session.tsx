@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Logo } from "./Logo";
+import { Tex } from "./Math";
+import { VoiceInput } from "./VoiceInput";
+import { ReadAloud } from "./ReadAloud";
+import { ModePicker } from "./ModePicker";
+import { pushHistory, bumpStreak } from "@/lib/storage";
+import { encodeShare } from "@/lib/share";
+import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
   Round,
@@ -12,7 +19,14 @@ import type {
   ConceptStrength,
 } from "@/lib/types";
 
-type Phase = "booting" | "starting" | "asking" | "answering" | "evaluating" | "ending" | "report" | "error";
+type Phase =
+  | "booting"
+  | "starting"
+  | "answering"
+  | "evaluating"
+  | "ending"
+  | "report"
+  | "error";
 
 interface ReportData {
   headline: string;
@@ -42,35 +56,41 @@ export function Session() {
   const [phase, setPhase] = useState<Phase>("booting");
   const [topic, setTopic] = useState("");
   const [notes, setNotes] = useState("");
+  const [modeId, setModeId] = useState<ModeId>("exam");
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [rounds, setRounds] = useState<Round[]>([]);
   const [answer, setAnswer] = useState("");
   const [errMsg, setErrMsg] = useState<string | null>(null);
   const [report, setReport] = useState<ReportData | null>(null);
+  const [timer, setTimer] = useState<number | null>(null);
+  const [showHints, setShowHints] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
 
-  const startSession = useCallback(async (t: string, n: string) => {
-    setPhase("starting");
-    setErrMsg(null);
-    try {
-      const res = await fetch("/api/session/start", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic: t, notes: n }),
-      });
-      if (!res.ok) {
-        const j = await res.json().catch(() => ({}));
-        throw new Error(j.error ?? `HTTP ${res.status}`);
+  const startSession = useCallback(
+    async (t: string, n: string, m: ModeId) => {
+      setPhase("starting");
+      setErrMsg(null);
+      try {
+        const res = await fetch("/api/session/start", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic: t, notes: n, modeId: m }),
+        });
+        if (!res.ok) {
+          const j = await res.json().catch(() => ({}));
+          throw new Error(j.error ?? `HTTP ${res.status}`);
+        }
+        const data = (await res.json()) as SessionStartResponse;
+        setConcepts(data.concepts);
+        setRounds([data.firstRound]);
+        setPhase("answering");
+      } catch (e) {
+        setErrMsg(e instanceof Error ? e.message : "Unknown error");
+        setPhase("error");
       }
-      const data = (await res.json()) as SessionStartResponse;
-      setConcepts(data.concepts);
-      setRounds([data.firstRound]);
-      setPhase("answering");
-    } catch (e) {
-      setErrMsg(e instanceof Error ? e.message : "Unknown error");
-      setPhase("error");
-    }
-  }, []);
+    },
+    []
+  );
 
   useEffect(() => {
     const raw = sessionStorage.getItem("cl:pending");
@@ -81,6 +101,7 @@ export function Session() {
           const s = JSON.parse(persisted);
           setTopic(s.topic);
           setNotes(s.notes);
+          setModeId(s.modeId ?? "exam");
           setConcepts(s.concepts);
           setRounds(s.rounds);
           setPhase(s.phase ?? "answering");
@@ -91,25 +112,64 @@ export function Session() {
       return;
     }
     sessionStorage.removeItem("cl:pending");
-    const parsed = JSON.parse(raw) as { topic: string; notes: string };
+    const parsed = JSON.parse(raw) as {
+      topic: string;
+      notes: string;
+      modeId?: ModeId;
+    };
     setTopic(parsed.topic);
     setNotes(parsed.notes);
-    void startSession(parsed.topic, parsed.notes);
+    const m = parsed.modeId ?? "exam";
+    setModeId(m);
+    void startSession(parsed.topic, parsed.notes, m);
   }, [router, startSession]);
 
   useEffect(() => {
     if (phase === "answering" || phase === "evaluating") {
       localStorage.setItem(
         "cl:session",
-        JSON.stringify({ topic, notes, concepts, rounds, phase })
+        JSON.stringify({ topic, notes, modeId, concepts, rounds, phase })
       );
     }
-  }, [topic, notes, concepts, rounds, phase]);
+  }, [topic, notes, modeId, concepts, rounds, phase]);
 
   useEffect(() => {
     if (phase === "answering" && taRef.current) {
       taRef.current.focus();
     }
+  }, [phase, rounds.length]);
+
+  const mode = getMode(modeId);
+
+  useEffect(() => {
+    if (phase !== "answering" || !mode.timerSec) {
+      setTimer(null);
+      return;
+    }
+    setTimer(mode.timerSec);
+    const id = window.setInterval(() => {
+      setTimer((t) => (t == null ? null : Math.max(t - 1, 0)));
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, [phase, rounds.length, mode.timerSec]);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null;
+      const inField =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if (inField) return;
+      if (e.key === "e" || e.key === "E") {
+        if (phase === "answering" && rounds.length >= 2) {
+          void endSession();
+        }
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [phase, rounds.length]);
 
   async function submitAnswer() {
@@ -129,6 +189,7 @@ export function Session() {
         body: JSON.stringify({
           topic,
           notes,
+          modeId,
           concepts,
           rounds: updatedRounds,
           answer: answer.trim(),
@@ -164,14 +225,16 @@ export function Session() {
 
   async function endSession(rs?: Round[], cs?: Concept[]) {
     setPhase("ending");
+    const finalRounds = rs ?? rounds;
+    const finalConcepts = cs ?? concepts;
     try {
       const res = await fetch("/api/session/report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           topic,
-          concepts: cs ?? concepts,
-          rounds: rs ?? rounds,
+          concepts: finalConcepts,
+          rounds: finalRounds,
         }),
       });
       if (!res.ok) {
@@ -182,6 +245,24 @@ export function Session() {
       setReport(data);
       setPhase("report");
       localStorage.removeItem("cl:session");
+
+      const evald = finalRounds.filter((r) => r.evaluation);
+      const avgScore =
+        evald.length > 0
+          ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
+          : 0;
+      pushHistory({
+        id: crypto.randomUUID(),
+        topic,
+        modeId,
+        concepts: finalConcepts,
+        rounds: finalRounds,
+        createdAt: finalRounds[0]?.createdAt ?? Date.now(),
+        endedAt: Date.now(),
+        avgScore,
+        mastered: finalConcepts.filter((c) => c.strength === "mastered").length,
+      });
+      bumpStreak();
     } catch (e) {
       setErrMsg(e instanceof Error ? e.message : "Report failed");
       setPhase("error");
@@ -201,7 +282,9 @@ export function Session() {
             <span /><span /><span />
           </span>
           <div className="text-[var(--fg-muted)] text-sm">
-            {phase === "starting" ? "Building your concept map…" : "Loading session…"}
+            {phase === "starting"
+              ? "Building your concept map…"
+              : "Loading session…"}
           </div>
         </div>
       </SessionShell>
@@ -220,10 +303,13 @@ export function Session() {
               {errMsg ?? "Unknown error"}
             </div>
             <div className="text-[11px] text-[var(--fg-dim)] mb-5 leading-relaxed">
-              The free LLM endpoint can rate-limit or hiccup. Retry usually fixes it.
+              The free LLM endpoint can rate-limit. Retry usually fixes it. Set GROQ_API_KEY in env for a stable backup.
             </div>
             <div className="flex gap-2 justify-center">
-              <button onClick={() => location.reload()} className="btn-primary px-4 py-2 rounded-lg text-sm">
+              <button
+                onClick={() => location.reload()}
+                className="btn-primary px-4 py-2 rounded-lg text-sm"
+              >
                 Retry
               </button>
               <button onClick={newSession} className="btn-ghost px-4 py-2 rounded-lg text-sm">
@@ -243,7 +329,9 @@ export function Session() {
           <span className="dot-pulse mb-4">
             <span /><span /><span />
           </span>
-          <div className="text-[var(--fg-muted)] text-sm">Compiling your report…</div>
+          <div className="text-[var(--fg-muted)] text-sm">
+            Compiling your report…
+          </div>
         </div>
       </SessionShell>
     );
@@ -252,7 +340,14 @@ export function Session() {
   if (phase === "report" && report) {
     return (
       <SessionShell>
-        <ReportView report={report} topic={topic} rounds={rounds} onNew={newSession} />
+        <ReportView
+          report={report}
+          topic={topic}
+          rounds={rounds}
+          concepts={concepts}
+          modeId={modeId}
+          onNew={newSession}
+        />
       </SessionShell>
     );
   }
@@ -263,30 +358,31 @@ export function Session() {
 
   return (
     <SessionShell
-      progress={
-        rounds.length > 0
-          ? Math.min(rounds.length / 8, 1)
-          : 0
-      }
+      progress={rounds.length > 0 ? Math.min(rounds.length / 8, 1) : 0}
       onEnd={() => endSession()}
       canEnd={rounds.length >= 2 && phase === "answering"}
+      timer={timer}
     >
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 px-6 sm:px-10 py-6 max-w-[1180px] w-full mx-auto">
         <div className="flex flex-col gap-5 min-w-0">
-          {lastEval && (
-            <EvalCard evaluation={lastEval} key={`eval-${rounds.length}`} />
-          )}
+          {lastEval && <EvalCard evaluation={lastEval} key={`eval-${rounds.length}`} />}
 
           <div className="card p-5 fade-up" key={`q-${rounds.length}`}>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="tag">Round {lastRound.id}</span>
-              <span className="tag">{lastRound.questionType}</span>
-              <span className="tag">
-                <DiffDots level={lastRound.difficulty} />
-              </span>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="tag">Round {lastRound.id}</span>
+                <span className="tag">{lastRound.questionType}</span>
+                <span className="tag">
+                  <DiffDots level={lastRound.difficulty} />
+                </span>
+                <span className="tag" style={{ color: "var(--accent)" }}>
+                  {mode.name} mode
+                </span>
+              </div>
+              <ReadAloud text={lastRound.question} />
             </div>
             <div className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
-              {lastRound.question}
+              <Tex text={lastRound.question} />
             </div>
           </div>
 
@@ -296,7 +392,7 @@ export function Session() {
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               disabled={phase !== "answering"}
-              placeholder="Explain in your own words. Reasoning > recall. Examples are gold."
+              placeholder="Explain in your own words. Reasoning > recall. Use $latex$ for math."
               className="w-full bg-transparent outline-none text-[15px] min-h-[140px] leading-relaxed disabled:opacity-60"
               maxLength={6000}
               onKeyDown={(e) => {
@@ -306,11 +402,22 @@ export function Session() {
                 }
               }}
             />
-            <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
               <div className="text-[11px] text-[var(--fg-dim)]">
                 {answer.length}/6000  ·  ⌘/Ctrl + Enter to submit
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
+                <VoiceInput
+                  onTranscript={(t) => setAnswer(t)}
+                  disabled={phase !== "answering"}
+                />
+                <button
+                  onClick={() => setShowHints((v) => !v)}
+                  className="btn-ghost text-xs px-2.5 py-1 rounded-md"
+                  title="Math syntax help"
+                >
+                  ƒ
+                </button>
                 <button
                   onClick={() => setAnswer("I'm not sure — but I'd guess…")}
                   disabled={phase !== "answering"}
@@ -327,14 +434,53 @@ export function Session() {
                 </button>
               </div>
             </div>
+            {showHints && (
+              <div className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11.5px] text-[var(--fg-muted)] leading-relaxed">
+                <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
+                  Math syntax
+                </div>
+                <div className="font-mono text-[11px]">
+                  $x^2 + y^2$ · $\frac{"{a}"}{"{b}"}$ · $\int_0^1 f(x) dx$ · $\sum_{"{i=1}"}^n$
+                </div>
+                <div className="mt-2">Wrap in <code>$…$</code> inline or <code>$$…$$</code> for display.</div>
+              </div>
+            )}
+            {answer.trim() && /\$/.test(answer) && (
+              <div className="mt-3 pt-3 border-t border-[var(--line-soft)]">
+                <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
+                  Preview
+                </div>
+                <div className="text-[13px] leading-relaxed">
+                  <Tex text={answer} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <aside className="lg:sticky lg:top-4 lg:self-start">
+        <aside className="lg:sticky lg:top-4 lg:self-start flex flex-col gap-3">
           <ConceptPanel concepts={concepts} />
+          <ModeSwitcher value={modeId} onChange={setModeId} />
         </aside>
       </div>
     </SessionShell>
+  );
+}
+
+function ModeSwitcher({
+  value,
+  onChange,
+}: {
+  value: ModeId;
+  onChange: (m: ModeId) => void;
+}) {
+  return (
+    <div className="card p-3">
+      <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+        Mode (next question)
+      </div>
+      <ModePicker value={value} onChange={onChange} compact />
+    </div>
   );
 }
 
@@ -343,11 +489,13 @@ function SessionShell({
   progress,
   onEnd,
   canEnd,
+  timer,
 }: {
   children: React.ReactNode;
   progress?: number;
   onEnd?: () => void;
   canEnd?: boolean;
+  timer?: number | null;
 }) {
   const router = useRouter();
   return (
@@ -357,10 +505,23 @@ function SessionShell({
           <Logo />
         </button>
         <div className="flex items-center gap-3">
+          {timer != null && (
+            <span
+              className="text-[11px] font-mono tabular-nums"
+              style={{
+                color: timer < 15 ? "var(--bad)" : "var(--fg-muted)",
+              }}
+            >
+              ⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
+            </span>
+          )}
           {typeof progress === "number" && (
             <div className="hidden sm:block w-32">
               <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${progress * 100}%` }} />
+                <div
+                  className="bar-fill"
+                  style={{ width: `${progress * 100}%` }}
+                />
               </div>
             </div>
           )}
@@ -443,7 +604,7 @@ function EvalCard({ evaluation }: { evaluation: Evaluation }) {
         </span>
       </div>
       <div className="text-[14px] tracking-tight mb-3 text-[var(--fg)]">
-        {evaluation.verdict}
+        <Tex text={evaluation.verdict} />
       </div>
       {evaluation.strengths.length > 0 && (
         <Block label="What you got" items={evaluation.strengths} color="var(--good)" />
@@ -455,7 +616,15 @@ function EvalCard({ evaluation }: { evaluation: Evaluation }) {
   );
 }
 
-function Block({ label, items, color }: { label: string; items: string[]; color: string }) {
+function Block({
+  label,
+  items,
+  color,
+}: {
+  label: string;
+  items: string[];
+  color: string;
+}) {
   return (
     <div className="mt-2">
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
@@ -463,9 +632,12 @@ function Block({ label, items, color }: { label: string; items: string[]; color:
       </div>
       <ul className="flex flex-col gap-1">
         {items.map((it, i) => (
-          <li key={i} className="text-[12.5px] text-[var(--fg-muted)] leading-relaxed flex gap-2">
+          <li
+            key={i}
+            className="text-[12.5px] text-[var(--fg-muted)] leading-relaxed flex gap-2"
+          >
             <span style={{ color }}>•</span>
-            <span>{it}</span>
+            <span><Tex text={it} /></span>
           </li>
         ))}
       </ul>
@@ -493,23 +665,32 @@ function ReportView({
   report,
   topic,
   rounds,
+  concepts,
+  modeId,
   onNew,
 }: {
   report: ReportData;
   topic: string;
   rounds: Round[];
+  concepts: Concept[];
+  modeId: string;
   onNew: () => void;
 }) {
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const evald = rounds.filter((r) => r.evaluation);
   const avg =
-    rounds.filter((r) => r.evaluation).reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) /
-    Math.max(rounds.filter((r) => r.evaluation).length, 1);
+    evald.length > 0
+      ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
+      : 0;
 
   function downloadMd() {
     const lines: string[] = [];
     lines.push(`# Cogniloop session — ${topic || "untitled"}`);
     lines.push("");
     lines.push(`**Headline:** ${report.headline}`);
-    lines.push(`**Avg score:** ${avg.toFixed(2)} / 3`);
+    lines.push(`**Mode:** ${modeId} · **Avg score:** ${avg.toFixed(2)} / 3`);
     lines.push("");
     lines.push("## Mastered");
     report.mastered.forEach((c) => lines.push(`- ${c}`));
@@ -547,6 +728,21 @@ function ReportView({
     URL.revokeObjectURL(url);
   }
 
+  function makeShareUrl() {
+    const token = encodeShare({
+      v: 1,
+      topic,
+      modeId,
+      concepts,
+      rounds,
+    });
+    const url = `${window.location.origin}/shared/${token}`;
+    setShareUrl(url);
+    navigator.clipboard.writeText(url).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
   return (
     <div className="flex-1 max-w-[800px] w-full mx-auto px-6 py-10">
       <div className="fade-up">
@@ -555,7 +751,8 @@ function ReportView({
           {report.headline}
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
-          {topic ? `On: ${topic}` : ""} · {rounds.length} rounds · avg {avg.toFixed(2)}/3
+          {topic ? `On: ${topic} · ` : ""}
+          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · mode {modeId}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
@@ -594,20 +791,36 @@ function ReportView({
           </div>
         </div>
 
-        <div className="flex gap-3 mt-8">
+        <div className="flex gap-3 mt-8 flex-wrap">
           <button onClick={onNew} className="btn-primary px-5 py-2.5 rounded-lg text-sm">
             New session
           </button>
           <button onClick={downloadMd} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
             Export markdown
           </button>
+          <button onClick={makeShareUrl} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
+            {copied ? "Link copied" : "Copy share link"}
+          </button>
         </div>
+        {shareUrl && (
+          <div className="mt-3 text-[11px] text-[var(--fg-dim)] break-all font-mono">
+            {shareUrl}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function BucketCard({ label, items, color }: { label: string; items: string[]; color: string }) {
+function BucketCard({
+  label,
+  items,
+  color,
+}: {
+  label: string;
+  items: string[];
+  color: string;
+}) {
   return (
     <div className="card p-4">
       <div className="flex items-center gap-2 mb-2">
@@ -615,7 +828,9 @@ function BucketCard({ label, items, color }: { label: string; items: string[]; c
         <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
           {label}
         </span>
-        <span className="text-[11px] text-[var(--fg-dim)] ml-auto">{items.length}</span>
+        <span className="text-[11px] text-[var(--fg-dim)] ml-auto">
+          {items.length}
+        </span>
       </div>
       {items.length === 0 ? (
         <div className="text-[12px] text-[var(--fg-dim)]">—</div>
@@ -623,7 +838,7 @@ function BucketCard({ label, items, color }: { label: string; items: string[]; c
         <ul className="flex flex-col gap-1">
           {items.map((it, i) => (
             <li key={i} className="text-[13px] tracking-tight">
-              {it}
+              <Tex text={it} />
             </li>
           ))}
         </ul>

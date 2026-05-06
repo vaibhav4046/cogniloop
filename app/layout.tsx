@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ShortcutsModal } from "@/components/ShortcutsModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,16 +14,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cogniloop — Active recall, AI-powered",
+  title: "Cogniloop — The AI tutor that refuses to give you the answer",
   description:
-    "Cogniloop refuses to give answers. It quizzes you with the Feynman technique, finds your blind spots, and rebuilds your understanding round by round. Free. No signup.",
+    "Active-recall AI tutor. Feynman technique. Concept tracker. Streaks. Curriculum templates for JEE, NEET, GATE, MCAT. Free, no signup, no API keys. 100% client-side.",
   keywords: [
     "active recall",
     "Feynman technique",
     "AI tutor",
     "study app",
     "Socratic learning",
-    "free LLM study tool",
+    "JEE prep",
+    "NEET prep",
+    "GATE CSE",
+    "MCAT",
+    "spaced repetition",
+    "free LLM",
+    "Pollinations",
+    "Groq",
   ],
   authors: [{ name: "Vaibhav Lalwani" }],
   openGraph: {
@@ -36,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cogniloop",
     description:
-      "Active-recall AI tutor. Free, no signup, no API keys. Built for students who want to actually learn, not summarize.",
+      "Active-recall AI tutor. Free, no signup, no API keys. Built for students who want to actually learn.",
   },
 };
 
@@ -58,6 +66,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[var(--bg)] text-[var(--fg)]">
         {children}
+        <ShortcutsModal />
       </body>
     </html>
   );

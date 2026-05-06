@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>seed</title></head>
+<body>
+<script>
+(() => {
+  const dayKey = (ts) => {
+    const d = new Date(ts);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  };
+  const today = Date.now();
+  const day = 24*3600*1000;
+  const daysActive = [];
+  const pattern = [0,1,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,1,1, 1,0,1,1,1,1,0,0,1,1, 0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1];
+  for (let i = 50; i >= 0; i--) {
+    if (pattern[i]) daysActive.push(dayKey(today - i*day));
+  }
+  localStorage.setItem('cl:streak', JSON.stringify({
+    current: 7, longest: 14, lastActiveDay: dayKey(today), daysActive
+  }));
+  const sessions = [
+    {id:'s1', topic:'Backpropagation in neural networks', modeId:'expert', concepts:[], rounds:Array.from({length:9}), createdAt: today - 2*3600*1000, endedAt: today - 90*60*1000, avgScore: 2.66, mastered: 4},
+    {id:'s2', topic:"Bayes' theorem with a real example", modeId:'exam', concepts:[], rounds:Array.from({length:7}), createdAt: today - day, endedAt: today - day + 35*60*1000, avgScore: 2.33, mastered: 3},
+    {id:'s3', topic:'TCP three-way handshake and congestion control', modeId:'exam', concepts:[], rounds:Array.from({length:8}), createdAt: today - 2*day, endedAt: today - 2*day + 40*60*1000, avgScore: 1.87, mastered: 2},
+    {id:'s4', topic:'Greedy vs dynamic programming, when to use which', modeId:'expert', concepts:[], rounds:Array.from({length:10}), createdAt: today - 3*day, endedAt: today - 3*day + 55*60*1000, avgScore: 2.90, mastered: 5},
+    {id:'s5', topic:'What actually happens during meiosis', modeId:'chill', concepts:[], rounds:Array.from({length:6}), createdAt: today - 5*day, endedAt: today - 5*day + 28*60*1000, avgScore: 2.16, mastered: 3},
+    {id:'s6', topic:'Photosynthesis — light-dependent reactions', modeId:'exam', concepts:[], rounds:Array.from({length:7}), createdAt: today - 7*day, endedAt: today - 7*day + 32*60*1000, avgScore: 2.42, mastered: 3},
+  ];
+  localStorage.setItem('cl:history', JSON.stringify(sessions));
+  location.replace('/history');
+})();
+</script>
+</body></html>

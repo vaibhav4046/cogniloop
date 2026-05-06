@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>seed</title></head>
+<body>
+<script>
+(() => {
+  const session = {
+    topic: 'Backpropagation in neural networks',
+    notes: '',
+    modeId: 'expert',
+    concepts: [
+      {id:'chain-rule', name:'Chain rule of differentiation', strength:'mastered', attempts:3, lastScore:3},
+      {id:'gradient-flow', name:'Gradient flow through layers', strength:'solid', attempts:2, lastScore:2},
+      {id:'activation-derivatives', name:'Derivatives of activations (sigmoid, ReLU)', strength:'shaky', attempts:2, lastScore:1},
+      {id:'vanishing-gradients', name:'Vanishing & exploding gradients', strength:'weak', attempts:1, lastScore:0},
+      {id:'weight-update', name:'Weight update step (η · ∂L/∂w)', strength:'solid', attempts:2, lastScore:3},
+      {id:'computation-graph', name:'Computation graph view', strength:'shaky', attempts:1, lastScore:1},
+    ],
+    rounds: [
+      {id:1, question:'Explain the chain rule and why it lets us backpropagate through composed functions.', questionType:'explain', difficulty:3, createdAt: Date.now()-600000, answer:'Chain rule says (f(g(x)))′ = f′(g(x))·g′(x). For nested ops in a network, gradients factor through each layer.', evaluation:{score:3, verdict:'Sharp. You named the structural property and applied it to layered functions.', gaps:[], strengths:['Stated chain rule precisely', 'Linked to layered composition'], conceptsTested:['chain-rule']}},
+      {id:2, question:'A 4-layer MLP with sigmoid activations is training but loss barely moves after epoch 5. Predict what is happening to gradients in early layers and why.', questionType:'predict', difficulty:4, createdAt: Date.now()-300000, answer:'Sigmoid derivatives max out at 0.25, so multiplying through 4 layers shrinks gradients to ~0.004. Early layers stop learning.', evaluation:{score:2, verdict:'Right diagnosis but missed the activation saturation in deep regions.', gaps:['Did not mention sigmoid saturation at extremes (gradient ≈ 0)','Did not propose a fix like ReLU or residual connections'], strengths:['Correctly multiplied derivative bound through layers','Named the symptom (vanishing gradient)'], conceptsTested:['vanishing-gradients','activation-derivatives']}},
+      {id:3, question:'In a computation graph for $L = (Wx + b - y)^2$, write the partial derivative $\\frac{\\partial L}{\\partial W}$ and trace which graph nodes contribute to it.', questionType:'trace', difficulty:4, createdAt: Date.now()},
+    ],
+    phase: 'answering',
+  };
+  localStorage.setItem('cl:session', JSON.stringify(session));
+  location.replace('/study');
+})();
+</script>
+</body></html>
