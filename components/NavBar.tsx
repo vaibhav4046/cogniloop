@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/templates", label: "Templates", k: "t" },
   { href: "/history", label: "History", k: "h" },
   { href: "/why", label: "Why", k: "w" },
+  { href: "/settings", label: "Settings", k: "s" },
 ];
 
 export function NavBar() {

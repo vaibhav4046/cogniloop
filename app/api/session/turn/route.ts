@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { chat, extractJson, wrapUntrustedNotes } from "@/lib/llm";
+import { chat, extractJson, wrapUntrustedNotes, readClientHints } from "@/lib/llm";
 import { SYSTEM_CORE, EVALUATE_AND_NEXT, modePromptForId } from "@/lib/prompts";
 import { getClientKey, rateCheck } from "@/lib/rateLimit";
 import type { Round, Concept, SessionTurnResponse } from "@/lib/types";
@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
     nextRoundId: lastRound.id + 1,
   });
 
+  const hints = readClientHints(req);
   try {
     const raw = await chat(
       [
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
         { role: "system", content: EVALUATE_AND_NEXT },
         { role: "user", content: userPayload },
       ],
-      { temperature: 0.4, jsonMode: true }
+      { temperature: 0.4, jsonMode: true, ...hints }
     );
     const parsed = extractJson<SessionTurnResponse>(raw);
     if (!parsed.evaluation || typeof parsed.evaluation.score !== "number") {

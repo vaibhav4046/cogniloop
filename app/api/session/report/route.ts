@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { chat, extractJson } from "@/lib/llm";
+import { chat, extractJson, readClientHints } from "@/lib/llm";
 import { SYSTEM_CORE, FINAL_REPORT } from "@/lib/prompts";
 import { getClientKey, rateCheck } from "@/lib/rateLimit";
 import type { Concept, Round } from "@/lib/types";
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
     })),
   });
 
+  const hints = readClientHints(req);
   try {
     const raw = await chat(
       [
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
         { role: "system", content: FINAL_REPORT },
         { role: "user", content: userPayload },
       ],
-      { temperature: 0.3, jsonMode: true }
+      { temperature: 0.3, jsonMode: true, ...hints }
     );
     const parsed = extractJson<ReportResponse>(raw);
     parsed.mastered ??= [];

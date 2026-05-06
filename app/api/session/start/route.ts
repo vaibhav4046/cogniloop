@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { chat, extractJson, wrapUntrustedNotes } from "@/lib/llm";
+import { chat, extractJson, wrapUntrustedNotes, readClientHints } from "@/lib/llm";
 import {
   SYSTEM_CORE,
   EXTRACT_AND_FIRST_QUESTION,
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
     startingDifficulty: startDiff,
   });
 
+  const hints = readClientHints(req);
   try {
     const raw = await chat(
       [
@@ -58,7 +59,7 @@ export async function POST(req: NextRequest) {
         { role: "system", content: EXTRACT_AND_FIRST_QUESTION },
         { role: "user", content: userPayload },
       ],
-      { temperature: 0.5, jsonMode: true }
+      { temperature: 0.5, jsonMode: true, ...hints }
     );
     const parsed = extractJson<SessionStartResponse>(raw);
     if (!parsed.concepts?.length || !parsed.firstRound?.question) {

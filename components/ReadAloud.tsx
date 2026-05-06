@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getSettings } from "@/lib/settings";
 
 interface Props {
   text: string;
+  autoPlayKey?: string | number;
 }
 
-export function ReadAloud({ text }: Props) {
+export function ReadAloud({ text, autoPlayKey }: Props) {
   const [supported, setSupported] = useState(false);
   const [speaking, setSpeaking] = useState(false);
 
@@ -23,6 +25,31 @@ export function ReadAloud({ text }: Props) {
     };
   }, []);
 
+  useEffect(() => {
+    if (autoPlayKey === undefined) return;
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const settings = getSettings();
+    if (settings.ttsAuto) {
+      speak();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoPlayKey]);
+
+  function speak() {
+    const settings = getSettings();
+    const synth = window.speechSynthesis;
+    const stripped = text.replace(/\$+[^$]+\$+/g, "math expression").slice(0, 800);
+    const utter = new SpeechSynthesisUtterance(stripped);
+    utter.lang = settings.voiceLang ?? "en-US";
+    utter.rate = settings.voiceRate ?? 1.05;
+    utter.pitch = settings.voicePitch ?? 1;
+    utter.onend = () => setSpeaking(false);
+    utter.onerror = () => setSpeaking(false);
+    synth.cancel();
+    synth.speak(utter);
+    setSpeaking(true);
+  }
+
   function toggle() {
     if (!supported) return;
     const synth = window.speechSynthesis;
@@ -31,15 +58,7 @@ export function ReadAloud({ text }: Props) {
       setSpeaking(false);
       return;
     }
-    const stripped = text.replace(/\$+[^$]+\$+/g, "math expression").slice(0, 800);
-    const utter = new SpeechSynthesisUtterance(stripped);
-    utter.rate = 1.05;
-    utter.pitch = 1;
-    utter.onend = () => setSpeaking(false);
-    utter.onerror = () => setSpeaking(false);
-    synth.cancel();
-    synth.speak(utter);
-    setSpeaking(true);
+    speak();
   }
 
   if (!supported) return null;

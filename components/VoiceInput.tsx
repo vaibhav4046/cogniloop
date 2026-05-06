@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getSettings } from "@/lib/settings";
 
 interface Props {
   onTranscript: (text: string) => void;
@@ -50,7 +51,7 @@ export function VoiceInput({ onTranscript, disabled }: Props) {
     const rec = new Ctor();
     rec.continuous = true;
     rec.interimResults = true;
-    rec.lang = "en-US";
+    rec.lang = getSettings().voiceLang ?? "en-US";
 
     let finalTranscript = "";
     rec.onresult = (e) => {

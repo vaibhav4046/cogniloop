@@ -1,3 +1,5 @@
+import { authHeadersFor } from "./settings";
+
 interface RetryOpts {
   attempts?: number;
   baseDelayMs?: number;
@@ -21,7 +23,7 @@ export async function fetchJson<T>(
     try {
       const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeadersFor() },
         body: JSON.stringify(body),
         signal: opts.signal,
       });

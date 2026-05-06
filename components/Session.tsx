@@ -365,7 +365,7 @@ export function Session() {
                   {mode.name} mode
                 </span>
               </div>
-              <ReadAloud text={lastRound.question} />
+              <ReadAloud text={lastRound.question} autoPlayKey={lastRound.id} />
             </div>
             <div className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
               <Tex text={lastRound.question} />
