@@ -184,10 +184,20 @@ export function HistoryView() {
             <div className="text-[12px] text-[var(--bad)] mb-3">{importErr}</div>
           )}
           {records.length === 0 ? (
-            <div className="card p-6 text-center">
-              <div className="text-[var(--fg-muted)] text-sm">
-                No sessions yet. Start your first loop on the home page.
+            <div className="card p-8 text-center">
+              <div className="text-[34px] mb-3" aria-hidden>↻</div>
+              <div className="text-[15px] font-medium tracking-tight mb-1">
+                No sessions yet
               </div>
+              <div className="text-[13px] text-[var(--fg-muted)] max-w-[420px] mx-auto leading-relaxed mb-5">
+                Run your first loop. It takes ~3 minutes. The AI will extract the concepts, drill you on each, and ship a coaching report at the end.
+              </div>
+              <a
+                href="/"
+                className="btn-primary inline-block px-5 py-2.5 rounded-lg text-sm"
+              >
+                Start your first session →
+              </a>
             </div>
           ) : (
             <div className="flex flex-col gap-2">

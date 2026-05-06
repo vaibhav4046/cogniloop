@@ -7,11 +7,13 @@ import { Tex } from "./Math";
 import { VoiceInput } from "./VoiceInput";
 import { ReadAloud } from "./ReadAloud";
 import { ModePicker } from "./ModePicker";
+import { useToast } from "./Toast";
 import { pushHistory, bumpStreak } from "@/lib/storage";
 import { encodeShare } from "@/lib/share";
 import { runStart, runTurn, runReport, type ReportData } from "@/lib/sessionLogic";
 import { getSettings } from "@/lib/settings";
 import { fetchJson } from "@/lib/fetchRetry";
+import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hints";
 import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
@@ -47,6 +49,7 @@ const STRENGTH_PCT: Record<ConceptStrength, number> = {
 
 export function Session() {
   const router = useRouter();
+  const toast = useToast();
   const [phase, setPhase] = useState<Phase>("booting");
   const [topic, setTopic] = useState("");
   const [notes, setNotes] = useState("");
@@ -58,6 +61,7 @@ export function Session() {
   const [report, setReport] = useState<ReportData | null>(null);
   const [timer, setTimer] = useState<number | null>(null);
   const [showHints, setShowHints] = useState(false);
+  const [hintIndex, setHintIndex] = useState(0);
   const taRef = useRef<HTMLTextAreaElement>(null);
 
   const startSession = useCallback(
@@ -148,6 +152,39 @@ export function Session() {
     }
   }, [phase, rounds.length]);
 
+  useEffect(() => {
+    if (phase !== "starting" && phase !== "evaluating" && phase !== "ending") {
+      setHintIndex(0);
+      return;
+    }
+    setHintIndex(0);
+    const id = window.setInterval(() => setHintIndex((i) => i + 1), 2400);
+    return () => window.clearInterval(id);
+  }, [phase]);
+
+  const lastRoundIdForDraft = rounds.length > 0 ? rounds[rounds.length - 1].id : 0;
+  const draftKey = `cl:draft:${lastRoundIdForDraft}`;
+
+  useEffect(() => {
+    if (phase !== "answering") return;
+    try {
+      const saved = localStorage.getItem(draftKey);
+      if (saved && answer === "") setAnswer(saved);
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, lastRoundIdForDraft]);
+
+  useEffect(() => {
+    if (phase !== "answering") return;
+    const id = window.setTimeout(() => {
+      try {
+        if (answer.trim()) localStorage.setItem(draftKey, answer);
+        else localStorage.removeItem(draftKey);
+      } catch {}
+    }, 600);
+    return () => window.clearTimeout(id);
+  }, [answer, phase, draftKey]);
+
   const mode = getMode(modeId);
 
   useEffect(() => {
@@ -235,10 +272,27 @@ export function Session() {
         await endSession(finalRounds, data.updatedConcepts);
       } else {
         setPhase("answering");
+        try {
+          localStorage.removeItem(draftKey);
+        } catch {}
       }
     } catch (e) {
-      setErrMsg(e instanceof Error ? e.message : "Turn failed");
-      setPhase("error");
+      const msg = e instanceof Error ? e.message : "Turn failed";
+      const restoredRounds = updatedRounds.map((r, i) =>
+        i === lastIdx ? { ...r, answer: undefined } : r
+      );
+      setRounds(restoredRounds);
+      setAnswer((a) => a || updatedRounds[lastIdx].answer || "");
+      setPhase("answering");
+      toast.push({
+        kind: "error",
+        text: `Couldn't grade that round (${msg}).`,
+        actionLabel: "Retry",
+        onAction: () => {
+          void submitAnswer();
+        },
+        durationMs: 7000,
+      });
     }
   }
 
@@ -290,8 +344,17 @@ export function Session() {
       });
       bumpStreak();
     } catch (e) {
-      setErrMsg(e instanceof Error ? e.message : "Report failed");
-      setPhase("error");
+      const msg = e instanceof Error ? e.message : "Report failed";
+      setPhase("answering");
+      toast.push({
+        kind: "error",
+        text: `Couldn't generate the report (${msg}).`,
+        actionLabel: "Retry",
+        onAction: () => {
+          void endSession(finalRounds, finalConcepts);
+        },
+        durationMs: 7000,
+      });
     }
   }
 
@@ -304,12 +367,16 @@ export function Session() {
     return (
       <SessionShell>
         <div className="flex flex-col items-center justify-center flex-1 text-center fade-up">
-          <span className="dot-pulse mb-4">
+          <span className="dot-pulse mb-4" aria-hidden>
             <span /><span /><span />
           </span>
-          <div className="text-[var(--fg-muted)] text-sm">
+          <div
+            key={hintIndex}
+            className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
+            aria-live="polite"
+          >
             {phase === "starting"
-              ? "Building your concept map…"
+              ? pickHint(STARTING_HINTS, hintIndex)
               : "Loading session…"}
           </div>
         </div>
@@ -352,11 +419,15 @@ export function Session() {
     return (
       <SessionShell>
         <div className="flex flex-col items-center justify-center flex-1 text-center fade-up">
-          <span className="dot-pulse mb-4">
+          <span className="dot-pulse mb-4" aria-hidden>
             <span /><span /><span />
           </span>
-          <div className="text-[var(--fg-muted)] text-sm">
-            Compiling your report…
+          <div
+            key={hintIndex}
+            className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
+            aria-live="polite"
+          >
+            {pickHint(ENDING_HINTS, hintIndex)}
           </div>
         </div>
       </SessionShell>
@@ -393,7 +464,7 @@ export function Session() {
         <div className="flex flex-col gap-5 min-w-0">
           {lastEval && <EvalCard evaluation={lastEval} key={`eval-${rounds.length}`} />}
 
-          <div className="card p-5 fade-up" key={`q-${rounds.length}`}>
+          <div className="card p-5 round-in" key={`q-${rounds.length}`}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="tag">Round {lastRound.id}</span>
@@ -441,6 +512,7 @@ export function Session() {
                   onClick={() => setShowHints((v) => !v)}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
                   title="Math syntax help"
+                  aria-label="Toggle math syntax help"
                 >
                   ƒ
                 </button>
@@ -448,6 +520,7 @@ export function Session() {
                   onClick={() => setAnswer("I'm not sure — but I'd guess…")}
                   disabled={phase !== "answering"}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
+                  aria-label="Insert stuck-prompt template"
                 >
                   Stuck?
                 </button>
@@ -455,8 +528,16 @@ export function Session() {
                   onClick={submitAnswer}
                   disabled={phase !== "answering" || !answer.trim()}
                   className="btn-primary text-sm px-4 py-2 rounded-lg"
+                  aria-label="Submit answer"
                 >
-                  {phase === "evaluating" ? "Grading…" : "Submit  ↵"}
+                  {phase === "evaluating" ? (
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="w-3 h-3 rounded-full border-2 border-current border-t-transparent animate-spin" aria-hidden />
+                      Grading…
+                    </span>
+                  ) : (
+                    "Submit  ↵"
+                  )}
                 </button>
               </div>
             </div>
@@ -609,24 +690,28 @@ function ConceptPanel({ concepts }: { concepts: Concept[] }) {
   );
 }
 
+const TONE_BY_SCORE: Record<0 | 1 | 2 | 3, { label: string; color: string; encourager: string }> = {
+  3: { label: "Nailed it", color: "var(--good)", encourager: "That's mastery. Keep the bar this high." },
+  2: { label: "Solid", color: "var(--good)", encourager: "Strong. Tighten the gaps below to push to 3/3." },
+  1: { label: "Partial", color: "var(--warn)", encourager: "You're on the path. The gaps are the lesson." },
+  0: { label: "Off the mark", color: "var(--bad)", encourager: "This is the start, not the end. Re-explain after seeing the gaps." },
+};
+
 function EvalCard({ evaluation }: { evaluation: Evaluation }) {
-  const tone =
-    evaluation.score >= 3
-      ? { label: "Nailed it", color: "var(--good)" }
-      : evaluation.score === 2
-      ? { label: "Solid", color: "var(--good)" }
-      : evaluation.score === 1
-      ? { label: "Partial", color: "var(--warn)" }
-      : { label: "Off the mark", color: "var(--bad)" };
+  const score = (Math.max(0, Math.min(3, evaluation.score)) as 0 | 1 | 2 | 3);
+  const tone = TONE_BY_SCORE[score];
 
   return (
     <div className="card p-4 fade-up">
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
         <span
           className="text-[11px] uppercase tracking-wider font-semibold"
           style={{ color: tone.color }}
         >
           {tone.label} · {evaluation.score}/3
+        </span>
+        <span className="text-[11px] text-[var(--fg-muted)] italic">
+          {tone.encourager}
         </span>
       </div>
       <div className="text-[14px] tracking-tight mb-3 text-[var(--fg)]">

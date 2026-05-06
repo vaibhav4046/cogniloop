@@ -103,6 +103,93 @@ input::placeholder {
   0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
   50% { box-shadow: 0 0 22px 2px var(--accent-glow); }
 }
+
+@keyframes toast-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-pop { animation: toast-pop 0.18s ease-out; }
+
+@keyframes round-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.round-in { animation: round-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes shimmer {
+  0% { background-position: -300px 0; }
+  100% { background-position: 300px 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-soft) 0%,
+    var(--bg-elev) 40%,
+    var(--bg-soft) 80%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 8px;
+}
+
+@keyframes hint-fade {
+  0% { opacity: 0; transform: translateY(4px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+.hint-rotate { animation: hint-fade 2.6s ease-in-out; }
+
+@keyframes pop-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.pop-in { animation: pop-in 0.22s cubic-bezier(0.16, 1.2, 0.3, 1.05); }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.tap-44 {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .btn-primary,
+  .btn-ghost {
+    min-height: 44px;
+  }
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  width: auto;
+  height: auto;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #0b0710;
+  z-index: 1000;
+  border-radius: 8px;
+  font-weight: 600;
+}
 .btn-primary {
   background: var(--accent);
   color: #0b0710;
