@@ -40,6 +40,7 @@ export function ShortcutsModal() {
     return (
       <button
         onClick={() => setOpen(true)}
+        aria-label="Open keyboard shortcuts panel"
         title="Keyboard shortcuts (?)"
         className="fixed bottom-4 right-4 btn-ghost w-9 h-9 rounded-full flex items-center justify-center text-sm z-30"
       >
@@ -54,13 +55,17 @@ export function ShortcutsModal() {
       onClick={() => setOpen(false)}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="shortcuts-title"
         className="card p-6 w-[min(440px,90vw)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
-          <div className="text-sm font-medium tracking-tight">Keyboard shortcuts</div>
+          <div id="shortcuts-title" className="text-sm font-medium tracking-tight">Keyboard shortcuts</div>
           <button
             onClick={() => setOpen(false)}
+            aria-label="Close keyboard shortcuts panel"
             className="text-[var(--fg-muted)] hover:text-[var(--fg)]"
           >
             ✕

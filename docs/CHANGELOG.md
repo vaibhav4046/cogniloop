@@ -2,3 +2,4 @@
 
 - 2026-05-06 curriculum: add System Design pack (8 core concepts + 6 design problems, 7th curriculum)
 - 2026-05-06 skeleton loader: history page shows shimmer cards while localStorage loads, preventing flash of empty state
+- 2026-05-06 a11y: ShortcutsModal gets role=dialog + aria-modal + aria-labelledby; trigger and close buttons get aria-label; answer textarea gets aria-label

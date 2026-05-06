@@ -489,6 +489,7 @@ export function Session() {
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               disabled={phase !== "answering"}
+              aria-label="Your answer"
               placeholder="Explain in your own words. Reasoning > recall. Use $latex$ for math."
               className="w-full bg-transparent outline-none text-[15px] min-h-[140px] leading-relaxed disabled:opacity-60"
               maxLength={6000}
