@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cogniloop
 
-## Getting Started
+> The AI tutor that **refuses** to give you the answer.
 
-First, run the development server:
+Most AI study tools summarize content for you — and quietly destroy your understanding. Cogniloop does the opposite: it forces **active recall** through the Feynman technique, drills you with Socratic questions, evaluates your explanations, and adapts each round to your blind spots.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Live demo:** _(deployed on Vercel — see top of repo)_
+
+---
+
+## Why this exists
+
+Reddit and r/college threads agree: students are drowning in "summarize this for me" wrappers that pass exams short-term and erode learning long-term. There is a glaring gap for tools that **make you do the thinking** while still giving structured feedback.
+
+Cogniloop is that tool.
+
+## What it does
+
+1. **Paste a topic or your lecture notes.**
+2. The AI extracts the underlying concepts and builds a live concept tracker.
+3. It asks you a question — **explain**, **apply**, **contrast**, **predict**, or **trace** — calibrated to your weakest concept.
+4. You answer in your own words. The AI grades the answer 0–3, surfaces what you got, calls out what's missing, and updates concept strengths (`weak → shaky → solid → mastered`).
+5. The next question targets the next weakest spot. Difficulty scales with you.
+6. When you've mastered the map (or hit the round cap), Cogniloop generates a coaching report with a personalized study plan and a 5-minute Feynman journal prompt.
+
+No accounts. No API keys. No tracking. Sessions live in your browser.
+
+## Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| UI | React 19 + Tailwind CSS v4 |
+| Language | TypeScript (strict) |
+| Runtime | Edge functions for all `/api/*` routes |
+| LLM | [Pollinations.ai](https://pollinations.ai) — free, no API key required, OpenAI-compatible |
+| Persistence | `localStorage` only — fully client-side |
+| Hosting | Vercel |
+
+## Architecture
+
+```
+app/
+├── page.tsx                  → landing
+├── study/page.tsx            → session container
+├── api/
+│   └── session/
+│       ├── start/route.ts    → extract concepts + first question
+│       ├── turn/route.ts     → evaluate answer + next question
+│       └── report/route.ts   → coaching report
+components/
+├── Landing.tsx               → home with input + examples
+├── Session.tsx               → state machine + UI for the loop
+└── Logo.tsx
+lib/
+├── types.ts                  → SessionState, Round, Concept, Evaluation
+├── prompts.ts                → SYSTEM_CORE + 3 task prompts
+└── llm.ts                    → Pollinations chat() + JSON extraction
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Each route enforces strict JSON output from the model and validates the schema before returning. The Socratic core is encoded in three prompts (`EXTRACT_AND_FIRST_QUESTION`, `EVALUATE_AND_NEXT`, `FINAL_REPORT`) layered on a shared `SYSTEM_CORE` that hard-bans direct explanations.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Run locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/vaibhav4046/cogniloop.git
+cd cogniloop
+npm install
+npm run dev
+```
 
-## Learn More
+Open http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+No `.env` needed. No keys to manage.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+vercel deploy --prod
+```
 
-## Deploy on Vercel
+Vercel auto-detects Next.js. Edge runtime is already configured per route.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Roadmap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Voice input for answers (speech-to-text)
+- [ ] Spaced-repetition queue across sessions
+- [ ] PDF / image OCR ingestion for textbook pages
+- [ ] Shareable session reports (URL-encoded, no backend)
+- [ ] Optional self-hosted LLM backend (Ollama)
+
+## Author
+
+Built by **Vaibhav Lalwani**.
+
+## License
+
+MIT
