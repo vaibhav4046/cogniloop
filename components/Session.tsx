@@ -33,6 +33,22 @@ type Phase =
   | "report"
   | "error";
 
+function humanizeError(raw: string | null): string {
+  if (!raw) return "An unexpected error occurred.";
+  const m = raw.toLowerCase();
+  if (m.includes("429") || m.includes("rate limit") || m.includes("rate-limit"))
+    return "AI endpoint is temporarily rate-limited — retry in a few seconds.";
+  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error"))
+    return "Network error — check your connection and retry.";
+  if (m.includes("503") || m.includes("service unavailable"))
+    return "AI provider is temporarily unavailable.";
+  if (m.includes("timeout") || m.includes("timed out"))
+    return "The AI took too long to respond — retry usually fixes this.";
+  if (m.includes("json") || m.includes("parse") || m.includes("unexpected token"))
+    return "AI returned a malformed response — retry usually fixes this.";
+  return raw;
+}
+
 const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   weak: "var(--bad)",
   shaky: "var(--warn)",
@@ -286,7 +302,7 @@ export function Session() {
       setPhase("answering");
       toast.push({
         kind: "error",
-        text: `Couldn't grade that round (${msg}).`,
+        text: `Couldn't grade that round — ${humanizeError(msg)}`,
         actionLabel: "Retry",
         onAction: () => {
           void submitAnswer();
@@ -348,7 +364,7 @@ export function Session() {
       setPhase("answering");
       toast.push({
         kind: "error",
-        text: `Couldn't generate the report (${msg}).`,
+        text: `Couldn't generate the report — ${humanizeError(msg)}`,
         actionLabel: "Retry",
         onAction: () => {
           void endSession(finalRounds, finalConcepts);
@@ -393,7 +409,7 @@ export function Session() {
               Something snapped
             </div>
             <div className="text-[13px] text-[var(--fg-muted)] mb-4">
-              {errMsg ?? "Unknown error"}
+              {humanizeError(errMsg)}
             </div>
             <div className="text-[11px] text-[var(--fg-dim)] mb-5 leading-relaxed">
               The free LLM endpoint can rate-limit. Retry usually fixes it. For unlimited speed and quality, paste a free Groq API key in <a href="/settings" className="underline">Settings</a> (60 sec at console.groq.com).
