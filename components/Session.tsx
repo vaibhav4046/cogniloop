@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, memo } from "react";
 import { useRouter } from "next/navigation";
 import { Logo } from "./Logo";
 import { Tex } from "./Math";
@@ -649,7 +649,7 @@ function SessionShell({
   );
 }
 
-function ConceptPanel({ concepts }: { concepts: Concept[] }) {
+const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concept[] }) {
   return (
     <div className="card p-4">
       <div className="flex items-center justify-between mb-3">
@@ -689,7 +689,7 @@ function ConceptPanel({ concepts }: { concepts: Concept[] }) {
       </ul>
     </div>
   );
-}
+});
 
 const TONE_BY_SCORE: Record<0 | 1 | 2 | 3, { label: string; color: string; encourager: string }> = {
   3: { label: "Nailed it", color: "var(--good)", encourager: "That's mastery. Keep the bar this high." },
@@ -698,7 +698,7 @@ const TONE_BY_SCORE: Record<0 | 1 | 2 | 3, { label: string; color: string; encou
   0: { label: "Off the mark", color: "var(--bad)", encourager: "This is the start, not the end. Re-explain after seeing the gaps." },
 };
 
-function EvalCard({ evaluation }: { evaluation: Evaluation }) {
+const EvalCard = memo(function EvalCard({ evaluation }: { evaluation: Evaluation }) {
   const score = (Math.max(0, Math.min(3, evaluation.score)) as 0 | 1 | 2 | 3);
   const tone = TONE_BY_SCORE[score];
 
@@ -726,9 +726,9 @@ function EvalCard({ evaluation }: { evaluation: Evaluation }) {
       )}
     </div>
   );
-}
+});
 
-function Block({
+const Block = memo(function Block({
   label,
   items,
   color,
@@ -755,9 +755,9 @@ function Block({
       </ul>
     </div>
   );
-}
+});
 
-function DiffDots({ level }: { level: number }) {
+const DiffDots = memo(function DiffDots({ level }: { level: number }) {
   return (
     <span className="inline-flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((n) => (
@@ -771,7 +771,7 @@ function DiffDots({ level }: { level: number }) {
       ))}
     </span>
   );
-}
+});
 
 function ReportView({
   report,
