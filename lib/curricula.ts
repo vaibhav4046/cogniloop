@@ -188,7 +188,7 @@ export const CURRICULA: Curriculum[] = [
     id: "ml-fundamentals",
     name: "ML Fundamentals",
     region: "Self-study · CS",
-    blurb: "Linear algebra, probability, neural net basics, transformers.",
+    blurb: "Linear algebra, probability, neural nets, transformers, and generative AI.",
     subjects: [
       {
         name: "Math & Stats",
@@ -208,6 +208,17 @@ export const CURRICULA: Curriculum[] = [
           "Convolutional networks",
           "Attention and transformers",
           "Regularization — L1, L2, dropout",
+        ],
+      },
+      {
+        name: "Generative AI & LLMs",
+        topics: [
+          "Tokenization and vocabulary — BPE, WordPiece, SentencePiece",
+          "Pre-training objectives — causal LM, masked LM, next-sentence prediction",
+          "Fine-tuning paradigms — SFT, instruction tuning, RLHF, DPO",
+          "Prompt engineering — zero-shot, few-shot, chain-of-thought, RAG",
+          "Diffusion models — DDPM, score matching, DALL-E, Stable Diffusion",
+          "LLM evaluation — perplexity, BLEU, ROUGE, MMLU, human evaluation",
         ],
       },
     ],
