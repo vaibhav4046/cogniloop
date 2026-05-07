@@ -54,7 +54,20 @@ export function TemplatesView() {
 
           <div className="mt-8 flex flex-col gap-8">
             {filtered.length === 0 && (
-              <div className="text-[var(--fg-muted)] text-sm">No matches.</div>
+              <div className="card p-8 text-center fade-up max-w-[480px] mx-auto">
+                <div className="text-sm font-medium mb-1.5">
+                  No matches for &ldquo;{filter}&rdquo;
+                </div>
+                <p className="text-[13px] text-[var(--fg-muted)] mb-5 leading-relaxed">
+                  Try searching by exam name, subject, or a specific topic keyword.
+                </p>
+                <button
+                  onClick={() => setFilter("")}
+                  className="btn-ghost text-xs px-3 py-1.5 rounded-md"
+                >
+                  Clear filter
+                </button>
+              </div>
             )}
             {filtered.map((c) => (
               <section key={c.id} id={c.id} className="card p-5">
