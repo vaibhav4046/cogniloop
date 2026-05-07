@@ -16,10 +16,11 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
   if (stats.totalSessions === 0 && streak.current === 0) return null;
 
   return (
-    <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-4 gap-2.5"}>
+    <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-5 gap-2.5"}>
       <Stat label="Streak" value={`${streak.current}d`} hint={`Best ${streak.longest}d`} />
       <Stat label="Sessions" value={stats.totalSessions.toString()} />
       <Stat label="Rounds" value={stats.totalRounds.toString()} />
+      <Stat label="Mastered" value={stats.totalMastered.toString()} hint="concepts" />
       <Stat
         label="Avg score"
         value={stats.totalSessions > 0 ? stats.avgScore.toFixed(2) : "—"}
