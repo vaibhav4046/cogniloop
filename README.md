@@ -74,7 +74,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+t` `g+h` `g+w` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end early
+- Keyboard-first: `?` shortcuts panel, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end early
 - Per-round difficulty dots, mode badges, question-type tags
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh

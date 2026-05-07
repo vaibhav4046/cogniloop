@@ -10,6 +10,7 @@ const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "G then H", label: "Go to history" },
   { keys: "G then T", label: "Go to templates" },
   { keys: "G then W", label: "Go to /why" },
+  { keys: "G then S", label: "Go to settings" },
   { keys: "M", label: "Toggle voice input (in session)" },
   { keys: "L", label: "Toggle read-aloud (in session)" },
   { keys: "E", label: "End session early" },
