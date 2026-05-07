@@ -58,7 +58,31 @@ export function SharedView({ token }: Props) {
     );
   }
 
-  if (!payload) return null;
+  if (!payload) {
+    return (
+      <main className="min-h-screen flex flex-col">
+        <NavBar />
+        <section className="flex-1 max-w-[800px] w-full mx-auto px-6 py-8" aria-busy="true" aria-label="Loading shared session">
+          <div className="skeleton h-[14px] w-20 mb-5 rounded" />
+          <div className="skeleton h-[32px] w-2/3 mb-3" />
+          <div className="skeleton h-[13px] w-1/3" />
+          <div className="skeleton h-[38px] w-36 rounded-lg mt-5" />
+          <div className="skeleton h-[14px] w-20 mt-10 mb-3" />
+          <div className="flex gap-2">
+            <div className="skeleton h-[24px] w-24 rounded-full" />
+            <div className="skeleton h-[24px] w-20 rounded-full" />
+            <div className="skeleton h-[24px] w-28 rounded-full" />
+          </div>
+          <div className="skeleton h-[14px] w-16 mt-8 mb-3" />
+          <div className="flex flex-col gap-3">
+            <div className="skeleton h-[88px] w-full" />
+            <div className="skeleton h-[88px] w-full" />
+            <div className="skeleton h-[88px] w-full" />
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen flex flex-col">
