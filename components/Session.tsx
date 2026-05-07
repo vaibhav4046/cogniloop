@@ -11,7 +11,7 @@ import { useToast } from "./Toast";
 import { pushHistory, bumpStreak } from "@/lib/storage";
 import { encodeShare } from "@/lib/share";
 import { runStart, runTurn, runReport, type ReportData } from "@/lib/sessionLogic";
-import { getSettings } from "@/lib/settings";
+import { browserCallCtx } from "@/lib/settings";
 import { fetchJson } from "@/lib/fetchRetry";
 import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hints";
 import { getMode, type ModeId } from "@/lib/modes";
@@ -85,18 +85,9 @@ export function Session() {
       setPhase("starting");
       setErrMsg(null);
       try {
-        const settings = getSettings();
-        const useBrowserDirect =
-          !!settings.groqKey?.trim() ||
-          settings.preferredProvider === "pollinations";
-        const data = useBrowserDirect
-          ? await runStart(
-              { topic: t, notes: n, modeId: m },
-              {
-                userGroqKey: settings.groqKey,
-                preferredProvider: settings.preferredProvider,
-              }
-            )
+        const ctx = browserCallCtx();
+        const data = ctx
+          ? await runStart({ topic: t, notes: n, modeId: m }, ctx)
           : await fetchJson<SessionStartResponse>("/api/session/start", {
               topic: t,
               notes: n,
@@ -245,24 +236,11 @@ export function Session() {
     setRounds(updatedRounds);
 
     try {
-      const settings = getSettings();
-      const useBrowserDirect =
-        !!settings.groqKey?.trim() ||
-        settings.preferredProvider === "pollinations";
-      const data = useBrowserDirect
+      const ctx = browserCallCtx();
+      const data = ctx
         ? await runTurn(
-            {
-              topic,
-              notes,
-              modeId,
-              concepts,
-              rounds: updatedRounds,
-              answer: answer.trim(),
-            },
-            {
-              userGroqKey: settings.groqKey,
-              preferredProvider: settings.preferredProvider,
-            }
+            { topic, notes, modeId, concepts, rounds: updatedRounds, answer: answer.trim() },
+            ctx
           )
         : await fetchJson<SessionTurnResponse>("/api/session/turn", {
             topic,
@@ -317,22 +295,9 @@ export function Session() {
     const finalRounds = rs ?? rounds;
     const finalConcepts = cs ?? concepts;
     try {
-      const settings = getSettings();
-      const useBrowserDirect =
-        !!settings.groqKey?.trim() ||
-        settings.preferredProvider === "pollinations";
-      const data = useBrowserDirect
-        ? await runReport(
-            {
-              topic,
-              concepts: finalConcepts,
-              rounds: finalRounds,
-            },
-            {
-              userGroqKey: settings.groqKey,
-              preferredProvider: settings.preferredProvider,
-            }
-          )
+      const ctx = browserCallCtx();
+      const data = ctx
+        ? await runReport({ topic, concepts: finalConcepts, rounds: finalRounds }, ctx)
         : await fetchJson<ReportData>("/api/session/report", {
             topic,
             concepts: finalConcepts,

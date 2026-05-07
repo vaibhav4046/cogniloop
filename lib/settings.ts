@@ -50,3 +50,15 @@ export function authHeadersFor(): Record<string, string> {
   }
   return headers;
 }
+
+/** Returns browser-direct call context when the user has configured direct LLM
+ *  access (custom Groq key or explicit Pollinations preference), null otherwise.
+ *  Callers that get null should route through the server-side API instead. */
+export function browserCallCtx(): {
+  userGroqKey?: string;
+  preferredProvider?: "auto" | "groq" | "pollinations";
+} | null {
+  const s = getSettings();
+  if (!s.groqKey?.trim() && s.preferredProvider !== "pollinations") return null;
+  return { userGroqKey: s.groqKey, preferredProvider: s.preferredProvider };
+}
