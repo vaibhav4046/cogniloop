@@ -27,7 +27,7 @@ const FEATURES = [
   { t: "Streaks + history", b: "Daily streak, lifetime stats, full session history." },
   { t: "Shareable session links", b: "URL-encoded session state. No backend, no leaks." },
   { t: "Coaching report", b: "Final report with study plan, journal prompt, markdown export." },
-  { t: "Keyboard-first", b: "Hit ? for shortcuts. ⌘+Enter, g+h, g+t, m, l." },
+  { t: "Keyboard-first", b: "Hit ? for the shortcuts panel. g+h/t/w/s to navigate; ⌘+Enter to submit; m, l, e in session." },
   { t: "100% client-side", b: "Sessions live in your browser. No accounts, no logs, no upsells." },
 ];
 

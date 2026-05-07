@@ -10,7 +10,7 @@ const COMPARE = [
   { row: "Adaptive difficulty", cogniloop: "Explicit 1-5 scale per round.", chatgpt: "Improvised tone, not structured.", claude: "Improvised tone, not structured." },
   { row: "Coaching report output", cogniloop: "Structured: study plan, gaps, journal prompt, markdown export.", chatgpt: "Loose prose if you ask for it.", claude: "Loose prose if you ask for it." },
   { row: "Streak / accountability", cogniloop: "Daily streak, 90-day heatmap, lifetime stats.", chatgpt: "Not shown.", claude: "Not shown." },
-  { row: "Curriculum templates", cogniloop: "JEE, NEET, GATE-CSE, MCAT, AP-CS, ML — pre-loaded.", chatgpt: "Cold start every time.", claude: "Cold start every time." },
+  { row: "Curriculum templates", cogniloop: "JEE, NEET, GATE-CSE, MCAT, AP-CS, ML, System Design — 7 packs pre-loaded.", chatgpt: "Cold start every time.", claude: "Cold start every time." },
   { row: "Voice in / read-aloud", cogniloop: "Web Speech, free, in-app.", chatgpt: "Voice paywall on free tier.", claude: "No native voice on free." },
   { row: "Math rendering", cogniloop: "KaTeX in questions and answers.", chatgpt: "MathJax (good).", claude: "Plain text by default." },
   { row: "Privacy", cogniloop: "Sessions live in browser only. No accounts, no logs.", chatgpt: "Stored on OpenAI servers.", claude: "Stored on Anthropic servers." },
