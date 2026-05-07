@@ -242,7 +242,7 @@ export function Landing() {
                 <button
                   key={c.id}
                   onClick={() => router.push(`/templates#${c.id}`)}
-                  className="card p-3 text-left hover:border-[#2a2e34] transition-colors"
+                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150"
                 >
                   <div className="text-[13px] font-medium tracking-tight">
                     {c.name}
@@ -261,7 +261,7 @@ export function Landing() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
               {FEATURES.map((f) => (
-                <div key={f.t} className="card p-4">
+                <div key={f.t} className="card p-4 hover:bg-[var(--bg-elev)] transition-colors duration-150">
                   <div className="text-[13.5px] font-medium tracking-tight">{f.t}</div>
                   <div className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
                     {f.b}
