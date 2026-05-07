@@ -170,6 +170,18 @@ export const CURRICULA: Curriculum[] = [
           "Recursion",
         ],
       },
+      {
+        name: "AP CSP",
+        topics: [
+          "Binary, data representation and digital information",
+          "The internet — packets, protocols, IP, DNS, HTTP",
+          "Cybersecurity — encryption, public/private keys, phishing",
+          "Algorithms and pseudocode — sequencing, selection, iteration",
+          "Programming abstractions — procedures, lists, libraries",
+          "Big data and privacy — crowdsourcing, data bias, legal/ethical issues",
+          "Computing innovations and societal impact",
+        ],
+      },
     ],
   },
   {
