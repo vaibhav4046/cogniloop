@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Logo } from "./Logo";
@@ -47,16 +48,16 @@ export function NavBar() {
 
   return (
     <header className="px-6 sm:px-10 py-4 flex items-center justify-between border-b border-[var(--line-soft)] sticky top-0 bg-[var(--bg)]/85 backdrop-blur-md z-20">
-      <button onClick={() => router.push("/")}>
+      <Link href="/" aria-label="Cogniloop home">
         <Logo />
-      </button>
+      </Link>
       <nav className="flex items-center gap-1">
         {LINKS.map((l) => {
           const active = pathname === l.href;
           return (
-            <button
+            <Link
               key={l.href}
-              onClick={() => router.push(l.href)}
+              href={l.href}
               className={`text-xs px-3 py-1.5 rounded-md transition-colors ${
                 active
                   ? "text-[var(--fg)] bg-[var(--bg-soft)]"
@@ -64,7 +65,7 @@ export function NavBar() {
               }`}
             >
               {l.label}
-            </button>
+            </Link>
           );
         })}
         <a
