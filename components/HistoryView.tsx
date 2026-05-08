@@ -33,6 +33,7 @@ export function HistoryView() {
   const [loaded, setLoaded] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
   const [importErr, setImportErr] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -101,6 +102,8 @@ export function HistoryView() {
   }
 
   const days = buildHeatmap(streak?.daysActive ?? []);
+  const q = search.trim().toLowerCase();
+  const filtered = q ? records.filter((r) => r.topic.toLowerCase().includes(q)) : records;
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -149,9 +152,19 @@ export function HistoryView() {
         <div className="mt-8">
           <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
             <h2 className="text-[15px] font-medium tracking-tight">
-              Sessions ({records.length})
+              Sessions ({records.length}{q && filtered.length !== records.length ? ` · ${filtered.length} shown` : ""})
             </h2>
             <div className="flex items-center gap-2 flex-wrap">
+              {records.length > 0 && (
+                <input
+                  type="search"
+                  aria-label="Search sessions by topic"
+                  placeholder="Search topics…"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="text-xs px-3 py-1.5 rounded-md bg-[var(--bg-elev)] border border-[var(--line-soft)] text-[var(--fg)] placeholder:text-[var(--fg-dim)] focus:outline-none focus:border-[var(--accent)] transition-colors w-44"
+                />
+              )}
               <input
                 ref={fileRef}
                 type="file"
@@ -210,9 +223,17 @@ export function HistoryView() {
                 Start your first session →
               </a>
             </div>
+          ) : filtered.length === 0 ? (
+            <div className="card p-6 text-center">
+              <div className="text-[14px] font-medium tracking-tight mb-1">No matching sessions</div>
+              <div className="text-[12px] text-[var(--fg-muted)] mb-3">No sessions match &ldquo;{search}&rdquo;</div>
+              <button onClick={() => setSearch("")} className="btn-ghost text-xs px-3 py-1.5 rounded-md">
+                Clear search
+              </button>
+            </div>
           ) : (
             <div className="flex flex-col gap-2">
-              {records.map((r) => (
+              {filtered.map((r) => (
                 <article key={r.id} className="card p-4">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <div className="min-w-0">
