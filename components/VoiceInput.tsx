@@ -148,6 +148,19 @@ export function VoiceInput({ onTranscript, disabled }: Props) {
     }
   }, [supported, disabled]);
 
+  useEffect(() => {
+    if (!supported) return;
+    function handler(e: KeyboardEvent) {
+      if (e.key !== "m" && e.key !== "M") return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      if (disabled) return;
+      if (active) stop(); else void start();
+    }
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [supported, active, stop, start, disabled]);
+
   function toggle() {
     if (active) stop();
     else void start();

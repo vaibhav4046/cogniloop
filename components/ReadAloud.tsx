@@ -61,6 +61,19 @@ export function ReadAloud({ text, autoPlayKey }: Props) {
     speak();
   }
 
+  useEffect(() => {
+    if (!supported) return;
+    function handler(e: KeyboardEvent) {
+      if (e.key !== "l" && e.key !== "L") return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      if (speaking) { window.speechSynthesis.cancel(); setSpeaking(false); } else speak();
+    }
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supported, speaking, text]);
+
   if (!supported) return null;
 
   return (
