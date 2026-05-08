@@ -534,6 +534,15 @@ export function Session() {
                 <div className="mt-2">Wrap in <code>$…$</code> inline or <code>$$…$$</code> for display.</div>
               </div>
             )}
+            {phase === "evaluating" && (
+              <div
+                key={hintIndex}
+                className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[12px] text-[var(--fg-muted)] hint-rotate text-center"
+                aria-live="polite"
+              >
+                {pickHint(GRADING_HINTS, hintIndex)}
+              </div>
+            )}
             {answer.trim() && /\$/.test(answer) && (
               <div className="mt-3 pt-3 border-t border-[var(--line-soft)]">
                 <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">

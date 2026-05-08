@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-08 micro-animation: wire up GRADING_HINTS in answer field during evaluating phase — rotating coaching hints replace dead silence while the LLM grades
+
 - 2026-05-06 curriculum: add System Design pack (8 core concepts + 6 design problems, 7th curriculum)
 - 2026-05-06 skeleton loader: history page shows shimmer cards while localStorage loads, preventing flash of empty state
 - 2026-05-06 a11y: ShortcutsModal gets role=dialog + aria-modal + aria-labelledby; trigger and close buttons get aria-label; answer textarea gets aria-label
