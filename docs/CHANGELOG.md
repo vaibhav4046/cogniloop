@@ -1,5 +1,6 @@
 # Cogniloop Changelog
 
+- 2026-05-08 skeleton loader: SettingsView replaces blank null flash with shimmer skeleton (tag, heading, description, three section cards) while localStorage hydrates
 - 2026-05-08 micro-animation: wire up GRADING_HINTS in answer field during evaluating phase — rotating coaching hints replace dead silence while the LLM grades
 
 - 2026-05-06 curriculum: add System Design pack (8 core concepts + 6 design problems, 7th curriculum)

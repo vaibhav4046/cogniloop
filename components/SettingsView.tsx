@@ -84,7 +84,24 @@ export function SettingsView() {
     synth.speak(u);
   }
 
-  if (!s) return null;
+  if (!s) {
+    return (
+      <main className="min-h-screen flex flex-col">
+        <NavBar />
+        <section className="flex-1 max-w-[760px] w-full mx-auto px-6 py-8">
+          <div className="skeleton h-[22px] w-20 mb-4 rounded-full" />
+          <div className="skeleton h-[36px] w-2/3 mb-3" />
+          <div className="skeleton h-[13px] w-full max-w-[440px]" />
+          <div className="skeleton h-[15px] w-44 mt-10 mb-3" />
+          <div className="skeleton h-[180px] w-full rounded-xl" />
+          <div className="skeleton h-[15px] w-36 mt-8 mb-3" />
+          <div className="skeleton h-[140px] w-full rounded-xl" />
+          <div className="skeleton h-[15px] w-20 mt-8 mb-3" />
+          <div className="skeleton h-[72px] w-full rounded-xl" />
+        </section>
+      </main>
+    );
+  }
 
   const voiceSupported =
     typeof window !== "undefined" &&
