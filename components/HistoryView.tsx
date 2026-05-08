@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { NavBar } from "./NavBar";
 import { StatsPanel } from "./StatsPanel";
 import {
@@ -10,7 +10,6 @@ import {
   type SessionRecord,
   type StreakData,
 } from "@/lib/storage";
-import { useRef } from "react";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -101,9 +100,12 @@ export function HistoryView() {
     }
   }
 
-  const days = buildHeatmap(streak?.daysActive ?? []);
-  const q = search.trim().toLowerCase();
-  const filtered = q ? records.filter((r) => r.topic.toLowerCase().includes(q)) : records;
+  const days = useMemo(() => buildHeatmap(streak?.daysActive ?? []), [streak]);
+  const q = useMemo(() => search.trim().toLowerCase(), [search]);
+  const filtered = useMemo(
+    () => (q ? records.filter((r) => r.topic.toLowerCase().includes(q)) : records),
+    [records, q]
+  );
 
   return (
     <main className="min-h-screen flex flex-col">
