@@ -140,7 +140,7 @@ export function HistoryView() {
               <div
                 key={i}
                 className="aspect-square rounded-[3px]"
-                title={d.key + (d.active ? " · active" : "")}
+                title={d.key + (d.active ? " · drilled" : "")}
                 style={{
                   background: d.active
                     ? "var(--accent)"

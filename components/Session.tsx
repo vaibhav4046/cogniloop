@@ -686,7 +686,7 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
               />
             </div>
             <div className="text-[10px] text-[var(--fg-dim)]">
-              {c.attempts} attempt{c.attempts === 1 ? "" : "s"}
+              drilled {c.attempts}×
             </div>
           </li>
         ))}
@@ -900,10 +900,10 @@ function ReportView({
 
         <div className="card p-5 mt-4">
           <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
-            Journal prompt (5 min)
+            Feynman journal (5 min)
           </div>
           <div className="text-[14px] leading-relaxed italic text-[var(--fg)]">
-            “{report.feynmanPrompt}”
+            "{report.feynmanPrompt}"
           </div>
         </div>
 

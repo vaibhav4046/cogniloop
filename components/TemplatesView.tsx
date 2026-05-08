@@ -108,7 +108,7 @@ export function TemplatesView() {
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        Click any topic to start a session immediately.
+        Pick any topic — Cogniloop asks the first question in under 10 seconds. No setup, no cold start.
       </footer>
     </main>
   );
