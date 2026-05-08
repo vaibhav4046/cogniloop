@@ -10,6 +10,7 @@ import {
   type SessionRecord,
   type StreakData,
 } from "@/lib/storage";
+import { getMode } from "@/lib/modes";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -245,7 +246,7 @@ export function HistoryView() {
                       <div className="text-[11px] text-[var(--fg-muted)] mt-1 flex items-center gap-2 flex-wrap">
                         <span>{fmtDate(r.createdAt)}</span>
                         <span>·</span>
-                        <span>Mode: {r.modeId}</span>
+                        <span>{getMode(r.modeId).name}</span>
                         <span>·</span>
                         <span>{r.rounds.length} rounds</span>
                         <span>·</span>
