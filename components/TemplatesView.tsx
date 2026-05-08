@@ -31,7 +31,7 @@ export function TemplatesView() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
       <section className="flex-1 max-w-[920px] w-full mx-auto px-6 py-8">
         <div className="fade-up">

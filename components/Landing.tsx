@@ -92,7 +92,7 @@ export function Landing() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <header className="px-6 sm:px-10 py-5 flex items-center justify-between">
         <Logo />
         <nav className="flex items-center gap-1" aria-label="Site navigation">

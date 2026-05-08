@@ -597,7 +597,7 @@ function SessionShell({
 }) {
   const router = useRouter();
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <header className="px-6 sm:px-10 py-4 flex items-center justify-between border-b border-[var(--line-soft)]">
         <button onClick={() => router.push("/")} aria-label="Home">
           <Logo />

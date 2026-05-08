@@ -39,7 +39,7 @@ export function SharedView({ token }: Props) {
 
   if (err) {
     return (
-      <main className="min-h-screen flex flex-col">
+      <main id="main" className="min-h-screen flex flex-col">
         <NavBar />
         <div className="flex-1 flex items-center justify-center px-6 fade-up">
           <div className="card p-6 max-w-md text-center">
@@ -60,7 +60,7 @@ export function SharedView({ token }: Props) {
 
   if (!payload) {
     return (
-      <main className="min-h-screen flex flex-col">
+      <main id="main" className="min-h-screen flex flex-col">
         <NavBar />
         <section className="flex-1 max-w-[800px] w-full mx-auto px-6 py-8" aria-busy="true" aria-label="Loading shared session">
           <div className="skeleton h-[14px] w-20 mb-5 rounded" />
@@ -85,7 +85,7 @@ export function SharedView({ token }: Props) {
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
       <section className="flex-1 max-w-[800px] w-full mx-auto px-6 py-8 fade-up">
         <span className="tag mb-4">Shared session (read-only)</span>

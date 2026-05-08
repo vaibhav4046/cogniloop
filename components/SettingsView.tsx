@@ -86,7 +86,7 @@ export function SettingsView() {
 
   if (!s) {
     return (
-      <main className="min-h-screen flex flex-col">
+      <main id="main" className="min-h-screen flex flex-col">
         <NavBar />
         <section className="flex-1 max-w-[760px] w-full mx-auto px-6 py-8">
           <div className="skeleton h-[22px] w-20 mb-4 rounded-full" />
@@ -115,7 +115,7 @@ export function SettingsView() {
     typeof window !== "undefined" && "speechSynthesis" in window;
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
       <section className="flex-1 max-w-[760px] w-full mx-auto px-6 py-8 fade-up">
         <span className="tag mb-4">Settings</span>

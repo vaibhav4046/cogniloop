@@ -109,7 +109,7 @@ export function HistoryView() {
   );
 
   return (
-    <main className="min-h-screen flex flex-col">
+    <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
       <section className="flex-1 max-w-[920px] w-full mx-auto px-6 py-8 fade-up">
         <span className="tag mb-4">History</span>
