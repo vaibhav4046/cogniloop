@@ -86,6 +86,7 @@ Loop until mastered.
 - `/history` — heatmap, streak, lifetime stats, session list
 - `/why` — comparison table vs ChatGPT/Claude, 7-question FAQ, 6 use cases
 - `/study` — the active session
+- `/settings` — Groq API key, provider preference, voice language, TTS rate/pitch
 - `/shared/[token]` — read-only view of any URL-encoded session
 
 ## Why this beats wrapping ChatGPT yourself
@@ -124,6 +125,7 @@ app/
 ├── templates/page.tsx        → curriculum browser
 ├── history/page.tsx          → streak, heatmap, sessions list
 ├── why/page.tsx              → comparison + FAQ + use cases
+├── settings/page.tsx         → API key, provider, voice preferences
 ├── shared/[token]/page.tsx   → read-only session view
 └── api/session/
     ├── start/route.ts        → extract concepts + first question
@@ -137,12 +139,14 @@ components/
 ├── HistoryView.tsx           → heatmap + sessions list
 ├── WhyView.tsx               → comparison + FAQ + use-cases
 ├── SharedView.tsx            → read-only shared session
+├── SettingsView.tsx          → API key + voice settings UI
 ├── NavBar.tsx                → top nav with g+x shortcuts
 ├── ModePicker.tsx            → Chill/Exam/Expert
 ├── StatsPanel.tsx            → streak / sessions / rounds / avg score
 ├── VoiceInput.tsx            → Web Speech API mic
 ├── ReadAloud.tsx             → Speech Synthesis
 ├── ShortcutsModal.tsx        → ? panel
+├── Toast.tsx                 → ephemeral error / success notifications
 ├── Math.tsx                  → KaTeX renderer with $...$ + $$...$$
 └── Logo.tsx
 
@@ -150,10 +154,15 @@ lib/
 ├── types.ts                  → SessionState, Round, Concept, Evaluation
 ├── prompts.ts                → SYSTEM_CORE + EXTRACT/EVAL/REPORT + mode overlays
 ├── llm.ts                    → multi-provider chat() with retry + JSON parser
+├── sessionLogic.ts           → runStart / runTurn / runReport (shared by edge + browser)
+├── settings.ts               → UserSettings read/write + browserCallCtx() helper
 ├── modes.ts                  → Chill / Exam / Expert
 ├── curricula.ts              → 7 curriculum packs
+├── hints.ts                  → loading / grading / ending hint copy
 ├── storage.ts                → history, streak, lifetime stats
-└── share.ts                  → URL-safe base64 encode/decode
+├── share.ts                  → URL-safe base64 encode/decode
+├── fetchRetry.ts             → fetch with exponential-backoff retry
+└── rateLimit.ts              → edge-side rate-limit middleware
 ```
 
 ## Run locally
