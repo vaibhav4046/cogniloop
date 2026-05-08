@@ -615,7 +615,14 @@ function SessionShell({
           )}
           {typeof progress === "number" && (
             <div className="hidden sm:block w-32">
-              <div className="bar-track">
+              <div
+                className="bar-track"
+                role="progressbar"
+                aria-label="Session progress"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round(progress * 100)}
+              >
                 <div
                   className="bar-fill"
                   style={{ width: `${progress * 100}%` }}
@@ -662,7 +669,14 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
                 {c.strength}
               </span>
             </div>
-            <div className="bar-track">
+            <div
+              className="bar-track"
+              role="progressbar"
+              aria-label={`${c.name} mastery`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={STRENGTH_PCT[c.strength]}
+            >
               <div
                 className="bar-fill"
                 style={{
