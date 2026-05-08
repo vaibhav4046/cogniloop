@@ -99,8 +99,19 @@ export const CURRICULA: Curriculum[] = [
     id: "gate-cs",
     name: "GATE CSE",
     region: "India · CS Postgrad",
-    blurb: "Computer Science core — algorithms, OS, networks, ML.",
+    blurb: "Computer Science core — algorithms, OS, networks, discrete math.",
     subjects: [
+      {
+        name: "Engineering Mathematics",
+        topics: [
+          "Propositional and first-order logic — predicates, quantifiers, inference rules",
+          "Set theory — relations, functions, partial orders, lattices",
+          "Graph theory — trees, paths, cycles, coloring, planarity",
+          "Combinatorics — counting principles, pigeonhole, recurrences, generating functions",
+          "Probability — random variables, Bayes' theorem, expectation, variance",
+          "Linear algebra — rank, eigenvalues, system of linear equations",
+        ],
+      },
       {
         name: "Core CS",
         topics: [
