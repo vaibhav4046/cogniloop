@@ -705,6 +705,11 @@ const TONE_BY_SCORE: Record<0 | 1 | 2 | 3, { label: string; color: string; encou
 const EvalCard = memo(function EvalCard({ evaluation }: { evaluation: Evaluation }) {
   const score = (Math.max(0, Math.min(3, evaluation.score)) as 0 | 1 | 2 | 3);
   const tone = TONE_BY_SCORE[score];
+  const [barW, setBarW] = useState(0);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setBarW(Math.round((score / 3) * 100)));
+    return () => cancelAnimationFrame(id);
+  }, [score]);
 
   return (
     <div className="card p-4 fade-up">
@@ -718,6 +723,16 @@ const EvalCard = memo(function EvalCard({ evaluation }: { evaluation: Evaluation
         <span className="text-[11px] text-[var(--fg-muted)] italic">
           {tone.encourager}
         </span>
+      </div>
+      <div
+        className="bar-track mb-3"
+        role="meter"
+        aria-label={`Score ${evaluation.score} out of 3`}
+        aria-valuenow={evaluation.score}
+        aria-valuemin={0}
+        aria-valuemax={3}
+      >
+        <div className="bar-fill" style={{ width: `${barW}%`, background: tone.color }} />
       </div>
       <div className="text-[14px] tracking-tight mb-3 text-[var(--fg)]">
         <Tex text={evaluation.verdict} />
