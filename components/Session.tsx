@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback, memo } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Logo } from "./Logo";
 import { Tex } from "./Math";
 import { VoiceInput } from "./VoiceInput";
@@ -595,13 +596,12 @@ function SessionShell({
   canEnd?: boolean;
   timer?: number | null;
 }) {
-  const router = useRouter();
   return (
     <main id="main" className="min-h-screen flex flex-col">
       <header className="px-6 sm:px-10 py-4 flex items-center justify-between border-b border-[var(--line-soft)]">
-        <button onClick={() => router.push("/")} aria-label="Home">
+        <Link href="/" aria-label="Home">
           <Logo />
-        </button>
+        </Link>
         <div className="flex items-center gap-3">
           {timer != null && (
             <span

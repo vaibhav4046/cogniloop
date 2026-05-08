@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { NavBar } from "./NavBar";
 
 const COMPARE = [
@@ -83,7 +83,6 @@ const USE_CASES = [
 ];
 
 export function WhyView() {
-  const router = useRouter();
   return (
     <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
@@ -165,12 +164,12 @@ export function WhyView() {
           <p className="text-[var(--fg-muted)] text-sm mt-2">
             No signup. No keys. Two minutes.
           </p>
-          <button
-            onClick={() => router.push("/")}
-            className="btn-primary mt-5 px-5 py-2.5 rounded-lg text-sm"
+          <Link
+            href="/"
+            className="btn-primary mt-5 px-5 py-2.5 rounded-lg text-sm inline-block"
           >
             Start a session  →
-          </button>
+          </Link>
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
