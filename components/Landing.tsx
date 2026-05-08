@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
@@ -94,31 +95,11 @@ export function Landing() {
     <main className="min-h-screen flex flex-col">
       <header className="px-6 sm:px-10 py-5 flex items-center justify-between">
         <Logo />
-        <nav className="flex items-center gap-1">
-          <button
-            onClick={() => router.push("/templates")}
-            className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
-          >
-            Templates
-          </button>
-          <button
-            onClick={() => router.push("/history")}
-            className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
-          >
-            History
-          </button>
-          <button
-            onClick={() => router.push("/why")}
-            className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
-          >
-            Why
-          </button>
-          <button
-            onClick={() => router.push("/settings")}
-            className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
-          >
-            Settings
-          </button>
+        <nav className="flex items-center gap-1" aria-label="Site navigation">
+          <Link href="/templates" className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5">Templates</Link>
+          <Link href="/history" className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5">History</Link>
+          <Link href="/why" className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5">Why</Link>
+          <Link href="/settings" className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5">Settings</Link>
           <a
             href="https://github.com/vaibhav4046/cogniloop"
             target="_blank"
@@ -160,6 +141,7 @@ export function Landing() {
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g. backpropagation, photosynthesis, monetary policy…"
+              aria-label="Study topic"
               className="w-full bg-transparent outline-none text-[16px] placeholder:text-[var(--fg-dim)]"
               maxLength={400}
               onKeyDown={(e) => {
@@ -177,6 +159,7 @@ export function Landing() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Paste here. The AI uses this as the source of truth instead of guessing."
+                aria-label="Optional notes or source material"
                 className="w-full bg-transparent outline-none text-[14px] min-h-[100px] mt-3"
                 maxLength={12000}
               />
@@ -230,19 +213,16 @@ export function Landing() {
               <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
                 Curriculum packs
               </div>
-              <button
-                onClick={() => router.push("/templates")}
-                className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]"
-              >
+              <Link href="/templates" className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]">
                 See all →
-              </button>
+              </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {CURRICULA.slice(0, 6).map((c) => (
-                <button
+                <Link
                   key={c.id}
-                  onClick={() => router.push(`/templates#${c.id}`)}
-                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150"
+                  href={`/templates#${c.id}`}
+                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150 block"
                 >
                   <div className="text-[13px] font-medium tracking-tight">
                     {c.name}
@@ -250,7 +230,7 @@ export function Landing() {
                   <div className="text-[11px] text-[var(--fg-muted)] mt-0.5">
                     {c.region}
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -278,12 +258,9 @@ export function Landing() {
             <div className="text-[14px] leading-relaxed">
               They <em>can</em> roleplay a tutor. But the moment you say <em>&ldquo;just give me the answer&rdquo;</em>, they oblige — and that&apos;s the failure mode killing learning. Cogniloop&apos;s system prompt is locked, the UI is shaped only for explanation + grading, and your concept progress persists across sessions in a structured way generic chatbots don&apos;t surface.
             </div>
-            <button
-              onClick={() => router.push("/why")}
-              className="btn-ghost mt-4 px-4 py-2 rounded-lg text-xs"
-            >
+            <Link href="/why" className="btn-ghost mt-4 px-4 py-2 rounded-lg text-xs inline-block">
               Full comparison + use cases →
-            </button>
+            </Link>
           </div>
         </div>
       </section>
