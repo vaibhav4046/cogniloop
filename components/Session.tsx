@@ -806,7 +806,7 @@ function ReportView({
     lines.push(`# Cogniloop session — ${topic || "untitled"}`);
     lines.push("");
     lines.push(`**Headline:** ${report.headline}`);
-    lines.push(`**Mode:** ${modeId} · **Avg score:** ${avg.toFixed(2)} / 3`);
+    lines.push(`**Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3`);
     lines.push("");
     lines.push("## Mastered");
     report.mastered.forEach((c) => lines.push(`- ${c}`));
@@ -868,13 +868,13 @@ function ReportView({
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
           {topic ? `On: ${topic} · ` : ""}
-          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · mode {modeId}
+          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · mode {getMode(modeId).name}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-          <BucketCard label="Mastered" items={report.mastered} color="var(--accent)" />
-          <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" />
-          <BucketCard label="Weak" items={report.weak} color="var(--bad)" />
+          <BucketCard label="Mastered" items={report.mastered} color="var(--accent)" emptyMsg="None yet — keep drilling." />
+          <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" emptyMsg="None flagged." />
+          <BucketCard label="Weak" items={report.weak} color="var(--bad)" emptyMsg="None — solid session." />
         </div>
 
         <div className="card p-5 mt-6">
@@ -932,10 +932,12 @@ function BucketCard({
   label,
   items,
   color,
+  emptyMsg = "—",
 }: {
   label: string;
   items: string[];
   color: string;
+  emptyMsg?: string;
 }) {
   return (
     <div className="card p-4">
@@ -949,7 +951,7 @@ function BucketCard({
         </span>
       </div>
       {items.length === 0 ? (
-        <div className="text-[12px] text-[var(--fg-dim)]">—</div>
+        <div className="text-[12px] text-[var(--fg-dim)] italic">{emptyMsg}</div>
       ) : (
         <ul className="flex flex-col gap-1">
           {items.map((it, i) => (
