@@ -884,13 +884,13 @@ function ReportView({
   return (
     <div className="flex-1 max-w-[800px] w-full mx-auto px-6 py-10">
       <div className="fade-up">
-        <div className="tag mb-4">Session report</div>
+        <div className="tag mb-4">Coaching report</div>
         <h2 className="text-3xl font-semibold tracking-tight leading-tight">
           {report.headline}
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
-          {topic ? `On: ${topic} · ` : ""}
-          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · mode {getMode(modeId).name}
+          {topic ? `${topic} · ` : ""}
+          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
