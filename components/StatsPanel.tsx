@@ -13,7 +13,16 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
   }, []);
 
   if (!streak || !stats) return null;
-  if (stats.totalSessions === 0 && streak.current === 0) return null;
+  if (stats.totalSessions === 0 && streak.current === 0) {
+    if (compact) return null;
+    return (
+      <div className="card px-4 py-3 text-center">
+        <div className="text-[12px] text-[var(--fg-muted)] leading-relaxed">
+          Streak, rounds drilled, and mastered concepts appear here — finish your first session to start tracking.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-5 gap-2.5"}>
