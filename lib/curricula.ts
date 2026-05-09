@@ -99,8 +99,19 @@ export const CURRICULA: Curriculum[] = [
     id: "gate-cs",
     name: "GATE CSE",
     region: "India · CS Postgrad",
-    blurb: "Computer Science core — algorithms, OS, networks, discrete math.",
+    blurb: "Computer Science core — data structures, algorithms, OS, networks, discrete math.",
     subjects: [
+      {
+        name: "Data Structures",
+        topics: [
+          "Arrays and strings — prefix sums, sliding window, two-pointer technique",
+          "Linked lists — reversal, cycle detection (Floyd's), merge, nth-from-end",
+          "Stacks and queues — monotonic stack, deque, priority queue patterns",
+          "Trees — BST operations, AVL rotations, B-tree, segment tree, trie",
+          "Heaps — min/max-heap, heapify, heap sort, top-K problems",
+          "Hashing — hash functions, collision resolution, open addressing, load factor",
+        ],
+      },
       {
         name: "Engineering Mathematics",
         topics: [
