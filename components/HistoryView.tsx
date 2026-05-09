@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { NavBar } from "./NavBar";
 import { StatsPanel } from "./StatsPanel";
 import {
@@ -219,12 +220,12 @@ export function HistoryView() {
               <div className="text-[13px] text-[var(--fg-muted)] max-w-[420px] mx-auto leading-relaxed mb-5">
                 Run your first loop. It takes ~3 minutes. The AI will extract the concepts, drill you on each, and ship a coaching report at the end.
               </div>
-              <a
+              <Link
                 href="/"
                 className="btn-primary inline-block px-5 py-2.5 rounded-lg text-sm"
               >
                 Start your first session →
-              </a>
+              </Link>
             </div>
           ) : filtered.length === 0 ? (
             <div className="card p-6 text-center">

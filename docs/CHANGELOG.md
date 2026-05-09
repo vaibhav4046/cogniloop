@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-09 refactor: replace remaining raw internal <a> tags with Next.js Link in HistoryView empty-state CTA and Session error-state Settings link — adds right-click/middle-click/screen-reader semantics
+
 - 2026-05-09 tiny feature: answer field now shows a live word count ("N words · ") while typing, encouraging users to write fuller explanations
 
 - 2026-05-09 dependency bump: next 16.2.5→16.2.6 (patch)

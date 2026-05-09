@@ -378,7 +378,7 @@ export function Session() {
               {humanizeError(errMsg)}
             </div>
             <div className="text-[11px] text-[var(--fg-dim)] mb-5 leading-relaxed">
-              The free LLM endpoint can rate-limit. Retry usually fixes it. For unlimited speed and quality, paste a free Groq API key in <a href="/settings" className="underline">Settings</a> (60 sec at console.groq.com).
+              The free LLM endpoint can rate-limit. Retry usually fixes it. For unlimited speed and quality, paste a free Groq API key in <Link href="/settings" className="underline">Settings</Link> (60 sec at console.groq.com).
             </div>
             <div className="flex gap-2 justify-center">
               <button
@@ -530,7 +530,7 @@ export function Session() {
                   Math syntax
                 </div>
                 <div className="font-mono text-[11px]">
-                  $x^2 + y^2$ · $\\frac{"{a}"}{"{b}"}$ · $\\int_0^1 f(x) dx$ · $\\sum_{"{i=1}"}^n$
+                  $x^2 + y^2$ · $\frac{"{a}"}{"{b}"}$ · $\int_0^1 f(x) dx$ · $\sum_{"{i=1}"}^n$
                 </div>
                 <div className="mt-2">Wrap in <code>$…$</code> inline or <code>$$…$$</code> for display.</div>
               </div>
@@ -918,7 +918,7 @@ function ReportView({
             Feynman journal (5 min)
           </div>
           <div className="text-[14px] leading-relaxed italic text-[var(--fg)]">
-            “{report.feynmanPrompt}”
+            "{report.feynmanPrompt}"
           </div>
         </div>
 
