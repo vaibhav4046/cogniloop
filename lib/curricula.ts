@@ -172,6 +172,16 @@ export const CURRICULA: Curriculum[] = [
           "Stress and emotion",
         ],
       },
+      {
+        name: "CARS — Critical Analysis and Reasoning Skills",
+        topics: [
+          "Main idea, central argument, and thesis identification",
+          "Author's purpose, tone, and rhetorical strategy",
+          "Evidence and reasoning — strengthen, weaken, undermine arguments",
+          "Inference, implication, and application questions",
+          "Comparative passages and multi-perspective synthesis",
+        ],
+      },
     ],
   },
   {
