@@ -51,13 +51,14 @@ export function NavBar() {
       <Link href="/" aria-label="Cogniloop home">
         <Logo />
       </Link>
-      <nav className="flex items-center gap-1">
+      <nav aria-label="Site navigation" className="flex items-center gap-1">
         {LINKS.map((l) => {
           const active = pathname === l.href;
           return (
             <Link
               key={l.href}
               href={l.href}
+              aria-current={active ? "page" : undefined}
               className={`text-xs px-3 py-1.5 rounded-md transition-colors ${
                 active
                   ? "text-[var(--fg)] bg-[var(--bg-soft)]"
