@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-09 dependency bump: next 16.2.5→16.2.6 (patch)
+
 - 2026-05-09 micro-animation: Toast notifications now show a thin draining progress bar at the bottom so users can see how long until auto-dismiss
 
 - 2026-05-09 a11y: add aria-label="Site navigation" to NavBar <nav> and aria-current="page" to the active link — screen readers now announce which page is current
