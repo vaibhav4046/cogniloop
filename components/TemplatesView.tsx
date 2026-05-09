@@ -3,11 +3,29 @@
 import { useRouter } from "next/navigation";
 import { CURRICULA } from "@/lib/curricula";
 import { NavBar } from "./NavBar";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function TemplatesView() {
   const router = useRouter();
   const [filter, setFilter] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null;
+      const inField =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if (e.key === "/" && !inField) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const filtered = CURRICULA.filter((c) => {
     const q = filter.trim().toLowerCase();
@@ -45,9 +63,11 @@ export function TemplatesView() {
 
           <div className="field px-4 py-2.5 mt-6 max-w-[420px]">
             <input
+              ref={inputRef}
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              placeholder="Filter by exam, subject, or topic…"
+              placeholder="Filter by exam, subject, or topic… (press / to focus)"
+              aria-label="Filter curriculum templates"
               className="w-full bg-transparent outline-none text-[14px] placeholder:text-[var(--fg-dim)]"
             />
           </div>
