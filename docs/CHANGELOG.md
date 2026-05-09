@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-09 tiny feature: answer field now shows a live word count ("N words · ") while typing, encouraging users to write fuller explanations
+
 - 2026-05-09 dependency bump: next 16.2.5→16.2.6 (patch)
 
 - 2026-05-09 micro-animation: Toast notifications now show a thin draining progress bar at the bottom so users can see how long until auto-dismiss

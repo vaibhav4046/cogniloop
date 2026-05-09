@@ -484,7 +484,7 @@ export function Session() {
             />
             <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
               <div className="text-[11px] text-[var(--fg-dim)]">
-                {answer.length}/6000  ·  ⌘/Ctrl + Enter to submit
+                {answer.trim() ? `${answer.trim().split(/\s+/).filter(Boolean).length} words · ` : ""}{answer.length}/6000  ·  ⌘/Ctrl + Enter to submit
               </div>
               <div className="flex gap-2 items-center">
                 <VoiceInput
@@ -530,7 +530,7 @@ export function Session() {
                   Math syntax
                 </div>
                 <div className="font-mono text-[11px]">
-                  $x^2 + y^2$ · $\frac{"{a}"}{"{b}"}$ · $\int_0^1 f(x) dx$ · $\sum_{"{i=1}"}^n$
+                  $x^2 + y^2$ · $\\frac{"{a}"}{"{b}"}$ · $\\int_0^1 f(x) dx$ · $\\sum_{"{i=1}"}^n$
                 </div>
                 <div className="mt-2">Wrap in <code>$…$</code> inline or <code>$$…$$</code> for display.</div>
               </div>
@@ -918,7 +918,7 @@ function ReportView({
             Feynman journal (5 min)
           </div>
           <div className="text-[14px] leading-relaxed italic text-[var(--fg)]">
-            "{report.feynmanPrompt}"
+            “{report.feynmanPrompt}”
           </div>
         </div>
 
