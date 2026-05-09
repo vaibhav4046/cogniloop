@@ -809,6 +809,7 @@ function ReportView({
 }) {
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [copiedJournal, setCopiedJournal] = useState(false);
 
   const evald = rounds.filter((r) => r.evaluation);
   const avg =
@@ -857,6 +858,12 @@ function ReportView({
     a.download = `cogniloop-${Date.now()}.md`;
     a.click();
     URL.revokeObjectURL(url);
+  }
+
+  function copyJournal() {
+    navigator.clipboard.writeText(report.feynmanPrompt).catch(() => {});
+    setCopiedJournal(true);
+    setTimeout(() => setCopiedJournal(false), 2000);
   }
 
   function makeShareUrl() {
@@ -914,8 +921,17 @@ function ReportView({
         </div>
 
         <div className="card p-5 mt-4">
-          <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
-            Feynman journal (5 min)
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)]">
+              Feynman journal (5 min)
+            </div>
+            <button
+              onClick={copyJournal}
+              aria-label="Copy Feynman journal prompt to clipboard"
+              className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
+            >
+              {copiedJournal ? "Copied ✓" : "Copy"}
+            </button>
           </div>
           <div className="text-[14px] leading-relaxed italic text-[var(--fg)]">
             "{report.feynmanPrompt}"
