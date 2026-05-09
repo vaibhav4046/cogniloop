@@ -110,6 +110,15 @@ input::placeholder {
 }
 .toast-pop { animation: toast-pop 0.18s ease-out; }
 
+@keyframes toast-timer {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+.toast-timer {
+  animation: toast-timer linear forwards;
+  will-change: width;
+}
+
 @keyframes round-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

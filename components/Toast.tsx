@@ -100,9 +100,15 @@ function ToastView({ toast, onClose }: { toast: Toast; onClose: () => void }) {
     <div
       role="status"
       aria-live="polite"
-      className="card px-4 py-3 pointer-events-auto flex items-center gap-3 toast-pop max-w-[min(92vw,520px)]"
+      className="card px-4 py-3 pointer-events-auto flex items-center gap-3 toast-pop max-w-[min(92vw,520px)] relative overflow-hidden"
       style={{ borderColor: color }}
     >
+      {toast.durationMs && toast.durationMs > 0 && (
+        <div
+          className="toast-timer absolute bottom-0 left-0 h-[2px] opacity-40"
+          style={{ background: color, animationDuration: `${toast.durationMs}ms` }}
+        />
+      )}
       <span className="w-2 h-2 rounded-full shrink-0" style={{ background: color }} />
       <span className="text-[13px] text-[var(--fg)] flex-1 leading-snug">{toast.text}</span>
       {toast.actionLabel && toast.onAction && (
