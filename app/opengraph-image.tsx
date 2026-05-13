@@ -63,7 +63,7 @@ export default async function Image() {
               maxWidth: "1000px",
             }}
           >
-            Active recall · Feynman technique · 7 curriculum packs · Free, no signup
+            Active recall · Feynman technique · 8 curriculum packs · Free, no signup
           </div>
         </div>
 

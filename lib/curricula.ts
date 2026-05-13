@@ -287,6 +287,44 @@ export const CURRICULA: Curriculum[] = [
       },
     ],
   },
+  {
+    id: "economics",
+    name: "Economics",
+    region: "Self-study · AP · College",
+    blurb: "Micro, macro, and behavioral economics — AP, college-level, and CFA Level 1 ready.",
+    subjects: [
+      {
+        name: "Microeconomics",
+        topics: [
+          "Supply, demand, and equilibrium — shifts, price ceilings, floors, elasticity",
+          "Consumer theory — utility maximization, indifference curves, budget constraints",
+          "Production and costs — short-run vs long-run, economies of scale, cost curves",
+          "Market structures — perfect competition, monopoly, oligopoly, monopolistic competition",
+          "Game theory — Nash equilibrium, prisoner's dilemma, dominant strategies",
+          "Market failures — externalities, public goods, information asymmetry",
+        ],
+      },
+      {
+        name: "Macroeconomics",
+        topics: [
+          "National income accounting — GDP, GNP, real vs nominal, price deflators",
+          "Aggregate demand and supply — short-run vs long-run equilibrium, stagflation",
+          "Fiscal policy — government spending, taxes, multiplier effect, crowding out",
+          "Monetary policy — money supply, interest rates, central bank tools, QE",
+          "Inflation and unemployment — Phillips curve, NAIRU, cost-push vs demand-pull",
+          "Economic growth — Solow model, human capital, technological progress",
+        ],
+      },
+      {
+        name: "Behavioral & International",
+        topics: [
+          "Behavioral economics — biases, heuristics, prospect theory, nudges",
+          "International trade — comparative advantage, trade policy, tariffs, WTO",
+          "Exchange rates — purchasing power parity, balance of payments, forex markets",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getCurriculum(id: string): Curriculum | undefined {

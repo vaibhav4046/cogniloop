@@ -38,7 +38,7 @@ Loop until mastered.
 - **Exam** — strict grading, 90s timer per round, mid-range difficulty
 - **Expert** — adversarial, first-principles, starts at difficulty 3
 
-**7 curriculum templates** — pre-loaded concept maps, click-to-start
+**8 curriculum templates** — pre-loaded concept maps, click-to-start
 - JEE Main (Physics, Chemistry, Math — NCERT)
 - NEET UG (Bio, Physics, Chemistry)
 - GATE CSE (algorithms, OS, networks, ToC, compilers, computer org)
@@ -46,6 +46,7 @@ Loop until mastered.
 - AP Computer Science (CSA + CSP)
 - ML Fundamentals (linear algebra, probability, neural nets, transformers)
 - System Design (distributed systems, databases, APIs, scaling — interview-ready)
+- Economics (micro, macro, behavioral, international — AP, college, CFA Level 1)
 
 **Input / output**
 - Voice input via Web Speech API (Chrome/Edge)
@@ -99,7 +100,7 @@ Loop until mastered.
 | Difficulty scaling | Explicit 1–5 | Improvised tone |
 | Coaching report | Markdown export, study plan, journal prompt | Loose prose if asked |
 | Streak / accountability | Yes | No |
-| Curriculum templates | 7 packs, 90+ topics | Cold-start every chat |
+| Curriculum templates | 8 packs, 100+ topics | Cold-start every chat |
 | Privacy | Browser-only | Server-stored |
 | Cost | $0 forever | $0 limited / $20+ pro |
 
@@ -157,7 +158,7 @@ lib/
 ├── sessionLogic.ts           → runStart / runTurn / runReport (shared by edge + browser)
 ├── settings.ts               → UserSettings read/write + browserCallCtx() helper
 ├── modes.ts                  → Chill / Exam / Expert
-├── curricula.ts              → 7 curriculum packs
+├── curricula.ts              → 8 curriculum packs
 ├── hints.ts                  → loading / grading / ending hint copy
 ├── storage.ts                → history, streak, lifetime stats
 ├── share.ts                  → URL-safe base64 encode/decode
