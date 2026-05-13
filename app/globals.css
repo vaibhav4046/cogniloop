@@ -186,6 +186,15 @@ select:focus-visible {
   animation: mic-pulse-anim 1.4s ease-in-out infinite;
 }
 
+@keyframes timer-urgent {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.08); }
+}
+.timer-urgent {
+  animation: timer-urgent 0.7s ease-in-out infinite;
+  display: inline-block;
+}
+
 .skip-link {
   position: absolute;
   left: -10000px;

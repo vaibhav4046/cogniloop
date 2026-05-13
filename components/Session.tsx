@@ -530,7 +530,7 @@ export function Session() {
                   Math syntax
                 </div>
                 <div className="font-mono text-[11px]">
-                  $x^2 + y^2$ · $\frac{"{a}"}{"{b}"}$ · $\int_0^1 f(x) dx$ · $\sum_{"{i=1}"}^n$
+                  $x^2 + y^2$ · $\\frac{"{"}a{"}"}{"{"}"}b{"}"}}$ · $\\int_0^1 f(x) dx$ · $\\sum_{"{"}i=1{"}"}^n$
                 </div>
                 <div className="mt-2">Wrap in <code>$…$</code> inline or <code>$$…$$</code> for display.</div>
               </div>
@@ -605,10 +605,11 @@ function SessionShell({
         <div className="flex items-center gap-3">
           {timer != null && (
             <span
-              className="text-[11px] font-mono tabular-nums"
+              className={`text-[11px] font-mono tabular-nums${timer < 10 ? " timer-urgent" : ""}`}
               style={{
                 color: timer < 15 ? "var(--bad)" : "var(--fg-muted)",
               }}
+              aria-live={timer < 10 ? "assertive" : "off"}
             >
               ⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
             </span>
@@ -934,7 +935,7 @@ function ReportView({
             </button>
           </div>
           <div className="text-[14px] leading-relaxed italic text-[var(--fg)]">
-            "{report.feynmanPrompt}"
+            “{report.feynmanPrompt}”
           </div>
         </div>
 
