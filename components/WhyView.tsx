@@ -33,7 +33,7 @@ const FAQ = [
   },
   {
     q: "What LLM does it use?",
-    a: "Default: Pollinations.ai's free public endpoint (gpt-oss-20b, no API key needed). With a server-side GROQ_API_KEY set, it uses Groq's Llama 3.3 70B for higher quality and speed. Multi-provider with retry + automatic fallback.",
+    a: "Default: Pollinations.ai's free public endpoint (openai / openai-fast / mistral — no API key needed). With a server-side GROQ_API_KEY set, it uses Groq's Llama 3.3 70B for higher quality and speed. Multi-provider with retry + automatic fallback.",
   },
   {
     q: "What about hallucinations?",
