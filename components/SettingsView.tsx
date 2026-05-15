@@ -136,11 +136,12 @@ export function SettingsView() {
           Bring your own API key
         </h2>
         <div className="card p-5">
-          <label className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+          <label htmlFor="groq-key" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
             Groq API key (free at console.groq.com)
           </label>
           <div className="field px-4 py-2.5 flex items-center gap-2">
             <input
+              id="groq-key"
               type={showKey ? "text" : "password"}
               value={s.groqKey ?? ""}
               onChange={(e) => update("groqKey", e.target.value)}
@@ -151,6 +152,8 @@ export function SettingsView() {
             />
             <button
               onClick={() => setShowKey((v) => !v)}
+              aria-label={showKey ? "Hide Groq API key" : "Show Groq API key"}
+              aria-controls="groq-key"
               className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]"
             >
               {showKey ? "Hide" : "Show"}
@@ -193,10 +196,10 @@ export function SettingsView() {
           </div>
 
           <div className="mt-5 pt-4 border-t border-[var(--line-soft)]">
-            <label className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+            <div id="provider-pref-label" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
               Provider preference
-            </label>
-            <div className="flex gap-2 flex-wrap">
+            </div>
+            <div role="radiogroup" aria-labelledby="provider-pref-label" className="flex gap-2 flex-wrap">
               {([
                 { id: "auto", label: "Auto", hint: "Groq → Pollinations fallback" },
                 { id: "groq", label: "Groq only", hint: "Higher quality, requires key" },
@@ -206,6 +209,8 @@ export function SettingsView() {
                 return (
                   <button
                     key={p.id}
+                    role="radio"
+                    aria-checked={active}
                     onClick={() => update("preferredProvider", p.id)}
                     className={`px-3 py-2 rounded-lg text-[12.5px] text-left border transition-all ${
                       active
@@ -235,11 +240,12 @@ export function SettingsView() {
             </span>
           </div>
 
-          <label className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+          <label htmlFor="voice-lang" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
             Language
           </label>
           <div className="field px-3 py-2">
             <select
+              id="voice-lang"
               value={s.voiceLang ?? "en-US"}
               onChange={(e) => update("voiceLang", e.target.value)}
               className="w-full bg-transparent outline-none text-[14px]"
@@ -254,10 +260,11 @@ export function SettingsView() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+              <label htmlFor="voice-rate" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
                 Read-aloud rate ({(s.voiceRate ?? 1).toFixed(2)}×)
               </label>
               <input
+                id="voice-rate"
                 type="range"
                 min={0.5}
                 max={2}
@@ -268,10 +275,11 @@ export function SettingsView() {
               />
             </div>
             <div>
-              <label className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+              <label htmlFor="voice-pitch" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
                 Pitch ({(s.voicePitch ?? 1).toFixed(2)})
               </label>
               <input
+                id="voice-pitch"
                 type="range"
                 min={0.5}
                 max={2}
