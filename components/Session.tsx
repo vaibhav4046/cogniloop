@@ -659,8 +659,8 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
         </div>
       </div>
       <ul className="flex flex-col gap-3">
-        {concepts.map((c) => (
-          <li key={c.id} className="flex flex-col gap-1.5">
+        {concepts.map((c, idx) => (
+          <li key={c.id} className="flex flex-col gap-1.5 fade-up" style={{ animationDelay: `${idx * 55}ms` }}>
             <div className="flex items-center justify-between gap-2">
               <span className="text-[13px] tracking-tight truncate">{c.name}</span>
               <span
