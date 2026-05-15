@@ -285,6 +285,16 @@ export const CURRICULA: Curriculum[] = [
           "Design a file storage system (Dropbox / S3)",
         ],
       },
+      {
+        name: "Observability & Reliability",
+        topics: [
+          "SLAs, SLOs, SLIs — defining and measuring reliability targets",
+          "Distributed tracing — OpenTelemetry, Jaeger, trace context propagation",
+          "Metrics and alerting — Prometheus, Grafana, on-call runbooks, alert fatigue",
+          "Log aggregation — structured logging, ELK stack, correlation IDs",
+          "Chaos engineering — fault injection, GameDay exercises, blast radius",
+        ],
+      },
     ],
   },
   {
