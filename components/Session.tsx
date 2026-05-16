@@ -438,6 +438,7 @@ export function Session() {
   return (
     <SessionShell
       progress={rounds.length > 0 ? Math.min(rounds.length / 8, 1) : 0}
+      roundNum={rounds.length}
       onEnd={() => endSession()}
       canEnd={rounds.length >= 2 && phase === "answering"}
       timer={timer}
@@ -586,12 +587,14 @@ function ModeSwitcher({
 function SessionShell({
   children,
   progress,
+  roundNum,
   onEnd,
   canEnd,
   timer,
 }: {
   children: React.ReactNode;
   progress?: number;
+  roundNum?: number;
   onEnd?: () => void;
   canEnd?: boolean;
   timer?: number | null;
@@ -612,6 +615,11 @@ function SessionShell({
               aria-live={timer < 10 ? "assertive" : "off"}
             >
               ⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
+            </span>
+          )}
+          {typeof roundNum === "number" && roundNum > 0 && (
+            <span className="hidden sm:block text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap">
+              Round {roundNum} / 8
             </span>
           )}
           {typeof progress === "number" && (
