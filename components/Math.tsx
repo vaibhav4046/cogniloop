@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 
+const RENDER_CACHE_MAX = 128;
+const renderCache = new Map<string, string>();
+
 interface Props {
   text: string;
   className?: string;
@@ -29,6 +32,8 @@ function escapeHtml(s: string): string {
 }
 
 function renderMath(input: string): string {
+  const cached = renderCache.get(input);
+  if (cached !== undefined) return cached;
   const parts: string[] = [];
   let i = 0;
   while (i < input.length) {
@@ -71,7 +76,12 @@ function renderMath(input: string): string {
     parts.push(escapeHtml(input[i]));
     i++;
   }
-  return parts.join("");
+  const result = parts.join("");
+  if (renderCache.size >= RENDER_CACHE_MAX) {
+    renderCache.delete(renderCache.keys().next().value!);
+  }
+  renderCache.set(input, result);
+  return result;
 }
 
 function safeKatex(tex: string, displayMode: boolean): string {
