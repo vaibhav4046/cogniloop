@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-17 tiny feature: fire a success toast whenever a concept transitions to "mastered" during a session so users get real-time confirmation of their progress
+
 - 2026-05-17 dependency bump: katex 0.16.45→0.16.47 (patch — two bug-fix releases)
 
 - 2026-05-16 UI copy polish: session header now shows "Round N / 8" text label alongside the progress bar so users always know their round count at a glance

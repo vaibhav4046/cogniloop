@@ -263,6 +263,12 @@ export function Session() {
       setConcepts(data.updatedConcepts);
       setAnswer("");
 
+      for (const c of data.updatedConcepts) {
+        if (c.strength === "mastered" && concepts.find((p) => p.id === c.id)?.strength !== "mastered") {
+          toast.push({ kind: "success", text: `"${c.name}" mastered — one fewer gap to close.`, durationMs: 3500 });
+        }
+      }
+
       if (data.shouldEnd || !data.nextRound) {
         await endSession(finalRounds, data.updatedConcepts);
       } else {
