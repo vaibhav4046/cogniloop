@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-18 keyboard shortcut: press N from the session report to immediately start a new session without reaching for the mouse; documented in ShortcutsModal
+
 - 2026-05-17 tiny feature: fire a success toast whenever a concept transitions to "mastered" during a session so users get real-time confirmation of their progress
 
 - 2026-05-17 dependency bump: katex 0.16.45→0.16.47 (patch — two bug-fix releases)

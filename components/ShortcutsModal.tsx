@@ -14,6 +14,7 @@ const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "M", label: "Toggle voice input (in session)" },
   { keys: "L", label: "Toggle read-aloud (in session)" },
   { keys: "E", label: "End session early" },
+  { keys: "N", label: "New session (from report)" },
 ];
 
 export function ShortcutsModal() {

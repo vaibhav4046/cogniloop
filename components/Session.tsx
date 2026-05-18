@@ -221,6 +221,9 @@ export function Session() {
           void endSession();
         }
       }
+      if (e.key === "n" || e.key === "N") {
+        if (phase === "report") newSession();
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
