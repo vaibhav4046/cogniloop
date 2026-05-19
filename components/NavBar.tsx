@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Logo } from "./Logo";
+import { isInTextField } from "@/lib/kbd";
 
 const LINKS = [
   { href: "/templates", label: "Templates", k: "t" },
@@ -20,13 +21,7 @@ export function NavBar() {
     let buf = "";
     let timer: ReturnType<typeof setTimeout> | null = null;
     function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement | null;
-      const inField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (inField) return;
+      if (isInTextField(e.target)) return;
       if (e.key === "g" || e.key === "G") {
         buf = "g";
         if (timer) clearTimeout(timer);

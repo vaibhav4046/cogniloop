@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { CURRICULA } from "@/lib/curricula";
 import { NavBar } from "./NavBar";
 import { useEffect, useRef, useState } from "react";
+import { isInTextField } from "@/lib/kbd";
 
 export function TemplatesView() {
   const router = useRouter();
@@ -12,13 +13,7 @@ export function TemplatesView() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement | null;
-      const inField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (e.key === "/" && !inField) {
+      if (e.key === "/" && !isInTextField(e.target)) {
         e.preventDefault();
         inputRef.current?.focus();
       }

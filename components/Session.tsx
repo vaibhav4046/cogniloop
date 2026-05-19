@@ -15,6 +15,7 @@ import { runStart, runTurn, runReport, type ReportData } from "@/lib/sessionLogi
 import { browserCallCtx } from "@/lib/settings";
 import { fetchJson } from "@/lib/fetchRetry";
 import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hints";
+import { isInTextField } from "@/lib/kbd";
 import { getMode, type ModeId } from "@/lib/modes";
 import type {
   Concept,
@@ -209,13 +210,7 @@ export function Session() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement | null;
-      const inField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (inField) return;
+      if (isInTextField(e.target)) return;
       if (e.key === "e" || e.key === "E") {
         if (phase === "answering" && rounds.length >= 2) {
           void endSession();

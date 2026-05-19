@@ -8,6 +8,7 @@ import { ModePicker } from "./ModePicker";
 import { StatsPanel } from "./StatsPanel";
 import { CURRICULA } from "@/lib/curricula";
 import type { ModeId } from "@/lib/modes";
+import { isInTextField } from "@/lib/kbd";
 
 const EXAMPLES = [
   "Backpropagation in neural networks",
@@ -51,13 +52,7 @@ export function Landing() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement | null;
-      const inField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (e.key === "/" && !inField) {
+      if (e.key === "/" && !isInTextField(e.target)) {
         e.preventDefault();
         inputRef.current?.focus();
       }
