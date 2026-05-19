@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { decodeShare, type SharePayload } from "@/lib/share";
+import { getMode } from "@/lib/modes";
 import { NavBar } from "./NavBar";
 import { Tex } from "./Math";
 
@@ -93,7 +94,7 @@ export function SharedView({ token }: Props) {
           {payload.topic || "Untitled session"}
         </h1>
         <p className="text-[var(--fg-muted)] text-sm mt-2">
-          {payload.rounds.length} rounds · mode: {payload.modeId} · {payload.concepts.length} concepts
+          {payload.rounds.length} rounds · {getMode(payload.modeId).name} mode · {payload.concepts.length} concepts
         </p>
 
         <button
@@ -170,7 +171,7 @@ export function SharedView({ token }: Props) {
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        Shared via URL-encoded payload. No backend, no logs.
+        Shared via URL — no backend, no accounts, no logs. Your session, your browser.
       </footer>
     </main>
   );
