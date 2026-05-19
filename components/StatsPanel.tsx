@@ -12,7 +12,19 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
     setStats(lifetimeStats());
   }, []);
 
-  if (!streak || !stats) return null;
+  if (!streak || !stats) {
+    if (compact) return null;
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5" aria-busy="true" aria-label="Loading stats">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="card px-3 py-2.5">
+            <div className="skeleton h-[10px] w-10 rounded mb-2" />
+            <div className="skeleton h-[22px] w-8 rounded" />
+          </div>
+        ))}
+      </div>
+    );
+  }
   if (stats.totalSessions === 0 && streak.current === 0) {
     if (compact) return null;
     return (
