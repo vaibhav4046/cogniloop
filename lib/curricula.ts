@@ -220,7 +220,7 @@ export const CURRICULA: Curriculum[] = [
     id: "ml-fundamentals",
     name: "ML Fundamentals",
     region: "Self-study · CS",
-    blurb: "Linear algebra, probability, neural nets, transformers, and generative AI.",
+    blurb: "Linear algebra, probability, neural nets, transformers, generative AI, and reinforcement learning.",
     subjects: [
       {
         name: "Math & Stats",
@@ -251,6 +251,17 @@ export const CURRICULA: Curriculum[] = [
           "Prompt engineering — zero-shot, few-shot, chain-of-thought, RAG",
           "Diffusion models — DDPM, score matching, DALL-E, Stable Diffusion",
           "LLM evaluation — perplexity, BLEU, ROUGE, MMLU, human evaluation",
+        ],
+      },
+      {
+        name: "Reinforcement Learning",
+        topics: [
+          "Markov decision processes — states, actions, rewards, policies, value functions",
+          "Dynamic programming — policy iteration, value iteration, Bellman equations",
+          "Model-free methods — Q-learning, SARSA, temporal-difference learning",
+          "Policy gradient methods — REINFORCE, actor-critic, PPO, advantage estimation",
+          "Exploration vs exploitation — epsilon-greedy, UCB, Thompson sampling",
+          "Deep RL — DQN, experience replay, target networks, distributional RL",
         ],
       },
     ],
