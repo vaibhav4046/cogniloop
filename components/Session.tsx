@@ -778,7 +778,8 @@ const Block = memo(function Block({
         {items.map((it, i) => (
           <li
             key={i}
-            className="text-[12.5px] text-[var(--fg-muted)] leading-relaxed flex gap-2"
+            className="text-[12.5px] text-[var(--fg-muted)] leading-relaxed flex gap-2 item-in"
+            style={{ animationDelay: `${100 + i * 55}ms` }}
           >
             <span style={{ color }}>•</span>
             <span><Tex text={it} /></span>

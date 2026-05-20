@@ -154,6 +154,12 @@ input::placeholder {
 }
 .pop-in { animation: pop-in 0.22s cubic-bezier(0.16, 1.2, 0.3, 1.05); }
 
+@keyframes item-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.item-in { animation: item-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
