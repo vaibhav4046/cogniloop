@@ -65,6 +65,14 @@ const STRENGTH_PCT: Record<ConceptStrength, number> = {
   mastered: 100,
 };
 
+const QTYPE_DESC: Record<Round["questionType"], string> = {
+  explain: "Explain the concept in your own words",
+  apply: "Apply it to a real or hypothetical example",
+  contrast: "Compare or distinguish two related ideas",
+  predict: "Predict an outcome or behavior from first principles",
+  trace: "Walk through a process or algorithm step by step",
+};
+
 export function Session() {
   const router = useRouter();
   const toast = useToast();
@@ -455,7 +463,12 @@ export function Session() {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="tag">Round {lastRound.id}</span>
-                <span className="tag">{lastRound.questionType}</span>
+                <span
+                  className="tag"
+                  title={QTYPE_DESC[lastRound.questionType]}
+                >
+                  {lastRound.questionType.charAt(0).toUpperCase() + lastRound.questionType.slice(1)}
+                </span>
                 <span className="tag">
                   <DiffDots level={lastRound.difficulty} />
                 </span>
