@@ -141,16 +141,24 @@ export function HistoryView() {
               <div
                 key={i}
                 className="aspect-square rounded-[3px]"
-                title={d.key + (d.active ? " · drilled" : "")}
+                title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
                 style={{
                   background: d.active
                     ? "var(--accent)"
+                    : d.isToday
+                    ? "var(--accent-soft)"
                     : "var(--bg-elev)",
                   opacity: d.active ? 0.85 : 1,
+                  boxShadow: d.isToday ? "0 0 0 1px var(--accent)" : undefined,
                 }}
               />
             ))}
           </div>
+          {(streak?.daysActive?.length ?? 0) === 0 && (
+            <p className="text-[11px] text-[var(--fg-dim)] text-center mt-3 leading-relaxed">
+              Study daily to build your streak — the glowing cell is today.
+            </p>
+          )}
         </div>
 
         <div className="mt-8">
@@ -288,12 +296,13 @@ function ScoreBadge({ score }: { score: number }) {
 
 function buildHeatmap(daysActive: string[]) {
   const set = new Set(daysActive);
-  const out: { key: string; active: boolean }[] = [];
+  const out: { key: string; active: boolean; isToday: boolean }[] = [];
   const today = new Date();
+  const todayKey = dayKey(today.getTime());
   for (let i = 89; i >= 0; i--) {
     const d = new Date(today.getTime() - i * 24 * 60 * 60 * 1000);
     const key = dayKey(d.getTime());
-    out.push({ key, active: set.has(key) });
+    out.push({ key, active: set.has(key), isToday: key === todayKey });
   }
   return out;
 }
