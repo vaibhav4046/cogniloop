@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "?", label: "Open this panel" },
@@ -17,8 +17,13 @@ const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "N", label: "New session (from report)" },
 ];
 
+const FOCUSABLE =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export function ShortcutsModal() {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -38,9 +43,35 @@ export function ShortcutsModal() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // Move focus into dialog on open; return it to trigger on close.
+  useEffect(() => {
+    if (open) {
+      dialogRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+    } else {
+      triggerRef.current?.focus();
+    }
+  }, [open]);
+
+  function trapFocus(e: React.KeyboardEvent) {
+    if (e.key !== "Tab" || !dialogRef.current) return;
+    const nodes = Array.from(
+      dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)
+    );
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   if (!open) {
     return (
       <button
+        ref={triggerRef}
         onClick={() => setOpen(true)}
         aria-label="Open keyboard shortcuts panel"
         title="Keyboard shortcuts (?)"
@@ -57,11 +88,13 @@ export function ShortcutsModal() {
       onClick={() => setOpen(false)}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="shortcuts-title"
         className="card p-6 w-[min(440px,90vw)]"
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={trapFocus}
       >
         <div className="flex items-center justify-between mb-4">
           <div id="shortcuts-title" className="text-sm font-medium tracking-tight">Keyboard shortcuts</div>
