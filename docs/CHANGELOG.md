@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 curriculum: add "Database Management Systems" as a standalone subject to GATE CSE (ER model, relational model + SQL, normalization, transaction management, indexing + query processing — 5 topics covering the full DBMS section worth ~10% of GATE marks); remove the single-line "Databases" entry from Core CS
+
 - 2026-05-22 README/docs update: sync keyboard shortcuts (add m/l/n), add live word count and score sparkline to feature list
 
 - 2026-05-22 UI copy polish: coaching report study plan card now shows topic count and total estimated time ("3 topics · 18 min") in the card header, giving users an at-a-glance sense of the recommended study load

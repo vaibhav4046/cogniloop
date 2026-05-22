@@ -101,7 +101,7 @@ export const CURRICULA: Curriculum[] = [
     id: "gate-cs",
     name: "GATE CSE",
     region: "India · CS Postgrad",
-    blurb: "Computer Science core — data structures, algorithms, OS, networks, discrete math.",
+    blurb: "Computer Science core — data structures, algorithms, OS, networks, DBMS, discrete math.",
     subjects: [
       {
         name: "Data Structures",
@@ -126,6 +126,16 @@ export const CURRICULA: Curriculum[] = [
         ],
       },
       {
+        name: "Database Management Systems",
+        topics: [
+          "ER model — entities, attributes, relationships, cardinality, ER-to-relational mapping",
+          "Relational model and SQL — DDL, DML, joins, aggregation, subqueries, views",
+          "Functional dependencies and normalization — 1NF, 2NF, 3NF, BCNF, lossless decomposition",
+          "Transaction management — ACID properties, serializability, 2-phase locking, deadlock handling",
+          "Indexing and query processing — B+ tree, hash index, query cost estimation, join algorithms",
+        ],
+      },
+      {
         name: "Core CS",
         topics: [
           "Algorithm analysis — asymptotic notation, recurrences",
@@ -133,7 +143,6 @@ export const CURRICULA: Curriculum[] = [
           "Graph algorithms — BFS, DFS, shortest paths, MST",
           "Operating systems — processes, threads, deadlocks, scheduling",
           "Memory management — paging, virtual memory",
-          "Databases — normalization, transactions, indexing",
           "Computer networks — TCP/IP, routing, OSI layers",
           "Theory of computation — automata, regular and context-free languages",
           "Compiler design — lexical, parsing, code generation",
