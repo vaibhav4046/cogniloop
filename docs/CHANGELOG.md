@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 a11y: DiffDots component now has role="img" + aria-label ("Difficulty N of 5") so screen readers announce question difficulty; inner dot spans get aria-hidden="true"; session difficulty tag gains a title tooltip for sighted hover
+
 - 2026-05-22 refactor: ShortcutsModal now uses isInTextField from lib/kbd.ts instead of an inline text-field guard — removes duplicate logic missed during the earlier kbd.ts extraction
 
 - 2026-05-22 perf: convert WhyView to a Server Component by removing the unneeded "use client" directive — static comparison table, FAQ, and use-case cards are now prerendered as HTML and excluded from the client JS bundle

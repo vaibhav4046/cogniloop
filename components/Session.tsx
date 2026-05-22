@@ -469,7 +469,7 @@ export function Session() {
                 >
                   {lastRound.questionType.charAt(0).toUpperCase() + lastRound.questionType.slice(1)}
                 </span>
-                <span className="tag">
+                <span className="tag" title={`Difficulty: ${lastRound.difficulty} / 5`}>
                   <DiffDots level={lastRound.difficulty} />
                 </span>
                 <span className="tag" style={{ color: "var(--accent)" }}>
@@ -805,10 +805,15 @@ const Block = memo(function Block({
 
 const DiffDots = memo(function DiffDots({ level }: { level: number }) {
   return (
-    <span className="inline-flex items-center gap-0.5">
+    <span
+      className="inline-flex items-center gap-0.5"
+      role="img"
+      aria-label={`Difficulty ${level} of 5`}
+    >
       {[1, 2, 3, 4, 5].map((n) => (
         <span
           key={n}
+          aria-hidden="true"
           className="w-1 h-1 rounded-full"
           style={{
             background: n <= level ? "var(--accent)" : "var(--line)",
