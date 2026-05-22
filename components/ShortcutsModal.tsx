@@ -7,7 +7,7 @@ const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "?", label: "Open this panel" },
   { keys: "⌘/Ctrl + Enter", label: "Submit answer · Begin loop" },
   { keys: "Esc", label: "Close panel · Cancel voice" },
-  { keys: "/", label: "Focus topic / filter input (landing & templates)" },
+  { keys: "/", label: "Focus topic / filter / search input (landing, templates & history)" },
   { keys: "G then H", label: "Go to history" },
   { keys: "G then T", label: "Go to templates" },
   { keys: "G then W", label: "Go to /why" },

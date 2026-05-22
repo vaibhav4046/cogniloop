@@ -12,6 +12,7 @@ import {
   type StreakData,
 } from "@/lib/storage";
 import { getMode } from "@/lib/modes";
+import { isInTextField } from "@/lib/kbd";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -36,6 +37,18 @@ export function HistoryView() {
   const [importErr, setImportErr] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "/" && !isInTextField(e.target)) {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   useEffect(() => {
     setRecords(getHistory());
@@ -169,9 +182,10 @@ export function HistoryView() {
             <div className="flex items-center gap-2 flex-wrap">
               {records.length > 0 && (
                 <input
+                  ref={searchRef}
                   type="search"
                   aria-label="Search sessions by topic"
-                  placeholder="Search topics…"
+                  placeholder="Search topics… (press / to focus)"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="text-xs px-3 py-1.5 rounded-md bg-[var(--bg-elev)] border border-[var(--line-soft)] text-[var(--fg)] placeholder:text-[var(--fg-dim)] focus:outline-none focus:border-[var(--accent)] transition-colors w-44"

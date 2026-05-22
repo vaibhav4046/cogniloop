@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 keyboard shortcut: press / on the /history page to focus the session search input — consistent with landing and templates; placeholder text updated to hint at the shortcut; ShortcutsModal label updated to list all three pages
+
 - 2026-05-22 a11y: DiffDots component now has role="img" + aria-label ("Difficulty N of 5") so screen readers announce question difficulty; inner dot spans get aria-hidden="true"; session difficulty tag gains a title tooltip for sighted hover
 
 - 2026-05-22 refactor: ShortcutsModal now uses isInTextField from lib/kbd.ts instead of an inline text-field guard — removes duplicate logic missed during the earlier kbd.ts extraction
