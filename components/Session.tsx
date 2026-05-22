@@ -965,7 +965,7 @@ function ReportView({
           </div>
           <ul className="flex flex-col gap-3">
             {report.studyPlan.map((s, i) => (
-              <li key={i} className="flex gap-3">
+              <li key={i} className="flex gap-3 item-in" style={{ animationDelay: `${i * 70}ms` }}>
                 <span className="text-[12px] text-[var(--fg-dim)] min-w-[42px]">
                   {s.minutes}m
                 </span>
@@ -1046,7 +1046,7 @@ function BucketCard({
       ) : (
         <ul className="flex flex-col gap-1">
           {items.map((it, i) => (
-            <li key={i} className="text-[13px] tracking-tight">
+            <li key={i} className="text-[13px] tracking-tight item-in" style={{ animationDelay: `${i * 55}ms` }}>
               <Tex text={it} />
             </li>
           ))}
