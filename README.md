@@ -56,6 +56,7 @@ Loop until mastered.
 - Markdown export of full session
 - URL-encoded shareable session links — no backend, no leaks
 - Per-round feedback card with strengths + gaps as bullet lists
+- Live word count while typing — nudges fuller explanations
 
 **Persistence + accountability**
 - Daily streak counter (Duolingo-style)
@@ -75,11 +76,12 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end early
+- Keyboard-first: `?` shortcuts panel, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session
 - Per-round difficulty dots, mode badges, question-type tags
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh
 - Empty-state coaching card on the home page
+- Score trend sparkline in coaching report — color-coded dots across all rounds
 
 **Pages**
 - `/` — landing with mode picker, examples, curriculum cards, feature grid
