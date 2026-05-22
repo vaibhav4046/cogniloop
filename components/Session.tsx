@@ -920,6 +920,34 @@ function ReportView({
           {rounds.length} rounds · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
         </div>
 
+        {evald.length > 1 && (
+          <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+            <span className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mr-0.5">
+              Score trend
+            </span>
+            {evald.map((r, i) => {
+              const sc = Math.max(0, Math.min(3, r.evaluation!.score)) as 0 | 1 | 2 | 3;
+              const bg: Record<0 | 1 | 2 | 3, string> = {
+                0: "var(--bad)",
+                1: "var(--warn)",
+                2: "var(--good)",
+                3: "var(--accent)",
+              };
+              return (
+                <span
+                  key={i}
+                  className="w-[22px] h-[22px] rounded flex items-center justify-center text-[10px] font-bold leading-none"
+                  style={{ background: bg[sc], color: "var(--bg)" }}
+                  title={`Round ${r.id}: ${sc}/3 — ${r.evaluation!.verdict.slice(0, 80)}`}
+                  aria-label={`Round ${r.id} score: ${sc} out of 3`}
+                >
+                  {sc}
+                </span>
+              );
+            })}
+          </div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
           <BucketCard label="Mastered" items={report.mastered} color="var(--accent)" emptyMsg="None yet — keep drilling." />
           <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" emptyMsg="None flagged." />

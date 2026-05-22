@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 tiny feature: score trend sparkline in coaching report — a row of color-coded score dots (red=0, amber=1, green=2, purple=3) shows the user's performance arc across rounds at a glance
+
 - 2026-05-20 UI copy polish: question type tag in active session now capitalizes the label (Explain/Apply/Contrast/Predict/Trace) and shows a native tooltip describing each type on hover — helps users understand what kind of answer is expected
 
 - 2026-05-20 curriculum: add Reinforcement Learning subject to ML Fundamentals pack (MDPs, dynamic programming, Q-learning, policy gradients, exploration/exploitation, deep RL — 6 new topics); update pack blurb
