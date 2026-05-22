@@ -24,6 +24,11 @@ function fmtDate(ts: number): string {
   });
 }
 
+function fmtDuration(start: number, end: number): string {
+  const mins = Math.round((end - start) / 60000);
+  return mins < 1 ? "< 1 min" : `${mins} min`;
+}
+
 function dayKey(ts: number): string {
   const d = new Date(ts);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -259,31 +264,34 @@ export function HistoryView() {
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              {filtered.map((r) => (
-                <article key={r.id} className="card p-4">
-                  <div className="flex items-center justify-between gap-3 flex-wrap">
-                    <div className="min-w-0">
-                      <div className="text-[14px] font-medium tracking-tight truncate">
-                        {r.topic || "(untitled)"}
+              {filtered.map((r) => {
+                const dur = r.endedAt ? fmtDuration(r.createdAt, r.endedAt) : null;
+                return (
+                  <article key={r.id} className="card p-4">
+                    <div className="flex items-center justify-between gap-3 flex-wrap">
+                      <div className="min-w-0">
+                        <div className="text-[14px] font-medium tracking-tight truncate">
+                          {r.topic || "(untitled)"}
+                        </div>
+                        <div className="text-[11px] text-[var(--fg-muted)] mt-1 flex items-center gap-2 flex-wrap">
+                          <span>{fmtDate(r.createdAt)}</span>
+                          {dur && <><span>·</span><span>{dur}</span></>}
+                          <span>·</span>
+                          <span>{getMode(r.modeId).name}</span>
+                          <span>·</span>
+                          <span>{r.rounds.length} round{r.rounds.length === 1 ? "" : "s"}</span>
+                          <span>·</span>
+                          <span>avg {r.avgScore.toFixed(2)}/3</span>
+                          {r.mastered > 0 && <><span>·</span><span>{r.mastered} mastered</span></>}
+                        </div>
                       </div>
-                      <div className="text-[11px] text-[var(--fg-muted)] mt-1 flex items-center gap-2 flex-wrap">
-                        <span>{fmtDate(r.createdAt)}</span>
-                        <span>·</span>
-                        <span>{getMode(r.modeId).name}</span>
-                        <span>·</span>
-                        <span>{r.rounds.length} rounds</span>
-                        <span>·</span>
-                        <span>avg {r.avgScore.toFixed(2)}/3</span>
-                        <span>·</span>
-                        <span>{r.mastered} mastered</span>
+                      <div className="flex items-center gap-2">
+                        <ScoreBadge score={r.avgScore} />
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <ScoreBadge score={r.avgScore} />
-                    </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           )}
         </div>

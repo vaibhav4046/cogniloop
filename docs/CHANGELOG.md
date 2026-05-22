@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 UI copy polish: history session cards now show session duration (e.g. "8 min") when available, fix "1 rounds" → "1 round" pluralization, and hide the "0 mastered" label (non-info that reads as a failure)
+
 - 2026-05-22 friendlier error message: Session humanizeError now covers 401/unauthorized (directs to Settings) and quota-exhausted cases; SettingsView Groq key-test errors give actionable copy ("copy the full key from console.groq.com/keys"); SharedView broken-link message explains what to do next
 
 - 2026-05-22 curriculum: add "Waves & Oscillations" to JEE Physics (SHM, wave equation, sound, Doppler, standing waves) and "Electrochemistry" to JEE Chemistry (electrolytic cells, Faraday's laws, electrode potentials, Nernst equation) — two major JEE topics previously missing from the pack
