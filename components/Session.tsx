@@ -43,7 +43,11 @@ function humanizeError(raw: string | null): string {
   if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error"))
     return "Network error — check your connection and retry.";
   if (m.includes("503") || m.includes("service unavailable"))
-    return "AI provider is temporarily unavailable.";
+    return "AI provider is temporarily unavailable — retry in a moment.";
+  if (m.includes("401") || m.includes("unauthorized"))
+    return "API key rejected — go to Settings and paste a fresh key from console.groq.com/keys.";
+  if (m.includes("quota") || m.includes("credits") || m.includes("insufficient"))
+    return "API key has run out of credits — switch provider to Pollinations in Settings (free, no key needed).";
   if (m.includes("timeout") || m.includes("timed out"))
     return "The AI took too long to respond — retry usually fixes this.";
   if (m.includes("json") || m.includes("parse") || m.includes("unexpected token"))

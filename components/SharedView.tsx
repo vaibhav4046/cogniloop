@@ -19,7 +19,7 @@ export function SharedView({ token }: Props) {
   useEffect(() => {
     const p = decodeShare(token);
     if (!p) {
-      setErr("This share link couldn't be decoded.");
+      setErr("This link looks broken — it may have been cut off when shared. Ask for a fresh link from the original session.");
       return;
     }
     setPayload(p);

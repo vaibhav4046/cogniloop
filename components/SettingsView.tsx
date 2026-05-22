@@ -54,12 +54,12 @@ export function SettingsView() {
         const count = Array.isArray(data?.data) ? data.data.length : 0;
         setKeyTest({ status: "ok", msg: `Valid · ${count} models available` });
       } else if (res.status === 401) {
-        setKeyTest({ status: "err", msg: "Invalid key (401)" });
+        setKeyTest({ status: "err", msg: "Invalid key — copy the full key from console.groq.com/keys" });
       } else {
-        setKeyTest({ status: "err", msg: `HTTP ${res.status}` });
+        setKeyTest({ status: "err", msg: `Groq returned HTTP ${res.status} — try again in a moment` });
       }
     } catch (e) {
-      setKeyTest({ status: "err", msg: e instanceof Error ? e.message : "Network error" });
+      setKeyTest({ status: "err", msg: e instanceof Error ? e.message : "Can't reach Groq — check your internet connection" });
     }
   }
 
