@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { isInTextField } from "@/lib/kbd";
 
 const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "?", label: "Open this panel" },
@@ -27,13 +28,7 @@ export function ShortcutsModal() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      const target = e.target as HTMLElement | null;
-      const inField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-      if (e.key === "?" && !inField) {
+      if (e.key === "?" && !isInTextField(e.target)) {
         e.preventDefault();
         setOpen((v) => !v);
       }
