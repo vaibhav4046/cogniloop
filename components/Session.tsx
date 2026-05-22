@@ -975,21 +975,27 @@ function ReportView({
               </div>
             )}
           </div>
-          <ul className="flex flex-col gap-3">
-            {report.studyPlan.map((s, i) => (
-              <li key={i} className="flex gap-3 item-in" style={{ animationDelay: `${i * 70}ms` }}>
-                <span className="text-[12px] text-[var(--fg-dim)] min-w-[42px]">
-                  {s.minutes}m
-                </span>
-                <div>
-                  <div className="text-[14px] tracking-tight font-medium">{s.concept}</div>
-                  <div className="text-[13px] text-[var(--fg-muted)] leading-relaxed">
-                    {s.action}
+          {report.studyPlan.length === 0 ? (
+            <p className="text-[13px] text-[var(--fg-dim)] italic leading-relaxed">
+              Nothing to revisit — all concepts held up under pressure.
+            </p>
+          ) : (
+            <ul className="flex flex-col gap-3">
+              {report.studyPlan.map((s, i) => (
+                <li key={i} className="flex gap-3 item-in" style={{ animationDelay: `${i * 70}ms` }}>
+                  <span className="text-[12px] text-[var(--fg-dim)] min-w-[42px]">
+                    {s.minutes}m
+                  </span>
+                  <div>
+                    <div className="text-[14px] tracking-tight font-medium">{s.concept}</div>
+                    <div className="text-[13px] text-[var(--fg-muted)] leading-relaxed">
+                      {s.action}
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="card p-5 mt-4">
