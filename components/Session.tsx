@@ -852,6 +852,7 @@ function ReportView({
     evald.length > 0
       ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
       : 0;
+  const totalMins = report.studyPlan.reduce((s, p) => s + p.minutes, 0);
 
   function downloadMd() {
     const lines: string[] = [];
@@ -964,8 +965,15 @@ function ReportView({
         </div>
 
         <div className="card p-5 mt-6">
-          <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
-            Study plan
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)]">
+              Study plan
+            </div>
+            {totalMins > 0 && (
+              <div className="text-[11px] text-[var(--fg-dim)]">
+                {report.studyPlan.length} topic{report.studyPlan.length !== 1 ? "s" : ""} · {totalMins} min
+              </div>
+            )}
           </div>
           <ul className="flex flex-col gap-3">
             {report.studyPlan.map((s, i) => (
