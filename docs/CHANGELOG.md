@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-22 curriculum: add "Waves & Oscillations" to JEE Physics (SHM, wave equation, sound, Doppler, standing waves) and "Electrochemistry" to JEE Chemistry (electrolytic cells, Faraday's laws, electrode potentials, Nernst equation) — two major JEE topics previously missing from the pack
+
 - 2026-05-22 micro-animation: coaching report study-plan items and bucket-card concept lists now cascade in with staggered item-in animation (70ms and 55ms per-item delays), making the final report feel like a progressive reveal rather than a static wall of text
 
 - 2026-05-22 keyboard shortcut: press / on the /history page to focus the session search input — consistent with landing and templates; placeholder text updated to hint at the shortcut; ShortcutsModal label updated to list all three pages
