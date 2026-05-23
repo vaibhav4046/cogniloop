@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 curriculum: add "Computer Networks" as a standalone subject to GATE CSE (data link layer, network layer, transport layer, application layer, and network security — 5 topics covering the ~11% GATE weightage previously collapsed into a single Core CS line); remove redundant "Computer networks" entry from Core CS
+
 - 2026-05-23 friendlier error message: humanizeError in Session now maps 502/bad-gateway, "malformed model output", and HTTP 500 to plain-English coaching copy instead of leaking raw error strings; generic catch-all for long or "HTTP …"-prefixed messages replaces the previous bare `return raw` fallback
 
 - 2026-05-23 brand voice: ConceptPanel strength badges (weak/shaky/solid/mastered) gain coaching-voice title tooltips explaining each level on hover; header now shows "N / M mastered" count (accented when all are mastered) instead of a static concept count

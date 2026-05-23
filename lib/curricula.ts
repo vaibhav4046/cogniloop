@@ -146,14 +146,21 @@ export const CURRICULA: Curriculum[] = [
         ],
       },
       {
+        name: "Computer Networks",
+        topics: [
+          "Data link layer — framing, error detection (CRC, checksum), MAC protocols (CSMA/CD, ALOHA, token ring), sliding window, Go-Back-N, selective repeat",
+          "Network layer — IPv4 addressing, subnetting, CIDR, ARP, ICMP, routing algorithms (Dijkstra, Bellman-Ford), distance vector vs link-state, NAT",
+          "Transport layer — TCP vs UDP, 3-way handshake, flow control, congestion control (slow start, AIMD, fast retransmit), TCP timers and state machine",
+          "Application layer — DNS resolution, HTTP/HTTPS methods, FTP, SMTP, socket programming, CDN and proxy concepts",
+          "Network security — symmetric vs asymmetric encryption, SSL/TLS handshake, digital certificates, firewalls, VPN, wireless security (WPA2), common attacks",
+        ],
+      },
+      {
         name: "Core CS",
         topics: [
           "Algorithm analysis — asymptotic notation, recurrences",
           "Greedy, divide-and-conquer, dynamic programming",
           "Graph algorithms — BFS, DFS, shortest paths, MST",
-          "Operating systems — processes, threads, deadlocks, scheduling",
-          "Memory management — paging, virtual memory",
-          "Computer networks — TCP/IP, routing, OSI layers",
           "Theory of computation — automata, regular and context-free languages",
           "Compiler design — lexical, parsing, code generation",
           "Computer organization — pipelining, caching, ISA",
