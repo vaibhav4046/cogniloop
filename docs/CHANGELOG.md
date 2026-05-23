@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 friendlier error message: humanizeError in Session now maps 502/bad-gateway, "malformed model output", and HTTP 500 to plain-English coaching copy instead of leaking raw error strings; generic catch-all for long or "HTTP …"-prefixed messages replaces the previous bare `return raw` fallback
+
 - 2026-05-23 brand voice: ConceptPanel strength badges (weak/shaky/solid/mastered) gain coaching-voice title tooltips explaining each level on hover; header now shows "N / M mastered" count (accented when all are mastered) instead of a static concept count
 
 - 2026-05-23 curriculum: add "Operating Systems" as a standalone subject to GATE CSE (process management, CPU scheduling, synchronization & deadlocks, memory management, file systems — 5 topics replacing the single-line OS entry in Core CS and matching the ~10-15% GATE weightage)

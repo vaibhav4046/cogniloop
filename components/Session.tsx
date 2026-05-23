@@ -52,6 +52,14 @@ function humanizeError(raw: string | null): string {
     return "The AI took too long to respond — retry usually fixes this.";
   if (m.includes("json") || m.includes("parse") || m.includes("unexpected token"))
     return "AI returned a malformed response — retry usually fixes this.";
+  if (m.includes("malformed") || m.includes("missing fields") || m.includes("missing field"))
+    return "AI returned an incomplete response — retry usually fixes this.";
+  if (m.includes("502") || m.includes("bad gateway"))
+    return "AI service returned a server error — retry in a moment.";
+  if (m.includes("500") || m.includes("internal server"))
+    return "An internal error occurred in the AI service — retry usually fixes this.";
+  if (raw.length > 120 || m.startsWith("http "))
+    return "Something went wrong with the AI — retry usually fixes this.";
   return raw;
 }
 
