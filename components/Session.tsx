@@ -364,20 +364,10 @@ export function Session() {
   if (phase === "booting" || phase === "starting") {
     return (
       <SessionShell>
-        <div className="flex flex-col items-center justify-center flex-1 text-center fade-up">
-          <span className="dot-pulse mb-4" aria-hidden>
-            <span /><span /><span />
-          </span>
-          <div
-            key={hintIndex}
-            className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
-            aria-live="polite"
-          >
-            {phase === "starting"
-              ? pickHint(STARTING_HINTS, hintIndex)
-              : "Loading session…"}
-          </div>
-        </div>
+        <PhaseLoader
+          hint={phase === "starting" ? pickHint(STARTING_HINTS, hintIndex) : "Loading session…"}
+          hintKey={hintIndex}
+        />
       </SessionShell>
     );
   }
@@ -416,18 +406,7 @@ export function Session() {
   if (phase === "ending") {
     return (
       <SessionShell>
-        <div className="flex flex-col items-center justify-center flex-1 text-center fade-up">
-          <span className="dot-pulse mb-4" aria-hidden>
-            <span /><span /><span />
-          </span>
-          <div
-            key={hintIndex}
-            className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
-            aria-live="polite"
-          >
-            {pickHint(ENDING_HINTS, hintIndex)}
-          </div>
-        </div>
+        <PhaseLoader hint={pickHint(ENDING_HINTS, hintIndex)} hintKey={hintIndex} />
       </SessionShell>
     );
   }
@@ -601,6 +580,23 @@ function ModeSwitcher({
         Mode (next question)
       </div>
       <ModePicker value={value} onChange={onChange} compact />
+    </div>
+  );
+}
+
+function PhaseLoader({ hint, hintKey }: { hint: string; hintKey: number }) {
+  return (
+    <div className="flex flex-col items-center justify-center flex-1 text-center fade-up">
+      <span className="dot-pulse mb-4" aria-hidden>
+        <span /><span /><span />
+      </span>
+      <div
+        key={hintKey}
+        className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
+        aria-live="polite"
+      >
+        {hint}
+      </div>
     </div>
   );
 }
