@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 curriculum: add "Financial Markets & Instruments" as a 4th subject to the Economics pack (bond pricing & duration, equity valuation, portfolio theory/CAPM, derivatives/options, market efficiency — 5 topics covering the financial markets section of CFA Level 1 that the pack blurb promised but previously lacked); update pack blurb to mention financial markets
+
 - 2026-05-22 brand voice: mode blurbs in ModePicker now lead with the most concrete differentiator per mode — Chill surfaces "patient hints + no timer", Exam surfaces "90-second clock + no hints", Expert surfaces "first-principles only + will find every gap" — replacing generic spec bullets with coaching-voice copy
 
 - 2026-05-22 empty state polish: coaching report study plan now shows "Nothing to revisit — all concepts held up under pressure." instead of a blank card when the LLM returns an empty study plan (perfect session)

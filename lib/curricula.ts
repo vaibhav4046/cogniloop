@@ -323,7 +323,7 @@ export const CURRICULA: Curriculum[] = [
     id: "economics",
     name: "Economics",
     region: "Self-study · AP · College",
-    blurb: "Micro, macro, and behavioral economics — AP, college-level, and CFA Level 1 ready.",
+    blurb: "Micro, macro, behavioral economics, and financial markets — AP, college-level, and CFA Level 1 ready.",
     subjects: [
       {
         name: "Microeconomics",
@@ -353,6 +353,16 @@ export const CURRICULA: Curriculum[] = [
           "Behavioral economics — biases, heuristics, prospect theory, nudges",
           "International trade — comparative advantage, trade policy, tariffs, WTO",
           "Exchange rates — purchasing power parity, balance of payments, forex markets",
+        ],
+      },
+      {
+        name: "Financial Markets & Instruments",
+        topics: [
+          "Bond pricing and duration — coupon bonds, YTM, duration, convexity, interest rate risk",
+          "Equity valuation — dividend discount model, P/E ratio, EV/EBITDA, free cash flow, DCF",
+          "Portfolio theory — risk-return tradeoff, diversification, efficient frontier, CAPM, Sharpe ratio",
+          "Derivatives — call/put options, Black-Scholes intuition, futures, forwards, hedging strategies",
+          "Market efficiency — EMH weak/semi-strong/strong forms, anomalies, technical vs fundamental analysis",
         ],
       },
     ],
