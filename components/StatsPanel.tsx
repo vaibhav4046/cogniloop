@@ -38,22 +38,23 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
 
   return (
     <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-5 gap-2.5"}>
-      <Stat label="Streak" value={`${streak.current}d`} hint={`Best ${streak.longest}d`} />
-      <Stat label="Sessions" value={stats.totalSessions.toString()} />
-      <Stat label="Rounds" value={stats.totalRounds.toString()} />
-      <Stat label="Mastered" value={stats.totalMastered.toString()} hint="concepts" />
+      <Stat label="Streak" value={`${streak.current}d`} hint={`Best ${streak.longest}d`} index={0} />
+      <Stat label="Sessions" value={stats.totalSessions.toString()} index={1} />
+      <Stat label="Rounds" value={stats.totalRounds.toString()} index={2} />
+      <Stat label="Mastered" value={stats.totalMastered.toString()} hint="concepts" index={3} />
       <Stat
         label="Avg score"
         value={stats.totalSessions > 0 ? stats.avgScore.toFixed(2) : "—"}
         hint="of 3"
+        index={4}
       />
     </div>
   );
 }
 
-function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function Stat({ label, value, hint, index = 0 }: { label: string; value: string; hint?: string; index?: number }) {
   return (
-    <div className="card px-3 py-2.5">
+    <div className="card px-3 py-2.5 fade-up" style={{ animationDelay: `${index * 55}ms` }}>
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)]">
         {label}
       </div>
