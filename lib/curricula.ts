@@ -136,6 +136,16 @@ export const CURRICULA: Curriculum[] = [
         ],
       },
       {
+        name: "Operating Systems",
+        topics: [
+          "Process management — PCB, process states, fork/exec, context switching, IPC (pipes, shared memory, message queues)",
+          "CPU scheduling — FCFS, SJF, Round Robin, priority scheduling, multilevel feedback queues, scheduling metrics",
+          "Synchronization and deadlocks — race conditions, mutex, semaphores, monitors, deadlock detection, Banker's algorithm",
+          "Memory management — contiguous allocation, paging, segmentation, virtual memory, TLB, page replacement (LRU, FIFO, Optimal)",
+          "File systems — directory structure, FAT vs inode allocation, free space management, journaling, RAID levels",
+        ],
+      },
+      {
         name: "Core CS",
         topics: [
           "Algorithm analysis — asymptotic notation, recurrences",
