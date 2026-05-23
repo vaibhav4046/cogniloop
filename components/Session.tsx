@@ -361,6 +361,12 @@ export function Session() {
     router.push("/");
   }
 
+  function reDrill(conceptName: string) {
+    localStorage.removeItem("cl:session");
+    sessionStorage.setItem("cl:pending", JSON.stringify({ topic: conceptName, notes: "", modeId }));
+    router.push("/study");
+  }
+
   if (phase === "booting" || phase === "starting") {
     return (
       <SessionShell>
@@ -421,6 +427,7 @@ export function Session() {
           concepts={concepts}
           modeId={modeId}
           onNew={newSession}
+          onReDrill={reDrill}
         />
       </SessionShell>
     );
@@ -831,6 +838,7 @@ function ReportView({
   concepts,
   modeId,
   onNew,
+  onReDrill,
 }: {
   report: ReportData;
   topic: string;
@@ -838,6 +846,7 @@ function ReportView({
   concepts: Concept[];
   modeId: string;
   onNew: () => void;
+  onReDrill: (concept: string) => void;
 }) {
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -849,6 +858,10 @@ function ReportView({
       ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
       : 0;
   const totalMins = report.studyPlan.reduce((s, p) => s + p.minutes, 0);
+  const reDrillTarget = report.weak[0] ?? report.shaky[0] ?? null;
+  const reDrillDisplay = reDrillTarget && reDrillTarget.length > 28
+    ? reDrillTarget.slice(0, 28) + "…"
+    : reDrillTarget;
 
   function downloadMd() {
     const lines: string[] = [];
@@ -1016,6 +1029,15 @@ function ReportView({
           <button onClick={onNew} className="btn-primary px-5 py-2.5 rounded-lg text-sm">
             New session
           </button>
+          {reDrillTarget && (
+            <button
+              onClick={() => onReDrill(reDrillTarget)}
+              className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
+              title={`Start a focused session on "${reDrillTarget}"`}
+            >
+              Re-drill &ldquo;{reDrillDisplay}&rdquo;
+            </button>
+          )}
           <button onClick={downloadMd} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
             Export markdown
           </button>
@@ -1024,9 +1046,14 @@ function ReportView({
           </button>
         </div>
         {shareUrl && (
-          <div className="mt-3 text-[11px] text-[var(--fg-dim)] break-all font-mono">
+          <a
+            href={shareUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 block text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] break-all font-mono transition-colors"
+          >
             {shareUrl}
-          </div>
+          </a>
         )}
       </div>
     </div>
