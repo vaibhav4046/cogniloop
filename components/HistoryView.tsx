@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { NavBar } from "./NavBar";
 import { StatsPanel } from "./StatsPanel";
 import {
@@ -35,6 +36,7 @@ function dayKey(ts: number): string {
 }
 
 export function HistoryView() {
+  const router = useRouter();
   const [records, setRecords] = useState<SessionRecord[]>([]);
   const [streak, setStreak] = useState<StreakData | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -118,6 +120,12 @@ export function HistoryView() {
     } finally {
       if (fileRef.current) fileRef.current.value = "";
     }
+  }
+
+  function studyAgain(r: SessionRecord) {
+    localStorage.removeItem("cl:session");
+    sessionStorage.setItem("cl:pending", JSON.stringify({ topic: r.topic, notes: "", modeId: r.modeId }));
+    router.push("/study");
   }
 
   const days = useMemo(() => buildHeatmap(streak?.daysActive ?? []), [streak]);
@@ -285,7 +293,15 @@ export function HistoryView() {
                           {r.mastered > 0 && <><span>·</span><span>{r.mastered} mastered</span></>}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={() => studyAgain(r)}
+                          title={`Re-drill "${r.topic}" in ${getMode(r.modeId).name} mode`}
+                          aria-label={`Study "${r.topic}" again`}
+                          className="btn-ghost text-[11px] px-2.5 py-1 rounded-md"
+                        >
+                          ↻ Study again
+                        </button>
                         <ScoreBadge score={r.avgScore} />
                       </div>
                     </div>

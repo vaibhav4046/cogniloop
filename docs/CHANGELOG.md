@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 tiny feature: "Study again" button on every history session card — one click reloads that topic in the same mode straight into /study, matching the Re-drill pattern already in the coaching report
+
 - 2026-05-23 tiny feature: "Re-drill" one-click button in coaching report — appears when weak or shaky concepts remain, pre-fills that concept as the session topic and navigates straight to /study; share URL in report is now a clickable link instead of plain text
 
 - 2026-05-23 keyboard shortcut: press G then G to navigate home from any page — the double-G chord completes the nav set (G+T templates, G+H history, G+W why, G+S settings) and is listed in the ShortcutsModal; handler restructures the NavBar key listener to intercept the second G press before it resets the buffer
