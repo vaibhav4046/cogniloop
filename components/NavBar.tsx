@@ -23,9 +23,17 @@ export function NavBar() {
     function onKey(e: KeyboardEvent) {
       if (isInTextField(e.target)) return;
       if (e.key === "g" || e.key === "G") {
-        buf = "g";
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => (buf = ""), 1500);
+        if (buf === "g") {
+          // G then G → home
+          buf = "";
+          if (timer) { clearTimeout(timer); timer = null; }
+          e.preventDefault();
+          router.push("/");
+        } else {
+          buf = "g";
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => (buf = ""), 1500);
+        }
         return;
       }
       if (buf === "g") {

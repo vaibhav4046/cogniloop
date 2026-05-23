@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 keyboard shortcut: press G then G to navigate home from any page — the double-G chord completes the nav set (G+T templates, G+H history, G+W why, G+S settings) and is listed in the ShortcutsModal; handler restructures the NavBar key listener to intercept the second G press before it resets the buffer
+
 - 2026-05-23 refactor: extract shared PhaseLoader component in Session.tsx — the identical dot-pulse + hint-rotate JSX used by the booting/starting and ending phases is now a single named component, removing ~17 lines of duplicated markup
 
 - 2026-05-23 micro-animation: StatsPanel stat cards cascade in with staggered fade-up (55ms per-card delay) after the skeleton resolves, so the five stats appear progressively instead of flashing in all at once
