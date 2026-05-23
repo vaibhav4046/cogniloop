@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (35+ shipped features)
+## What it does (45+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -41,12 +41,12 @@ Loop until mastered.
 **8 curriculum templates** — pre-loaded concept maps, click-to-start
 - JEE Main (Physics, Chemistry, Math — NCERT)
 - NEET UG (Bio, Physics, Chemistry)
-- GATE CSE (algorithms, OS, networks, ToC, compilers, computer org)
-- MCAT (Bio/Biochem, Chem/Phys, Psych/Soc)
+- GATE CSE (data structures, algorithms, OS, DBMS, computer networks, compiler theory, engineering math — 7 standalone subjects)
+- MCAT (Bio/Biochem, Chem/Phys, Psych/Soc, CARS — all 4 sections)
 - AP Computer Science (CSA + CSP)
-- ML Fundamentals (linear algebra, probability, neural nets, transformers, RL)
+- ML Fundamentals (linear algebra, probability, neural nets, transformers, RL, generative AI/LLMs)
 - System Design (distributed systems, databases, APIs, scaling — interview-ready)
-- Economics (micro, macro, behavioral, international — AP, college, CFA Level 1)
+- Economics (micro, macro, behavioral, international, financial markets — AP, college, CFA Level 1)
 
 **Input / output**
 - Voice input via Web Speech API (Chrome/Edge)
@@ -76,7 +76,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session
 - Per-round difficulty dots, mode badges, question-type tags
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 README/docs update: sync README with current state — bump "35+ shipped features" to "45+"; update GATE CSE description to list 7 standalone subjects; add CARS to MCAT (all 4 sections); add generative AI/LLMs to ML Fundamentals; add financial markets to Economics; add g+g home shortcut to keyboard-first blurb
+
 - 2026-05-23 curriculum: add "Computer Networks" as a standalone subject to GATE CSE (data link layer, network layer, transport layer, application layer, and network security — 5 topics covering the ~11% GATE weightage previously collapsed into a single Core CS line); remove redundant "Computer networks" entry from Core CS
 
 - 2026-05-23 friendlier error message: humanizeError in Session now maps 502/bad-gateway, "malformed model output", and HTTP 500 to plain-English coaching copy instead of leaking raw error strings; generic catch-all for long or "HTTP …"-prefixed messages replaces the previous bare `return raw` fallback
