@@ -62,6 +62,13 @@ const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   mastered: "var(--accent)",
 };
 
+const STRENGTH_DESC: Record<ConceptStrength, string> = {
+  weak: "Not yet understood — needs drilling from scratch",
+  shaky: "Partial recall — gaps remain, but the seed is there",
+  solid: "Well understood — minor edge cases still possible",
+  mastered: "Fully mastered — held under every question type",
+};
+
 const STRENGTH_PCT: Record<ConceptStrength, number> = {
   weak: 18,
   shaky: 45,
@@ -680,14 +687,21 @@ function SessionShell({
 }
 
 const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concept[] }) {
+  const masteredCount = concepts.filter((c) => c.strength === "mastered").length;
+  const allMastered = concepts.length > 0 && masteredCount === concepts.length;
   return (
     <div className="card p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-[12px] font-medium tracking-tight text-[var(--fg)]">
           Concept tracker
         </div>
-        <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider">
-          {concepts.length} concepts
+        <div
+          className="text-[10px] uppercase tracking-wider"
+          style={{ color: allMastered ? "var(--accent)" : "var(--fg-dim)" }}
+        >
+          {masteredCount > 0
+            ? `${masteredCount} / ${concepts.length} mastered`
+            : `${concepts.length} concepts`}
         </div>
       </div>
       <ul className="flex flex-col gap-3">
@@ -698,6 +712,7 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
               <span
                 className="text-[10px] uppercase tracking-wider font-medium"
                 style={{ color: STRENGTH_COLOR[c.strength] }}
+                title={STRENGTH_DESC[c.strength]}
               >
                 {c.strength}
               </span>

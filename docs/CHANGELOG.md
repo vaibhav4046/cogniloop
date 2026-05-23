@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 brand voice: ConceptPanel strength badges (weak/shaky/solid/mastered) gain coaching-voice title tooltips explaining each level on hover; header now shows "N / M mastered" count (accented when all are mastered) instead of a static concept count
+
 - 2026-05-23 curriculum: add "Operating Systems" as a standalone subject to GATE CSE (process management, CPU scheduling, synchronization & deadlocks, memory management, file systems — 5 topics replacing the single-line OS entry in Core CS and matching the ~10-15% GATE weightage)
 
 - 2026-05-23 tiny feature: "Study again" button on every history session card — one click reloads that topic in the same mode straight into /study, matching the Re-drill pattern already in the coaching report
