@@ -80,12 +80,25 @@ export function ReadAloud({ text, autoPlayKey }: Props) {
     <button
       onClick={toggle}
       title={speaking ? "Stop" : "Read question aloud"}
-      className="btn-ghost text-[10px] px-2 py-1 rounded-md flex items-center gap-1"
+      aria-label={speaking ? "Stop reading aloud" : "Read question aloud"}
+      aria-pressed={speaking}
+      className={`btn-ghost text-[10px] px-2 py-1 rounded-md flex items-center gap-1 transition-colors ${
+        speaking ? "!border-[var(--accent)] !text-[var(--accent)]" : ""
+      }`}
     >
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg
+        width="11"
+        height="11"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        aria-hidden
+        className={speaking ? "speak-pulse" : ""}
+      >
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-        {!speaking && <path d="M15 9 a4 4 0 0 1 0 6" />}
-        {!speaking && <path d="M18 6 a8 8 0 0 1 0 12" />}
+        {speaking && <path d="M15 9 a4 4 0 0 1 0 6" />}
+        {speaking && <path d="M18 6 a8 8 0 0 1 0 12" />}
       </svg>
       {speaking ? "Stop" : "Listen"}
     </button>

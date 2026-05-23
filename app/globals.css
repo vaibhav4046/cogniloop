@@ -192,6 +192,14 @@ select:focus-visible {
   animation: mic-pulse-anim 1.4s ease-in-out infinite;
 }
 
+@keyframes speak-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.speak-pulse {
+  animation: speak-pulse 1.1s ease-in-out infinite;
+}
+
 @keyframes timer-urgent {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.55; transform: scale(1.08); }
