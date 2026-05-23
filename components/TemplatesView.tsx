@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { CURRICULA } from "@/lib/curricula";
 import { NavBar } from "./NavBar";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { isInTextField } from "@/lib/kbd";
 
 export function TemplatesView() {
@@ -22,18 +22,17 @@ export function TemplatesView() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const filtered = CURRICULA.filter((c) => {
+  const filtered = useMemo(() => {
     const q = filter.trim().toLowerCase();
-    if (!q) return true;
-    return (
-      c.name.toLowerCase().includes(q) ||
-      c.region.toLowerCase().includes(q) ||
-      c.blurb.toLowerCase().includes(q) ||
-      c.subjects.some((s) =>
-        s.topics.some((t) => t.toLowerCase().includes(q))
-      )
+    if (!q) return CURRICULA;
+    return CURRICULA.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.region.toLowerCase().includes(q) ||
+        c.blurb.toLowerCase().includes(q) ||
+        c.subjects.some((s) => s.topics.some((t) => t.toLowerCase().includes(q)))
     );
-  });
+  }, [filter]);
 
   function startWith(topic: string, modeId: string = "exam") {
     sessionStorage.setItem(

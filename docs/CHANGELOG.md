@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 perf: wrap TemplatesView `filtered` in `useMemo` — hoists `filter.trim().toLowerCase()` outside the per-item callback and short-circuits to the full CURRICULA array when the filter is empty, avoiding redundant work on every unfiltered render
+
 - 2026-05-23 UI copy polish: landing page curriculum cards now show a topic count ("22 topics") below the region label, giving users an at-a-glance sense of each pack's depth before clicking through to /templates
 
 - 2026-05-23 a11y: ReadAloud button gains aria-label ("Read question aloud" / "Stop reading aloud"), aria-pressed state, accent highlight while speaking (matching VoiceInput's active style), pulsing icon animation, and aria-hidden on the SVG; waves now render while audio plays rather than while idle
