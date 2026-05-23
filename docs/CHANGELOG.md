@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-23 UI copy polish: landing page curriculum cards now show a topic count ("22 topics") below the region label, giving users an at-a-glance sense of each pack's depth before clicking through to /templates
+
 - 2026-05-23 a11y: ReadAloud button gains aria-label ("Read question aloud" / "Stop reading aloud"), aria-pressed state, accent highlight while speaking (matching VoiceInput's active style), pulsing icon animation, and aria-hidden on the SVG; waves now render while audio plays rather than while idle
 
 - 2026-05-23 curriculum: add "Financial Markets & Instruments" as a 4th subject to the Economics pack (bond pricing & duration, equity valuation, portfolio theory/CAPM, derivatives/options, market efficiency — 5 topics covering the financial markets section of CFA Level 1 that the pack blurb promised but previously lacked); update pack blurb to mention financial markets

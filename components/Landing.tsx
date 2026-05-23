@@ -225,6 +225,9 @@ export function Landing() {
                   <div className="text-[11px] text-[var(--fg-muted)] mt-0.5">
                     {c.region}
                   </div>
+                  <div className="text-[11px] text-[var(--fg-dim)] mt-1">
+                    {c.subjects.reduce((n, s) => n + s.topics.length, 0)} topics
+                  </div>
                 </Link>
               ))}
             </div>
