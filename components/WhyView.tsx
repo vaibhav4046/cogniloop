@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NavBar } from "./NavBar";
+import { ScrollProgress } from "./ScrollProgress";
 
 const COMPARE = [
   { row: "Default behavior", cogniloop: "Asks you to explain. Refuses to answer.", chatgpt: "Answers and summarizes by default.", claude: "Answers and summarizes by default." },
@@ -83,6 +84,7 @@ const USE_CASES = [
 export function WhyView() {
   return (
     <main id="main" className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <NavBar />
       <section className="flex-1 max-w-[920px] w-full mx-auto px-6 py-8 fade-up">
         <span className="tag mb-4">Why Cogniloop</span>
