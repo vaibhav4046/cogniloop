@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 micro-animation: history session list cards cascade in with staggered fade-up entrance (35ms per-card delay, capped at card 12), matching the StatsPanel and concept tracker patterns — list feels progressive on load and updates gracefully when search filters change
+
 - 2026-05-24 UI copy polish: ShortcutsModal flat shortcut list reorganised into four labelled sections (Global, Navigate, Session, Report) — same 14 shortcuts, scannable at a glance without the "(in session)" / "(from report)" inline annotations
 
 - 2026-05-24 tiny feature: browser tab title updates to the session topic (e.g. "Backpropagation · Cogniloop") once the session loads, making multi-tab study instantly identifiable; resets to "Study · Cogniloop" on unmount

@@ -277,10 +277,10 @@ export function HistoryView() {
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              {filtered.map((r) => {
+              {filtered.map((r, i) => {
                 const dur = r.endedAt ? fmtDuration(r.createdAt, r.endedAt) : null;
                 return (
-                  <article key={r.id} className="card p-4">
+                  <article key={r.id} className="card p-4 fade-up" style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}>
                     <div className="flex items-center justify-between gap-3 flex-wrap">
                       <div className="min-w-0">
                         <div className="text-[14px] font-medium tracking-tight truncate">
