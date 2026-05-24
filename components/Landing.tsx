@@ -9,6 +9,7 @@ import { StatsPanel } from "./StatsPanel";
 import { CURRICULA } from "@/lib/curricula";
 import type { ModeId } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
+import { useAutoExpand } from "@/lib/useAutoExpand";
 
 const EXAMPLES = [
   "Backpropagation in neural networks",
@@ -43,12 +44,7 @@ export function Landing() {
   const taRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (taRef.current) {
-      taRef.current.style.height = "auto";
-      taRef.current.style.height = Math.min(taRef.current.scrollHeight, 240) + "px";
-    }
-  }, [notes]);
+  useAutoExpand(taRef, notes, 240);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

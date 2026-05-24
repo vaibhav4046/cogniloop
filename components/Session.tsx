@@ -17,6 +17,7 @@ import { fetchJson } from "@/lib/fetchRetry";
 import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hints";
 import { isInTextField } from "@/lib/kbd";
 import { getMode, type ModeId } from "@/lib/modes";
+import { useAutoExpand } from "@/lib/useAutoExpand";
 import type {
   Concept,
   Round,
@@ -188,12 +189,7 @@ export function Session() {
     }
   }, [phase, rounds.length]);
 
-  useEffect(() => {
-    const ta = taRef.current;
-    if (!ta) return;
-    ta.style.height = "auto";
-    ta.style.height = Math.min(ta.scrollHeight, 400) + "px";
-  }, [answer]);
+  useAutoExpand(taRef, answer, 400);
 
   useEffect(() => {
     if (phase !== "starting" && phase !== "evaluating" && phase !== "ending") {
