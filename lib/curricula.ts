@@ -101,7 +101,7 @@ export const CURRICULA: Curriculum[] = [
     id: "gate-cs",
     name: "GATE CSE",
     region: "India · CS Postgrad",
-    blurb: "Computer Science core — data structures, algorithms, OS, networks, DBMS, discrete math.",
+    blurb: "Data structures, algorithms, OS, DBMS, computer networks, compiler theory, and engineering math — 7 standalone subjects for GATE prep.",
     subjects: [
       {
         name: "Data Structures",
@@ -156,14 +156,21 @@ export const CURRICULA: Curriculum[] = [
         ],
       },
       {
-        name: "Core CS",
+        name: "Algorithms",
         topics: [
-          "Algorithm analysis — asymptotic notation, recurrences",
-          "Greedy, divide-and-conquer, dynamic programming",
-          "Graph algorithms — BFS, DFS, shortest paths, MST",
-          "Theory of computation — automata, regular and context-free languages",
-          "Compiler design — lexical, parsing, code generation",
-          "Computer organization — pipelining, caching, ISA",
+          "Algorithm analysis — Big-O, Omega, Theta, Master theorem, recurrences",
+          "Greedy algorithms — activity selection, Huffman coding, Kruskal's and Prim's MST",
+          "Divide and conquer — merge sort, quick sort, binary search, Strassen matrix multiplication",
+          "Dynamic programming — memoization vs tabulation, LCS, LIS, 0/1 knapsack, matrix chain",
+          "Graph algorithms — BFS, DFS, Dijkstra, Bellman-Ford, Floyd-Warshall, topological sort",
+        ],
+      },
+      {
+        name: "Theory & Compilers",
+        topics: [
+          "Theory of computation — DFA, NFA, PDA, Turing machines, pumping lemma, decidability, complexity classes",
+          "Compiler design — lexical analysis, LL(1) and LR parsing, syntax-directed translation, intermediate code, optimization",
+          "Computer organization — pipelining, data/control hazards, cache hierarchy, memory mapping, RISC vs CISC ISA",
         ],
       },
     ],
