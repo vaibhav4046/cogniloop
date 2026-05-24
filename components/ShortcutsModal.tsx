@@ -3,21 +3,41 @@
 import { useEffect, useRef, useState } from "react";
 import { isInTextField } from "@/lib/kbd";
 
-const SHORTCUTS: { keys: string; label: string }[] = [
-  { keys: "?", label: "Open this panel" },
-  { keys: "⌘/Ctrl + Enter", label: "Submit answer · Begin loop" },
-  { keys: "Esc", label: "Close panel · Cancel voice" },
-  { keys: "/", label: "Focus topic / filter / search input" },
-  { keys: "G then G", label: "Go to Home" },
-  { keys: "G then H", label: "Go to History" },
-  { keys: "G then T", label: "Go to Templates" },
-  { keys: "G then W", label: "Go to Why" },
-  { keys: "G then S", label: "Go to Settings" },
-  { keys: "M", label: "Toggle voice input (in session)" },
-  { keys: "L", label: "Toggle read-aloud (in session)" },
-  { keys: "E", label: "End session & generate report" },
-  { keys: "N", label: "New session (from report)" },
-  { keys: "D", label: "Export markdown (from report)" },
+const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string }[] }[] = [
+  {
+    section: "Global",
+    items: [
+      { keys: "?", label: "Open this panel" },
+      { keys: "⌘/Ctrl + Enter", label: "Submit answer · Begin loop" },
+      { keys: "Esc", label: "Close panel · Cancel voice" },
+      { keys: "/", label: "Focus topic / filter / search" },
+    ],
+  },
+  {
+    section: "Navigate",
+    items: [
+      { keys: "G then G", label: "Home" },
+      { keys: "G then H", label: "History" },
+      { keys: "G then T", label: "Templates" },
+      { keys: "G then W", label: "Why" },
+      { keys: "G then S", label: "Settings" },
+    ],
+  },
+  {
+    section: "Session",
+    items: [
+      { keys: "M", label: "Toggle voice input" },
+      { keys: "L", label: "Toggle read-aloud" },
+      { keys: "E", label: "End session & generate report" },
+    ],
+  },
+  {
+    section: "Report",
+    items: [
+      { keys: "N", label: "New session" },
+      { keys: "D", label: "Export markdown" },
+    ],
+  },
 ];
 
 const FOCUSABLE =
@@ -103,16 +123,25 @@ export function ShortcutsModal() {
             ✕
           </button>
         </div>
-        <ul className="flex flex-col gap-2.5">
-          {SHORTCUTS.map((s) => (
-            <li key={s.keys} className="flex items-center justify-between gap-4">
-              <span className="text-[13px] text-[var(--fg-muted)]">{s.label}</span>
-              <kbd className="text-[11px] font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">
-                {s.keys}
-              </kbd>
-            </li>
+        <div className="flex flex-col gap-4">
+          {SHORTCUT_SECTIONS.map((sec) => (
+            <div key={sec.section}>
+              <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+                {sec.section}
+              </div>
+              <ul className="flex flex-col gap-2">
+                {sec.items.map((s) => (
+                  <li key={s.keys} className="flex items-center justify-between gap-4">
+                    <span className="text-[13px] text-[var(--fg-muted)]">{s.label}</span>
+                    <kbd className="text-[11px] font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded shrink-0">
+                      {s.keys}
+                    </kbd>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );

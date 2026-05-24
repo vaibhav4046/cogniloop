@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 UI copy polish: ShortcutsModal flat shortcut list reorganised into four labelled sections (Global, Navigate, Session, Report) — same 14 shortcuts, scannable at a glance without the "(in session)" / "(from report)" inline annotations
+
 - 2026-05-24 tiny feature: browser tab title updates to the session topic (e.g. "Backpropagation · Cogniloop") once the session loads, making multi-tab study instantly identifiable; resets to "Study · Cogniloop" on unmount
 
 - 2026-05-24 keyboard shortcut: press D from the coaching report to instantly download the markdown export — complements the existing N (new session) shortcut and is listed in the ShortcutsModal; implemented with a stable-ref useEffect inside ReportView so the listener never re-registers during the static report phase
