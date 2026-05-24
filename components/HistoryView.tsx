@@ -162,10 +162,15 @@ export function HistoryView() {
               </div>
             )}
           </div>
-          <div className="grid grid-cols-[repeat(15,1fr)] gap-1">
+          <div
+            className="grid grid-cols-[repeat(15,1fr)] gap-1"
+            role="img"
+            aria-label={`Activity heatmap: ${streak?.daysActive?.length ?? 0} active days in the last 90 days, ${streak?.current ?? 0}-day current streak`}
+          >
             {days.map((d, i) => (
               <div
                 key={i}
+                aria-hidden="true"
                 className="aspect-square rounded-[3px]"
                 title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
                 style={{
@@ -324,6 +329,7 @@ function ScoreBadge({ score }: { score: number }) {
     score >= 2.5 ? "var(--good)" : score >= 1.5 ? "var(--warn)" : "var(--bad)";
   return (
     <span
+      aria-hidden="true"
       className="text-[11px] uppercase tracking-wider font-semibold px-2 py-1 rounded-md"
       style={{ color, border: `1px solid ${color}` }}
     >
