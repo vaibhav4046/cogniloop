@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 tiny feature: answer textarea in session auto-expands as the user types (up to 400px) — consistent with the notes field on the landing page; longer answers no longer require internal scrolling
+
 - 2026-05-23 micro-animation: /why page gains a 2px accent reading-progress bar fixed at the viewport top that fills as the user scrolls through the comparison table and FAQ; extracted as a reusable ScrollProgress client component with role="progressbar" aria attributes
 
 - 2026-05-23 README/docs update: sync README with current state — bump "35+ shipped features" to "45+"; update GATE CSE description to list 7 standalone subjects; add CARS to MCAT (all 4 sections); add generative AI/LLMs to ML Fundamentals; add financial markets to Economics; add g+g home shortcut to keyboard-first blurb

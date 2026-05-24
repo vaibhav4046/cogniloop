@@ -189,6 +189,13 @@ export function Session() {
   }, [phase, rounds.length]);
 
   useEffect(() => {
+    const ta = taRef.current;
+    if (!ta) return;
+    ta.style.height = "auto";
+    ta.style.height = Math.min(ta.scrollHeight, 400) + "px";
+  }, [answer]);
+
+  useEffect(() => {
     if (phase !== "starting" && phase !== "evaluating" && phase !== "ending") {
       setHintIndex(0);
       return;
