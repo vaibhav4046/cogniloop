@@ -17,6 +17,7 @@ const SHORTCUTS: { keys: string; label: string }[] = [
   { keys: "L", label: "Toggle read-aloud (in session)" },
   { keys: "E", label: "End session & generate report" },
   { keys: "N", label: "New session (from report)" },
+  { keys: "D", label: "Export markdown (from report)" },
 ];
 
 const FOCUSABLE =

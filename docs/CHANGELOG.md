@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 keyboard shortcut: press D from the coaching report to instantly download the markdown export — complements the existing N (new session) shortcut and is listed in the ShortcutsModal; implemented with a stable-ref useEffect inside ReportView so the listener never re-registers during the static report phase
+
 - 2026-05-24 brand voice: expand loading hint pools — STARTING_HINTS 5→8, GRADING_HINTS 5→8, ENDING_HINTS 4→6 — giving repeat users more variety during session start, grading, and report generation phases
 
 - 2026-05-24 refactor: extract repeated auto-expand textarea logic from Landing.tsx and Session.tsx into a shared useAutoExpand hook in lib/useAutoExpand.ts — removes ~10 lines of duplicated boilerplate, identical behavior preserved

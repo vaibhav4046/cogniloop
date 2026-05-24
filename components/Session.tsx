@@ -932,6 +932,17 @@ function ReportView({
     URL.revokeObjectURL(url);
   }
 
+  const downloadRef = useRef(downloadMd);
+  downloadRef.current = downloadMd;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!isInTextField(e.target) && (e.key === "d" || e.key === "D")) downloadRef.current();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   function copyJournal() {
     navigator.clipboard.writeText(report.feynmanPrompt).catch(() => {});
     setCopiedJournal(true);
