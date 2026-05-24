@@ -62,7 +62,7 @@ export const CURRICULA: Curriculum[] = [
     id: "neet",
     name: "NEET UG",
     region: "India · Medical",
-    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT.",
+    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, and electrochemistry added for complete NEET coverage.",
     subjects: [
       {
         name: "Biology",
@@ -82,6 +82,8 @@ export const CURRICULA: Curriculum[] = [
           "Mechanics and rotational dynamics",
           "Thermodynamics",
           "Electrostatics and current electricity",
+          "Magnetic effects of current and magnetism — Biot-Savart law, Ampere's law, solenoid, cyclotron, magnetic materials, Earth's magnetic field",
+          "Semiconductor electronics and communication systems — energy bands, p-n junction, rectifiers, transistors, logic gates, modulation",
           "Optics",
           "Modern physics",
         ],
@@ -90,6 +92,7 @@ export const CURRICULA: Curriculum[] = [
         name: "Chemistry",
         topics: [
           "Physical chemistry — thermodynamics, kinetics, equilibrium",
+          "Electrochemistry — electrode potentials, Nernst equation, Faraday's laws, galvanic cells, corrosion",
           "Organic chemistry — reaction mechanisms",
           "Inorganic chemistry — coordination, p-block, d-block",
           "Biomolecules",
