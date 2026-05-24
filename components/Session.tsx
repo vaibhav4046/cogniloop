@@ -227,6 +227,12 @@ export function Session() {
   const mode = getMode(modeId);
 
   useEffect(() => {
+    if (!topic) return;
+    document.title = `${topic} · Cogniloop`;
+    return () => { document.title = "Study · Cogniloop"; };
+  }, [topic]);
+
+  useEffect(() => {
     if (phase !== "answering" || !mode.timerSec) {
       setTimer(null);
       return;
