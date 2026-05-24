@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 keyboard shortcut: press R from the coaching report to immediately re-drill the first weak/shaky concept — complements N (new session) and D (export markdown); listed in ShortcutsModal Report section; Re-drill button title hints at the shortcut
+
 - 2026-05-24 micro-animation: history session list cards cascade in with staggered fade-up entrance (35ms per-card delay, capped at card 12), matching the StatsPanel and concept tracker patterns — list feels progressive on load and updates gracefully when search filters change
 
 - 2026-05-24 UI copy polish: ShortcutsModal flat shortcut list reorganised into four labelled sections (Global, Navigate, Session, Report) — same 14 shortcuts, scannable at a glance without the "(in session)" / "(from report)" inline annotations

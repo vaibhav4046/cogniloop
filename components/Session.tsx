@@ -949,6 +949,19 @@ function ReportView({
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const reDrillRef = useRef({ target: reDrillTarget, fn: onReDrill });
+  reDrillRef.current = { target: reDrillTarget, fn: onReDrill };
+
+  useEffect(() => {
+    if (!reDrillTarget) return;
+    const onKey = (e: KeyboardEvent) => {
+      const { target, fn } = reDrillRef.current;
+      if (!isInTextField(e.target) && (e.key === "r" || e.key === "R") && target) fn(target);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [reDrillTarget]);
+
   function copyJournal() {
     navigator.clipboard.writeText(report.feynmanPrompt).catch(() => {});
     setCopiedJournal(true);
@@ -1076,7 +1089,7 @@ function ReportView({
             <button
               onClick={() => onReDrill(reDrillTarget)}
               className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
-              title={`Start a focused session on "${reDrillTarget}"`}
+              title={`Re-drill "${reDrillTarget}" in a focused session (press R)`}
             >
               Re-drill &ldquo;{reDrillDisplay}&rdquo;
             </button>
