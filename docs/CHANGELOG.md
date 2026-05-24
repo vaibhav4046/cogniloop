@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 perf: ScrollProgress replaces useState with a DOM ref — scroll handler writes width and aria-valuenow directly to the element, eliminating per-scroll-event React re-renders on /why
+
 - 2026-05-24 a11y: heatmap grid gains role="img" + aria-label summarising active-day count and streak so screen readers get a meaningful description instead of 90 silent coloured cells; each cell gets aria-hidden="true"; ScoreBadge gets aria-hidden="true" since avg score is already spoken in the session meta text
 
 - 2026-05-24 micro-animation: landing page curriculum pack cards now cascade in with staggered item-in animation (60ms per-card delay), matching the entrance style used by concept tracker items, EvalCard bullets, and study plan entries

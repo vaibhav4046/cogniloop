@@ -1,15 +1,18 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function ScrollProgress() {
-  const [pct, setPct] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function update() {
+      const bar = barRef.current;
+      if (!bar) return;
       const el = document.documentElement;
       const scrollable = el.scrollHeight - el.clientHeight;
-      if (scrollable <= 0) return;
-      setPct((el.scrollTop / scrollable) * 100);
+      const pct = scrollable > 0 ? Math.round((el.scrollTop / scrollable) * 100) : 0;
+      bar.style.width = `${pct}%`;
+      bar.setAttribute("aria-valuenow", String(pct));
     }
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
@@ -17,11 +20,12 @@ export function ScrollProgress() {
 
   return (
     <div
+      ref={barRef}
       className="fixed top-0 left-0 h-[2px] bg-[var(--accent)] z-30 pointer-events-none"
-      style={{ width: `${pct}%` }}
+      style={{ width: "0%" }}
       role="progressbar"
       aria-label="Reading progress"
-      aria-valuenow={Math.round(pct)}
+      aria-valuenow={0}
       aria-valuemin={0}
       aria-valuemax={100}
     />
