@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 UI copy polish: SharedView round cards now capitalize question-type tags (Explain/Apply/Contrast/Predict/Trace), replace raw "diff N" label with filled/hollow dot indicator matching the session view, and concept strength tags gain hover tooltips with coaching-voice descriptions
+
 - 2026-05-24 keyboard shortcut: press R from the coaching report to immediately re-drill the first weak/shaky concept — complements N (new session) and D (export markdown); listed in ShortcutsModal Report section; Re-drill button title hints at the shortcut
 
 - 2026-05-24 micro-animation: history session list cards cascade in with staggered fade-up entrance (35ms per-card delay, capped at card 12), matching the StatsPanel and concept tracker patterns — list feels progressive on load and updates gracefully when search filters change

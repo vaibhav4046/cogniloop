@@ -7,6 +7,21 @@ import { getMode } from "@/lib/modes";
 import { NavBar } from "./NavBar";
 import { Tex } from "./Math";
 
+const QTYPE_DESC: Record<string, string> = {
+  explain: "Explain the concept in your own words",
+  apply: "Apply it to a real or hypothetical example",
+  contrast: "Compare or distinguish two related ideas",
+  predict: "Predict an outcome or behavior from first principles",
+  trace: "Walk through a process or algorithm step by step",
+};
+
+const STRENGTH_DESC: Record<string, string> = {
+  weak: "Not yet understood — needs drilling from scratch",
+  shaky: "Partial recall — gaps remain, but the seed is there",
+  solid: "Well understood — minor edge cases still possible",
+  mastered: "Fully mastered — held under every question type",
+};
+
 interface Props {
   token: string;
 }
@@ -112,6 +127,7 @@ export function SharedView({ token }: Props) {
             <span
               key={c.id}
               className="tag"
+              title={STRENGTH_DESC[c.strength]}
               style={{
                 color:
                   c.strength === "mastered"
@@ -136,8 +152,12 @@ export function SharedView({ token }: Props) {
             <article key={r.id} className="card p-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="tag">Round {r.id}</span>
-                <span className="tag">{r.questionType}</span>
-                <span className="tag">diff {r.difficulty}</span>
+                <span className="tag" title={QTYPE_DESC[r.questionType]}>
+                  {r.questionType.charAt(0).toUpperCase() + r.questionType.slice(1)}
+                </span>
+                <span className="tag" title={`Difficulty ${r.difficulty} / 5`}>
+                  {"●".repeat(r.difficulty)}{"○".repeat(5 - r.difficulty)}
+                </span>
               </div>
               <div className="text-[14.5px] font-medium tracking-tight">
                 <Tex text={r.question} />
