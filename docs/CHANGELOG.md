@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 micro-animation: landing page curriculum pack cards now cascade in with staggered item-in animation (60ms per-card delay), matching the entrance style used by concept tracker items, EvalCard bullets, and study plan entries
+
 - 2026-05-24 curriculum: split GATE CSE "Core CS" into standalone "Algorithms" (5 topics: analysis, greedy, D&C, DP, graph) and "Theory & Compilers" (3 topics: theory of computation, compiler design, computer organization) — brings subject count to 7, matching the README claim; update pack blurb to list all 7 subjects
 
 - 2026-05-24 tiny feature: answer textarea in session auto-expands as the user types (up to 400px) — consistent with the notes field on the landing page; longer answers no longer require internal scrolling

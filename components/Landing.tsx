@@ -213,11 +213,12 @@ export function Landing() {
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {CURRICULA.slice(0, 6).map((c) => (
+              {CURRICULA.slice(0, 6).map((c, i) => (
                 <Link
                   key={c.id}
                   href={`/templates#${c.id}`}
-                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150 block"
+                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150 block item-in"
+                  style={{ animationDelay: `${i * 60}ms` }}
                 >
                   <div className="text-[13px] font-medium tracking-tight">
                     {c.name}
