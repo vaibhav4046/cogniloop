@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 UI copy polish: ShortcutsModal nav-destination labels now capitalize page names (Home/History/Templates/Why/Settings), drop the URL-style "/why" prefix, and the E key label clarifies it generates a report ("End session & generate report" vs "End session early"); / shortcut label trimmed to remove the page-list parenthetical
+
 - 2026-05-24 perf: ScrollProgress replaces useState with a DOM ref — scroll handler writes width and aria-valuenow directly to the element, eliminating per-scroll-event React re-renders on /why
 
 - 2026-05-24 a11y: heatmap grid gains role="img" + aria-label summarising active-day count and streak so screen readers get a meaningful description instead of 90 silent coloured cells; each cell gets aria-hidden="true"; ScoreBadge gets aria-hidden="true" since avg score is already spoken in the session meta text
