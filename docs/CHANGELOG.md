@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-24 brand voice: expand loading hint pools — STARTING_HINTS 5→8, GRADING_HINTS 5→8, ENDING_HINTS 4→6 — giving repeat users more variety during session start, grading, and report generation phases
+
 - 2026-05-24 refactor: extract repeated auto-expand textarea logic from Landing.tsx and Session.tsx into a shared useAutoExpand hook in lib/useAutoExpand.ts — removes ~10 lines of duplicated boilerplate, identical behavior preserved
 
 - 2026-05-24 UI copy polish: ShortcutsModal nav-destination labels now capitalize page names (Home/History/Templates/Why/Settings), drop the URL-style "/why" prefix, and the E key label clarifies it generates a report ("End session & generate report" vs "End session early"); / shortcut label trimmed to remove the page-list parenthetical

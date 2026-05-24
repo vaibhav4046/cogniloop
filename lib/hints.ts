@@ -4,6 +4,9 @@ export const STARTING_HINTS = [
   "Picking the foundational weak spot to drill first…",
   "No shortcuts — building your first question…",
   "Calibrating starting difficulty…",
+  "Identifying the concept that holds everything else together…",
+  "Looking for the place where your explanation will break down…",
+  "Zeroing in on your first question…",
 ];
 
 export const GRADING_HINTS = [
@@ -12,6 +15,9 @@ export const GRADING_HINTS = [
   "Surfacing strengths and blind spots…",
   "Updating your concept map…",
   "Choosing the next concept you need to face…",
+  "Tracing exactly where your explanation starts to drift…",
+  "Checking what you said against what's actually true…",
+  "Pinpointing the concept that needs one more pass…",
 ];
 
 export const ENDING_HINTS = [
@@ -19,6 +25,8 @@ export const ENDING_HINTS = [
   "Sorting: mastered, shaky, still hiding…",
   "Building a targeted study plan…",
   "Writing tonight's Feynman journal prompt…",
+  "Separating what you understand from what you only recognise…",
+  "Assembling your personalized study plan…",
 ];
 
 export function pickHint(list: string[], index: number): string {
