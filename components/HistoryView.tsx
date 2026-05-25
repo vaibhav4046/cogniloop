@@ -186,7 +186,7 @@ export function HistoryView() {
                   <div
                     key={i}
                     aria-hidden="true"
-                    className="aspect-square rounded-[3px]"
+                    className={`aspect-square rounded-[3px]${d.isToday ? " glow" : ""}`}
                     title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
                     style={{
                       background: d.active
@@ -195,7 +195,6 @@ export function HistoryView() {
                         ? "var(--accent-soft)"
                         : "var(--bg-elev)",
                       opacity: d.active ? 0.85 : 1,
-                      boxShadow: d.isToday ? "0 0 0 1px var(--accent)" : undefined,
                     }}
                   />
                 ))}

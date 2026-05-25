@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 micro-animation: heatmap today's cell now pulses with the accent glow animation instead of a static border ring — the empty-state copy already called it "glowing", now it actually is
+
 - 2026-05-25 friendlier error message: HistoryView import backup now shows coaching-voice error messages — wrong-version and missing-history throws use plain English; JSON/parse errors are caught and humanized; error display gains a Dismiss button
 
 - 2026-05-25 README/docs update: bump "45+ shipped features" to "55+"; add collapsible round-review and browser-tab-title features to Input/output; add Study-again one-click to Persistence; add `d` download-report and `r` re-drill to keyboard-first shortcut blurb

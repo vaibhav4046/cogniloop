@@ -101,7 +101,10 @@ input::placeholder {
 
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
-  50% { box-shadow: 0 0 22px 2px var(--accent-glow); }
+  50% { box-shadow: 0 0 12px 3px var(--accent-glow); }
+}
+.glow {
+  animation: glow 2s ease-in-out infinite;
 }
 
 @keyframes toast-pop {
