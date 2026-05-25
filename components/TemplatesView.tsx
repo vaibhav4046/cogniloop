@@ -83,8 +83,8 @@ export function TemplatesView() {
                 </button>
               </div>
             )}
-            {filtered.map((c) => (
-              <section key={c.id} id={c.id} className="card p-5">
+            {filtered.map((c, idx) => (
+              <section key={c.id} id={c.id} className="card p-5 item-in" style={{ animationDelay: `${idx * 60}ms` }}>
                 <header className="flex items-baseline justify-between flex-wrap gap-2 mb-1">
                   <h2 className="text-[17px] font-semibold tracking-tight">
                     {c.name}
