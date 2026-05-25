@@ -535,7 +535,8 @@ export function Session() {
                   onClick={() => setAnswer("I'm not sure — but I'd guess…")}
                   disabled={phase !== "answering"}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
-                  aria-label="Insert stuck-prompt template"
+                  aria-label="Fill in a starting phrase to get unstuck"
+                  title="Click when stuck — fills in a starting phrase so you can begin thinking out loud"
                 >
                   Stuck?
                 </button>

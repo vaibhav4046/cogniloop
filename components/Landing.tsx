@@ -143,14 +143,14 @@ export function Landing() {
             <details className="mt-4 group">
               <summary className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] cursor-pointer select-none list-none flex items-center gap-2">
                 <span className="inline-block transition-transform group-open:rotate-90">›</span>
-                Optional: paste your notes / lecture / textbook excerpt
+                Studying from a textbook or lecture? Drop your notes here
               </summary>
               <textarea
                 ref={taRef}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Paste here. The AI uses this as the source of truth instead of guessing."
-                aria-label="Optional notes or source material"
+                placeholder="Paste your textbook excerpt, class notes, or reading — the AI drills you on your material, not generic answers."
+                aria-label="Study notes or source material"
                 className="w-full bg-transparent outline-none text-[14px] min-h-[100px] mt-3"
                 maxLength={12000}
               />

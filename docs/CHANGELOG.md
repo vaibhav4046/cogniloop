@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 brand voice: Landing.tsx notes section summary and placeholder rewritten to coaching voice — "Studying from a textbook or lecture? Drop your notes here" replaces the administrative "Optional: paste your notes…"; Stuck? button gains a title tooltip explaining its purpose instead of the mechanical aria-label
+
 - 2026-05-25 a11y: add aria-keyshortcuts to all shortcut-bearing buttons (?, m, l, e, n, d, r) so assistive technologies surface keyboard shortcuts for the shortcuts panel trigger, voice input, read-aloud, end-session, and the three coaching-report actions
 
 - 2026-05-25 skeleton loader: heatmap card on /history now shows 90 shimmer cells matching the real grid layout while localStorage loads, replacing the brief flash of an empty inactive grid
