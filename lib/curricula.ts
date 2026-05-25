@@ -260,7 +260,7 @@ export const CURRICULA: Curriculum[] = [
     id: "ml-fundamentals",
     name: "ML Fundamentals",
     region: "Self-study · CS",
-    blurb: "Linear algebra, probability, neural nets, transformers, generative AI, and reinforcement learning.",
+    blurb: "Linear algebra, probability, optimization, neural nets, unsupervised learning, transformers, generative AI, and reinforcement learning.",
     subjects: [
       {
         name: "Math & Stats",
@@ -269,6 +269,7 @@ export const CURRICULA: Curriculum[] = [
           "Probability — Bayes, distributions, MLE vs MAP",
           "Calculus — gradients, chain rule",
           "Information theory — entropy, KL divergence",
+          "Optimization algorithms — SGD, momentum, RMSprop, Adam, AdaGrad, warm-up and cosine decay schedules, learning rate finders",
         ],
       },
       {
@@ -292,6 +293,14 @@ export const CURRICULA: Curriculum[] = [
           "Prompt engineering — zero-shot, few-shot, chain-of-thought, RAG",
           "Diffusion models — DDPM, score matching, DALL-E, Stable Diffusion",
           "LLM evaluation — perplexity, BLEU, ROUGE, MMLU, human evaluation",
+        ],
+      },
+      {
+        name: "Unsupervised Learning",
+        topics: [
+          "Clustering — k-means, k-means++, hierarchical clustering, DBSCAN, silhouette score, elbow method",
+          "Dimensionality reduction — PCA via SVD, kernel PCA, t-SNE, UMAP; autoencoder as encoder-decoder compressor",
+          "Self-supervised and contrastive learning — masked autoencoders, SimCLR, BYOL, momentum encoder, contrastive loss",
         ],
       },
       {

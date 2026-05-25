@@ -44,7 +44,7 @@ Loop until mastered.
 - GATE CSE (data structures, algorithms, OS, DBMS, computer networks, compiler theory, engineering math — 7 standalone subjects)
 - MCAT (Bio/Biochem, Chem/Phys, Psych/Soc, CARS — all 4 sections)
 - AP Computer Science (CSA + CSP)
-- ML Fundamentals (linear algebra, probability, neural nets, transformers, RL, generative AI/LLMs)
+- ML Fundamentals (linear algebra, probability, optimization, neural nets, unsupervised learning, transformers, generative AI/LLMs, RL)
 - System Design (distributed systems, databases, APIs, scaling — interview-ready)
 - Economics (micro, macro, behavioral, international, financial markets — AP, college, CFA Level 1)
 
