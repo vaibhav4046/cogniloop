@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 skeleton loader: heatmap card on /history now shows 90 shimmer cells matching the real grid layout while localStorage loads, replacing the brief flash of an empty inactive grid
+
 - 2026-05-25 refactor: export dayKey from lib/storage.ts and remove the identical duplicate in HistoryView.tsx — single source of truth for the YYYY-MM-DD timestamp formatter used by streak tracking and the 90-day heatmap
 
 - 2026-05-24 curriculum: add "Magnetic effects of current and magnetism" and "Semiconductor electronics and communication systems" to NEET Physics (5→7 topics), and "Electrochemistry" to NEET Chemistry (4→5 topics) — three major NEET sections previously missing from the pack; update blurb to reflect complete coverage

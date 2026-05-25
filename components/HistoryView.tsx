@@ -147,44 +147,59 @@ export function HistoryView() {
           <StatsPanel />
         </div>
 
-        <div className="card p-5 mt-6">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
-              Activity (last 90 days)
-            </div>
-            {streak && (
-              <div className="text-[11px] text-[var(--fg-muted)]">
-                Streak {streak.current}d · best {streak.longest}d
+        <div className="card p-5 mt-6" aria-busy={!loaded}>
+          {!loaded ? (
+            <>
+              <div className="flex items-center justify-between mb-3">
+                <div className="skeleton h-[10px] w-36" />
               </div>
-            )}
-          </div>
-          <div
-            className="grid grid-cols-[repeat(15,1fr)] gap-1"
-            role="img"
-            aria-label={`Activity heatmap: ${streak?.daysActive?.length ?? 0} active days in the last 90 days, ${streak?.current ?? 0}-day current streak`}
-          >
-            {days.map((d, i) => (
+              <div className="grid grid-cols-[repeat(15,1fr)] gap-1">
+                {Array.from({ length: 90 }, (_, i) => (
+                  <div key={i} className="skeleton aspect-square rounded-[3px]" />
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
+                  Activity (last 90 days)
+                </div>
+                {streak && (
+                  <div className="text-[11px] text-[var(--fg-muted)]">
+                    Streak {streak.current}d · best {streak.longest}d
+                  </div>
+                )}
+              </div>
               <div
-                key={i}
-                aria-hidden="true"
-                className="aspect-square rounded-[3px]"
-                title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
-                style={{
-                  background: d.active
-                    ? "var(--accent)"
-                    : d.isToday
-                    ? "var(--accent-soft)"
-                    : "var(--bg-elev)",
-                  opacity: d.active ? 0.85 : 1,
-                  boxShadow: d.isToday ? "0 0 0 1px var(--accent)" : undefined,
-                }}
-              />
-            ))}
-          </div>
-          {(streak?.daysActive?.length ?? 0) === 0 && (
-            <p className="text-[11px] text-[var(--fg-dim)] text-center mt-3 leading-relaxed">
-              Study daily to build your streak — the glowing cell is today.
-            </p>
+                className="grid grid-cols-[repeat(15,1fr)] gap-1"
+                role="img"
+                aria-label={`Activity heatmap: ${streak?.daysActive?.length ?? 0} active days in the last 90 days, ${streak?.current ?? 0}-day current streak`}
+              >
+                {days.map((d, i) => (
+                  <div
+                    key={i}
+                    aria-hidden="true"
+                    className="aspect-square rounded-[3px]"
+                    title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
+                    style={{
+                      background: d.active
+                        ? "var(--accent)"
+                        : d.isToday
+                        ? "var(--accent-soft)"
+                        : "var(--bg-elev)",
+                      opacity: d.active ? 0.85 : 1,
+                      boxShadow: d.isToday ? "0 0 0 1px var(--accent)" : undefined,
+                    }}
+                  />
+                ))}
+              </div>
+              {(streak?.daysActive?.length ?? 0) === 0 && (
+                <p className="text-[11px] text-[var(--fg-dim)] text-center mt-3 leading-relaxed">
+                  Study daily to build your streak — the glowing cell is today.
+                </p>
+              )}
+            </>
           )}
         </div>
 
