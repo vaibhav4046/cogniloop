@@ -48,6 +48,8 @@ export const CURRICULA: Curriculum[] = [
         name: "Mathematics",
         topics: [
           "Sets, relations, functions",
+          "Complex numbers and quadratic equations — Argand plane, modulus-argument, cube roots of unity, quadratic discriminant",
+          "Matrices and determinants — operations, rank, inverse, Cramer's rule, eigenvalues",
           "Limits, continuity, differentiability",
           "Definite and indefinite integration",
           "Differential equations",
@@ -276,6 +278,7 @@ export const CURRICULA: Curriculum[] = [
           "Decision trees and ensembles",
           "Neural networks — backpropagation",
           "Convolutional networks",
+          "Recurrent networks and sequence models — RNN, vanishing gradients, LSTM gates, GRU, bidirectional RNN, seq2seq encoder-decoder",
           "Attention and transformers",
           "Regularization — L1, L2, dropout",
         ],
