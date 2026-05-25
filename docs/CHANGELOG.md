@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 tiny feature: coaching report now has a collapsible "Review all N rounds" section showing each round's question, answer, score, and verdict — lets users revisit what they said without needing to export markdown or open a share link
+
 - 2026-05-25 perf: useMemo for evald/avg/totalMins in ReportView (avoids recomputation on copied/shareUrl state changes), plus hoist inline score-color bg object to module-level SCORE_BG constant (no per-iteration allocation in the score trend map)
 
 - 2026-05-25 micro-animation: curriculum pack section cards on /templates now cascade in with staggered item-in animation (60ms per-card delay, idx 0–7), matching the landing page curriculum card entrance pattern; newly filtered cards also animate in when the search changes

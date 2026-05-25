@@ -892,6 +892,7 @@ function ReportView({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [copiedJournal, setCopiedJournal] = useState(false);
+  const [showRounds, setShowRounds] = useState(false);
 
   const evald = useMemo(() => rounds.filter((r) => r.evaluation), [rounds]);
   const avg = useMemo(
@@ -1121,6 +1122,58 @@ function ReportView({
             {shareUrl}
           </a>
         )}
+
+        <div className="mt-6 border-t border-[var(--line-soft)] pt-4">
+          <button
+            onClick={() => setShowRounds((v) => !v)}
+            className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors flex items-center gap-1"
+            aria-expanded={showRounds}
+          >
+            <span>{showRounds ? "▲" : "▼"}</span>
+            <span>Review all {rounds.length} round{rounds.length !== 1 ? "s" : ""}</span>
+          </button>
+          {showRounds && (
+            <div className="mt-4 flex flex-col gap-3">
+              {rounds.map((r, i) => {
+                const sc = r.evaluation
+                  ? (Math.max(0, Math.min(3, r.evaluation.score)) as 0 | 1 | 2 | 3)
+                  : null;
+                return (
+                  <div key={r.id} className="card p-4 item-in" style={{ animationDelay: `${i * 40}ms` }}>
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <span className="tag">Round {r.id}</span>
+                      <span className="tag">
+                        {r.questionType.charAt(0).toUpperCase() + r.questionType.slice(1)}
+                      </span>
+                      <span className="tag"><DiffDots level={r.difficulty} /></span>
+                      {sc !== null && (
+                        <span
+                          className="text-[11px] font-semibold ml-auto"
+                          style={{ color: SCORE_BG[sc] }}
+                        >
+                          {sc}/3
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-[13px] leading-relaxed text-[var(--fg)] mb-2">
+                      <Tex text={r.question} />
+                    </div>
+                    {r.answer && (
+                      <div className="text-[12px] text-[var(--fg-muted)] leading-relaxed border-l-2 border-[var(--line)] pl-3 mt-1">
+                        <Tex text={r.answer} />
+                      </div>
+                    )}
+                    {r.evaluation?.verdict && (
+                      <div className="text-[11px] text-[var(--fg-dim)] mt-2 italic">
+                        <Tex text={r.evaluation.verdict} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
