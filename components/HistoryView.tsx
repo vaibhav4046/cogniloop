@@ -9,6 +9,7 @@ import {
   getHistory,
   getStreak,
   clearHistory,
+  dayKey,
   type SessionRecord,
   type StreakData,
 } from "@/lib/storage";
@@ -28,11 +29,6 @@ function fmtDate(ts: number): string {
 function fmtDuration(start: number, end: number): string {
   const mins = Math.round((end - start) / 60000);
   return mins < 1 ? "< 1 min" : `${mins} min`;
-}
-
-function dayKey(ts: number): string {
-  const d = new Date(ts);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 export function HistoryView() {
