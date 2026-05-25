@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 keyboard shortcut: press S from the coaching report to copy the share link — complements N (new session), D (export markdown), and R (re-drill); listed in ShortcutsModal Report section; button gains title tooltip and aria-keyshortcuts="s"
+
 - 2026-05-25 micro-animation: heatmap today's cell now pulses with the accent glow animation instead of a static border ring — the empty-state copy already called it "glowing", now it actually is
 
 - 2026-05-25 friendlier error message: HistoryView import backup now shows coaching-voice error messages — wrong-version and missing-history throws use plain English; JSON/parse errors are caught and humanized; error display gains a Dismiss button

@@ -978,6 +978,17 @@ function ReportView({
     return () => window.removeEventListener("keydown", onKey);
   }, [reDrillTarget]);
 
+  const makeShareRef = useRef(makeShareUrl);
+  makeShareRef.current = makeShareUrl;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!isInTextField(e.target) && (e.key === "s" || e.key === "S")) makeShareRef.current();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   function copyJournal() {
     navigator.clipboard.writeText(report.feynmanPrompt).catch(() => {});
     setCopiedJournal(true);
@@ -1108,8 +1119,13 @@ function ReportView({
           <button onClick={downloadMd} aria-keyshortcuts="d" className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
             Export markdown
           </button>
-          <button onClick={makeShareUrl} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
-            {copied ? "Link copied" : "Copy share link"}
+          <button
+            onClick={makeShareUrl}
+            aria-keyshortcuts="s"
+            title="Copy share link (press S)"
+            className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
+          >
+            {copied ? "Link copied ✓" : "Copy share link"}
           </button>
         </div>
         {shareUrl && (

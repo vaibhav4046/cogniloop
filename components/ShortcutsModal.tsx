@@ -36,6 +36,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
     items: [
       { keys: "N", label: "New session" },
       { keys: "D", label: "Export markdown" },
+      { keys: "S", label: "Copy share link" },
       { keys: "R", label: "Re-drill first weak concept" },
     ],
   },
