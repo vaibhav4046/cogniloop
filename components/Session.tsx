@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback, memo } from "react";
+import { useEffect, useRef, useState, useCallback, memo, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "./Logo";
@@ -762,6 +762,13 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
   );
 });
 
+const SCORE_BG: Record<0 | 1 | 2 | 3, string> = {
+  0: "var(--bad)",
+  1: "var(--warn)",
+  2: "var(--good)",
+  3: "var(--accent)",
+};
+
 const TONE_BY_SCORE: Record<0 | 1 | 2 | 3, { label: string; color: string; encourager: string }> = {
   3: { label: "Nailed it", color: "var(--good)", encourager: "That's mastery. Keep the bar this high." },
   2: { label: "Solid", color: "var(--good)", encourager: "Strong. Tighten the gaps below to push to 3/3." },
@@ -886,12 +893,18 @@ function ReportView({
   const [copied, setCopied] = useState(false);
   const [copiedJournal, setCopiedJournal] = useState(false);
 
-  const evald = rounds.filter((r) => r.evaluation);
-  const avg =
-    evald.length > 0
-      ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
-      : 0;
-  const totalMins = report.studyPlan.reduce((s, p) => s + p.minutes, 0);
+  const evald = useMemo(() => rounds.filter((r) => r.evaluation), [rounds]);
+  const avg = useMemo(
+    () =>
+      evald.length > 0
+        ? evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length
+        : 0,
+    [evald]
+  );
+  const totalMins = useMemo(
+    () => report.studyPlan.reduce((s, p) => s + p.minutes, 0),
+    [report.studyPlan]
+  );
   const reDrillTarget = report.weak[0] ?? report.shaky[0] ?? null;
   const reDrillDisplay = reDrillTarget && reDrillTarget.length > 28
     ? reDrillTarget.slice(0, 28) + "…"
@@ -1004,17 +1017,11 @@ function ReportView({
             </span>
             {evald.map((r, i) => {
               const sc = Math.max(0, Math.min(3, r.evaluation!.score)) as 0 | 1 | 2 | 3;
-              const bg: Record<0 | 1 | 2 | 3, string> = {
-                0: "var(--bad)",
-                1: "var(--warn)",
-                2: "var(--good)",
-                3: "var(--accent)",
-              };
               return (
                 <span
                   key={i}
                   className="w-[22px] h-[22px] rounded flex items-center justify-center text-[10px] font-bold leading-none"
-                  style={{ background: bg[sc], color: "var(--bg)" }}
+                  style={{ background: SCORE_BG[sc], color: "var(--bg)" }}
                   title={`Round ${r.id}: ${sc}/3 — ${r.evaluation!.verdict.slice(0, 80)}`}
                   aria-label={`Round ${r.id} score: ${sc} out of 3`}
                 >
