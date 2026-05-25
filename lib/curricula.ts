@@ -189,18 +189,21 @@ export const CURRICULA: Curriculum[] = [
       {
         name: "Biological & Biochemical Foundations",
         topics: [
-          "Cell biology and metabolism",
-          "Enzyme kinetics — Michaelis-Menten",
-          "Genetics — Mendelian, molecular",
-          "Endocrine and nervous systems",
+          "Cell biology and metabolism — cell organelles, glycolysis, citric acid cycle, oxidative phosphorylation, ATP yield",
+          "Enzyme kinetics — Michaelis-Menten, Km, Vmax, competitive vs non-competitive inhibition, allosteric regulation",
+          "Genetics — Mendelian inheritance, dominance, linkage, molecular genetics (replication, transcription, translation, mutations)",
+          "Amino acids and protein structure — 20 standard amino acids, peptide bonds, primary/secondary/tertiary/quaternary structure, protein folding and denaturation",
+          "Cardiovascular and respiratory physiology — cardiac cycle, Frank-Starling law, blood pressure regulation, gas exchange, O₂-CO₂ transport, ventilation-perfusion",
+          "Endocrine and nervous systems — hormone classes, receptor mechanisms, action potential, synaptic transmission, homeostatic feedback",
         ],
       },
       {
         name: "Chemical & Physical Foundations",
         topics: [
-          "General chemistry — kinetics, thermodynamics, acid-base",
-          "Organic chemistry — functional groups, reaction mechanisms",
-          "Physics — fluids, electricity, optics, thermodynamics",
+          "General chemistry — kinetics, thermodynamics, acid-base equilibria, buffers, solubility",
+          "Organic chemistry — functional groups, nucleophilic substitution, elimination, addition, carbonyl reactions",
+          "Electrochemistry — galvanic vs electrolytic cells, standard reduction potentials, Nernst equation, Faraday's laws",
+          "Physics — fluids (Bernoulli, Pascal), electricity, optics (lenses, mirrors), thermodynamics, wave phenomena",
         ],
       },
       {

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 curriculum: expand MCAT Bio/Biochem (4→6 topics) with "Amino acids and protein structure" and "Cardiovascular and respiratory physiology" — two of the most heavily tested MCAT sections previously absent; expand Chem/Phys (3→4 topics) with "Electrochemistry" (galvanic cells, Nernst equation, Faraday's laws); flesh out existing topic blurbs with testable detail
+
 - 2026-05-25 curriculum: add "Optimization algorithms" (SGD, Adam, cosine decay) to ML Fundamentals Math & Stats (4→5 topics); add new "Unsupervised Learning" subject with 3 topics — clustering, dimensionality reduction, and self-supervised/contrastive learning — two major ML areas previously absent from the pack; update blurb and README
 
 - 2026-05-25 keyboard shortcut: press S from the coaching report to copy the share link — complements N (new session), D (export markdown), and R (re-drill); listed in ShortcutsModal Report section; button gains title tooltip and aria-keyshortcuts="s"
