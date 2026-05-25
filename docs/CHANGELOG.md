@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 friendlier error message: HistoryView import backup now shows coaching-voice error messages — wrong-version and missing-history throws use plain English; JSON/parse errors are caught and humanized; error display gains a Dismiss button
+
 - 2026-05-25 README/docs update: bump "45+ shipped features" to "55+"; add collapsible round-review and browser-tab-title features to Input/output; add Study-again one-click to Persistence; add `d` download-report and `r` re-drill to keyboard-first shortcut blurb
 
 - 2026-05-25 UI copy polish: "What's inside" section heading → "What makes it different"; "Keyboard-first" blurb drops raw shortcut notation for plain-English copy; "Shareable session links" feature title trimmed and blurb drops "URL-encoded session state" jargon; WhyView "Use cases" heading → "Built for these study moments"; CTA "Try one round. See the difference." → "One loop is enough to feel it."

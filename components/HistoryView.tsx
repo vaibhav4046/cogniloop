@@ -105,14 +105,20 @@ export function HistoryView() {
     try {
       const text = await file.text();
       const data = JSON.parse(text);
-      if (data?.v !== 1) throw new Error("Wrong file version");
-      if (!Array.isArray(data.history)) throw new Error("Missing history");
+      if (data?.v !== 1) throw new Error("Wrong backup version — re-export a fresh backup from the original device.");
+      if (!Array.isArray(data.history)) throw new Error("This file doesn't look like a Cogniloop backup — make sure you're importing the right file.");
       localStorage.setItem("cl:history", JSON.stringify(data.history));
       if (data.streak) localStorage.setItem("cl:streak", JSON.stringify(data.streak));
       setRecords(data.history);
       setStreak(data.streak ?? null);
     } catch (err) {
-      setImportErr(err instanceof Error ? err.message : "Import failed");
+      const raw = err instanceof Error ? err.message : "";
+      const isJsonErr = /json|token|unexpected|syntax|parse/i.test(raw);
+      setImportErr(
+        isJsonErr
+          ? "Couldn't read the file — make sure you're importing a Cogniloop JSON backup."
+          : raw || "Import failed — try exporting a fresh backup from History."
+      );
     } finally {
       if (fileRef.current) fileRef.current.value = "";
     }
@@ -251,7 +257,16 @@ export function HistoryView() {
             </div>
           </div>
           {importErr && (
-            <div className="text-[12px] text-[var(--bad)] mb-3">{importErr}</div>
+            <div className="text-[12px] mb-3 flex items-start gap-2" style={{ color: "var(--bad)" }}>
+              <span className="flex-1">{importErr}</span>
+              <button
+                onClick={() => setImportErr(null)}
+                className="shrink-0 underline hover:no-underline"
+                aria-label="Dismiss import error"
+              >
+                Dismiss
+              </button>
+            </div>
           )}
           {!loaded ? (
             <div className="flex flex-col gap-2" aria-busy="true" aria-label="Loading sessions">
