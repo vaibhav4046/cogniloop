@@ -92,6 +92,7 @@ export function ShortcutsModal() {
         ref={triggerRef}
         onClick={() => setOpen(true)}
         aria-label="Open keyboard shortcuts panel"
+        aria-keyshortcuts="?"
         title="Keyboard shortcuts (?)"
         className="fixed bottom-4 right-4 btn-ghost w-9 h-9 rounded-full flex items-center justify-center text-sm z-30"
       >

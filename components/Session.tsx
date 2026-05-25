@@ -691,6 +691,7 @@ function SessionShell({
             <button
               onClick={onEnd}
               disabled={!canEnd}
+              aria-keyshortcuts="e"
               className="btn-ghost text-xs px-3 py-1.5 rounded-md"
             >
               End & report
@@ -1082,19 +1083,20 @@ function ReportView({
         </div>
 
         <div className="flex gap-3 mt-8 flex-wrap">
-          <button onClick={onNew} className="btn-primary px-5 py-2.5 rounded-lg text-sm">
+          <button onClick={onNew} aria-keyshortcuts="n" className="btn-primary px-5 py-2.5 rounded-lg text-sm">
             New session
           </button>
           {reDrillTarget && (
             <button
               onClick={() => onReDrill(reDrillTarget)}
+              aria-keyshortcuts="r"
               className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
               title={`Re-drill "${reDrillTarget}" in a focused session (press R)`}
             >
               Re-drill &ldquo;{reDrillDisplay}&rdquo;
             </button>
           )}
-          <button onClick={downloadMd} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
+          <button onClick={downloadMd} aria-keyshortcuts="d" className="btn-ghost px-5 py-2.5 rounded-lg text-sm">
             Export markdown
           </button>
           <button onClick={makeShareUrl} className="btn-ghost px-5 py-2.5 rounded-lg text-sm">

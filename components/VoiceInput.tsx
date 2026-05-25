@@ -187,6 +187,7 @@ export function VoiceInput({ onTranscript, disabled }: Props) {
         title={active ? "Stop recording" : "Speak your answer"}
         aria-label={active ? "Stop voice input" : "Start voice input"}
         aria-pressed={active}
+        aria-keyshortcuts="m"
         className={`btn-ghost text-xs px-2.5 py-1 rounded-md flex items-center gap-1.5 transition-colors ${
           active ? "!border-[var(--bad)] !text-[var(--bad)] mic-pulse" : ""
         }`}

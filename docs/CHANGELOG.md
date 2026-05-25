@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 a11y: add aria-keyshortcuts to all shortcut-bearing buttons (?, m, l, e, n, d, r) so assistive technologies surface keyboard shortcuts for the shortcuts panel trigger, voice input, read-aloud, end-session, and the three coaching-report actions
+
 - 2026-05-25 skeleton loader: heatmap card on /history now shows 90 shimmer cells matching the real grid layout while localStorage loads, replacing the brief flash of an empty inactive grid
 
 - 2026-05-25 refactor: export dayKey from lib/storage.ts and remove the identical duplicate in HistoryView.tsx — single source of truth for the YYYY-MM-DD timestamp formatter used by streak tracking and the 90-day heatmap

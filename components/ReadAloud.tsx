@@ -82,6 +82,7 @@ export function ReadAloud({ text, autoPlayKey }: Props) {
       title={speaking ? "Stop" : "Read question aloud"}
       aria-label={speaking ? "Stop reading aloud" : "Read question aloud"}
       aria-pressed={speaking}
+      aria-keyshortcuts="l"
       className={`btn-ghost text-[10px] px-2 py-1 rounded-md flex items-center gap-1 transition-colors ${
         speaking ? "!border-[var(--accent)] !text-[var(--accent)]" : ""
       }`}
