@@ -123,7 +123,7 @@ export function WhyView() {
         </div>
 
         <h2 className="text-[18px] font-semibold tracking-tight mt-14 mb-4">
-          Use cases
+          Built for these study moments
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {USE_CASES.map((u) => (
@@ -159,10 +159,10 @@ export function WhyView() {
 
         <div className="card p-6 mt-12 text-center">
           <h3 className="text-[18px] font-semibold tracking-tight">
-            Try one round. See the difference.
+            One loop is enough to feel it.
           </h3>
           <p className="text-[var(--fg-muted)] text-sm mt-2">
-            No signup. No keys. Two minutes.
+            No signup. No key. Under two minutes.
           </p>
           <Link
             href="/"

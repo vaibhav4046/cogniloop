@@ -28,10 +28,10 @@ const FEATURES = [
   { t: "8 curriculum packs", b: "JEE, NEET, GATE-CSE, MCAT, AP-CS, ML Fundamentals, System Design, Economics — pre-loaded." },
   { t: "3 modes", b: "Chill (gentle), Exam (timed, strict), Expert (first-principles)." },
   { t: "Streaks + history", b: "Daily streak, lifetime stats, full session history." },
-  { t: "Shareable session links", b: "URL-encoded session state. No backend, no leaks." },
+  { t: "Shareable sessions", b: "Export any session as a link — encoded locally, nothing ever touches a server." },
   { t: "Coaching report", b: "Final report with study plan, journal prompt, markdown export." },
-  { t: "Keyboard-first", b: "Hit ? for the shortcuts panel. g+h/t/w/s to navigate; ⌘+Enter to submit; m, l, e in session." },
-  { t: "100% client-side", b: "Sessions live in your browser. No accounts, no logs, no upsells." },
+  { t: "Keyboard-first", b: "Every action has a shortcut. Press ? to open the panel — navigate, submit, and drill without touching the mouse." },
+  { t: "100% client-side", b: "Sessions live in your browser only. No accounts, no servers, nothing ever leaves your device." },
 ];
 
 export function Landing() {
@@ -232,7 +232,7 @@ export function Landing() {
 
           <div className="mt-14">
             <h2 className="text-[20px] font-semibold tracking-tight">
-              What&apos;s inside
+              What makes it different
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
               {FEATURES.map((f) => (
