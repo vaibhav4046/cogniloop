@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (45+ shipped features)
+## What it does (55+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -56,13 +56,15 @@ Loop until mastered.
 - Markdown export of full session
 - URL-encoded shareable session links — no backend, no leaks
 - Per-round feedback card with strengths + gaps as bullet lists
+- Collapsible round-review in coaching report — question, answer, score, and verdict per round
 - Live word count while typing — nudges fuller explanations
+- Browser tab title shows the active study topic (e.g. "Backpropagation · Cogniloop")
 
 **Persistence + accountability**
 - Daily streak counter (Duolingo-style)
 - 90-day activity heatmap
 - Lifetime stats: sessions, rounds, mastered concepts, avg score
-- Full session history with searchable list
+- Full session history with searchable list and Study again one-click
 - localStorage-only — no accounts, no logs, no servers
 
 **LLM layer**
@@ -76,7 +78,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `r` re-drill weak concept
 - Per-round difficulty dots, mode badges, question-type tags
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh

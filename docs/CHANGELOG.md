@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-25 README/docs update: bump "45+ shipped features" to "55+"; add collapsible round-review and browser-tab-title features to Input/output; add Study-again one-click to Persistence; add `d` download-report and `r` re-drill to keyboard-first shortcut blurb
+
 - 2026-05-25 UI copy polish: "What's inside" section heading → "What makes it different"; "Keyboard-first" blurb drops raw shortcut notation for plain-English copy; "Shareable session links" feature title trimmed and blurb drops "URL-encoded session state" jargon; WhyView "Use cases" heading → "Built for these study moments"; CTA "Try one round. See the difference." → "One loop is enough to feel it."
 
 - 2026-05-25 curriculum: add "Complex numbers and quadratic equations" and "Matrices and determinants" to JEE Mathematics (7→9 topics), and "Recurrent networks and sequence models" (RNN, LSTM, GRU, seq2seq) to ML Fundamentals Models — three core topics previously missing from both packs
