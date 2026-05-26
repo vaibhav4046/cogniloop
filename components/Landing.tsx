@@ -7,6 +7,7 @@ import { Logo } from "./Logo";
 import { ModePicker } from "./ModePicker";
 import { StatsPanel } from "./StatsPanel";
 import { CURRICULA } from "@/lib/curricula";
+import { getHistory } from "@/lib/storage";
 import type { ModeId } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
 import { useAutoExpand } from "@/lib/useAutoExpand";
@@ -41,10 +42,25 @@ export function Landing() {
   const [mode, setMode] = useState<ModeId>("exam");
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [recentTopics, setRecentTopics] = useState<string[]>([]);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useAutoExpand(taRef, notes, 240);
+
+  useEffect(() => {
+    const hist = getHistory();
+    const seen = new Set<string>();
+    const recent: string[] = [];
+    for (const r of hist) {
+      if (r.topic && !seen.has(r.topic)) {
+        seen.add(r.topic);
+        recent.push(r.topic);
+        if (recent.length >= 3) break;
+      }
+    }
+    setRecentTopics(recent);
+  }, []);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -208,6 +224,26 @@ export function Landing() {
               ))}
             </div>
           </div>
+
+          {recentTopics.length > 0 && (
+            <div className="mt-6">
+              <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
+                Pick up where you left off
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recentTopics.map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => { setTopic(t); setErr(null); inputRef.current?.focus(); }}
+                    title={t}
+                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg max-w-[260px] truncate"
+                  >
+                    ↻ {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-10">
             <div className="flex items-center justify-between mb-3">

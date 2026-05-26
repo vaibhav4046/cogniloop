@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 tiny feature: landing page shows a "Pick up where you left off" row of up to 3 recent session topics as clickable chips — clicking pre-fills the topic input and focuses it, letting returning users restart a topic in one click without visiting /history
+
 - 2026-05-26 brand voice: tighten three feature-grid blurbs in Landing.tsx — "Adaptive difficulty", "Voice input + read-aloud", and "LaTeX rendering" rewritten from spec-list copy to coaching voice; WhyView bottom CTA button copy changed from "Start a session →" to "Begin the loop →" to match landing page
 
 - 2026-05-26 a11y: Exam mode countdown timer gains role="timer" so screen readers identify it as a timer widget; the emoji is aria-hidden and a sr-only span provides a readable "X seconds remaining" / "X minutes Y seconds remaining" label — announced assertively under 10 seconds, queryable at any time
