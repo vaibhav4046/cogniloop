@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 a11y: error and warn toasts now use role="alert" + aria-live="assertive" so screen readers interrupt immediately to announce them, while info/success toasts keep role="status" + aria-live="polite"; all toasts gain aria-atomic="true" so the full message is read as a unit
+
 - 2026-05-25 curriculum: expand MCAT Bio/Biochem (4→6 topics) with "Amino acids and protein structure" and "Cardiovascular and respiratory physiology" — two of the most heavily tested MCAT sections previously absent; expand Chem/Phys (3→4 topics) with "Electrochemistry" (galvanic cells, Nernst equation, Faraday's laws); flesh out existing topic blurbs with testable detail
 
 - 2026-05-25 curriculum: add "Optimization algorithms" (SGD, Adam, cosine decay) to ML Fundamentals Math & Stats (4→5 topics); add new "Unsupervised Learning" subject with 3 topics — clustering, dimensionality reduction, and self-supervised/contrastive learning — two major ML areas previously absent from the pack; update blurb and README

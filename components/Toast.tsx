@@ -96,10 +96,12 @@ function ToastView({ toast, onClose }: { toast: Toast; onClose: () => void }) {
       : toast.kind === "warn"
       ? "var(--warn)"
       : "var(--accent)";
+  const urgent = toast.kind === "error" || toast.kind === "warn";
   return (
     <div
-      role="status"
-      aria-live="polite"
+      role={urgent ? "alert" : "status"}
+      aria-live={urgent ? "assertive" : "polite"}
+      aria-atomic="true"
       className="card px-4 py-3 pointer-events-auto flex items-center gap-3 toast-pop max-w-[min(92vw,520px)] relative overflow-hidden"
       style={{ borderColor: color }}
     >
