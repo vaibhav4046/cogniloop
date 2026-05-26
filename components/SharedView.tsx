@@ -6,21 +6,7 @@ import { decodeShare, type SharePayload } from "@/lib/share";
 import { getMode } from "@/lib/modes";
 import { NavBar } from "./NavBar";
 import { Tex } from "./Math";
-
-const QTYPE_DESC: Record<string, string> = {
-  explain: "Explain the concept in your own words",
-  apply: "Apply it to a real or hypothetical example",
-  contrast: "Compare or distinguish two related ideas",
-  predict: "Predict an outcome or behavior from first principles",
-  trace: "Walk through a process or algorithm step by step",
-};
-
-const STRENGTH_DESC: Record<string, string> = {
-  weak: "Not yet understood — needs drilling from scratch",
-  shaky: "Partial recall — gaps remain, but the seed is there",
-  solid: "Well understood — minor edge cases still possible",
-  mastered: "Fully mastered — held under every question type",
-};
+import { QTYPE_DESC, STRENGTH_DESC } from "@/lib/labels";
 
 interface Props {
   token: string;

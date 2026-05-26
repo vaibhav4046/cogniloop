@@ -18,6 +18,7 @@ import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hin
 import { isInTextField } from "@/lib/kbd";
 import { getMode, type ModeId } from "@/lib/modes";
 import { useAutoExpand } from "@/lib/useAutoExpand";
+import { QTYPE_DESC, STRENGTH_DESC } from "@/lib/labels";
 import type {
   Concept,
   Round,
@@ -71,26 +72,11 @@ const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   mastered: "var(--accent)",
 };
 
-const STRENGTH_DESC: Record<ConceptStrength, string> = {
-  weak: "Not yet understood — needs drilling from scratch",
-  shaky: "Partial recall — gaps remain, but the seed is there",
-  solid: "Well understood — minor edge cases still possible",
-  mastered: "Fully mastered — held under every question type",
-};
-
 const STRENGTH_PCT: Record<ConceptStrength, number> = {
   weak: 18,
   shaky: 45,
   solid: 75,
   mastered: 100,
-};
-
-const QTYPE_DESC: Record<Round["questionType"], string> = {
-  explain: "Explain the concept in your own words",
-  apply: "Apply it to a real or hypothetical example",
-  contrast: "Compare or distinguish two related ideas",
-  predict: "Predict an outcome or behavior from first principles",
-  trace: "Walk through a process or algorithm step by step",
 };
 
 export function Session() {

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 refactor: extract duplicate QTYPE_DESC and STRENGTH_DESC constants from Session.tsx and SharedView.tsx into lib/labels.ts — single source of truth, ~20 lines of duplicated code removed
+
 - 2026-05-26 perf: wrap ModeSwitcher and BucketCard in React.memo — ModeSwitcher skips re-renders on every answer keystroke (modeId and setModeId are stable), BucketCard skips re-renders when copy/share state changes in the coaching report (report.mastered/shaky/weak arrays are stable once the report is set)
 
 - 2026-05-26 curriculum: add "Searching and sorting" to AP CSA (7→8 topics) covering linear/binary search, selection/insertion/merge sort, sort stability, and iterative vs recursive implementations — a full exam unit that was absent; expand MCAT Psych/Soc (4→6 topics) with "Biological bases of behavior" (brain structures, neurotransmitters, sleep, emotion theories) and "Identity, attitudes, and group behavior" (self-concept, stereotypes, conformity, bystander effect) — two of the most heavily weighted MCAT Psych/Soc areas previously missing
