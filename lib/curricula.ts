@@ -211,6 +211,8 @@ export const CURRICULA: Curriculum[] = [
         topics: [
           "Sensation and perception",
           "Learning and memory",
+          "Biological bases of behavior — brain structures, neurotransmitters, sleep stages, theories of emotion, psychological disorders and their neurological correlates",
+          "Identity, attitudes, and group behavior — self-concept, stereotypes, prejudice, conformity, obedience, group dynamics, social influence, bystander effect",
           "Social structures and demographics",
           "Stress and emotion",
         ],
@@ -243,6 +245,7 @@ export const CURRICULA: Curriculum[] = [
           "Array and ArrayList",
           "2D arrays",
           "Recursion",
+          "Searching and sorting — linear search, binary search, selection sort, insertion sort, merge sort; sequential vs binary comparison, sort stability, iterative vs recursive implementations",
         ],
       },
       {
