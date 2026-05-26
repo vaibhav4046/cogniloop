@@ -65,6 +65,13 @@ function humanizeError(raw: string | null): string {
   return raw;
 }
 
+function fmtTimeLabel(sec: number): string {
+  if (sec < 60) return `${sec} second${sec !== 1 ? "s" : ""} remaining`;
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m} minute${m !== 1 ? "s" : ""}${s > 0 ? ` ${s} second${s !== 1 ? "s" : ""}` : ""} remaining`;
+}
+
 const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   weak: "var(--bad)",
   shaky: "var(--warn)",
@@ -652,13 +659,15 @@ function SessionShell({
         <div className="flex items-center gap-3">
           {timer != null && (
             <span
+              role="timer"
               className={`text-[11px] font-mono tabular-nums${timer < 10 ? " timer-urgent" : ""}`}
               style={{
                 color: timer < 15 ? "var(--bad)" : "var(--fg-muted)",
               }}
               aria-live={timer < 10 ? "assertive" : "off"}
             >
-              ⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
+              <span aria-hidden="true">⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}</span>
+              <span className="sr-only">{fmtTimeLabel(timer)}</span>
             </span>
           )}
           {typeof roundNum === "number" && roundNum > 0 && (

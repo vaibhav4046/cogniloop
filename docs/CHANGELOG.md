@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 a11y: Exam mode countdown timer gains role="timer" so screen readers identify it as a timer widget; the emoji is aria-hidden and a sr-only span provides a readable "X seconds remaining" / "X minutes Y seconds remaining" label — announced assertively under 10 seconds, queryable at any time
+
 - 2026-05-26 UI copy polish: concept tracker hides "drilled 0×" for concepts not yet tested in the current session (noisy and misleading at session start); coaching report bucket card headers suppress the "0" count badge when a bucket is empty (the empty-state message already communicates this)
 
 - 2026-05-26 UI copy polish: keyboard hint below the "Begin the loop" button now uses styled `<kbd>` elements matching the ShortcutsModal — ⌘/Ctrl and Enter render as chip badges instead of raw text; topic input shows a subtle character counter (e.g. "312 / 400") only when the user approaches the 400-char limit, matching the notes field pattern
