@@ -1038,14 +1038,15 @@ function ReportView({
             })}
           </div>
         )}
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 fade-up" style={{ animationDelay: "80ms" }}>
           <BucketCard label="Mastered" items={report.mastered} color="var(--accent)" emptyMsg="None yet — keep drilling." />
           <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" emptyMsg="None flagged." />
           <BucketCard label="Weak" items={report.weak} color="var(--bad)" emptyMsg="None — solid session." />
         </div>
 
-        <div className="card p-5 mt-6">
+        <div className="card p-5 mt-6 fade-up" style={{ animationDelay: "160ms" }}>
           <div className="flex items-center justify-between mb-3">
             <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)]">
               Study plan
@@ -1079,7 +1080,7 @@ function ReportView({
           )}
         </div>
 
-        <div className="card p-5 mt-4">
+        <div className="card p-5 mt-4 fade-up" style={{ animationDelay: "240ms" }}>
           <div className="flex items-center justify-between mb-2">
             <div className="text-[12px] uppercase tracking-wider text-[var(--fg-dim)]">
               Feynman journal (5 min)
@@ -1097,7 +1098,7 @@ function ReportView({
           </div>
         </div>
 
-        <div className="flex gap-3 mt-8 flex-wrap">
+        <div className="flex gap-3 mt-8 flex-wrap fade-up" style={{ animationDelay: "300ms" }}>
           <button onClick={onNew} aria-keyshortcuts="n" className="btn-primary px-5 py-2.5 rounded-lg text-sm">
             New session
           </button>
@@ -1185,7 +1186,6 @@ function ReportView({
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }
