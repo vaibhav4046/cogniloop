@@ -747,9 +747,11 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
                 }}
               />
             </div>
-            <div className="text-[10px] text-[var(--fg-dim)]">
-              drilled {c.attempts}×
-            </div>
+            {c.attempts > 0 && (
+              <div className="text-[10px] text-[var(--fg-dim)]">
+                drilled {c.attempts}×
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -1208,9 +1210,11 @@ const BucketCard = memo(function BucketCard({
         <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
           {label}
         </span>
-        <span className="text-[11px] text-[var(--fg-dim)] ml-auto">
-          {items.length}
-        </span>
+        {items.length > 0 && (
+          <span className="text-[11px] text-[var(--fg-dim)] ml-auto">
+            {items.length}
+          </span>
+        )}
       </div>
       {items.length === 0 ? (
         <div className="text-[12px] text-[var(--fg-dim)] italic">{emptyMsg}</div>

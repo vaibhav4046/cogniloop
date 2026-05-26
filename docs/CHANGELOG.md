@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 UI copy polish: concept tracker hides "drilled 0×" for concepts not yet tested in the current session (noisy and misleading at session start); coaching report bucket card headers suppress the "0" count badge when a bucket is empty (the empty-state message already communicates this)
+
 - 2026-05-26 UI copy polish: keyboard hint below the "Begin the loop" button now uses styled `<kbd>` elements matching the ShortcutsModal — ⌘/Ctrl and Enter render as chip badges instead of raw text; topic input shows a subtle character counter (e.g. "312 / 400") only when the user approaches the 400-char limit, matching the notes field pattern
 
 - 2026-05-26 micro-animation: coaching report sections now cascade in with staggered fade-up — headline at 0ms, bucket cards at 80ms, study plan at 160ms, Feynman card at 240ms, action buttons at 300ms — replaces the single block fade-in with a progressive reveal that draws the eye through the report
