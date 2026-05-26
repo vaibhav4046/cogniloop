@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 empty state polish: session answer textarea placeholder is now specific to the current question type — "explain" gets a Feynman teaching nudge, "apply" prompts for a concrete scenario, "contrast" focuses on mechanism differences, "predict" asks for cause-and-effect chains, and "trace" asks for step-by-step walkthrough — replacing the single generic placeholder with five coaching-voice prompts that match the question being asked
+
 - 2026-05-26 tiny feature: landing page shows a "Pick up where you left off" row of up to 3 recent session topics as clickable chips — clicking pre-fills the topic input and focuses it, letting returning users restart a topic in one click without visiting /history
 
 - 2026-05-26 brand voice: tighten three feature-grid blurbs in Landing.tsx — "Adaptive difficulty", "Voice input + read-aloud", and "LaTeX rendering" rewritten from spec-list copy to coaching voice; WhyView bottom CTA button copy changed from "Start a session →" to "Begin the loop →" to match landing page
