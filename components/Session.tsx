@@ -502,7 +502,16 @@ export function Session() {
             />
             <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
               <div className="text-[11px] text-[var(--fg-dim)]">
-                {answer.trim() ? `${answer.trim().split(/\s+/).filter(Boolean).length} words · ` : ""}{answer.length}/6000  ·  ⌘/Ctrl + Enter to submit
+                {(() => {
+                  const wc = answer.trim() ? answer.trim().split(/\s+/).filter(Boolean).length : 0;
+                  const wcColor = wc === 0 ? undefined : wc < 20 ? "var(--warn)" : wc < 50 ? "var(--accent)" : "var(--good)";
+                  return (
+                    <>
+                      {wc > 0 && <span style={{ color: wcColor }}>{wc} words · </span>}
+                      {answer.length}/6000 · ⌘/Ctrl + Enter to submit
+                    </>
+                  );
+                })()}
               </div>
               <div className="flex gap-2 items-center">
                 <VoiceInput
