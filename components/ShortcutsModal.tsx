@@ -9,7 +9,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
     items: [
       { keys: "?", label: "Open this panel" },
       { keys: "⌘/Ctrl + Enter", label: "Submit answer · Begin loop" },
-      { keys: "Esc", label: "Close panel · Cancel voice" },
+      { keys: "Esc", label: "Close panel · Clear filter / search · Cancel voice" },
       { keys: "/", label: "Focus topic / filter / search" },
     ],
   },

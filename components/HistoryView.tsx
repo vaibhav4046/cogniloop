@@ -222,6 +222,9 @@ export function HistoryView() {
                   placeholder="Search topics… (press / to focus)"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") { setSearch(""); searchRef.current?.blur(); }
+                  }}
                   className="text-xs px-3 py-1.5 rounded-md bg-[var(--bg-elev)] border border-[var(--line-soft)] text-[var(--fg)] placeholder:text-[var(--fg-dim)] focus:outline-none focus:border-[var(--accent)] transition-colors w-44"
                 />
               )}

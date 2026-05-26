@@ -60,6 +60,9 @@ export function TemplatesView() {
               ref={inputRef}
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") { setFilter(""); inputRef.current?.blur(); }
+              }}
               placeholder="Filter by exam, subject, or topic… (press / to focus)"
               aria-label="Filter curriculum templates"
               className="w-full bg-transparent outline-none text-[14px] placeholder:text-[var(--fg-dim)]"

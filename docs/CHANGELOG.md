@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 keyboard shortcut: press Escape while the filter input on /templates or the search input on /history is focused to clear its value and blur the field — pairs with the existing / shortcut to focus; ShortcutsModal Esc label updated to mention "Clear filter / search"
+
 - 2026-05-26 tiny feature: word count in the session answer textarea is now color-coded — amber under 20 words (write more), accent purple at 20–49 words (good start), green at 50+ words (thorough explanation); gives users a subtle depth signal without interrupting flow
 
 - 2026-05-26 refactor: extract duplicate QTYPE_DESC and STRENGTH_DESC constants from Session.tsx and SharedView.tsx into lib/labels.ts — single source of truth, ~20 lines of duplicated code removed
