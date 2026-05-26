@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 brand voice: tighten three feature-grid blurbs in Landing.tsx — "Adaptive difficulty", "Voice input + read-aloud", and "LaTeX rendering" rewritten from spec-list copy to coaching voice; WhyView bottom CTA button copy changed from "Start a session →" to "Begin the loop →" to match landing page
+
 - 2026-05-26 a11y: Exam mode countdown timer gains role="timer" so screen readers identify it as a timer widget; the emoji is aria-hidden and a sr-only span provides a readable "X seconds remaining" / "X minutes Y seconds remaining" label — announced assertively under 10 seconds, queryable at any time
 
 - 2026-05-26 UI copy polish: concept tracker hides "drilled 0×" for concepts not yet tested in the current session (noisy and misleading at session start); coaching report bucket card headers suppress the "0" count badge when a bucket is empty (the empty-state message already communicates this)

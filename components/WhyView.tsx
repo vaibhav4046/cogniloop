@@ -168,7 +168,7 @@ export function WhyView() {
             href="/"
             className="btn-primary mt-5 px-5 py-2.5 rounded-lg text-sm inline-block"
           >
-            Start a session  →
+            Begin the loop →
           </Link>
         </div>
       </section>
