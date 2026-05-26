@@ -599,7 +599,7 @@ export function Session() {
   );
 }
 
-function ModeSwitcher({
+const ModeSwitcher = memo(function ModeSwitcher({
   value,
   onChange,
 }: {
@@ -614,7 +614,7 @@ function ModeSwitcher({
       <ModePicker value={value} onChange={onChange} compact />
     </div>
   );
-}
+});
 
 function PhaseLoader({ hint, hintKey }: { hint: string; hintKey: number }) {
   return (
@@ -1195,7 +1195,7 @@ function ReportView({
   );
 }
 
-function BucketCard({
+const BucketCard = memo(function BucketCard({
   label,
   items,
   color,
@@ -1230,4 +1230,4 @@ function BucketCard({
       )}
     </div>
   );
-}
+});
