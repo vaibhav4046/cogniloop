@@ -335,3 +335,19 @@ select:focus-visible {
     text-decoration: underline;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Skeleton: remove shimmer, use static tinted bg so it still looks like a placeholder */
+  .skeleton {
+    animation: none !important;
+    background: var(--bg-elev) !important;
+  }
+}

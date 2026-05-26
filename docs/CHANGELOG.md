@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 a11y: add @media (prefers-reduced-motion: reduce) to globals.css — cuts all animation/transition durations to 0.01ms and collapses iteration counts to 1; skeleton shimmer replaced with a static placeholder tint so users with vestibular disorders or OS-level motion reduction get an instant, non-animated experience across all pages
+
 - 2026-05-26 empty state polish: session answer textarea placeholder is now specific to the current question type — "explain" gets a Feynman teaching nudge, "apply" prompts for a concrete scenario, "contrast" focuses on mechanism differences, "predict" asks for cause-and-effect chains, and "trace" asks for step-by-step walkthrough — replacing the single generic placeholder with five coaching-voice prompts that match the question being asked
 
 - 2026-05-26 tiny feature: landing page shows a "Pick up where you left off" row of up to 3 recent session topics as clickable chips — clicking pre-fills the topic input and focuses it, letting returning users restart a topic in one click without visiting /history
