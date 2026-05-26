@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-26 UI copy polish: keyboard hint below the "Begin the loop" button now uses styled `<kbd>` elements matching the ShortcutsModal — ⌘/Ctrl and Enter render as chip badges instead of raw text; topic input shows a subtle character counter (e.g. "312 / 400") only when the user approaches the 400-char limit, matching the notes field pattern
+
 - 2026-05-26 micro-animation: coaching report sections now cascade in with staggered fade-up — headline at 0ms, bucket cards at 80ms, study plan at 160ms, Feynman card at 240ms, action buttons at 300ms — replaces the single block fade-in with a progressive reveal that draws the eye through the report
 
 - 2026-05-26 keyboard shortcut: press Escape while the filter input on /templates or the search input on /history is focused to clear its value and blur the field — pairs with the existing / shortcut to focus; ShortcutsModal Esc label updated to mention "Clear filter / search"

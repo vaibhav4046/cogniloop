@@ -139,6 +139,11 @@ export function Landing() {
                 if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) start();
               }}
             />
+            {topic.length > 300 && (
+              <div className="text-[11px] text-[var(--fg-dim)] text-right mt-1">
+                {topic.length} / 400
+              </div>
+            )}
 
             <details className="mt-4 group">
               <summary className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] cursor-pointer select-none list-none flex items-center gap-2">
@@ -177,8 +182,13 @@ export function Landing() {
             >
               {submitting ? "Starting the loop…" : "Begin the loop  ↵"}
             </button>
-            <div className="text-[11px] text-[var(--fg-dim)] text-center mt-2">
-              ⌘/Ctrl + Enter to start  ·  press / anywhere to focus topic
+            <div className="text-[11px] text-[var(--fg-dim)] text-center mt-2 flex items-center justify-center gap-1 flex-wrap">
+              <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">⌘ / Ctrl</kbd>
+              {" + "}
+              <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">Enter</kbd>
+              {" to start · "}
+              <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">/</kbd>
+              {" to focus topic"}
             </div>
           </div>
 
