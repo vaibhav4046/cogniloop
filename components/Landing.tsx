@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
 import { ModePicker } from "./ModePicker";
 import { StatsPanel } from "./StatsPanel";
@@ -34,6 +34,21 @@ const FEATURES = [
   { t: "Keyboard-first", b: "Every action has a shortcut. Press ? to open the panel — navigate, submit, and drill without touching the mouse." },
   { t: "100% client-side", b: "Sessions live in your browser only. No accounts, no servers, nothing ever leaves your device." },
 ];
+
+const FeatureGrid = memo(function FeatureGrid() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+      {FEATURES.map((f) => (
+        <div key={f.t} className="card p-4 hover:bg-[var(--bg-elev)] transition-colors duration-150">
+          <div className="text-[13.5px] font-medium tracking-tight">{f.t}</div>
+          <div className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
+            {f.b}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+});
 
 export function Landing() {
   const router = useRouter();
@@ -280,16 +295,7 @@ export function Landing() {
             <h2 className="text-[20px] font-semibold tracking-tight">
               What makes it different
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-              {FEATURES.map((f) => (
-                <div key={f.t} className="card p-4 hover:bg-[var(--bg-elev)] transition-colors duration-150">
-                  <div className="text-[13.5px] font-medium tracking-tight">{f.t}</div>
-                  <div className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
-                    {f.b}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <FeatureGrid />
           </div>
 
           <div className="mt-14 card p-6">
