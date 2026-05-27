@@ -52,13 +52,44 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
   );
 }
 
+function useCountUp(value: string, delay = 0): string {
+  const initDisplayed = (): string => {
+    const n = parseInt(value, 10);
+    return !isNaN(n) && value === String(n) && n > 0 ? "0" : value;
+  };
+  const [displayed, setDisplayed] = useState<string>(initDisplayed);
+
+  useEffect(() => {
+    const num = parseInt(value, 10);
+    const isInt = !isNaN(num) && value === String(num) && num > 0;
+    if (!isInt || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayed(value);
+      return;
+    }
+    const duration = Math.min(900, Math.max(350, num * 12));
+    const startTime = performance.now() + delay;
+    let raf: number;
+    function tick(now: number) {
+      if (now < startTime) { raf = requestAnimationFrame(tick); return; }
+      const t = Math.min((now - startTime) / duration, 1);
+      setDisplayed(String(Math.round((1 - (1 - t) ** 2) * num)));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value, delay]);
+
+  return displayed;
+}
+
 function Stat({ label, value, hint, index = 0 }: { label: string; value: string; hint?: string; index?: number }) {
+  const displayed = useCountUp(value, index * 55);
   return (
     <div className="card px-3 py-2.5 fade-up" style={{ animationDelay: `${index * 55}ms` }}>
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)]">
         {label}
       </div>
-      <div className="text-[18px] font-semibold tracking-tight mt-0.5">{value}</div>
+      <div className="text-[18px] font-semibold tracking-tight mt-0.5">{displayed}</div>
       {hint && <div className="text-[10px] text-[var(--fg-dim)] mt-0.5">{hint}</div>}
     </div>
   );

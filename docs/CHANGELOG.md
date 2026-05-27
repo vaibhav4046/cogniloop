@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 micro-animation: count-up animation for integer stats in StatsPanel — Sessions, Rounds, and Mastered concepts ease from 0 to their final value on mount using an ease-out-quad rAF loop; streak ("5d") and avg score ("2.34") skip it automatically; respects prefers-reduced-motion
+
 - 2026-05-26 perf: wrap FeatureGrid in React.memo in Landing.tsx — the 12 "What makes it different" cards are pure static content that re-rendered on every topic/notes keystroke; extracting into a module-level memo component eliminates those re-renders with zero behavior change
 
 - 2026-05-26 a11y: add @media (prefers-reduced-motion: reduce) to globals.css — cuts all animation/transition durations to 0.01ms and collapses iteration counts to 1; skeleton shimmer replaced with a static placeholder tint so users with vestibular disorders or OS-level motion reduction get an instant, non-animated experience across all pages
