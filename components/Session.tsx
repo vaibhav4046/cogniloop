@@ -110,6 +110,7 @@ export function Session() {
   const [showHints, setShowHints] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
   const taRef = useRef<HTMLTextAreaElement>(null);
+  const endedAtRef = useRef<number | null>(null);
 
   const startSession = useCallback(
     async (t: string, n: string, m: ModeId) => {
@@ -333,6 +334,7 @@ export function Session() {
   }
 
   async function endSession(rs?: Round[], cs?: Concept[]) {
+    if (!endedAtRef.current) endedAtRef.current = Date.now();
     setPhase("ending");
     const finalRounds = rs ?? rounds;
     const finalConcepts = cs ?? concepts;
@@ -453,6 +455,7 @@ export function Session() {
           modeId={modeId}
           onNew={newSession}
           onReDrill={reDrill}
+          endedAt={endedAtRef.current ?? undefined}
         />
       </SessionShell>
     );
@@ -894,6 +897,7 @@ function ReportView({
   modeId,
   onNew,
   onReDrill,
+  endedAt,
 }: {
   report: ReportData;
   topic: string;
@@ -902,6 +906,7 @@ function ReportView({
   modeId: string;
   onNew: () => void;
   onReDrill: (concept: string) => void;
+  endedAt?: number;
 }) {
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -924,13 +929,16 @@ function ReportView({
   const reDrillDisplay = reDrillTarget && reDrillTarget.length > 28
     ? reDrillTarget.slice(0, 28) + "…"
     : reDrillTarget;
+  const durationMin = endedAt && rounds[0]?.createdAt
+    ? Math.max(1, Math.round((endedAt - rounds[0].createdAt) / 60000))
+    : null;
 
   function downloadMd() {
     const lines: string[] = [];
     lines.push(`# Cogniloop session — ${topic || "untitled"}`);
     lines.push("");
     lines.push(`**Headline:** ${report.headline}`);
-    lines.push(`**Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3`);
+    lines.push(`**Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3${durationMin ? ` · **Duration:** ${durationMin} min` : ""}`);
     lines.push("");
     lines.push("## Mastered");
     report.mastered.forEach((c) => lines.push(`- ${c}`));
@@ -1033,7 +1041,7 @@ function ReportView({
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
           {topic ? `${topic} · ` : ""}
-          {rounds.length} rounds · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
+          {rounds.length} rounds{durationMin ? ` · ${durationMin} min` : ""} · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
         </div>
 
         {evald.length > 1 && (
