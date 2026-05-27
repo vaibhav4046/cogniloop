@@ -56,6 +56,7 @@ export const CURRICULA: Curriculum[] = [
           "Coordinate geometry — straight lines, circles, conics",
           "Vectors and 3D geometry",
           "Probability and combinatorics",
+          "Sequences and series — arithmetic progression (nth term, Sn), geometric progression (sum, infinite GP), arithmetic-geometric series, binomial theorem (general term, middle term, coefficients), sum of special series (Σn, Σn², Σn³)",
         ],
       },
     ],
