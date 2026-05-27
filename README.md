@@ -41,11 +41,11 @@ Loop until mastered.
 **8 curriculum templates** — pre-loaded concept maps, click-to-start
 - JEE Main (Physics, Chemistry, Math — NCERT)
 - NEET UG (Bio, Physics, Chemistry)
-- GATE CSE (data structures, algorithms, OS, DBMS, computer networks, compiler theory, engineering math — 7 standalone subjects)
+- GATE CSE (data structures, algorithms, OS, DBMS, computer networks, compiler theory, digital logic, engineering math — 8 standalone subjects)
 - MCAT (Bio/Biochem, Chem/Phys, Psych/Soc, CARS — all 4 sections)
 - AP Computer Science (CSA + CSP)
 - ML Fundamentals (linear algebra, probability, optimization, neural nets, unsupervised learning, transformers, generative AI/LLMs, RL)
-- System Design (distributed systems, databases, APIs, scaling — interview-ready)
+- System Design (distributed systems, databases, APIs, scaling, microservices — interview-ready)
 - Economics (micro, macro, behavioral, international, financial markets — AP, college, CFA Level 1)
 
 **Input / output**
@@ -78,7 +78,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `r` re-drill weak concept
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `s` share link, `r` re-drill weak concept
 - Per-round difficulty dots, mode badges, question-type tags
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh
