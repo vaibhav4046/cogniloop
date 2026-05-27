@@ -132,11 +132,15 @@ export function SettingsView() {
           All settings live in your browser only. Bring your own Groq key for faster, higher-quality questions. Pollinations is the free fallback when no key is set.
         </p>
 
-        {saved && (
-          <div className="fixed top-20 right-6 text-[12px] tag" style={{ color: "var(--good)" }}>
-            Saved ✓
-          </div>
-        )}
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className={`fixed top-20 right-6 text-[12px] tag transition-opacity duration-200 pointer-events-none${saved ? "" : " opacity-0"}`}
+          style={{ color: "var(--good)" }}
+        >
+          {saved ? "Saved ✓" : ""}
+        </div>
 
         <h2 className="text-[15px] font-medium tracking-tight mt-10 mb-3">
           Bring your own API key
@@ -170,16 +174,18 @@ export function SettingsView() {
             <button onClick={testGroqKey} className="btn-ghost text-xs px-3 py-1.5 rounded-md">
               {keyTest.status === "testing" ? "Testing…" : "Test key"}
             </button>
-            {keyTest.status === "ok" && (
-              <span className="text-[12px]" style={{ color: "var(--good)" }}>
-                ✓ {keyTest.msg}
-              </span>
-            )}
-            {keyTest.status === "err" && (
-              <span className="text-[12px]" style={{ color: "var(--bad)" }}>
-                ✗ {keyTest.msg}
-              </span>
-            )}
+            <span aria-live="polite" aria-atomic="true">
+              {keyTest.status === "ok" && (
+                <span className="text-[12px]" style={{ color: "var(--good)" }}>
+                  ✓ {keyTest.msg}
+                </span>
+              )}
+              {keyTest.status === "err" && (
+                <span className="text-[12px]" style={{ color: "var(--bad)" }}>
+                  ✗ {keyTest.msg}
+                </span>
+              )}
+            </span>
           </div>
 
           <div className="text-[11.5px] text-[var(--fg-muted)] leading-relaxed mt-4">

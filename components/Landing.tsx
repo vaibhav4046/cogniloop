@@ -203,9 +203,14 @@ export function Landing() {
               <ModePicker value={mode} onChange={setMode} />
             </div>
 
-            {err && (
-              <div className="mt-3 text-sm text-[var(--bad)]">{err}</div>
-            )}
+            <div
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              className={`text-sm text-[var(--bad)]${err ? " mt-3" : ""}`}
+            >
+              {err}
+            </div>
 
             <button
               onClick={start}

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 a11y: form errors and settings status now announced to screen readers — Landing.tsx form-validation error gets a persistent `role="alert"` / `aria-live="assertive"` container so the "Type a topic" message is announced on submission; SettingsView "Saved ✓" toast gains `role="status"` / `aria-live="polite"`; Groq key-test result (✓ valid / ✗ invalid) wrapped in a persistent `aria-live="polite"` span so the outcome is read without visual focus
+
 - 2026-05-27 empty state polish: /templates "no matches" empty state now offers a "Drill this topic anyway →" primary button alongside "Clear filter" — so users who search a niche topic not covered by any curriculum pack (e.g. "quantum entanglement") can launch a session directly without backtracking to the home page
 
 - 2026-05-27 curriculum: add "Business cycles and economic indicators" to Economics > Macroeconomics (6→7 topics) — covers cycle phases (expansion, peak, recession, trough), NBER dating, leading indicators (yield curve inversion, building permits, stock prices, new orders), lagging indicators (unemployment, CPI, prime rate), and coincident indicators (GDP, payroll employment, personal income); a core AP Macro and CFA Level 1 topic previously absent from the pack
