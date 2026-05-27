@@ -326,7 +326,7 @@ export const CURRICULA: Curriculum[] = [
     id: "system-design",
     name: "System Design",
     region: "Self-study · Engineering",
-    blurb: "Distributed systems, databases, APIs, scaling — interview-ready.",
+    blurb: "Distributed systems, databases, APIs, scaling, and microservices — interview-ready.",
     subjects: [
       {
         name: "Core Concepts",
@@ -360,6 +360,16 @@ export const CURRICULA: Curriculum[] = [
           "Metrics and alerting — Prometheus, Grafana, on-call runbooks, alert fatigue",
           "Log aggregation — structured logging, ELK stack, correlation IDs",
           "Chaos engineering — fault injection, GameDay exercises, blast radius",
+        ],
+      },
+      {
+        name: "Microservices & Cloud-Native",
+        topics: [
+          "Service decomposition — bounded contexts, domain-driven design, strangler-fig migration from monolith",
+          "Inter-service communication — synchronous REST/gRPC vs async events, service discovery, circuit breaker, bulkhead",
+          "Data patterns — database-per-service, CQRS, event sourcing, saga pattern for distributed transactions",
+          "API gateway and BFF — authentication, rate limiting, request aggregation, backend-for-frontend pattern",
+          "Container orchestration — Kubernetes pods/deployments/services, HPA, rolling vs blue-green vs canary deploys",
         ],
       },
     ],

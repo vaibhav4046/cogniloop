@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 curriculum: add "Microservices & Cloud-Native" subject to System Design pack (5 topics: service decomposition/DDD, inter-service communication/circuit-breaker, CQRS/event-sourcing/saga, API gateway/BFF, Kubernetes/container orchestration) — a heavy interview topic previously absent; update pack blurb to mention microservices
+
 - 2026-05-27 UI copy polish: replace native browser confirm() in SettingsView "Clear settings" with the same double-click confirmation pattern used by HistoryView — first click turns the button label to "Click again to confirm" and auto-resets after 4 seconds, removing the jarring OS-level dialog that broke the app's visual style
 
 - 2026-05-27 micro-animation: count-up animation for integer stats in StatsPanel — Sessions, Rounds, and Mastered concepts ease from 0 to their final value on mount using an ease-out-quad rAF loop; streak ("5d") and avg score ("2.34") skip it automatically; respects prefers-reduced-motion
