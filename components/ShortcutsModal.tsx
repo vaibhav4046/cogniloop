@@ -11,6 +11,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
       { keys: "⌘/Ctrl + Enter", label: "Submit answer · Begin loop" },
       { keys: "Esc", label: "Close panel · Clear filter / search · Cancel voice" },
       { keys: "/", label: "Focus topic / filter / search" },
+      { keys: "1 / 2 / 3", label: "Chill / Exam / Expert mode (home)" },
     ],
   },
   {

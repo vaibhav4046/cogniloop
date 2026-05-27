@@ -79,10 +79,11 @@ export function Landing() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "/" && !isInTextField(e.target)) {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
+      if (isInTextField(e.target)) return;
+      if (e.key === "/") { e.preventDefault(); inputRef.current?.focus(); return; }
+      if (e.key === "1") setMode("chill");
+      else if (e.key === "2") setMode("exam");
+      else if (e.key === "3") setMode("expert");
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);

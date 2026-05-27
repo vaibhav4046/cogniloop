@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 keyboard shortcut: press 1 / 2 / 3 on the home page (when not in a text field) to instantly switch to Chill / Exam / Expert mode; documented in the ? shortcuts panel
+
 - 2026-05-27 curriculum: add "Microservices & Cloud-Native" subject to System Design pack (5 topics: service decomposition/DDD, inter-service communication/circuit-breaker, CQRS/event-sourcing/saga, API gateway/BFF, Kubernetes/container orchestration) — a heavy interview topic previously absent; update pack blurb to mention microservices
 
 - 2026-05-27 UI copy polish: replace native browser confirm() in SettingsView "Clear settings" with the same double-click confirmation pattern used by HistoryView — first click turns the button label to "Click again to confirm" and auto-resets after 4 seconds, removing the jarring OS-level dialog that broke the app's visual style
