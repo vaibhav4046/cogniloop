@@ -410,6 +410,7 @@ export const CURRICULA: Curriculum[] = [
           "Fiscal policy — government spending, taxes, multiplier effect, crowding out",
           "Monetary policy — money supply, interest rates, central bank tools, QE",
           "Inflation and unemployment — Phillips curve, NAIRU, cost-push vs demand-pull",
+          "Business cycles and economic indicators — cycle phases (expansion, peak, recession, trough), NBER dating, leading indicators (yield curve inversion, building permits, stock prices, new orders), lagging indicators (unemployment, CPI, prime rate), coincident indicators (GDP, payroll employment, personal income)",
           "Economic growth — Solow model, human capital, technological progress",
         ],
       },

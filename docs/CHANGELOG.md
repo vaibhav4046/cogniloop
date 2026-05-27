@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 curriculum: add "Business cycles and economic indicators" to Economics > Macroeconomics (6→7 topics) — covers cycle phases (expansion, peak, recession, trough), NBER dating, leading indicators (yield curve inversion, building permits, stock prices, new orders), lagging indicators (unemployment, CPI, prime rate), and coincident indicators (GDP, payroll employment, personal income); a core AP Macro and CFA Level 1 topic previously absent from the pack
+
 - 2026-05-27 refactor: merge 3 separate report keyboard-shortcut useEffect hooks (d/r/s keys) into one effect with a single shared ref — reduces 3 addEventListener calls to 1 and removes ~18 lines of duplicated boilerplate; identical behavior preserved
 
 - 2026-05-27 brand voice: tighten HistoryView page description ("Every concept you've faced, every streak you've kept — all here. Nothing on a server.") and footer ("No servers, no accounts — your entire study history lives here and nowhere else."); tighten TemplatesView page description ("Skip the cold start. Pick any concept from your actual syllabus and go straight into the loop.") and footer ("Every concept here is a live drill. Pick one — the first question lands in under 10 seconds.")
