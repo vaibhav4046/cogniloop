@@ -106,7 +106,7 @@ export const CURRICULA: Curriculum[] = [
     id: "gate-cs",
     name: "GATE CSE",
     region: "India · CS Postgrad",
-    blurb: "Data structures, algorithms, OS, DBMS, computer networks, compiler theory, and engineering math — 7 standalone subjects for GATE prep.",
+    blurb: "Data structures, algorithms, OS, DBMS, computer networks, compiler theory, digital logic, and engineering math — 8 standalone subjects for GATE prep.",
     subjects: [
       {
         name: "Data Structures",
@@ -128,6 +128,16 @@ export const CURRICULA: Curriculum[] = [
           "Combinatorics — counting principles, pigeonhole, recurrences, generating functions",
           "Probability — random variables, Bayes' theorem, expectation, variance",
           "Linear algebra — rank, eigenvalues, system of linear equations",
+        ],
+      },
+      {
+        name: "Digital Logic Design",
+        topics: [
+          "Boolean algebra and minimization — Boolean identities, SOP/POS canonical forms, K-map simplification (2–5 variables), Quine-McCluskey method",
+          "Number systems and binary arithmetic — base conversions, 1's/2's complement, signed overflow, BCD encoding, IEEE 754 floating-point basics",
+          "Combinational circuits — half/full adder/subtractor, multiplexers, demultiplexers, encoders, priority encoders, decoders, ROM and PLA implementations",
+          "Sequential circuits — SR, JK, D, T flip-flops; setup/hold time, race conditions; shift registers (SISO/SIPO/PISO/PIPO); ripple and synchronous counters; ring and Johnson counters",
+          "Finite state machines — Mealy vs Moore models, state diagrams, state transition tables, state minimization, hazards in combinational and sequential logic",
         ],
       },
       {

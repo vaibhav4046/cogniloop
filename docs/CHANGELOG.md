@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 curriculum: add "Digital Logic Design" subject to GATE CSE pack (5 topics: Boolean algebra/K-maps, number systems/binary arithmetic, combinational circuits, sequential circuits/flip-flops/counters, finite state machines) — a core GATE exam subject previously absent; update pack blurb from 7 to 8 standalone subjects
+
 - 2026-05-27 tiny feature: coaching report subtitle and markdown export now show session duration in minutes (e.g. "5 rounds · 18 min · avg 2.33/3") — captured via a ref the moment the user clicks "End & report", using rounds[0].createdAt as the start anchor
 
 - 2026-05-27 keyboard shortcut: press 1 / 2 / 3 on the home page (when not in a text field) to instantly switch to Chill / Exam / Expert mode; documented in the ? shortcuts panel
