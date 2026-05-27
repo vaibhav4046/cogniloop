@@ -26,6 +26,7 @@ export function SettingsView() {
   const [showKey, setShowKey] = useState(false);
   const [saved, setSaved] = useState(false);
   const [keyTest, setKeyTest] = useState<{ status: "idle" | "testing" | "ok" | "err"; msg?: string }>({ status: "idle" });
+  const [confirmClear, setConfirmClear] = useState(false);
 
   useEffect(() => {
     setS(getSettings());
@@ -64,10 +65,15 @@ export function SettingsView() {
   }
 
   function clearAll() {
-    if (!confirm("Clear all settings? This will remove your API key and preferences.")) return;
+    if (!confirmClear) {
+      setConfirmClear(true);
+      setTimeout(() => setConfirmClear(false), 4000);
+      return;
+    }
     clearSettings();
     setS(getSettings());
     setKeyTest({ status: "idle" });
+    setConfirmClear(false);
   }
 
   function testTts() {
@@ -318,9 +324,9 @@ export function SettingsView() {
           </div>
           <button
             onClick={clearAll}
-            className="btn-ghost text-xs px-4 py-2 rounded-md !border-[var(--bad)] !text-[var(--bad)]"
+            className={`btn-ghost text-xs px-4 py-2 rounded-md !border-[var(--bad)] !text-[var(--bad)]${confirmClear ? " opacity-100" : ""}`}
           >
-            Clear settings
+            {confirmClear ? "Click again to confirm" : "Clear settings"}
           </button>
         </div>
       </section>

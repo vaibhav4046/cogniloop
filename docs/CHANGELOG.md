@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 UI copy polish: replace native browser confirm() in SettingsView "Clear settings" with the same double-click confirmation pattern used by HistoryView — first click turns the button label to "Click again to confirm" and auto-resets after 4 seconds, removing the jarring OS-level dialog that broke the app's visual style
+
 - 2026-05-27 micro-animation: count-up animation for integer stats in StatsPanel — Sessions, Rounds, and Mastered concepts ease from 0 to their final value on mount using an ease-out-quad rAF loop; streak ("5d") and avg score ("2.34") skip it automatically; respects prefers-reduced-motion
 
 - 2026-05-26 perf: wrap FeatureGrid in React.memo in Landing.tsx — the 12 "What makes it different" cards are pure static content that re-rendered on every topic/notes keystroke; extracting into a module-level memo component eliminates those re-renders with zero behavior change
