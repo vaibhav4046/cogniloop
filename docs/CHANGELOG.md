@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 refactor: merge 3 separate report keyboard-shortcut useEffect hooks (d/r/s keys) into one effect with a single shared ref — reduces 3 addEventListener calls to 1 and removes ~18 lines of duplicated boilerplate; identical behavior preserved
+
 - 2026-05-27 brand voice: tighten HistoryView page description ("Every concept you've faced, every streak you've kept — all here. Nothing on a server.") and footer ("No servers, no accounts — your entire study history lives here and nowhere else."); tighten TemplatesView page description ("Skip the cold start. Pick any concept from your actual syllabus and go straight into the loop.") and footer ("Every concept here is a live drill. Pick one — the first question lands in under 10 seconds.")
 
 - 2026-05-27 docs: sync README keyboard shortcuts (add 1/2/3 mode switch and s share-link), update GATE CSE from 7→8 standalone subjects (adding digital logic), and add microservices to System Design blurb

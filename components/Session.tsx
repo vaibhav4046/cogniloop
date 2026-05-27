@@ -976,36 +976,17 @@ function ReportView({
     URL.revokeObjectURL(url);
   }
 
-  const downloadRef = useRef(downloadMd);
-  downloadRef.current = downloadMd;
+  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget });
+  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (!isInTextField(e.target) && (e.key === "d" || e.key === "D")) downloadRef.current();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const reDrillRef = useRef({ target: reDrillTarget, fn: onReDrill });
-  reDrillRef.current = { target: reDrillTarget, fn: onReDrill };
-
-  useEffect(() => {
-    if (!reDrillTarget) return;
-    const onKey = (e: KeyboardEvent) => {
-      const { target, fn } = reDrillRef.current;
-      if (!isInTextField(e.target) && (e.key === "r" || e.key === "R") && target) fn(target);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [reDrillTarget]);
-
-  const makeShareRef = useRef(makeShareUrl);
-  makeShareRef.current = makeShareUrl;
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!isInTextField(e.target) && (e.key === "s" || e.key === "S")) makeShareRef.current();
+      if (isInTextField(e.target)) return;
+      const k = e.key.toLowerCase();
+      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget } = reportKbdRef.current;
+      if (k === "d") downloadMd();
+      else if (k === "r" && reDrillTarget) onReDrill(reDrillTarget);
+      else if (k === "s") makeShareUrl();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
