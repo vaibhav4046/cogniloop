@@ -76,14 +76,22 @@ export function TemplatesView() {
                   No matches for &ldquo;{filter}&rdquo;
                 </div>
                 <p className="text-[13px] text-[var(--fg-muted)] mb-5 leading-relaxed">
-                  Try searching by exam name, subject, or a specific topic keyword.
+                  No curriculum covers this — but you can drill it directly.
                 </p>
-                <button
-                  onClick={() => setFilter("")}
-                  className="btn-ghost text-xs px-3 py-1.5 rounded-md"
-                >
-                  Clear filter
-                </button>
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => setFilter("")}
+                    className="btn-ghost text-xs px-3 py-1.5 rounded-md"
+                  >
+                    Clear filter
+                  </button>
+                  <button
+                    onClick={() => startWith(filter.trim())}
+                    className="btn-primary text-xs px-3 py-1.5 rounded-md"
+                  >
+                    Drill &ldquo;{filter.length > 38 ? filter.slice(0, 38) + "…" : filter}&rdquo; →
+                  </button>
+                </div>
               </div>
             )}
             {filtered.map((c, idx) => (

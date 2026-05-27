@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 empty state polish: /templates "no matches" empty state now offers a "Drill this topic anyway →" primary button alongside "Clear filter" — so users who search a niche topic not covered by any curriculum pack (e.g. "quantum entanglement") can launch a session directly without backtracking to the home page
+
 - 2026-05-27 curriculum: add "Business cycles and economic indicators" to Economics > Macroeconomics (6→7 topics) — covers cycle phases (expansion, peak, recession, trough), NBER dating, leading indicators (yield curve inversion, building permits, stock prices, new orders), lagging indicators (unemployment, CPI, prime rate), and coincident indicators (GDP, payroll employment, personal income); a core AP Macro and CFA Level 1 topic previously absent from the pack
 
 - 2026-05-27 refactor: merge 3 separate report keyboard-shortcut useEffect hooks (d/r/s keys) into one effect with a single shared ref — reduces 3 addEventListener calls to 1 and removes ~18 lines of duplicated boilerplate; identical behavior preserved
