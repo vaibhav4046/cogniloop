@@ -52,7 +52,7 @@ export function TemplatesView() {
             Pre-loaded concept maps.
           </h1>
           <p className="text-[var(--fg-muted)] text-sm mt-2 leading-relaxed max-w-[560px]">
-            Skip the cold start. Pick a topic from your real syllabus — Cogniloop drills you on it like an exam.
+            Skip the cold start. Pick any concept from your actual syllabus and go straight into the loop.
           </p>
 
           <div className="field px-4 py-2.5 mt-6 max-w-[420px]">
@@ -125,7 +125,7 @@ export function TemplatesView() {
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        Pick any topic — Cogniloop asks the first question in under 10 seconds. No setup, no cold start.
+        Every concept here is a live drill. Pick one — the first question lands in under 10 seconds.
       </footer>
     </main>
   );

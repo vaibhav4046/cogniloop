@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 brand voice: tighten HistoryView page description ("Every concept you've faced, every streak you've kept — all here. Nothing on a server.") and footer ("No servers, no accounts — your entire study history lives here and nowhere else."); tighten TemplatesView page description ("Skip the cold start. Pick any concept from your actual syllabus and go straight into the loop.") and footer ("Every concept here is a live drill. Pick one — the first question lands in under 10 seconds.")
+
 - 2026-05-27 docs: sync README keyboard shortcuts (add 1/2/3 mode switch and s share-link), update GATE CSE from 7→8 standalone subjects (adding digital logic), and add microservices to System Design blurb
 
 - 2026-05-27 a11y: convert WhyView comparison table from div-grid to semantic <table> with <caption class="sr-only">, <th scope="col"> column headers, and <th scope="row"> row headers — screen readers can now navigate the Cogniloop vs ChatGPT vs Claude feature table properly; also switches overflow-hidden to overflow-x-auto for mobile horizontal scroll

@@ -146,7 +146,7 @@ export function HistoryView() {
           Your loop, over time.
         </h1>
         <p className="text-[var(--fg-muted)] text-sm mt-2 leading-relaxed max-w-[560px]">
-          Sessions, streaks, and concept progress live in your browser. Clear anytime.
+          Every concept you&apos;ve faced, every streak you&apos;ve kept — all here. Nothing on a server.
         </p>
 
         <div className="mt-6">
@@ -346,7 +346,7 @@ export function HistoryView() {
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        100% client-side. Data lives in your browser only.
+        No servers, no accounts — your entire study history lives here and nowhere else.
       </footer>
     </main>
   );
