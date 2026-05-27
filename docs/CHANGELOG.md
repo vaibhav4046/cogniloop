@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-27 a11y: convert WhyView comparison table from div-grid to semantic <table> with <caption class="sr-only">, <th scope="col"> column headers, and <th scope="row"> row headers — screen readers can now navigate the Cogniloop vs ChatGPT vs Claude feature table properly; also switches overflow-hidden to overflow-x-auto for mobile horizontal scroll
+
 - 2026-05-27 curriculum: add "Sequences and series" to JEE Mathematics (9→10 topics) — covers AP/GP nth term and sum formulas, arithmetic-geometric series, infinite GP, binomial theorem (general term, middle term, coefficients), and sum of special series (Σn, Σn², Σn³); a core JEE Math chapter previously absent from the pack
 
 - 2026-05-27 curriculum: add "Digital Logic Design" subject to GATE CSE pack (5 topics: Boolean algebra/K-maps, number systems/binary arithmetic, combinational circuits, sequential circuits/flip-flops/counters, finite state machines) — a core GATE exam subject previously absent; update pack blurb from 7 to 8 standalone subjects

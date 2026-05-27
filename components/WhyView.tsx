@@ -100,26 +100,28 @@ export function WhyView() {
         <h2 className="text-[18px] font-semibold tracking-tight mt-12 mb-4">
           Side-by-side
         </h2>
-        <div className="card overflow-hidden">
-          <div className="grid grid-cols-[1.2fr_2fr_1.6fr_1.6fr] text-[11px] uppercase tracking-wider text-[var(--fg-dim)] px-4 py-3 border-b border-[var(--line)] bg-[var(--bg-elev)]">
-            <div></div>
-            <div className="text-[var(--accent)]">Cogniloop</div>
-            <div>ChatGPT</div>
-            <div>Claude</div>
-          </div>
-          {COMPARE.map((r, i) => (
-            <div
-              key={r.row}
-              className={`grid grid-cols-[1.2fr_2fr_1.6fr_1.6fr] text-[12.5px] px-4 py-3 ${
-                i % 2 === 0 ? "" : "bg-[var(--bg-soft)]"
-              }`}
-            >
-              <div className="text-[var(--fg-muted)]">{r.row}</div>
-              <div className="text-[var(--fg)]">{r.cogniloop}</div>
-              <div className="text-[var(--fg-muted)]">{r.chatgpt}</div>
-              <div className="text-[var(--fg-muted)]">{r.claude}</div>
-            </div>
-          ))}
+        <div className="card overflow-x-auto">
+          <table className="w-full [border-collapse:collapse]">
+            <caption className="sr-only">Feature comparison: Cogniloop vs ChatGPT vs Claude</caption>
+            <thead>
+              <tr className="border-b border-[var(--line)] bg-[var(--bg-elev)] text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
+                <th scope="col" className="px-4 py-3 text-left font-normal w-[19%]" />
+                <th scope="col" className="px-4 py-3 text-left font-normal w-[31%] text-[var(--accent)]">Cogniloop</th>
+                <th scope="col" className="px-4 py-3 text-left font-normal w-[25%]">ChatGPT</th>
+                <th scope="col" className="px-4 py-3 text-left font-normal w-[25%]">Claude</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARE.map((r, i) => (
+                <tr key={r.row} className={i % 2 !== 0 ? "bg-[var(--bg-soft)]" : ""}>
+                  <th scope="row" className="px-4 py-3 text-left font-normal text-[12.5px] text-[var(--fg-muted)]">{r.row}</th>
+                  <td className="px-4 py-3 text-[12.5px] text-[var(--fg)]">{r.cogniloop}</td>
+                  <td className="px-4 py-3 text-[12.5px] text-[var(--fg-muted)]">{r.chatgpt}</td>
+                  <td className="px-4 py-3 text-[12.5px] text-[var(--fg-muted)]">{r.claude}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <h2 className="text-[18px] font-semibold tracking-tight mt-14 mb-4">
