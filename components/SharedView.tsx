@@ -86,6 +86,12 @@ export function SharedView({ token }: Props) {
     );
   }
 
+  const evald = payload.rounds.filter((r) => r.evaluation !== undefined);
+  const avgScore =
+    evald.length > 0
+      ? (evald.reduce((s, r) => s + (r.evaluation?.score ?? 0), 0) / evald.length).toFixed(2)
+      : null;
+
   return (
     <main id="main" className="min-h-screen flex flex-col">
       <NavBar />
@@ -95,14 +101,14 @@ export function SharedView({ token }: Props) {
           {payload.topic || "Untitled session"}
         </h1>
         <p className="text-[var(--fg-muted)] text-sm mt-2">
-          {payload.rounds.length} rounds · {getMode(payload.modeId).name} mode · {payload.concepts.length} concepts
+          {payload.rounds.length} round{payload.rounds.length !== 1 ? "s" : ""} · {getMode(payload.modeId).name} mode{avgScore ? ` · avg ${avgScore}/3` : ""} · {payload.concepts.length} concept{payload.concepts.length !== 1 ? "s" : ""}
         </p>
 
         <button
           onClick={startCopy}
           className="btn-primary mt-5 px-5 py-2.5 rounded-lg text-sm"
         >
-          Try this topic yourself  →
+          Drill this topic yourself →
         </button>
 
         <h2 className="text-[15px] font-medium tracking-tight mt-10 mb-3">

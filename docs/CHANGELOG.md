@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 UI copy polish: SharedView meta line now shows avg score when evaluations exist (e.g. "4 rounds · Exam mode · avg 2.25/3 · 5 concepts"), CTA button copy changed from "Try this topic yourself" to "Drill this topic yourself" to match brand voice, and "rounds"/"concepts" pluralize correctly for 1-round sessions
+
 - 2026-05-28 a11y: TemplatesView filter gets a visible ✕ clear button (appears when filter has text, refocuses input on click) — makes the clear-filter UX discoverable for mouse users beyond the Esc shortcut; subject names within each curriculum card promoted from <div> to <h3> so screen readers can navigate the /templates page heading outline (h1 page → h2 curriculum → h3 subject)
 
 - 2026-05-28 micro-animation: fix streak count-up — split suffix "d" into a separate prop so useCountUp receives a plain integer and animates correctly; streak now counts up from 0 on page load like sessions/rounds/mastered
