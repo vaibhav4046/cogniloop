@@ -31,7 +31,7 @@ export function TemplatesView() {
         c.name.toLowerCase().includes(q) ||
         c.region.toLowerCase().includes(q) ||
         c.blurb.toLowerCase().includes(q) ||
-        c.subjects.some((s) => s.topics.some((t) => t.toLowerCase().includes(q)))
+        c.subjects.some((s) => s.name.toLowerCase().includes(q) || s.topics.some((t) => t.toLowerCase().includes(q)))
     );
   }, [filter]);
 
