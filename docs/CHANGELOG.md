@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 curriculum: expand GATE CSE Theory & Compilers from 3 to 5 topics — adds NP-completeness and reductions (P vs NP, Cook-Levin theorem, canonical NP-complete problems, approximation strategies) and formal grammars and automata (regex-to-NFA/DFA, DFA minimization, CFL pumping lemma, Chomsky normal form, CYK algorithm, closure properties), bringing the subject in line with the 5-topic depth of all other GATE CSE subjects
+
 - 2026-05-28 a11y: fix rotating loading hints not announced by screen readers — `aria-live` regions in PhaseLoader and the grading-hint section were keyed, so React unmounted and remounted the live region on each rotation instead of updating its text; moving the `key` + animation class to a nested `<span>` keeps the live region stable so hint changes are now properly announced with `aria-atomic="true"`
 
 - 2026-05-28 curriculum: add "Model evaluation and validation" to ML Fundamentals Models (7→8 topics) — covers k-fold and stratified cross-validation, bias-variance tradeoff (underfitting vs overfitting), evaluation metrics (precision, recall, F1-score, ROC-AUC, confusion matrix), hyperparameter tuning (grid search, random search, Bayesian optimization), and train/validation/test split discipline; a core ML practitioner topic absent from the pack

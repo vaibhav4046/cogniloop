@@ -187,6 +187,8 @@ export const CURRICULA: Curriculum[] = [
           "Theory of computation — DFA, NFA, PDA, Turing machines, pumping lemma, decidability, complexity classes",
           "Compiler design — lexical analysis, LL(1) and LR parsing, syntax-directed translation, intermediate code, optimization",
           "Computer organization — pipelining, data/control hazards, cache hierarchy, memory mapping, RISC vs CISC ISA",
+          "NP-completeness and reductions — P vs NP, Cook-Levin theorem, polynomial-time reductions, canonical NP-complete problems (SAT, 3-SAT, vertex cover, clique, subset sum, Hamiltonian cycle), NP-hard vs NP-complete distinction, approximation strategies",
+          "Formal grammars and automata — regular expression to NFA/DFA construction, DFA minimization, CFL pumping lemma, Chomsky normal form, CYK parsing algorithm, closure properties of regular and context-free languages, non-regular and non-CFL proof techniques",
         ],
       },
     ],
