@@ -201,6 +201,8 @@ export function Session() {
 
   useAutoExpand(taRef, answer, 400);
 
+  const handleTranscript = useCallback((t: string) => setAnswer(t), []);
+
   useEffect(() => {
     if (phase !== "starting" && phase !== "evaluating" && phase !== "ending") {
       setHintIndex(0);
@@ -541,7 +543,7 @@ export function Session() {
               </div>
               <div className="flex gap-2 items-center">
                 <VoiceInput
-                  onTranscript={(t) => setAnswer(t)}
+                  onTranscript={handleTranscript}
                   disabled={phase !== "answering"}
                 />
                 <button

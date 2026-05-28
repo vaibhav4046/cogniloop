@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { getSettings } from "@/lib/settings";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   autoPlayKey?: string | number;
 }
 
-export function ReadAloud({ text, autoPlayKey }: Props) {
+export const ReadAloud = memo(function ReadAloud({ text, autoPlayKey }: Props) {
   const [supported, setSupported] = useState(false);
   const [speaking, setSpeaking] = useState(false);
 
@@ -104,4 +104,4 @@ export function ReadAloud({ text, autoPlayKey }: Props) {
       {speaking ? "Stop" : "Listen"}
     </button>
   );
-}
+});

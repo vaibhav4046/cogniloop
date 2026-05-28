@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { getSettings } from "@/lib/settings";
 
 interface Props {
@@ -33,7 +33,7 @@ const ERR_TEXT: Record<string, string> = {
   "language-not-supported": "Language not supported. Switch in /settings.",
 };
 
-export function VoiceInput({ onTranscript, disabled }: Props) {
+export const VoiceInput = memo(function VoiceInput({ onTranscript, disabled }: Props) {
   const [supported, setSupported] = useState(false);
   const [active, setActive] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -205,7 +205,7 @@ export function VoiceInput({ onTranscript, disabled }: Props) {
       )}
     </div>
   );
-}
+});
 
 function MicIcon({ active }: { active?: boolean }) {
   return (

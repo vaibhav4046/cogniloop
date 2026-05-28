@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 perf: wrap ReadAloud and VoiceInput in React.memo and stabilize the onTranscript prop via useCallback — both components only change on round transitions, not on every answer keystroke, so they no longer re-render during typing
+
 - 2026-05-28 tiny feature: "Stuck?" button now seeds a question-type-aware opening phrase — "explain" gets a Feynman-style starter, "apply" prompts a concrete example, "contrast" opens on the mechanism difference, "predict" starts the cause-and-effect chain, "trace" begins a step-by-step walkthrough; replaces the single generic "I'm not sure — but I'd guess…" with five coaching-voice primes matched to the current question being asked
 
 - 2026-05-28 curriculum: expand GATE CSE Theory & Compilers from 3 to 5 topics — adds NP-completeness and reductions (P vs NP, Cook-Levin theorem, canonical NP-complete problems, approximation strategies) and formal grammars and automata (regex-to-NFA/DFA, DFA minimization, CFL pumping lemma, Chomsky normal form, CYK algorithm, closure properties), bringing the subject in line with the 5-topic depth of all other GATE CSE subjects
