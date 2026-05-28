@@ -583,11 +583,13 @@ export function Session() {
             )}
             {phase === "evaluating" && (
               <div
-                key={hintIndex}
-                className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[12px] text-[var(--fg-muted)] hint-rotate text-center"
+                className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[12px] text-[var(--fg-muted)] text-center"
                 aria-live="polite"
+                aria-atomic="true"
               >
-                {pickHint(GRADING_HINTS, hintIndex)}
+                <span key={hintIndex} className="hint-rotate inline-block">
+                  {pickHint(GRADING_HINTS, hintIndex)}
+                </span>
               </div>
             )}
             {answer.trim() && /\$/.test(answer) && (
@@ -636,11 +638,13 @@ function PhaseLoader({ hint, hintKey }: { hint: string; hintKey: number }) {
         <span /><span /><span />
       </span>
       <div
-        key={hintKey}
-        className="text-[var(--fg-muted)] text-sm hint-rotate min-h-[1.4em]"
+        className="text-[var(--fg-muted)] text-sm min-h-[1.4em]"
         aria-live="polite"
+        aria-atomic="true"
       >
-        {hint}
+        <span key={hintKey} className="hint-rotate inline-block">
+          {hint}
+        </span>
       </div>
     </div>
   );

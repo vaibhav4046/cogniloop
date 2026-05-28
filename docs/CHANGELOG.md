@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 a11y: fix rotating loading hints not announced by screen readers — `aria-live` regions in PhaseLoader and the grading-hint section were keyed, so React unmounted and remounted the live region on each rotation instead of updating its text; moving the `key` + animation class to a nested `<span>` keeps the live region stable so hint changes are now properly announced with `aria-atomic="true"`
+
 - 2026-05-28 curriculum: add "Model evaluation and validation" to ML Fundamentals Models (7→8 topics) — covers k-fold and stratified cross-validation, bias-variance tradeoff (underfitting vs overfitting), evaluation metrics (precision, recall, F1-score, ROC-AUC, confusion matrix), hyperparameter tuning (grid search, random search, Bayesian optimization), and train/validation/test split discipline; a core ML practitioner topic absent from the pack
 
 - 2026-05-28 micro-animation: add scroll-progress reading bar to /templates and /history — the accent-colored 2px top bar that already existed on /why now appears on the two other long scrolling pages, giving users positional feedback as they browse curriculum packs or session history
