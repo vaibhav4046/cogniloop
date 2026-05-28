@@ -267,6 +267,9 @@ export function Session() {
       if (e.key === "n" || e.key === "N") {
         if (phase === "report") newSession();
       }
+      if ((e.key === "r" || e.key === "R") && phase === "error") {
+        rounds.length === 0 ? retryStart() : location.reload();
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -433,12 +436,16 @@ export function Session() {
               <button
                 onClick={rounds.length === 0 ? retryStart : () => location.reload()}
                 className="btn-primary px-4 py-2 rounded-lg text-sm"
+                aria-keyshortcuts="r"
               >
                 Retry
               </button>
               <button onClick={newSession} className="btn-ghost px-4 py-2 rounded-lg text-sm">
                 Start over
               </button>
+            </div>
+            <div className="text-[10px] text-[var(--fg-dim)] mt-3">
+              Press <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-1.5 py-0.5 rounded">R</kbd> to retry
             </div>
           </div>
         </div>

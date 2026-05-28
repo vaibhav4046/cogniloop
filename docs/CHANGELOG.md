@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 keyboard shortcut: press R in the session error state to retry — keyboard handler added to phase-based effect, aria-keyshortcuts="r" on the Retry button, a subtle "Press R to retry" hint shown under the error card buttons, and the shortcut documented in the ? shortcuts panel (Session section)
+
 - 2026-05-28 UI copy polish: SharedView meta line now shows avg score when evaluations exist (e.g. "4 rounds · Exam mode · avg 2.25/3 · 5 concepts"), CTA button copy changed from "Try this topic yourself" to "Drill this topic yourself" to match brand voice, and "rounds"/"concepts" pluralize correctly for 1-round sessions
 
 - 2026-05-28 a11y: TemplatesView filter gets a visible ✕ clear button (appears when filter has text, refocuses input on click) — makes the clear-filter UX discoverable for mouse users beyond the Esc shortcut; subject names within each curriculum card promoted from <div> to <h3> so screen readers can navigate the /templates page heading outline (h1 page → h2 curriculum → h3 subject)
