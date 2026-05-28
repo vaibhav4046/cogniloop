@@ -208,6 +208,7 @@ export const CURRICULA: Curriculum[] = [
           "Amino acids and protein structure — 20 standard amino acids, peptide bonds, primary/secondary/tertiary/quaternary structure, protein folding and denaturation",
           "Cardiovascular and respiratory physiology — cardiac cycle, Frank-Starling law, blood pressure regulation, gas exchange, O₂-CO₂ transport, ventilation-perfusion",
           "Endocrine and nervous systems — hormone classes, receptor mechanisms, action potential, synaptic transmission, homeostatic feedback",
+          "Immunology and the immune response — innate vs adaptive immunity, B-cell activation and antibody isotypes (IgM/IgG/IgA/IgE/IgD), T-cell classes (CD4⁺ helper, CD8⁺ cytotoxic, Treg), MHC class I vs II antigen presentation, complement system (classical, lectin, alternative pathways), clonal selection, active vs passive immunity, and vaccine types (live-attenuated, inactivated, subunit, mRNA)",
         ],
       },
       {

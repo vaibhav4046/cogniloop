@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 curriculum: add "Immunology and the immune response" to MCAT Biological & Biochemical Foundations (6→7 topics) — covers innate vs adaptive immunity, B-cell activation and antibody isotypes (IgM/IgG/IgA/IgE/IgD), T-cell classes (CD4⁺ helper, CD8⁺ cytotoxic, Treg), MHC class I vs II antigen presentation, complement system (classical, lectin, alternative pathways), clonal selection, active vs passive immunity, and vaccine types (live-attenuated, inactivated, subunit, mRNA); a high-yield MCAT Bio/Biochem topic previously absent from the pack
+
 - 2026-05-28 perf: wrap ReadAloud and VoiceInput in React.memo and stabilize the onTranscript prop via useCallback — both components only change on round transitions, not on every answer keystroke, so they no longer re-render during typing
 
 - 2026-05-28 tiny feature: "Stuck?" button now seeds a question-type-aware opening phrase — "explain" gets a Feynman-style starter, "apply" prompts a concrete example, "contrast" opens on the mechanism difference, "predict" starts the cause-and-effect chain, "trace" begins a step-by-step walkthrough; replaces the single generic "I'm not sure — but I'd guess…" with five coaching-voice primes matched to the current question being asked
