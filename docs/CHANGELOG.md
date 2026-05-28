@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 curriculum: add "Model evaluation and validation" to ML Fundamentals Models (7→8 topics) — covers k-fold and stratified cross-validation, bias-variance tradeoff (underfitting vs overfitting), evaluation metrics (precision, recall, F1-score, ROC-AUC, confusion matrix), hyperparameter tuning (grid search, random search, Bayesian optimization), and train/validation/test split discipline; a core ML practitioner topic absent from the pack
+
 - 2026-05-28 micro-animation: add scroll-progress reading bar to /templates and /history — the accent-colored 2px top bar that already existed on /why now appears on the two other long scrolling pages, giving users positional feedback as they browse curriculum packs or session history
 
 - 2026-05-27 a11y: form errors and settings status now announced to screen readers — Landing.tsx form-validation error gets a persistent `role="alert"` / `aria-live="assertive"` container so the "Type a topic" message is announced on submission; SettingsView "Saved ✓" toast gains `role="status"` / `aria-live="polite"`; Groq key-test result (✓ valid / ✗ invalid) wrapped in a persistent `aria-live="polite"` span so the outcome is read without visual focus

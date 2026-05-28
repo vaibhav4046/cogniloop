@@ -299,6 +299,7 @@ export const CURRICULA: Curriculum[] = [
           "Recurrent networks and sequence models — RNN, vanishing gradients, LSTM gates, GRU, bidirectional RNN, seq2seq encoder-decoder",
           "Attention and transformers",
           "Regularization — L1, L2, dropout",
+          "Model evaluation and validation — k-fold and stratified cross-validation, bias-variance tradeoff (underfitting vs overfitting), evaluation metrics (precision, recall, F1-score, ROC-AUC, confusion matrix), hyperparameter tuning (grid search, random search, Bayesian optimization), data leakage, and train/validation/test split discipline",
         ],
       },
       {
