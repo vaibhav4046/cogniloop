@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NavBar } from "./NavBar";
+import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
 import {
   getHistory,
@@ -139,6 +140,7 @@ export function HistoryView() {
 
   return (
     <main id="main" className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <NavBar />
       <section className="flex-1 max-w-[920px] w-full mx-auto px-6 py-8 fade-up">
         <span className="tag mb-4">History</span>

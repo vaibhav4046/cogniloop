@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 micro-animation: add scroll-progress reading bar to /templates and /history — the accent-colored 2px top bar that already existed on /why now appears on the two other long scrolling pages, giving users positional feedback as they browse curriculum packs or session history
+
 - 2026-05-27 a11y: form errors and settings status now announced to screen readers — Landing.tsx form-validation error gets a persistent `role="alert"` / `aria-live="assertive"` container so the "Type a topic" message is announced on submission; SettingsView "Saved ✓" toast gains `role="status"` / `aria-live="polite"`; Groq key-test result (✓ valid / ✗ invalid) wrapped in a persistent `aria-live="polite"` span so the outcome is read without visual focus
 
 - 2026-05-27 empty state polish: /templates "no matches" empty state now offers a "Drill this topic anyway →" primary button alongside "Clear filter" — so users who search a niche topic not covered by any curriculum pack (e.g. "quantum entanglement") can launch a session directly without backtracking to the home page

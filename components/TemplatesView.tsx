@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { CURRICULA } from "@/lib/curricula";
 import { NavBar } from "./NavBar";
+import { ScrollProgress } from "./ScrollProgress";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isInTextField } from "@/lib/kbd";
 
@@ -44,6 +45,7 @@ export function TemplatesView() {
 
   return (
     <main id="main" className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <NavBar />
       <section className="flex-1 max-w-[920px] w-full mx-auto px-6 py-8">
         <div className="fade-up">
