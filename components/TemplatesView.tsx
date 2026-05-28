@@ -57,7 +57,7 @@ export function TemplatesView() {
             Skip the cold start. Pick any concept from your actual syllabus and go straight into the loop.
           </p>
 
-          <div className="field px-4 py-2.5 mt-6 max-w-[420px]">
+          <div className="field px-4 py-2.5 mt-6 max-w-[420px] flex items-center gap-2">
             <input
               ref={inputRef}
               value={filter}
@@ -67,8 +67,17 @@ export function TemplatesView() {
               }}
               placeholder="Filter by exam, subject, or topic… (press / to focus)"
               aria-label="Filter curriculum templates"
-              className="w-full bg-transparent outline-none text-[14px] placeholder:text-[var(--fg-dim)]"
+              className="flex-1 min-w-0 bg-transparent outline-none text-[14px] placeholder:text-[var(--fg-dim)]"
             />
+            {filter && (
+              <button
+                onClick={() => { setFilter(""); inputRef.current?.focus(); }}
+                aria-label="Clear filter"
+                className="shrink-0 text-[var(--fg-dim)] hover:text-[var(--fg)] text-xs leading-none"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           <div className="mt-8 flex flex-col gap-8">
@@ -112,9 +121,9 @@ export function TemplatesView() {
                 <div className="flex flex-col gap-4">
                   {c.subjects.map((s) => (
                     <div key={s.name}>
-                      <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
+                      <h3 className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
                         {s.name}
-                      </div>
+                      </h3>
                       <div className="flex flex-wrap gap-2">
                         {s.topics.map((t) => (
                           <button

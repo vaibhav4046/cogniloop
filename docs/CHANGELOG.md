@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 a11y: TemplatesView filter gets a visible ✕ clear button (appears when filter has text, refocuses input on click) — makes the clear-filter UX discoverable for mouse users beyond the Esc shortcut; subject names within each curriculum card promoted from <div> to <h3> so screen readers can navigate the /templates page heading outline (h1 page → h2 curriculum → h3 subject)
+
 - 2026-05-28 micro-animation: fix streak count-up — split suffix "d" into a separate prop so useCountUp receives a plain integer and animates correctly; streak now counts up from 0 on page load like sessions/rounds/mastered
 
 - 2026-05-28 curriculum: add "Immunology and the immune response" to MCAT Biological & Biochemical Foundations (6→7 topics) — covers innate vs adaptive immunity, B-cell activation and antibody isotypes (IgM/IgG/IgA/IgE/IgD), T-cell classes (CD4⁺ helper, CD8⁺ cytotoxic, Treg), MHC class I vs II antigen presentation, complement system (classical, lectin, alternative pathways), clonal selection, active vs passive immunity, and vaccine types (live-attenuated, inactivated, subunit, mRNA); a high-yield MCAT Bio/Biochem topic previously absent from the pack
