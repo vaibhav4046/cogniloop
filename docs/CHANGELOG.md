@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 micro-animation: fix streak count-up — split suffix "d" into a separate prop so useCountUp receives a plain integer and animates correctly; streak now counts up from 0 on page load like sessions/rounds/mastered
+
 - 2026-05-28 curriculum: add "Immunology and the immune response" to MCAT Biological & Biochemical Foundations (6→7 topics) — covers innate vs adaptive immunity, B-cell activation and antibody isotypes (IgM/IgG/IgA/IgE/IgD), T-cell classes (CD4⁺ helper, CD8⁺ cytotoxic, Treg), MHC class I vs II antigen presentation, complement system (classical, lectin, alternative pathways), clonal selection, active vs passive immunity, and vaccine types (live-attenuated, inactivated, subunit, mRNA); a high-yield MCAT Bio/Biochem topic previously absent from the pack
 
 - 2026-05-28 perf: wrap ReadAloud and VoiceInput in React.memo and stabilize the onTranscript prop via useCallback — both components only change on round transitions, not on every answer keystroke, so they no longer re-render during typing

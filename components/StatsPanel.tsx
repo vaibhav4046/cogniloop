@@ -38,7 +38,7 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
 
   return (
     <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-5 gap-2.5"}>
-      <Stat label="Streak" value={`${streak.current}d`} hint={`Best ${streak.longest}d`} index={0} />
+      <Stat label="Streak" value={String(streak.current)} suffix="d" hint={`Best ${streak.longest}d`} index={0} />
       <Stat label="Sessions" value={stats.totalSessions.toString()} index={1} />
       <Stat label="Rounds" value={stats.totalRounds.toString()} index={2} />
       <Stat label="Mastered" value={stats.totalMastered.toString()} hint="concepts" index={3} />
@@ -82,14 +82,14 @@ function useCountUp(value: string, delay = 0): string {
   return displayed;
 }
 
-function Stat({ label, value, hint, index = 0 }: { label: string; value: string; hint?: string; index?: number }) {
+function Stat({ label, value, hint, index = 0, suffix }: { label: string; value: string; hint?: string; index?: number; suffix?: string }) {
   const displayed = useCountUp(value, index * 55);
   return (
     <div className="card px-3 py-2.5 fade-up" style={{ animationDelay: `${index * 55}ms` }}>
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)]">
         {label}
       </div>
-      <div className="text-[18px] font-semibold tracking-tight mt-0.5">{displayed}</div>
+      <div className="text-[18px] font-semibold tracking-tight mt-0.5">{displayed}{suffix}</div>
       {hint && <div className="text-[10px] text-[var(--fg-dim)] mt-0.5">{hint}</div>}
     </div>
   );
