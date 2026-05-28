@@ -94,6 +94,14 @@ const QTYPE_PLACEHOLDER: Record<Round["questionType"], string> = {
   trace: "Step through it one action at a time — what happens first, what follows, what's the end state? Use $…$ for math.",
 };
 
+const STUCK_STARTERS: Record<Round["questionType"], string> = {
+  explain: "Let me explain this from scratch — the core idea is that…",
+  apply: "A concrete example of this would be… and here is how it plays out:",
+  contrast: "The key difference between them is… because under the hood…",
+  predict: "Following the cause-and-effect chain from first principles: if…, then…",
+  trace: "Walking through it step by step — first…, then…, and finally…",
+};
+
 export function Session() {
   const router = useRouter();
   const toast = useToast();
@@ -545,11 +553,11 @@ export function Session() {
                   ƒ
                 </button>
                 <button
-                  onClick={() => setAnswer("I'm not sure — but I'd guess…")}
+                  onClick={() => setAnswer(STUCK_STARTERS[lastRound.questionType])}
                   disabled={phase !== "answering"}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
-                  aria-label="Fill in a starting phrase to get unstuck"
-                  title="Click when stuck — fills in a starting phrase so you can begin thinking out loud"
+                  aria-label="Fill in a question-type-aware starting phrase to get unstuck"
+                  title={`Click when stuck — seeds a "${lastRound.questionType}"-style opening so you can start thinking out loud`}
                 >
                   Stuck?
                 </button>
