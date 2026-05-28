@@ -129,7 +129,7 @@ export function SettingsView() {
           Make Cogniloop yours.
         </h1>
         <p className="text-[var(--fg-muted)] text-sm mt-2 leading-relaxed max-w-[560px]">
-          All settings live in your browser only. Bring your own Groq key for faster, higher-quality questions. Pollinations is the free fallback when no key is set.
+          No account, no cloud. Your API key lives only in your browser. Paste a free Groq key for sharper, faster questions — or start drilling right now with zero setup on Pollinations.
         </p>
 
         <div
@@ -245,10 +245,10 @@ export function SettingsView() {
         <div className="card p-5">
           <div className="flex items-center gap-2 mb-4">
             <span className="tag" style={{ color: voiceSupported ? "var(--good)" : "var(--bad)" }}>
-              Voice input: {voiceSupported ? "supported" : "unsupported"}
+              Mic {voiceSupported ? "ready" : "unavailable — Chrome/Edge only"}
             </span>
             <span className="tag" style={{ color: ttsSupported ? "var(--good)" : "var(--bad)" }}>
-              Read-aloud: {ttsSupported ? "supported" : "unsupported"}
+              Read-aloud {ttsSupported ? "ready" : "unavailable"}
             </span>
           </div>
 
@@ -337,7 +337,7 @@ export function SettingsView() {
         </div>
       </section>
       <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        Settings live in your browser only. Never sent anywhere except the chosen LLM provider.
+        Your key, your device. Nothing leaves your browser except the topic you drill.
       </footer>
     </main>
   );

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 brand voice: tighten SettingsView copy — page description drops administrative "Pollinations is the free fallback" spec-list for "No account, no cloud" coaching voice; voice-support status tags simplified from "Voice input: supported/unsupported" to "Mic ready / Mic unavailable — Chrome/Edge only" and "Read-aloud ready / unavailable"; footer updated from "Never sent anywhere except the chosen LLM provider" to "Your key, your device. Nothing leaves your browser except the topic you drill."
+
 - 2026-05-28 curriculum: add "Biological classification and diversity of life" to NEET Biology (7→8 topics) — covers the 5-kingdom system (Monera, Protista, Fungi, Plantae, Animalia) with kingdom characteristics, major animal phyla (Porifera through Chordata — body plans, symmetry, coelom, notochord), plant kingdom divisions (algae, bryophytes, pteridophytes, gymnosperms, angiosperms — alternation of generations), and viruses/viroids/lichens; a high-yield NEET Bio topic spanning ~8-10 NEET questions (NCERT Class 11 Chapters 2-4) previously absent from the pack
 
 - 2026-05-28 refactor: /templates search now matches subject names (e.g. "Operating Systems", "Engineering Mathematics") in addition to topic strings — the subjects.some() predicate was missing an s.name check, so subject-level searches silently returned no results
