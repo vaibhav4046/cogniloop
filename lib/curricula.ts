@@ -77,6 +77,7 @@ export const CURRICULA: Curriculum[] = [
           "Reproduction in flowering plants and humans",
           "Evolution and biotechnology",
           "Ecology and environment",
+          "Biological classification and diversity of life — 5-kingdom system (Monera, Protista, Fungi, Plantae, Animalia), kingdom characteristics and distinguishing features, major animal phyla (Porifera, Coelenterata, Platyhelminthes, Nematoda, Annelida, Arthropoda, Mollusca, Echinodermata, Chordata — body plans, symmetry, coelom, notochord), plant kingdom divisions (algae, bryophytes, pteridophytes, gymnosperms, angiosperms — alternation of generations, reproductive structures), viruses, viroids, and lichens",
         ],
       },
       {

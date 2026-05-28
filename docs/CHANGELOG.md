@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-28 curriculum: add "Biological classification and diversity of life" to NEET Biology (7→8 topics) — covers the 5-kingdom system (Monera, Protista, Fungi, Plantae, Animalia) with kingdom characteristics, major animal phyla (Porifera through Chordata — body plans, symmetry, coelom, notochord), plant kingdom divisions (algae, bryophytes, pteridophytes, gymnosperms, angiosperms — alternation of generations), and viruses/viroids/lichens; a high-yield NEET Bio topic spanning ~8-10 NEET questions (NCERT Class 11 Chapters 2-4) previously absent from the pack
+
 - 2026-05-28 refactor: /templates search now matches subject names (e.g. "Operating Systems", "Engineering Mathematics") in addition to topic strings — the subjects.some() predicate was missing an s.name check, so subject-level searches silently returned no results
 
 - 2026-05-28 keyboard shortcut: press R in the session error state to retry — keyboard handler added to phase-based effect, aria-keyshortcuts="r" on the Retry button, a subtle "Press R to retry" hint shown under the error card buttons, and the shortcut documented in the ? shortcuts panel (Session section)
