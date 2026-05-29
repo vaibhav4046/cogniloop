@@ -18,7 +18,7 @@ import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hin
 import { isInTextField } from "@/lib/kbd";
 import { getMode, type ModeId } from "@/lib/modes";
 import { useAutoExpand } from "@/lib/useAutoExpand";
-import { QTYPE_DESC, STRENGTH_DESC } from "@/lib/labels";
+import { QTYPE_DESC, STRENGTH_DESC, QTYPE_PLACEHOLDER, STUCK_STARTERS } from "@/lib/labels";
 import type {
   Concept,
   Round,
@@ -86,21 +86,7 @@ const STRENGTH_PCT: Record<ConceptStrength, number> = {
   mastered: 100,
 };
 
-const QTYPE_PLACEHOLDER: Record<Round["questionType"], string> = {
-  explain: "Explain it from scratch — as if you're teaching someone seeing it for the first time. Reasoning > recall. Use $…$ for math.",
-  apply: "Pick a concrete scenario and trace through how this plays out step by step. Show your reasoning. Use $…$ for math.",
-  contrast: "Focus on the mechanism that makes them behave differently — not just naming the difference. Use $…$ for math.",
-  predict: "Walk the cause-and-effect chain from first principles. What has to be true for this outcome? Use $…$ for math.",
-  trace: "Step through it one action at a time — what happens first, what follows, what's the end state? Use $…$ for math.",
-};
 
-const STUCK_STARTERS: Record<Round["questionType"], string> = {
-  explain: "Let me explain this from scratch — the core idea is that…",
-  apply: "A concrete example of this would be… and here is how it plays out:",
-  contrast: "The key difference between them is… because under the hood…",
-  predict: "Following the cause-and-effect chain from first principles: if…, then…",
-  trace: "Walking through it step by step — first…, then…, and finally…",
-};
 
 export function Session() {
   const router = useRouter();

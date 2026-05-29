@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 refactor: move QTYPE_PLACEHOLDER and STUCK_STARTERS from Session.tsx into lib/labels.ts, co-locating all question-type label data alongside the existing QTYPE_DESC constant; no behavior change
+
 - 2026-05-29 UI copy polish: coaching report round review now shows per-round "What you got" and "Still missing" bullet lists — the same Block component used by EvalCard in the active session and SharedView, making all three surfaces consistent; previously the collapsible "Review all rounds" section only showed verdict text without the strengths and gaps breakdown
 
 - 2026-05-29 empty state polish: ConceptPanel now shows "All N concepts mastered — no gaps left on this topic." in accent color with a fade-up animation below the concept list when every concept in the session reaches mastered state — gives real-time confirmation of full mastery without requiring an explicit action
