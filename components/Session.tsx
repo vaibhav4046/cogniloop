@@ -796,6 +796,11 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
           </li>
         ))}
       </ul>
+      {allMastered && (
+        <p className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11px] text-[var(--accent)] text-center leading-snug fade-up">
+          All {concepts.length} concept{concepts.length !== 1 ? "s" : ""} mastered — no gaps left on this topic.
+        </p>
+      )}
     </div>
   );
 });

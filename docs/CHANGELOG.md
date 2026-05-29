@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 empty state polish: ConceptPanel now shows "All N concepts mastered — no gaps left on this topic." in accent color with a fade-up animation below the concept list when every concept in the session reaches mastered state — gives real-time confirmation of full mastery without requiring an explicit action
+
 - 2026-05-29 perf: extract curriculum cards on the landing page into a memoized CurriculaPicker component with pre-computed topic counts, preventing re-renders of the 6 static curriculum cards on every keystroke in the topic input
 
 - 2026-05-29 UI copy polish: shared session round cards now show per-round strengths ("What you got") and gaps ("Still missing") bullet lists alongside score and verdict — consistent with the EvalCard in the active session and the markdown export
