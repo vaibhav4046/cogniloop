@@ -80,6 +80,20 @@ export function TemplatesView() {
             )}
           </div>
 
+          {/* Stable live region — screen readers hear result count on each filter keystroke */}
+          <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+            {filter
+              ? filtered.length === 0
+                ? `No curriculum packs match "${filter}"`
+                : `${filtered.length} of ${CURRICULA.length} curriculum packs match`
+              : ""}
+          </div>
+          {filter && filtered.length > 0 && (
+            <p className="text-[11px] text-[var(--fg-dim)] mt-2">
+              {filtered.length} of {CURRICULA.length} pack{filtered.length !== 1 ? "s" : ""}
+            </p>
+          )}
+
           <div className="mt-8 flex flex-col gap-8">
             {filtered.length === 0 && (
               <div className="card p-8 text-center fade-up max-w-[480px] mx-auto">

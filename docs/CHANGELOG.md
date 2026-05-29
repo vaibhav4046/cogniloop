@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 a11y: TemplatesView filter now announces result counts to screen readers via a stable aria-live="polite" region — "3 of 8 curriculum packs match" on each filter change, "No curriculum packs match …" on zero results; a matching visible count ("3 of 8 packs") appears below the input for visual users, consistent with HistoryView's "N shown" pattern
+
 - 2026-05-29 refactor: move QTYPE_PLACEHOLDER and STUCK_STARTERS from Session.tsx into lib/labels.ts, co-locating all question-type label data alongside the existing QTYPE_DESC constant; no behavior change
 
 - 2026-05-29 UI copy polish: coaching report round review now shows per-round "What you got" and "Still missing" bullet lists — the same Block component used by EvalCard in the active session and SharedView, making all three surfaces consistent; previously the collapsible "Review all rounds" section only showed verdict text without the strengths and gaps breakdown
