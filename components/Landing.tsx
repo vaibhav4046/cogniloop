@@ -35,6 +35,40 @@ const FEATURES = [
   { t: "100% client-side", b: "Sessions live in your browser only. No accounts, no servers, nothing ever leaves your device." },
 ];
 
+const CURRICULA_PREVIEW = CURRICULA.slice(0, 6).map((c) => ({
+  ...c,
+  topicCount: c.subjects.reduce((n, s) => n + s.topics.length, 0),
+}));
+
+const CurriculaPicker = memo(function CurriculaPicker() {
+  return (
+    <div className="mt-10">
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
+          Curriculum packs
+        </div>
+        <Link href="/templates" className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]">
+          See all →
+        </Link>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+        {CURRICULA_PREVIEW.map((c, i) => (
+          <Link
+            key={c.id}
+            href={`/templates#${c.id}`}
+            className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150 block item-in"
+            style={{ animationDelay: `${i * 60}ms` }}
+          >
+            <div className="text-[13px] font-medium tracking-tight">{c.name}</div>
+            <div className="text-[11px] text-[var(--fg-muted)] mt-0.5">{c.region}</div>
+            <div className="text-[11px] text-[var(--fg-dim)] mt-1">{c.topicCount} topics</div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+});
+
 const FeatureGrid = memo(function FeatureGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
@@ -267,36 +301,7 @@ export function Landing() {
             </div>
           )}
 
-          <div className="mt-10">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
-                Curriculum packs
-              </div>
-              <Link href="/templates" className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]">
-                See all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {CURRICULA.slice(0, 6).map((c, i) => (
-                <Link
-                  key={c.id}
-                  href={`/templates#${c.id}`}
-                  className="card p-3 text-left hover:border-[#2a2e34] hover:bg-[var(--bg-elev)] hover:-translate-y-px transition-all duration-150 block item-in"
-                  style={{ animationDelay: `${i * 60}ms` }}
-                >
-                  <div className="text-[13px] font-medium tracking-tight">
-                    {c.name}
-                  </div>
-                  <div className="text-[11px] text-[var(--fg-muted)] mt-0.5">
-                    {c.region}
-                  </div>
-                  <div className="text-[11px] text-[var(--fg-dim)] mt-1">
-                    {c.subjects.reduce((n, s) => n + s.topics.length, 0)} topics
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+          <CurriculaPicker />
 
           <div className="mt-14">
             <h2 className="text-[20px] font-semibold tracking-tight">

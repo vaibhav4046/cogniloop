@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 perf: extract curriculum cards on the landing page into a memoized CurriculaPicker component with pre-computed topic counts, preventing re-renders of the 6 static curriculum cards on every keystroke in the topic input
+
 - 2026-05-29 UI copy polish: shared session round cards now show per-round strengths ("What you got") and gaps ("Still missing") bullet lists alongside score and verdict — consistent with the EvalCard in the active session and the markdown export
 
 - 2026-05-29 curriculum: add "Development economics" to Economics Behavioral & International (3→4 topics) — covers Sen's capability approach and HDI, poverty traps (geographic, institutional, behavioral), Gini coefficient and Lorenz curve, Kuznets curve, Lewis dual-economy model, conditional vs absolute convergence, the Sachs vs Easterly foreign-aid debate, J-PAL randomized controlled trials (Banerjee & Duflo), and microfinance; fills the most significant gap in the Economics pack for AP Macro, college econ, and CFA Level 1 students
