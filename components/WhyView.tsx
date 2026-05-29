@@ -128,8 +128,8 @@ export function WhyView() {
           Built for these study moments
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {USE_CASES.map((u) => (
-            <div key={u.who} className="card p-4">
+          {USE_CASES.map((u, i) => (
+            <div key={u.who} className="card p-4 item-in" style={{ animationDelay: `${i * 70}ms` }}>
               <div className="text-[13.5px] font-medium tracking-tight">
                 {u.who}
               </div>
@@ -144,8 +144,8 @@ export function WhyView() {
           FAQ
         </h2>
         <div className="flex flex-col gap-2">
-          {FAQ.map((f) => (
-            <details key={f.q} className="card p-4 group">
+          {FAQ.map((f, i) => (
+            <details key={f.q} className="card p-4 group item-in" style={{ animationDelay: `${i * 55}ms` }}>
               <summary className="cursor-pointer flex items-center justify-between gap-4 list-none text-[14px] font-medium tracking-tight">
                 <span>{f.q}</span>
                 <span className="text-[var(--fg-dim)] group-open:rotate-90 transition-transform">
