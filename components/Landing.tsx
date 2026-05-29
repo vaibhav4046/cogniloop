@@ -247,17 +247,18 @@ export function Landing() {
           </div>
 
           {recentTopics.length > 0 && (
-            <div className="mt-6">
+            <div className="mt-6 fade-up">
               <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
                 Pick up where you left off
               </div>
               <div className="flex flex-wrap gap-2">
-                {recentTopics.map((t) => (
+                {recentTopics.map((t, i) => (
                   <button
                     key={t}
                     onClick={() => { setTopic(t); setErr(null); inputRef.current?.focus(); }}
                     title={t}
-                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg max-w-[260px] truncate"
+                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg max-w-[260px] truncate item-in"
+                    style={{ animationDelay: `${i * 70}ms` }}
                   >
                     ↻ {t}
                   </button>
