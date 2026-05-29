@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (55+ shipped features)
+## What it does (65+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -57,7 +57,9 @@ Loop until mastered.
 - URL-encoded shareable session links — no backend, no leaks
 - Per-round feedback card with strengths + gaps as bullet lists
 - Collapsible round-review in coaching report — question, answer, score, and verdict per round
-- Live word count while typing — nudges fuller explanations
+- Live word count while typing — color-coded amber / accent / green as explanation depth grows
+- Question-type-aware answer placeholder — five coaching-voice prompts matched to explain / apply / contrast / predict / trace
+- Question-type-aware "Stuck?" starters — one-click seed phrase opens the right frame for each question type (Feynman, concrete scenario, mechanism diff, cause-effect chain, step-by-step trace)
 - Browser tab title shows the active study topic (e.g. "Backpropagation · Cogniloop")
 
 **Persistence + accountability**
@@ -78,12 +80,14 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `s` share link, `r` re-drill weak concept
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `s` share link, `r` re-drill weak concept / retry on error
 - Per-round difficulty dots, mode badges, question-type tags
+- Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh
 - Empty-state coaching card on the home page
 - Score trend sparkline in coaching report — color-coded dots across all rounds
+- Rotating coaching hints during start, grading, and report phases — 8 / 8 / 6 pool, brand voice throughout
 
 **Pages**
 - `/` — landing with mode picker, examples, curriculum cards, feature grid
