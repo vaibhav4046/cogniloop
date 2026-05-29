@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 additional curriculum topic: added "Design a real-time collaborative editor (Google Docs / Figma)" to System Design → Design Problems, covering OT vs CRDTs, cursor/presence broadcasting, WebSocket rooms, conflict resolution, and offline reconciliation (6→7 topics)
+
 - 2026-05-29 a11y: TemplatesView filter now announces result counts to screen readers via a stable aria-live="polite" region — "3 of 8 curriculum packs match" on each filter change, "No curriculum packs match …" on zero results; a matching visible count ("3 of 8 packs") appears below the input for visual users, consistent with HistoryView's "N shown" pattern
 
 - 2026-05-29 refactor: move QTYPE_PLACEHOLDER and STUCK_STARTERS from Session.tsx into lib/labels.ts, co-locating all question-type label data alongside the existing QTYPE_DESC constant; no behavior change

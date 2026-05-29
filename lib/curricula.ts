@@ -366,6 +366,7 @@ export const CURRICULA: Curriculum[] = [
           "Design a notification service",
           "Design an API rate limiter",
           "Design a file storage system (Dropbox / S3)",
+          "Design a real-time collaborative editor (Google Docs / Figma) — operational transforms vs CRDTs, cursor and presence broadcasting, WebSocket rooms, conflict resolution, and offline reconciliation",
         ],
       },
       {
