@@ -751,7 +751,8 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
             <div className="flex items-center justify-between gap-2">
               <span className="text-[13px] tracking-tight truncate">{c.name}</span>
               <span
-                className="text-[10px] uppercase tracking-wider font-medium"
+                key={c.strength}
+                className="text-[10px] uppercase tracking-wider font-medium pop-in"
                 style={{ color: STRENGTH_COLOR[c.strength] }}
                 title={STRENGTH_DESC[c.strength]}
               >
