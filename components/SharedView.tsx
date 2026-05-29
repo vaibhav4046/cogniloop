@@ -161,22 +161,50 @@ export function SharedView({ token }: Props) {
                 </div>
               )}
               {r.evaluation && (
-                <div className="mt-3 text-[12px] flex items-center gap-2">
-                  <span className="text-[var(--fg-dim)]">Score</span>
-                  <span
-                    style={{
-                      color:
-                        r.evaluation.score >= 2
-                          ? "var(--good)"
-                          : r.evaluation.score === 1
-                          ? "var(--warn)"
-                          : "var(--bad)",
-                    }}
-                  >
-                    {r.evaluation.score}/3
-                  </span>
-                  <span className="text-[var(--fg-muted)]">— {r.evaluation.verdict}</span>
-                </div>
+                <>
+                  <div className="mt-3 text-[12px] flex items-center gap-2">
+                    <span className="text-[var(--fg-dim)]">Score</span>
+                    <span
+                      style={{
+                        color:
+                          r.evaluation.score >= 2
+                            ? "var(--good)"
+                            : r.evaluation.score === 1
+                            ? "var(--warn)"
+                            : "var(--bad)",
+                      }}
+                    >
+                      {r.evaluation.score}/3
+                    </span>
+                    <span className="text-[var(--fg-muted)]">— {r.evaluation.verdict}</span>
+                  </div>
+                  {r.evaluation.strengths.length > 0 && (
+                    <div className="mt-2">
+                      <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">What you got</div>
+                      <ul className="flex flex-col gap-0.5">
+                        {r.evaluation.strengths.map((s, i) => (
+                          <li key={i} className="text-[12px] text-[var(--fg-muted)] leading-relaxed flex gap-2">
+                            <span style={{ color: "var(--good)" }} aria-hidden="true">•</span>
+                            <span><Tex text={s} /></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {r.evaluation.gaps.length > 0 && (
+                    <div className="mt-2">
+                      <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">Still missing</div>
+                      <ul className="flex flex-col gap-0.5">
+                        {r.evaluation.gaps.map((g, i) => (
+                          <li key={i} className="text-[12px] text-[var(--fg-muted)] leading-relaxed flex gap-2">
+                            <span style={{ color: "var(--bad)" }} aria-hidden="true">•</span>
+                            <span><Tex text={g} /></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
               )}
             </article>
           ))}
