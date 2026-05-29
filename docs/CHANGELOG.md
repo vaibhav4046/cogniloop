@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 curriculum: add "Development economics" to Economics Behavioral & International (3→4 topics) — covers Sen's capability approach and HDI, poverty traps (geographic, institutional, behavioral), Gini coefficient and Lorenz curve, Kuznets curve, Lewis dual-economy model, conditional vs absolute convergence, the Sachs vs Easterly foreign-aid debate, J-PAL randomized controlled trials (Banerjee & Duflo), and microfinance; fills the most significant gap in the Economics pack for AP Macro, college econ, and CFA Level 1 students
+
 - 2026-05-29 micro-animation: "Pick up where you left off" chips on the landing page now animate in — the section container fades up and each chip slides in with a staggered 70ms-per-chip item-in delay, replacing the abrupt pop-in that occurred after localStorage hydrated on mount
 
 - 2026-05-29 tiny feature: markdown export now includes per-round strengths and gaps — the "What you got" and "Still missing" bullet lists from each EvalCard are preserved in the downloaded .md file alongside the score and verdict, making the export a complete post-session reference

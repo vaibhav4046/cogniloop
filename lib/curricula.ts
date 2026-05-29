@@ -425,6 +425,7 @@ export const CURRICULA: Curriculum[] = [
           "Behavioral economics — biases, heuristics, prospect theory, nudges",
           "International trade — comparative advantage, trade policy, tariffs, WTO",
           "Exchange rates — purchasing power parity, balance of payments, forex markets",
+          "Development economics — Sen's capability approach and Human Development Index (HDI), poverty traps (geographic, institutional, behavioral), inequality measures: Gini coefficient and Lorenz curve, Kuznets curve, Lewis dual-economy model and structural transformation, conditional vs absolute convergence, effectiveness of foreign aid (Sachs vs Easterly debate), randomized controlled trials in development research (Banerjee & Duflo, J-PAL), microfinance",
         ],
       },
       {
