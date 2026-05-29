@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 tiny feature: markdown export now includes per-round strengths and gaps — the "What you got" and "Still missing" bullet lists from each EvalCard are preserved in the downloaded .md file alongside the score and verdict, making the export a complete post-session reference
+
 - 2026-05-29 docs: bump "55+ shipped features" to "65+" in README; add question-type-aware placeholders, Stuck? starters, and word-count color-coding to Input/output; add scroll-progress bar and rotating coaching hints to UX details; clarify `r` shortcut covers both retry-on-error and re-drill-weak-concept
 
 - 2026-05-28 brand voice: tighten SettingsView copy — page description drops administrative "Pollinations is the free fallback" spec-list for "No account, no cloud" coaching voice; voice-support status tags simplified from "Voice input: supported/unsupported" to "Mic ready / Mic unavailable — Chrome/Edge only" and "Read-aloud ready / unavailable"; footer updated from "Never sent anywhere except the chosen LLM provider" to "Your key, your device. Nothing leaves your browser except the topic you drill."

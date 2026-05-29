@@ -985,6 +985,14 @@ function ReportView({
       if (r.answer) lines.push(`**A:** ${r.answer}`);
       if (r.evaluation) {
         lines.push(`**Score:** ${r.evaluation.score}/3 — ${r.evaluation.verdict}`);
+        if (r.evaluation.strengths.length > 0) {
+          lines.push("**Strengths:**");
+          r.evaluation.strengths.forEach((s) => lines.push(`- ${s}`));
+        }
+        if (r.evaluation.gaps.length > 0) {
+          lines.push("**Gaps:**");
+          r.evaluation.gaps.forEach((g) => lines.push(`- ${g}`));
+        }
       }
       lines.push("");
     });
