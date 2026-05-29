@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-29 UI copy polish: coaching report round review now shows per-round "What you got" and "Still missing" bullet lists — the same Block component used by EvalCard in the active session and SharedView, making all three surfaces consistent; previously the collapsible "Review all rounds" section only showed verdict text without the strengths and gaps breakdown
+
 - 2026-05-29 empty state polish: ConceptPanel now shows "All N concepts mastered — no gaps left on this topic." in accent color with a fade-up animation below the concept list when every concept in the session reaches mastered state — gives real-time confirmation of full mastery without requiring an explicit action
 
 - 2026-05-29 perf: extract curriculum cards on the landing page into a memoized CurriculaPicker component with pre-computed topic counts, preventing re-renders of the 6 static curriculum cards on every keystroke in the topic input

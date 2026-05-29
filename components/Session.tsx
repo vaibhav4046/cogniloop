@@ -1222,6 +1222,12 @@ function ReportView({
                         <Tex text={r.evaluation.verdict} />
                       </div>
                     )}
+                    {r.evaluation?.strengths && r.evaluation.strengths.length > 0 && (
+                      <Block label="What you got" items={r.evaluation.strengths} color="var(--good)" />
+                    )}
+                    {r.evaluation?.gaps && r.evaluation.gaps.length > 0 && (
+                      <Block label="Still missing" items={r.evaluation.gaps} color="var(--bad)" />
+                    )}
                   </div>
                 );
               })}
