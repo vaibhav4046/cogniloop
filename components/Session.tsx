@@ -42,7 +42,7 @@ function humanizeError(raw: string | null): string {
   const m = raw.toLowerCase();
   if (m.includes("429") || m.includes("rate limit") || m.includes("rate-limit"))
     return "AI endpoint is temporarily rate-limited — retry in a few seconds.";
-  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error"))
+  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error") || m.includes("load failed"))
     return "Network error — check your connection and retry.";
   if (m.includes("503") || m.includes("service unavailable"))
     return "AI provider is temporarily unavailable — retry in a moment.";
@@ -52,6 +52,8 @@ function humanizeError(raw: string | null): string {
     return "API key has run out of credits — switch provider to Pollinations in Settings (free, no key needed).";
   if (m.includes("timeout") || m.includes("timed out"))
     return "The AI took too long to respond — retry usually fixes this.";
+  if (m.includes("aborted") || m.includes("aborterror"))
+    return "Request was interrupted — tap Retry to continue.";
   if (m.includes("json") || m.includes("parse") || m.includes("unexpected token"))
     return "AI returned a malformed response — retry usually fixes this.";
   if (m.includes("malformed") || m.includes("missing fields") || m.includes("missing field"))
@@ -63,6 +65,17 @@ function humanizeError(raw: string | null): string {
   if (raw.length > 120 || m.startsWith("http "))
     return "Something went wrong with the AI — retry usually fixes this.";
   return raw;
+}
+
+function errorTip(raw: string | null) {
+  const m = raw?.toLowerCase() ?? "";
+  if (m.includes("401") || m.includes("unauthorized"))
+    return <>Go to <Link href="/settings" className="underline">Settings</Link> and paste a fresh key from console.groq.com/keys.</>;
+  if (m.includes("quota") || m.includes("credits") || m.includes("insufficient"))
+    return <>Switch provider to Pollinations in <Link href="/settings" className="underline">Settings</Link> — free, no key needed.</>;
+  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error") || m.includes("load failed") || m.includes("aborted") || m.includes("aborterror"))
+    return <>Check your connection, then retry.</>;
+  return <>Retry usually fixes this. For unlimited speed, paste a free Groq key in <Link href="/settings" className="underline">Settings</Link>.</>;
 }
 
 function fmtTimeLabel(sec: number): string {
@@ -416,7 +429,7 @@ export function Session() {
               {humanizeError(errMsg)}
             </div>
             <div className="text-[11px] text-[var(--fg-dim)] mb-5 leading-relaxed">
-              The free LLM endpoint can rate-limit. Retry usually fixes it. For unlimited speed and quality, paste a free Groq API key in <Link href="/settings" className="underline">Settings</Link> (60 sec at console.groq.com).
+              {errorTip(errMsg)}
             </div>
             <div className="flex gap-2 justify-center">
               <button
