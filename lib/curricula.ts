@@ -217,6 +217,7 @@ export const CURRICULA: Curriculum[] = [
         topics: [
           "General chemistry — kinetics, thermodynamics, acid-base equilibria, buffers, solubility",
           "Organic chemistry — functional groups, nucleophilic substitution, elimination, addition, carbonyl reactions",
+          "Stereochemistry and spectroscopy — R/S and E/Z configuration, optical activity, enantiomers, diastereomers, meso compounds, IR (carbonyl, O–H stretches), ¹H NMR (chemical shift, coupling, integration), mass spectrometry fragmentation patterns",
           "Electrochemistry — galvanic vs electrolytic cells, standard reduction potentials, Nernst equation, Faraday's laws",
           "Physics — fluids (Bernoulli, Pascal), electricity, optics (lenses, mirrors), thermodynamics, wave phenomena",
         ],

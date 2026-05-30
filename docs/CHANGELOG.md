@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 additional curriculum topic: added "Stereochemistry and spectroscopy" to MCAT Chemical & Physical Foundations (4→5 topics) — covers R/S and E/Z configuration, optical activity, enantiomers, diastereomers, meso compounds, IR/NMR stretches, and mass spectrometry fragmentation
+
 - 2026-05-29 micro-animation: staggered item-in entrance animations on /why USE_CASES cards and FAQ items — consistent with existing grid animation patterns used on landing and templates pages
 
 - 2026-05-29 micro-animation: concept strength badge in ConceptPanel now pops in (pop-in) whenever its strength level changes during a session — the keyed re-mount triggers the existing pop-in CSS animation, giving tactile feedback when a concept upgrades from weak → shaky → solid → mastered; reduced-motion users see an instant swap
