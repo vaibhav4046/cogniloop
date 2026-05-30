@@ -205,7 +205,7 @@ export function Landing() {
               className="w-full bg-transparent outline-none text-[16px] placeholder:text-[var(--fg-dim)]"
               maxLength={400}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) start();
+                if (e.key === "Enter" && !e.nativeEvent.isComposing) start();
               }}
             />
             {topic.length > 300 && (
@@ -257,8 +257,6 @@ export function Landing() {
               {submitting ? "Starting the loop…" : "Begin the loop  ↵"}
             </button>
             <div className="text-[11px] text-[var(--fg-dim)] text-center mt-2 flex items-center justify-center gap-1 flex-wrap">
-              <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">⌘ / Ctrl</kbd>
-              {" + "}
               <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">Enter</kbd>
               {" to start · "}
               <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded">/</kbd>

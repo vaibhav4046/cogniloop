@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 keyboard shortcut: pressing Enter (plain, no modifier) in the topic input on the landing page now starts the loop — matches the "Begin the loop ↵" button label that already implied this; keyboard hint below the button simplified from "⌘/Ctrl + Enter to start" to "Enter to start"; IME composition guard (nativeEvent.isComposing) prevents accidental submission mid-composition
+
 - 2026-05-30 perf: lazy-load ShortcutsModal via next/dynamic({ ssr: false }) in a thin ShortcutsLoader client wrapper — removes the modal's JS from the critical initial bundle so it loads in a deferred chunk after hydration, shaving parse/eval work from the first paint on every page
 
 - 2026-05-30 brand voice: tighten three first-impression copy strings — empty-submit error on landing ("Enter a topic above — or paste your notes — to start the loop"), zero-state StatsPanel ("Drill your first topic and your streak, sessions, and mastered concepts will track here automatically"), and session resume hint ("Picking up where you left off…" instead of generic "Loading session…")
