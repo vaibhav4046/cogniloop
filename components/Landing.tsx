@@ -18,6 +18,9 @@ const EXAMPLES = [
   "Bayes' theorem with a real example",
   "What actually happens during meiosis",
   "Greedy vs dynamic programming",
+  "Electromagnetic induction — Faraday's law and Lenz's law",
+  "Supply and demand — why price ceilings create shortages",
+  "Consistent hashing and distributed caching",
 ];
 
 const FEATURES = [

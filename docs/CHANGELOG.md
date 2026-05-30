@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 UI copy polish: extend Landing example topics from 5 to 8 — adds JEE Physics (electromagnetic induction), Economics (price ceilings), and System Design (consistent hashing) to show curriculum breadth on first load
+
 - 2026-05-30 additional curriculum topic: added "Backtracking and string algorithms" to GATE CSE Algorithms (5→6 topics) — covers N-Queens, Hamiltonian path, graph coloring via systematic backtracking with pruning; KMP failure function construction, Rabin-Karp rolling hash, Z-algorithm for pattern matching; amortized analysis (aggregate, accounting, potential methods)
 
 - 2026-05-30 friendlier error message: error card footer tip is now context-aware — network/offline errors say "Check your connection"; auth errors say "Go to Settings and paste a fresh key"; quota errors say "Switch to Pollinations (free)"; all others say the short retry nudge + Groq key suggestion; also adds Safari's "load failed" and "aborted/AbortError" to humanizeError coverage
