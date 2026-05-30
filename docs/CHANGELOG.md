@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 perf: lazy-load ShortcutsModal via next/dynamic({ ssr: false }) in a thin ShortcutsLoader client wrapper — removes the modal's JS from the critical initial bundle so it loads in a deferred chunk after hydration, shaving parse/eval work from the first paint on every page
+
 - 2026-05-30 brand voice: tighten three first-impression copy strings — empty-submit error on landing ("Enter a topic above — or paste your notes — to start the loop"), zero-state StatsPanel ("Drill your first topic and your streak, sessions, and mastered concepts will track here automatically"), and session resume hint ("Picking up where you left off…" instead of generic "Loading session…")
 
 - 2026-05-30 micro-animation: SettingsView section cards now cascade in with staggered fade-up — "Bring your own API key" at 80ms, "Voice + read-aloud" at 190ms, "Reset" at 290ms — consistent with the coaching report cascade and other page patterns; previously all three sections appeared simultaneously when the skeleton resolved

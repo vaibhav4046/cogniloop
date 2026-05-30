@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ShortcutsModal } from "@/components/ShortcutsModal";
 import { ToastHost } from "@/components/Toast";
+import { ShortcutsLoader } from "@/components/ShortcutsLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,7 +70,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">Skip to content</a>
         <ToastHost>
           {children}
-          <ShortcutsModal />
+          <ShortcutsLoader />
         </ToastHost>
       </body>
     </html>
