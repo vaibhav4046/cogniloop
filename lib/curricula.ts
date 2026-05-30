@@ -180,6 +180,7 @@ export const CURRICULA: Curriculum[] = [
           "Divide and conquer — merge sort, quick sort, binary search, Strassen matrix multiplication",
           "Dynamic programming — memoization vs tabulation, LCS, LIS, 0/1 knapsack, matrix chain",
           "Graph algorithms — BFS, DFS, Dijkstra, Bellman-Ford, Floyd-Warshall, topological sort",
+          "Backtracking and string algorithms — N-Queens, Hamiltonian path, graph coloring via systematic backtracking with pruning; KMP failure function construction, Rabin-Karp rolling hash, Z-algorithm for pattern matching; amortized analysis (aggregate, accounting, potential methods)",
         ],
       },
       {
