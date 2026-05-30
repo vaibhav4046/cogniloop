@@ -131,6 +131,12 @@ export function HistoryView() {
     router.push("/study");
   }
 
+  function studyTopic(topic: string) {
+    localStorage.removeItem("cl:session");
+    sessionStorage.setItem("cl:pending", JSON.stringify({ topic, notes: "", modeId: "exam" }));
+    router.push("/study");
+  }
+
   const days = useMemo(() => buildHeatmap(streak?.daysActive ?? []), [streak]);
   const q = useMemo(() => search.trim().toLowerCase(), [search]);
   const filtered = useMemo(
@@ -298,12 +304,22 @@ export function HistoryView() {
               </Link>
             </div>
           ) : filtered.length === 0 ? (
-            <div className="card p-6 text-center">
+            <div className="card p-6 text-center fade-up">
               <div className="text-[14px] font-medium tracking-tight mb-1">No matching sessions</div>
-              <div className="text-[12px] text-[var(--fg-muted)] mb-3">No sessions match &ldquo;{search}&rdquo;</div>
-              <button onClick={() => setSearch("")} className="btn-ghost text-xs px-3 py-1.5 rounded-md">
-                Clear search
-              </button>
+              <div className="text-[12px] text-[var(--fg-muted)] mb-4">
+                No sessions match &ldquo;{search}&rdquo; — but you can drill it directly.
+              </div>
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                <button onClick={() => setSearch("")} className="btn-ghost text-xs px-3 py-1.5 rounded-md">
+                  Clear search
+                </button>
+                <button
+                  onClick={() => studyTopic(search.trim())}
+                  className="btn-primary text-xs px-3 py-1.5 rounded-md"
+                >
+                  Study &ldquo;{search.trim().length > 38 ? search.trim().slice(0, 38) + "…" : search.trim()}&rdquo; →
+                </button>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-2">

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 empty state polish: /history "no matching sessions" empty state now offers a "Study this topic now →" primary button alongside "Clear search" — consistent with the /templates zero-results empty state; clicking pre-fills the search term as the study topic and navigates to /study
+
 - 2026-05-30 additional curriculum topic: added "Stereochemistry and spectroscopy" to MCAT Chemical & Physical Foundations (4→5 topics) — covers R/S and E/Z configuration, optical activity, enantiomers, diastereomers, meso compounds, IR/NMR stretches, and mass spectrometry fragmentation
 
 - 2026-05-29 micro-animation: staggered item-in entrance animations on /why USE_CASES cards and FAQ items — consistent with existing grid animation patterns used on landing and templates pages
