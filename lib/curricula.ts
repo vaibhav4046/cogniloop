@@ -57,6 +57,7 @@ export const CURRICULA: Curriculum[] = [
           "Vectors and 3D geometry",
           "Probability and combinatorics",
           "Sequences and series — arithmetic progression (nth term, Sn), geometric progression (sum, infinite GP), arithmetic-geometric series, binomial theorem (general term, middle term, coefficients), sum of special series (Σn, Σn², Σn³)",
+          "Trigonometry and inverse trigonometric functions — trigonometric ratios and identities (Pythagorean, reciprocal), compound angle formulas (sin/cos/tan of A±B), double-angle and half-angle formulas, product-to-sum and sum-to-product identities, general solutions of trigonometric equations (sin θ = k → θ = nπ + (−1)ⁿ arcsin k; cos θ = k, tan θ = k), inverse functions: domain and range of arcsin/arccos/arctan, principal values, key identities (arcsin x + arccos x = π/2, arctan x + arccot x = π/2, arctan x + arctan y), properties of triangles — sine rule, cosine rule, area = ½ ab sin C, heights and distances applications",
         ],
       },
     ],

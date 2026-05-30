@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 additional curriculum topic: added "Trigonometry and inverse trigonometric functions" to JEE Mathematics (10→11 topics) — covers compound angle formulas (sin/cos/tan of A±B), double-angle and half-angle formulas, product-to-sum and sum-to-product identities, general solutions of trig equations (sin θ = k, cos θ = k, tan θ = k), inverse trig functions: domain/range/principal values of arcsin/arccos/arctan, key identities (arcsin x + arccos x = π/2), properties of triangles (sine rule, cosine rule, area = ½ab sin C), heights and distances; a 3-5 question JEE Main topic previously absent from the pack
+
 - 2026-05-30 curriculum: add MLOps & Production ML subject to ML Fundamentals (model serving, feature stores, drift detection, experiment tracking) — fills the practitioner gap left by the theory-focused existing subjects
 
 - 2026-05-30 keyboard shortcut: pressing Enter (plain, no modifier) in the topic input on the landing page now starts the loop — matches the "Begin the loop ↵" button label that already implied this; keyboard hint below the button simplified from "⌘/Ctrl + Enter to start" to "Enter to start"; IME composition guard (nativeEvent.isComposing) prevents accidental submission mid-composition
