@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 additional curriculum topic: added "Solutions and colligative properties" to NEET Chemistry (5→6 topics) — vapour pressure and Raoult's law (ideal solutions, positive/negative deviations, azeotropes), four colligative properties (relative lowering of vapour pressure, ΔTb = Kb·m boiling-point elevation, ΔTf = Kf·m freezing-point depression, osmotic pressure π = iMRT), Van't Hoff factor i for electrolytes (degree of dissociation, association, abnormal molar masses), and Henry's law for gas solubility; a 3-5 question NEET Chemistry chapter (NCERT Class 12 Chapter 2) previously absent from the pack
+
 - 2026-05-30 additional curriculum topic: added "Trigonometry and inverse trigonometric functions" to JEE Mathematics (10→11 topics) — covers compound angle formulas (sin/cos/tan of A±B), double-angle and half-angle formulas, product-to-sum and sum-to-product identities, general solutions of trig equations (sin θ = k, cos θ = k, tan θ = k), inverse trig functions: domain/range/principal values of arcsin/arccos/arctan, key identities (arcsin x + arccos x = π/2), properties of triangles (sine rule, cosine rule, area = ½ab sin C), heights and distances; a 3-5 question JEE Main topic previously absent from the pack
 
 - 2026-05-30 curriculum: add MLOps & Production ML subject to ML Fundamentals (model serving, feature stores, drift detection, experiment tracking) — fills the practitioner gap left by the theory-focused existing subjects

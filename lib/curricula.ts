@@ -66,7 +66,7 @@ export const CURRICULA: Curriculum[] = [
     id: "neet",
     name: "NEET UG",
     region: "India · Medical",
-    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, and electrochemistry added for complete NEET coverage.",
+    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, electrochemistry, and solutions/colligative properties added for complete NEET coverage.",
     subjects: [
       {
         name: "Biology",
@@ -97,6 +97,7 @@ export const CURRICULA: Curriculum[] = [
         name: "Chemistry",
         topics: [
           "Physical chemistry — thermodynamics, kinetics, equilibrium",
+          "Solutions and colligative properties — vapour pressure and Raoult's law (ideal solutions, positive/negative deviations, azeotropes), colligative properties: relative lowering of vapour pressure (ΔP/P° = x_solute), elevation of boiling point (ΔTb = Kb·m), depression of freezing point (ΔTf = Kf·m), osmotic pressure (π = iMRT), Van't Hoff factor i for electrolytes (degree of dissociation α, association), abnormal molar masses, Henry's law for gas solubility in liquids",
           "Electrochemistry — electrode potentials, Nernst equation, Faraday's laws, galvanic cells, corrosion",
           "Organic chemistry — reaction mechanisms",
           "Inorganic chemistry — coordination, p-block, d-block",
