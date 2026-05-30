@@ -283,7 +283,7 @@ export const CURRICULA: Curriculum[] = [
     id: "ml-fundamentals",
     name: "ML Fundamentals",
     region: "Self-study · CS",
-    blurb: "Linear algebra, probability, optimization, neural nets, unsupervised learning, transformers, generative AI, and reinforcement learning.",
+    blurb: "Linear algebra, probability, optimization, neural nets, unsupervised learning, transformers, generative AI, reinforcement learning, and production MLOps.",
     subjects: [
       {
         name: "Math & Stats",
@@ -336,6 +336,15 @@ export const CURRICULA: Curriculum[] = [
           "Policy gradient methods — REINFORCE, actor-critic, PPO, advantage estimation",
           "Exploration vs exploitation — epsilon-greedy, UCB, Thompson sampling",
           "Deep RL — DQN, experience replay, target networks, distributional RL",
+        ],
+      },
+      {
+        name: "MLOps & Production ML",
+        topics: [
+          "Model serving and deployment — REST vs gRPC inference APIs, online vs batch inference, model registry and versioning (MLflow Model Registry), ONNX portability, containerization, blue-green and canary deploys, rollback strategies",
+          "Feature engineering and stores — numeric/categorical encoding, imputation, feature scaling; feature store concepts (Feast, Tecton): point-in-time correctness, training-serving skew, real-time vs batch feature pipelines",
+          "ML monitoring and drift detection — data drift (distribution shift, PSI, KS test, MMD), concept drift (label shift, covariate shift), model performance degradation, alerting thresholds, feedback loops for retraining triggers",
+          "Experiment tracking and reproducibility — MLflow Tracking (runs, parameters, metrics, artifacts), Weights & Biases, DVC for data versioning, containerized training environments, seed management, model lineage and governance",
         ],
       },
     ],

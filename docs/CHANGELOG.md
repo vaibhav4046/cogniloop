@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 curriculum: add MLOps & Production ML subject to ML Fundamentals (model serving, feature stores, drift detection, experiment tracking) — fills the practitioner gap left by the theory-focused existing subjects
+
 - 2026-05-30 keyboard shortcut: pressing Enter (plain, no modifier) in the topic input on the landing page now starts the loop — matches the "Begin the loop ↵" button label that already implied this; keyboard hint below the button simplified from "⌘/Ctrl + Enter to start" to "Enter to start"; IME composition guard (nativeEvent.isComposing) prevents accidental submission mid-composition
 
 - 2026-05-30 perf: lazy-load ShortcutsModal via next/dynamic({ ssr: false }) in a thin ShortcutsLoader client wrapper — removes the modal's JS from the critical initial bundle so it loads in a deferred chunk after hydration, shaving parse/eval work from the first paint on every page
