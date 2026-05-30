@@ -481,10 +481,16 @@ export function Session() {
   const prevRound = rounds.length >= 2 ? rounds[rounds.length - 2] : null;
   const lastEval: Evaluation | undefined = prevRound?.evaluation;
 
+  const evald = rounds.filter((r) => r.evaluation);
+  const liveAvg = evald.length > 0
+    ? evald.reduce((s, r) => s + r.evaluation!.score, 0) / evald.length
+    : undefined;
+
   return (
     <SessionShell
       progress={rounds.length > 0 ? Math.min(rounds.length / 8, 1) : 0}
       roundNum={rounds.length}
+      liveAvg={liveAvg}
       onEnd={() => endSession()}
       canEnd={rounds.length >= 2 && phase === "answering"}
       timer={timer}
@@ -670,6 +676,7 @@ function SessionShell({
   children,
   progress,
   roundNum,
+  liveAvg,
   onEnd,
   canEnd,
   timer,
@@ -677,6 +684,7 @@ function SessionShell({
   children: React.ReactNode;
   progress?: number;
   roundNum?: number;
+  liveAvg?: number;
   onEnd?: () => void;
   canEnd?: boolean;
   timer?: number | null;
@@ -703,7 +711,7 @@ function SessionShell({
           )}
           {typeof roundNum === "number" && roundNum > 0 && (
             <span className="hidden sm:block text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap">
-              Round {roundNum} / 8
+              Round {roundNum} / 8{liveAvg != null ? ` · avg ${liveAvg.toFixed(1)}/3` : ""}
             </span>
           )}
           {typeof progress === "number" && (
