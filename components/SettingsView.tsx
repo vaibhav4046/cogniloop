@@ -142,10 +142,10 @@ export function SettingsView() {
           {saved ? "Saved ✓" : ""}
         </div>
 
-        <h2 className="text-[15px] font-medium tracking-tight mt-10 mb-3">
+        <h2 className="text-[15px] font-medium tracking-tight mt-10 mb-3 fade-up" style={{ animationDelay: "80ms" }}>
           Bring your own API key
         </h2>
-        <div className="card p-5">
+        <div className="card p-5 fade-up" style={{ animationDelay: "80ms" }}>
           <label htmlFor="groq-key" className="block text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
             Groq API key (free at console.groq.com)
           </label>
@@ -239,10 +239,10 @@ export function SettingsView() {
           </div>
         </div>
 
-        <h2 className="text-[15px] font-medium tracking-tight mt-8 mb-3">
+        <h2 className="text-[15px] font-medium tracking-tight mt-8 mb-3 fade-up" style={{ animationDelay: "190ms" }}>
           Voice + read-aloud
         </h2>
-        <div className="card p-5">
+        <div className="card p-5 fade-up" style={{ animationDelay: "190ms" }}>
           <div className="flex items-center gap-2 mb-4">
             <span className="tag" style={{ color: voiceSupported ? "var(--good)" : "var(--bad)" }}>
               Mic {voiceSupported ? "ready" : "unavailable — Chrome/Edge only"}
@@ -318,10 +318,10 @@ export function SettingsView() {
           </button>
         </div>
 
-        <h2 className="text-[15px] font-medium tracking-tight mt-8 mb-3">
+        <h2 className="text-[15px] font-medium tracking-tight mt-8 mb-3 fade-up" style={{ animationDelay: "290ms" }}>
           Reset
         </h2>
-        <div className="card p-5 flex items-center justify-between gap-3 flex-wrap">
+        <div className="card p-5 flex items-center justify-between gap-3 flex-wrap fade-up" style={{ animationDelay: "290ms" }}>
           <div>
             <div className="text-[14px] tracking-tight font-medium">Clear all settings</div>
             <div className="text-[12px] text-[var(--fg-muted)] mt-1">

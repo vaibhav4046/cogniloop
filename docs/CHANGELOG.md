@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 micro-animation: SettingsView section cards now cascade in with staggered fade-up — "Bring your own API key" at 80ms, "Voice + read-aloud" at 190ms, "Reset" at 290ms — consistent with the coaching report cascade and other page patterns; previously all three sections appeared simultaneously when the skeleton resolved
+
 - 2026-05-30 UI copy polish: extend Landing example topics from 5 to 8 — adds JEE Physics (electromagnetic induction), Economics (price ceilings), and System Design (consistent hashing) to show curriculum breadth on first load
 
 - 2026-05-30 additional curriculum topic: added "Backtracking and string algorithms" to GATE CSE Algorithms (5→6 topics) — covers N-Queens, Hamiltonian path, graph coloring via systematic backtracking with pruning; KMP failure function construction, Rabin-Karp rolling hash, Z-algorithm for pattern matching; amortized analysis (aggregate, accounting, potential methods)
