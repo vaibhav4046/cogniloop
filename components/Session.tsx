@@ -410,7 +410,7 @@ export function Session() {
     return (
       <SessionShell>
         <PhaseLoader
-          hint={phase === "starting" ? pickHint(STARTING_HINTS, hintIndex) : "Loading session…"}
+          hint={phase === "starting" ? pickHint(STARTING_HINTS, hintIndex) : "Picking up where you left off…"}
           hintKey={hintIndex}
         />
       </SessionShell>

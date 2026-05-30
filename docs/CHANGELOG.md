@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 brand voice: tighten three first-impression copy strings — empty-submit error on landing ("Enter a topic above — or paste your notes — to start the loop"), zero-state StatsPanel ("Drill your first topic and your streak, sessions, and mastered concepts will track here automatically"), and session resume hint ("Picking up where you left off…" instead of generic "Loading session…")
+
 - 2026-05-30 micro-animation: SettingsView section cards now cascade in with staggered fade-up — "Bring your own API key" at 80ms, "Voice + read-aloud" at 190ms, "Reset" at 290ms — consistent with the coaching report cascade and other page patterns; previously all three sections appeared simultaneously when the skeleton resolved
 
 - 2026-05-30 UI copy polish: extend Landing example topics from 5 to 8 — adds JEE Physics (electromagnetic induction), Economics (price ceilings), and System Design (consistent hashing) to show curriculum breadth on first load

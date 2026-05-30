@@ -30,7 +30,7 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
     return (
       <div className="card px-4 py-3 text-center">
         <div className="text-[12px] text-[var(--fg-muted)] leading-relaxed">
-          Streak, rounds drilled, and mastered concepts appear here — finish your first session to start tracking.
+          Drill your first topic and your streak, sessions, and mastered concepts will track here automatically.
         </div>
       </div>
     );

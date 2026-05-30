@@ -134,7 +134,7 @@ export function Landing() {
   async function start() {
     if (submitting) return;
     if (!topic.trim() && !notes.trim()) {
-      setErr("Type a topic or paste your notes.");
+      setErr("Enter a topic above — or paste your notes — to start the loop.");
       return;
     }
     setSubmitting(true);
