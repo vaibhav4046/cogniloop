@@ -408,7 +408,7 @@ export function Session() {
     return (
       <SessionShell>
         <div className="flex flex-col items-center justify-center flex-1 text-center px-6 fade-up">
-          <div className="card p-6 max-w-md">
+          <div className="card p-6 max-w-md" role="alert" aria-atomic="true">
             <div className="text-[var(--bad)] text-sm font-medium mb-2">
               Something snapped
             </div>
@@ -745,7 +745,7 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
             : `${concepts.length} concepts`}
         </div>
       </div>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-3" aria-label="Concept tracker">
         {concepts.map((c, idx) => (
           <li key={c.id} className="flex flex-col gap-1.5 fade-up" style={{ animationDelay: `${idx * 55}ms` }}>
             <div className="flex items-center justify-between gap-2">
@@ -766,6 +766,7 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={STRENGTH_PCT[c.strength]}
+              aria-valuetext={STRENGTH_DESC[c.strength]}
             >
               <div
                 className="bar-fill"

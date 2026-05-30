@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-30 a11y: concept mastery progress bars now expose `aria-valuetext` with the human-readable strength description ("Well understood — minor edge cases still possible" instead of "75%"); error card gains `role="alert" aria-atomic="true"` so screen readers announce errors immediately on phase transition; concept tracker `<ul>` gets `aria-label="Concept tracker"` for explicit list context
+
 - 2026-05-30 empty state polish: /history "no matching sessions" empty state now offers a "Study this topic now →" primary button alongside "Clear search" — consistent with the /templates zero-results empty state; clicking pre-fills the search term as the study topic and navigates to /study
 
 - 2026-05-30 additional curriculum topic: added "Stereochemistry and spectroscopy" to MCAT Chemical & Physical Foundations (4→5 topics) — covers R/S and E/Z configuration, optical activity, enantiomers, diastereomers, meso compounds, IR/NMR stretches, and mass spectrometry fragmentation
