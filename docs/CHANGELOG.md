@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 a11y: answer textarea now has aria-describedby="current-question" so screen readers announce the active question text when the field receives focus; round/avg counter gains aria-live="polite" aria-atomic="true" so new-round and new-score updates are announced without interrupting ongoing speech
+
 - 2026-05-31 additional curriculum topic: added "Calculus and numerical methods" to GATE CSE Engineering Mathematics (6→7 topics) — limits/continuity, partial derivatives, maxima/minima, Lagrange multipliers, definite integrals, Green's/Stokes'/Gauss' theorems; first/second-order ODEs; numerical methods: bisection, Newton-Raphson, Gaussian elimination/LU, Euler's/Runge-Kutta, trapezoidal/Simpson's integration; this chapter is ~10–15% of GATE CS marks but was absent from the pack
 
 - 2026-05-31 micro-animation: details[open] content now fades and slides in (0.22s ease) via a 5-line CSS keyframe; affects FAQ panels in /why and the notes expander on the landing page — replaces abrupt pop with a polished reveal; prefers-reduced-motion honoured by existing global rule

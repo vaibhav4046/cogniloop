@@ -522,7 +522,7 @@ export function Session() {
               </div>
               <ReadAloud text={lastRound.question} autoPlayKey={lastRound.id} />
             </div>
-            <div className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
+            <div id="current-question" className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
               <Tex text={lastRound.question} />
             </div>
           </div>
@@ -534,6 +534,7 @@ export function Session() {
               onChange={(e) => setAnswer(e.target.value)}
               disabled={phase !== "answering"}
               aria-label="Your answer"
+              aria-describedby="current-question"
               placeholder={QTYPE_PLACEHOLDER[lastRound.questionType]}
               className="w-full bg-transparent outline-none text-[15px] min-h-[140px] leading-relaxed disabled:opacity-60"
               maxLength={6000}
@@ -715,7 +716,11 @@ function SessionShell({
             </span>
           )}
           {typeof roundNum === "number" && roundNum > 0 && (
-            <span className="text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap">
+            <span
+              className="text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap"
+              aria-live="polite"
+              aria-atomic="true"
+            >
               Round {roundNum} / 8
               {liveAvg != null && (
                 <span className="hidden sm:inline"> · avg {liveAvg.toFixed(1)}/3</span>
