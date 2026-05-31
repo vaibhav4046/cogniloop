@@ -1,5 +1,12 @@
 import type { ConceptStrength, Round } from "./types";
 
+export const STRENGTH_COLOR: Record<ConceptStrength, string> = {
+  weak: "var(--bad)",
+  shaky: "var(--warn)",
+  solid: "var(--good)",
+  mastered: "var(--accent)",
+};
+
 export const QTYPE_DESC: Record<Round["questionType"], string> = {
   explain: "Explain the concept in your own words",
   apply: "Apply it to a real or hypothetical example",

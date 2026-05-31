@@ -6,7 +6,7 @@ import { decodeShare, type SharePayload } from "@/lib/share";
 import { getMode } from "@/lib/modes";
 import { NavBar } from "./NavBar";
 import { Tex } from "./Math";
-import { QTYPE_DESC, STRENGTH_DESC } from "@/lib/labels";
+import { QTYPE_DESC, STRENGTH_DESC, STRENGTH_COLOR } from "@/lib/labels";
 
 interface Props {
   token: string;
@@ -120,16 +120,7 @@ export function SharedView({ token }: Props) {
               key={c.id}
               className="tag"
               title={STRENGTH_DESC[c.strength]}
-              style={{
-                color:
-                  c.strength === "mastered"
-                    ? "var(--accent)"
-                    : c.strength === "solid"
-                    ? "var(--good)"
-                    : c.strength === "shaky"
-                    ? "var(--warn)"
-                    : "var(--bad)",
-              }}
+              style={{ color: STRENGTH_COLOR[c.strength] }}
             >
               {c.name} · {c.strength}
             </span>
