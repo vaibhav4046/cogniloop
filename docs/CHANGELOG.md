@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 additional curriculum topic: added "p-block elements" to JEE Chemistry (10→11 topics) — Groups 13–18 covering boron Lewis acidity, carbon allotropes and silicates, inert-pair effect; nitrogen cycle and phosphorus oxoacids; sulfur allotropes and contact process; halogen trends, oxoacids of Cl, and interhalogen compounds; xenon fluorides (XeF₂/XeF₄/XeF₆); periodic trends across p-block; a 3–5 question JEE Main chapter (NCERT Class 11 Ch 11 + Class 12 Ch 7) previously absent from the pack
+
 - 2026-05-31 keyboard shortcut: added J in report phase to copy the Feynman journal prompt — wired into the existing copyJournal() via reportKbdRef, aria-keyshortcuts="j" on the button, new entry in ShortcutsModal Report section, README keyboard list updated
 
 - 2026-05-31 tiny feature: StatsPanel now shows a "Study time" stat (e.g. "45m", "1h 30m") computed from completed session durations — lifetimeStats() gains totalMins, the skeleton and live grid update from 5 to 6 columns (2-col mobile → 3-col tablet → 6-col desktop) so the new card slots in without crowding
