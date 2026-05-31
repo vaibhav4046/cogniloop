@@ -1032,17 +1032,18 @@ function ReportView({
     URL.revokeObjectURL(url);
   }
 
-  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget });
-  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget };
+  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal });
+  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isInTextField(e.target)) return;
       const k = e.key.toLowerCase();
-      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget } = reportKbdRef.current;
+      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal } = reportKbdRef.current;
       if (k === "d") downloadMd();
       else if (k === "r" && reDrillTarget) onReDrill(reDrillTarget);
       else if (k === "s") makeShareUrl();
+      else if (k === "j") copyJournal();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1152,6 +1153,7 @@ function ReportView({
             <button
               onClick={copyJournal}
               aria-label="Copy Feynman journal prompt to clipboard"
+              aria-keyshortcuts="j"
               className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
             >
               {copiedJournal ? "Copied ✓" : "Copy"}

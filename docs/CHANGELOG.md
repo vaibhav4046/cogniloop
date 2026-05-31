@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 keyboard shortcut: added J in report phase to copy the Feynman journal prompt — wired into the existing copyJournal() via reportKbdRef, aria-keyshortcuts="j" on the button, new entry in ShortcutsModal Report section, README keyboard list updated
+
 - 2026-05-31 tiny feature: StatsPanel now shows a "Study time" stat (e.g. "45m", "1h 30m") computed from completed session durations — lifetimeStats() gains totalMins, the skeleton and live grid update from 5 to 6 columns (2-col mobile → 3-col tablet → 6-col desktop) so the new card slots in without crowding
 
 - 2026-05-31 a11y: answer textarea now has aria-describedby="current-question" so screen readers announce the active question text when the field receives focus; round/avg counter gains aria-live="polite" aria-atomic="true" so new-round and new-score updates are announced without interrupting ongoing speech
