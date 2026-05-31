@@ -37,6 +37,7 @@ export const CURRICULA: Curriculum[] = [
           "Atomic structure and quantum numbers",
           "Chemical bonding and molecular structure",
           "Chemical thermodynamics and equilibrium",
+          "Solid state chemistry — classification of solids (ionic, covalent, molecular, metallic); crystal lattice and unit cells (simple cubic, BCC, FCC); packing efficiency and coordination number (12 for FCC/HCP); radius ratios for ionic solids; point defects: Schottky (cation-anion pair missing, lowers density), Frenkel (cation displaced to interstitial, common in AgCl); interstitial and impurity defects; band theory: valence vs conduction band, conductors/semiconductors/insulators; n-type vs p-type semiconductors (doping); ferromagnetism, paramagnetism, ferrimagnetism",
           "Chemical kinetics — rate of reaction, rate laws (differential and integrated), order and molecularity, zero/first/second-order half-lives, Arrhenius equation (activation energy Ea, frequency factor A, k = Ae^(−Ea/RT)), collision theory vs transition-state theory, pseudo-first-order reactions, mechanisms and rate-determining step",
           "Electrochemistry — electrolytic cells, Faraday's laws, electrode potentials, Nernst equation",
           "Coordination compounds",

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 additional curriculum topic: added "Solid state chemistry" to JEE Chemistry (9→10 topics) — classification of solids (ionic, covalent, molecular, metallic); crystal lattice and unit cells (simple cubic, BCC, FCC); packing efficiency and coordination number; radius ratios for ionic solids; point defects (Schottky: cation-anion pair missing, lowers density; Frenkel: cation displaced to interstitial, common in AgCl); interstitial and impurity defects; band theory (valence vs conduction band, conductors/semiconductors/insulators); n-type vs p-type semiconductors (doping); ferromagnetism, paramagnetism, ferrimagnetism; a 3-5 question JEE Main chapter (NCERT Class 12 Chapter 1) previously absent from the pack
+
 - 2026-05-31 skeleton loader: "Pick up where you left off" row on the landing page now shows 2 shimmer chip placeholders while localStorage hydrates, replacing the abrupt pop-in that occurred after mount; a `recentMounted` flag differentiates "loading" from "no history" so first-time users see only a brief skeleton then a clean fade-out
 
 - 2026-05-31 docs: README bump 65+ → 70+ shipped features; document live avg score in session header, "Study this topic now →" history empty-state CTA, and corrected Enter-to-start vs ⌘/Ctrl+Enter-to-submit keyboard shortcut distinction
