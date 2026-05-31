@@ -15,8 +15,8 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
   if (!streak || !stats) {
     if (compact) return null;
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5" aria-busy="true" aria-label="Loading stats">
-        {Array.from({ length: 5 }).map((_, i) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5" aria-busy="true" aria-label="Loading stats">
+        {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="card px-3 py-2.5">
             <div className="skeleton h-[10px] w-10 rounded mb-2" />
             <div className="skeleton h-[22px] w-8 rounded" />
@@ -37,7 +37,7 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
   }
 
   return (
-    <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-5 gap-2.5"}>
+    <div className={compact ? "flex flex-wrap gap-2" : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5"}>
       <Stat label="Streak" value={String(streak.current)} suffix="d" hint={`Best ${streak.longest}d`} index={0} />
       <Stat label="Sessions" value={stats.totalSessions.toString()} index={1} />
       <Stat label="Rounds" value={stats.totalRounds.toString()} index={2} />
@@ -47,6 +47,13 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
         value={stats.totalSessions > 0 ? stats.avgScore.toFixed(2) : "—"}
         hint="of 3"
         index={4}
+      />
+      <Stat
+        label="Study time"
+        value={stats.totalMins > 0 ? fmtStudyTime(stats.totalMins) : "—"}
+        hint="total"
+        index={5}
+        noCountUp
       />
     </div>
   );
@@ -82,8 +89,16 @@ function useCountUp(value: string, delay = 0): string {
   return displayed;
 }
 
-function Stat({ label, value, hint, index = 0, suffix }: { label: string; value: string; hint?: string; index?: number; suffix?: string }) {
-  const displayed = useCountUp(value, index * 55);
+function fmtStudyTime(mins: number): string {
+  if (mins < 60) return `${mins}m`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return m > 0 ? `${h}h ${m}m` : `${h}h`;
+}
+
+function Stat({ label, value, hint, index = 0, suffix, noCountUp }: { label: string; value: string; hint?: string; index?: number; suffix?: string; noCountUp?: boolean }) {
+  const counted = useCountUp(value, index * 55);
+  const displayed = noCountUp ? value : counted;
   return (
     <div className="card px-3 py-2.5 fade-up" style={{ animationDelay: `${index * 55}ms` }}>
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)]">

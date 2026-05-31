@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 tiny feature: StatsPanel now shows a "Study time" stat (e.g. "45m", "1h 30m") computed from completed session durations — lifetimeStats() gains totalMins, the skeleton and live grid update from 5 to 6 columns (2-col mobile → 3-col tablet → 6-col desktop) so the new card slots in without crowding
+
 - 2026-05-31 a11y: answer textarea now has aria-describedby="current-question" so screen readers announce the active question text when the field receives focus; round/avg counter gains aria-live="polite" aria-atomic="true" so new-round and new-score updates are announced without interrupting ongoing speech
 
 - 2026-05-31 additional curriculum topic: added "Calculus and numerical methods" to GATE CSE Engineering Mathematics (6→7 topics) — limits/continuity, partial derivatives, maxima/minima, Lagrange multipliers, definite integrals, Green's/Stokes'/Gauss' theorems; first/second-order ODEs; numerical methods: bisection, Newton-Raphson, Gaussian elimination/LU, Euler's/Runge-Kutta, trapezoidal/Simpson's integration; this chapter is ~10–15% of GATE CS marks but was absent from the pack

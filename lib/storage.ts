@@ -100,5 +100,9 @@ export function lifetimeStats() {
     history.length > 0
       ? history.reduce((s, r) => s + r.avgScore, 0) / history.length
       : 0;
-  return { totalSessions, totalRounds, totalMastered, avgScore };
+  const totalMins = history.reduce((s, r) => {
+    if (!r.endedAt) return s;
+    return s + Math.max(1, Math.round((r.endedAt - r.createdAt) / 60000));
+  }, 0);
+  return { totalSessions, totalRounds, totalMastered, avgScore, totalMins };
 }
