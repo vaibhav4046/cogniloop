@@ -69,7 +69,7 @@ export const CURRICULA: Curriculum[] = [
     id: "neet",
     name: "NEET UG",
     region: "India · Medical",
-    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, electrochemistry, and solutions/colligative properties added for complete NEET coverage.",
+    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, waves and oscillations, electrochemistry, and solutions/colligative properties added for complete NEET coverage.",
     subjects: [
       {
         name: "Biology",
@@ -89,6 +89,7 @@ export const CURRICULA: Curriculum[] = [
         topics: [
           "Mechanics and rotational dynamics",
           "Thermodynamics",
+          "Waves, oscillations and SHM — simple harmonic motion: equation x = A sin(ωt + φ), period T = 2π/ω, velocity v = ±ω√(A²−x²), acceleration a = −ω²x; energy in SHM (total = ½mω²A², KE and PE alternate); spring-mass system (ω = √(k/m)), simple pendulum (ω = √(g/L), small-angle approximation, time period independent of amplitude); wave motion: transverse vs longitudinal, wave equation y = A sin(kx−ωt), wave speed v = λf; speed of sound in medium (v = √(B/ρ)), speed in string (v = √(T/μ)); principle of superposition, standing waves, nodes and antinodes, harmonics and overtones, resonance; beats (f_beat = |f₁−f₂|) and their applications; Doppler effect (f_obs = f_src·(v ± v_obs)/(v ∓ v_src)), applications to SONAR and speed radars",
           "Electrostatics and current electricity",
           "Magnetic effects of current and magnetism — Biot-Savart law, Ampere's law, solenoid, cyclotron, magnetic materials, Earth's magnetic field",
           "Semiconductor electronics and communication systems — energy bands, p-n junction, rectifiers, transistors, logic gates, modulation",

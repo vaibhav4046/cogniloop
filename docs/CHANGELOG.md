@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 additional curriculum topic: added "Waves, oscillations and SHM" to NEET Physics (7→8 topics) — SHM equation (x = A sin(ωt+φ)), spring-mass (ω = √(k/m)) and simple pendulum (ω = √(g/L)); energy in SHM; wave equation (y = A sin(kx−ωt)), wave speed in strings and medium; standing waves, harmonics, resonance; beats and Doppler effect; a 6–8 question NEET Physics chapter (NCERT Class 11 Ch 14–15) previously absent from the pack
+
 - 2026-05-31 additional curriculum topic: added "p-block elements" to JEE Chemistry (10→11 topics) — Groups 13–18 covering boron Lewis acidity, carbon allotropes and silicates, inert-pair effect; nitrogen cycle and phosphorus oxoacids; sulfur allotropes and contact process; halogen trends, oxoacids of Cl, and interhalogen compounds; xenon fluorides (XeF₂/XeF₄/XeF₆); periodic trends across p-block; a 3–5 question JEE Main chapter (NCERT Class 11 Ch 11 + Class 12 Ch 7) previously absent from the pack
 
 - 2026-05-31 keyboard shortcut: added J in report phase to copy the Feynman journal prompt — wired into the existing copyJournal() via reportKbdRef, aria-keyshortcuts="j" on the button, new entry in ShortcutsModal Report section, README keyboard list updated
