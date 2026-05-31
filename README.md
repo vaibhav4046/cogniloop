@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (65+ shipped features)
+## What it does (70+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -61,12 +61,14 @@ Loop until mastered.
 - Question-type-aware answer placeholder — five coaching-voice prompts matched to explain / apply / contrast / predict / trace
 - Question-type-aware "Stuck?" starters — one-click seed phrase opens the right frame for each question type (Feynman, concrete scenario, mechanism diff, cause-effect chain, step-by-step trace)
 - Browser tab title shows the active study topic (e.g. "Backpropagation · Cogniloop")
+- Live running average score in session header — e.g. "Round 3 / 8 · avg 2.5/3" — once the first round is graded
 
 **Persistence + accountability**
 - Daily streak counter (Duolingo-style)
 - 90-day activity heatmap
 - Lifetime stats: sessions, rounds, mastered concepts, avg score
 - Full session history with searchable list and Study again one-click
+- Session search empty state offers "Study this topic now →" to launch a session directly on any unmatched search phrase
 - localStorage-only — no accounts, no logs, no servers
 
 **LLM layer**
@@ -80,7 +82,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `s` share link, `r` re-drill weak concept / retry on error
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `n` new session, `d` download report, `s` share link, `r` re-drill weak concept / retry on error
 - Per-round difficulty dots, mode badges, question-type tags
 - Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
 - Sticky concept tracker on desktop, collapsible mobile
