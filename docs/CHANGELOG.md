@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 perf: memoize lastRound, lastEval, and liveAvg in Session.tsx — all three derive from `rounds` but previously recomputed on every answer keystroke and every Exam-mode timer tick (once/sec); wrapping in useMemo([rounds]) cuts wasted filter/reduce/array-access to zero between round transitions
+
 - 2026-05-31 UI copy polish: session round counter now visible on mobile — "Round N / 8" shows on all screen sizes (was hidden on small screens); avg score remains desktop-only to save horizontal space; math syntax toggle button gains aria-expanded state so screen readers announce expanded/collapsed
 
 - 2026-05-31 additional curriculum topic: added "Chemical kinetics" to JEE Chemistry (8→9 topics) — rate of reaction, rate laws (differential and integrated), order and molecularity, zero/first/second-order half-lives, Arrhenius equation (activation energy Ea, frequency factor A, k = Ae^(−Ea/RT)), collision theory vs transition-state theory, pseudo-first-order reactions, mechanisms and rate-determining step; a 5-7 question JEE Main chapter (NCERT Class 12 Chapter 4) previously absent from the pack

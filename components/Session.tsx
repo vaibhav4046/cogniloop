@@ -477,14 +477,18 @@ export function Session() {
     );
   }
 
-  const lastRound = rounds[rounds.length - 1];
-  const prevRound = rounds.length >= 2 ? rounds[rounds.length - 2] : null;
-  const lastEval: Evaluation | undefined = prevRound?.evaluation;
-
-  const evald = rounds.filter((r) => r.evaluation);
-  const liveAvg = evald.length > 0
-    ? evald.reduce((s, r) => s + r.evaluation!.score, 0) / evald.length
-    : undefined;
+  // Memoized on `rounds` so timer ticks and answer keystrokes don't recompute these.
+  const lastRound = useMemo(() => rounds[rounds.length - 1], [rounds]);
+  const lastEval = useMemo<Evaluation | undefined>(
+    () => (rounds.length >= 2 ? rounds[rounds.length - 2]?.evaluation : undefined),
+    [rounds]
+  );
+  const liveAvg = useMemo(() => {
+    const evald = rounds.filter((r) => r.evaluation);
+    return evald.length > 0
+      ? evald.reduce((s, r) => s + r.evaluation!.score, 0) / evald.length
+      : undefined;
+  }, [rounds]);
 
   return (
     <SessionShell
