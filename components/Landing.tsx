@@ -95,6 +95,7 @@ export function Landing() {
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [recentTopics, setRecentTopics] = useState<string[]>([]);
+  const [recentMounted, setRecentMounted] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -112,6 +113,7 @@ export function Landing() {
       }
     }
     setRecentTopics(recent);
+    setRecentMounted(true);
   }, []);
 
   useEffect(() => {
@@ -281,7 +283,15 @@ export function Landing() {
             </div>
           </div>
 
-          {recentTopics.length > 0 && (
+          {!recentMounted ? (
+            <div className="mt-6" aria-hidden="true">
+              <div className="skeleton h-[11px] w-32 rounded mb-3" />
+              <div className="flex flex-wrap gap-2">
+                <div className="skeleton h-[30px] w-36 rounded-lg" />
+                <div className="skeleton h-[30px] w-28 rounded-lg" />
+              </div>
+            </div>
+          ) : recentTopics.length > 0 ? (
             <div className="mt-6 fade-up">
               <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
                 Pick up where you left off
@@ -300,7 +310,7 @@ export function Landing() {
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
 
           <CurriculaPicker />
 

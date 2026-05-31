@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 skeleton loader: "Pick up where you left off" row on the landing page now shows 2 shimmer chip placeholders while localStorage hydrates, replacing the abrupt pop-in that occurred after mount; a `recentMounted` flag differentiates "loading" from "no history" so first-time users see only a brief skeleton then a clean fade-out
+
 - 2026-05-31 docs: README bump 65+ → 70+ shipped features; document live avg score in session header, "Study this topic now →" history empty-state CTA, and corrected Enter-to-start vs ⌘/Ctrl+Enter-to-submit keyboard shortcut distinction
 
 - 2026-05-31 perf: memoize lastRound, lastEval, and liveAvg in Session.tsx — all three derive from `rounds` but previously recomputed on every answer keystroke and every Exam-mode timer tick (once/sec); wrapping in useMemo([rounds]) cuts wasted filter/reduce/array-access to zero between round transitions
