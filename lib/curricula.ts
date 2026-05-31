@@ -134,6 +134,7 @@ export const CURRICULA: Curriculum[] = [
           "Combinatorics — counting principles, pigeonhole, recurrences, generating functions",
           "Probability — random variables, Bayes' theorem, expectation, variance",
           "Linear algebra — rank, eigenvalues, system of linear equations",
+          "Calculus and numerical methods — limits, continuity, partial derivatives, maxima/minima and saddle points, Lagrange multipliers; definite integrals, integration by parts, Green's/Stokes'/Gauss' theorems; first-order ODEs (separable, exact, integrating factor), second-order linear ODEs with constant coefficients; numerical methods: bisection method, Newton-Raphson root-finding, Gaussian elimination and LU decomposition, Euler's and Runge-Kutta methods for ODEs, numerical integration (trapezoidal and Simpson's rule)",
         ],
       },
       {

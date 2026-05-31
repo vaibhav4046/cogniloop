@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 additional curriculum topic: added "Calculus and numerical methods" to GATE CSE Engineering Mathematics (6→7 topics) — limits/continuity, partial derivatives, maxima/minima, Lagrange multipliers, definite integrals, Green's/Stokes'/Gauss' theorems; first/second-order ODEs; numerical methods: bisection, Newton-Raphson, Gaussian elimination/LU, Euler's/Runge-Kutta, trapezoidal/Simpson's integration; this chapter is ~10–15% of GATE CS marks but was absent from the pack
+
 - 2026-05-31 micro-animation: details[open] content now fades and slides in (0.22s ease) via a 5-line CSS keyframe; affects FAQ panels in /why and the notes expander on the landing page — replaces abrupt pop with a polished reveal; prefers-reduced-motion honoured by existing global rule
 
 - 2026-05-31 additional curriculum topic: added "Solid state chemistry" to JEE Chemistry (9→10 topics) — classification of solids (ionic, covalent, molecular, metallic); crystal lattice and unit cells (simple cubic, BCC, FCC); packing efficiency and coordination number; radius ratios for ionic solids; point defects (Schottky: cation-anion pair missing, lowers density; Frenkel: cation displaced to interstitial, common in AgCl); interstitial and impurity defects; band theory (valence vs conduction band, conductors/semiconductors/insulators); n-type vs p-type semiconductors (doping); ferromagnetism, paramagnetism, ferrimagnetism; a 3-5 question JEE Main chapter (NCERT Class 12 Chapter 1) previously absent from the pack
