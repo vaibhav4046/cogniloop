@@ -37,6 +37,7 @@ export const CURRICULA: Curriculum[] = [
           "Atomic structure and quantum numbers",
           "Chemical bonding and molecular structure",
           "Chemical thermodynamics and equilibrium",
+          "Chemical kinetics — rate of reaction, rate laws (differential and integrated), order and molecularity, zero/first/second-order half-lives, Arrhenius equation (activation energy Ea, frequency factor A, k = Ae^(−Ea/RT)), collision theory vs transition-state theory, pseudo-first-order reactions, mechanisms and rate-determining step",
           "Electrochemistry — electrolytic cells, Faraday's laws, electrode potentials, Nernst equation",
           "Coordination compounds",
           "Hydrocarbons — alkanes, alkenes, aromatics",

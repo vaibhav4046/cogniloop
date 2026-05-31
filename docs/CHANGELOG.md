@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 additional curriculum topic: added "Chemical kinetics" to JEE Chemistry (8→9 topics) — rate of reaction, rate laws (differential and integrated), order and molecularity, zero/first/second-order half-lives, Arrhenius equation (activation energy Ea, frequency factor A, k = Ae^(−Ea/RT)), collision theory vs transition-state theory, pseudo-first-order reactions, mechanisms and rate-determining step; a 5-7 question JEE Main chapter (NCERT Class 12 Chapter 4) previously absent from the pack
+
 - 2026-05-30 tiny feature: session header now shows a live running average score (e.g. "Round 3 / 8 · avg 2.5/3") once at least one round has been graded — gives real-time performance feedback mid-session without waiting for the coaching report; displayed alongside the existing round counter and progress bar on desktop
 
 - 2026-05-30 additional curriculum topic: added "Solutions and colligative properties" to NEET Chemistry (5→6 topics) — vapour pressure and Raoult's law (ideal solutions, positive/negative deviations, azeotropes), four colligative properties (relative lowering of vapour pressure, ΔTb = Kb·m boiling-point elevation, ΔTf = Kf·m freezing-point depression, osmotic pressure π = iMRT), Van't Hoff factor i for electrolytes (degree of dissociation, association, abnormal molar masses), and Henry's law for gas solubility; a 3-5 question NEET Chemistry chapter (NCERT Class 12 Chapter 2) previously absent from the pack
