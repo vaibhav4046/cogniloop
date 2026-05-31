@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-05-31 micro-animation: details[open] content now fades and slides in (0.22s ease) via a 5-line CSS keyframe; affects FAQ panels in /why and the notes expander on the landing page — replaces abrupt pop with a polished reveal; prefers-reduced-motion honoured by existing global rule
+
 - 2026-05-31 additional curriculum topic: added "Solid state chemistry" to JEE Chemistry (9→10 topics) — classification of solids (ionic, covalent, molecular, metallic); crystal lattice and unit cells (simple cubic, BCC, FCC); packing efficiency and coordination number; radius ratios for ionic solids; point defects (Schottky: cation-anion pair missing, lowers density; Frenkel: cation displaced to interstitial, common in AgCl); interstitial and impurity defects; band theory (valence vs conduction band, conductors/semiconductors/insulators); n-type vs p-type semiconductors (doping); ferromagnetism, paramagnetism, ferrimagnetism; a 3-5 question JEE Main chapter (NCERT Class 12 Chapter 1) previously absent from the pack
 
 - 2026-05-31 skeleton loader: "Pick up where you left off" row on the landing page now shows 2 shimmer chip placeholders while localStorage hydrates, replacing the abrupt pop-in that occurred after mount; a `recentMounted` flag differentiates "loading" from "no history" so first-time users see only a brief skeleton then a clean fade-out
