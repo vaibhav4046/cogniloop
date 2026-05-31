@@ -563,6 +563,7 @@ export function Session() {
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
                   title="Math syntax help"
                   aria-label="Toggle math syntax help"
+                  aria-expanded={showHints}
                 >
                   ƒ
                 </button>
@@ -710,8 +711,11 @@ function SessionShell({
             </span>
           )}
           {typeof roundNum === "number" && roundNum > 0 && (
-            <span className="hidden sm:block text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap">
-              Round {roundNum} / 8{liveAvg != null ? ` · avg ${liveAvg.toFixed(1)}/3` : ""}
+            <span className="text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap">
+              Round {roundNum} / 8
+              {liveAvg != null && (
+                <span className="hidden sm:inline"> · avg {liveAvg.toFixed(1)}/3</span>
+              )}
             </span>
           )}
           {typeof progress === "number" && (
