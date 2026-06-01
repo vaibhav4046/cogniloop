@@ -703,12 +703,14 @@ function SessionShell({
               style={{
                 color: timer < 15 ? "var(--bad)" : "var(--fg-muted)",
               }}
-              aria-live={timer < 10 ? "assertive" : "off"}
             >
               <span aria-hidden="true">⏱ {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}</span>
               <span className="sr-only">{fmtTimeLabel(timer)}</span>
             </span>
           )}
+          <span aria-live="assertive" aria-atomic="true" className="sr-only">
+            {timer != null && timer < 10 ? fmtTimeLabel(timer) : ""}
+          </span>
           {typeof roundNum === "number" && roundNum > 0 && (
             <span
               className="text-[10px] text-[var(--fg-dim)] tabular-nums whitespace-nowrap"
