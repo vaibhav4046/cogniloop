@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 perf: memoize CurriculumCard in TemplatesView — extract inline section JSX into a memo component with a stable useCallback for startWith, preventing all 100+ topic buttons from re-rendering on every filter keystroke; animation delays pinned to original CURRICULA index via a module-level map so props stay stable
+
 - 2026-06-01 a11y: fix Exam-mode timer live region — `aria-live` was toggled dynamically between "assertive" and "off" (unreliable in all major screen readers); replaced with a separate stable `aria-live="assertive"` span that is empty when time ≥ 10 s and contains the spoken countdown ("N seconds remaining") only when time is critical, while the visible timer retains its `role="timer"` and sr-only text for manual navigation
 
 - 2026-06-01 additional curriculum topic: added "Biomolecules" to NEET Biology (8→9 topics) — carbohydrates (mono/di/polysaccharides, reducing vs non-reducing sugars), amino acids (20 standard, zwitterion form, essential vs non-essential), protein levels (1°→2° α-helix/β-sheet→3° tertiary→4° quaternary), lipids (triglycerides, amphipathic phospholipids, steroids), nucleic acids (DNA double helix Watson-Crick, Chargaff's rules, mRNA/tRNA/rRNA roles), enzymes (holoenzyme = apoenzyme + cofactor, lock-and-key vs induced-fit, Michaelis-Menten Km, competitive vs non-competitive inhibition, allosteric regulation); a 8–10 question NEET Bio chapter (NCERT Class 11 Ch 9) previously absent from the pack

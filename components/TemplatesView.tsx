@@ -1,11 +1,47 @@
 "use client";
 
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CURRICULA } from "@/lib/curricula";
+import type { Curriculum } from "@/lib/curricula";
 import { NavBar } from "./NavBar";
 import { ScrollProgress } from "./ScrollProgress";
-import { useEffect, useMemo, useRef, useState } from "react";
 import { isInTextField } from "@/lib/kbd";
+
+// Stable per-pack entrance-animation delay based on original CURRICULA index — avoids prop changes on re-render
+const ANIM_DELAYS = Object.fromEntries(CURRICULA.map((c, i) => [c.id, i * 60])) as Record<string, number>;
+
+const CurriculumCard = memo(function CurriculumCard({
+  c,
+  onStart,
+}: {
+  c: Curriculum;
+  onStart: (topic: string) => void;
+}) {
+  return (
+    <section id={c.id} className="card p-5 item-in" style={{ animationDelay: `${ANIM_DELAYS[c.id]}ms` }}>
+      <header className="flex items-baseline justify-between flex-wrap gap-2 mb-1">
+        <h2 className="text-[17px] font-semibold tracking-tight">{c.name}</h2>
+        <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">{c.region}</span>
+      </header>
+      <p className="text-[13px] text-[var(--fg-muted)] mb-4">{c.blurb}</p>
+      <div className="flex flex-col gap-4">
+        {c.subjects.map((s) => (
+          <div key={s.name}>
+            <h3 className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">{s.name}</h3>
+            <div className="flex flex-wrap gap-2">
+              {s.topics.map((t) => (
+                <button key={t} onClick={() => onStart(t)} className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left">
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+});
 
 export function TemplatesView() {
   const router = useRouter();
@@ -35,13 +71,10 @@ export function TemplatesView() {
     );
   }, [filter]);
 
-  function startWith(topic: string, modeId: string = "exam") {
-    sessionStorage.setItem(
-      "cl:pending",
-      JSON.stringify({ topic, notes: "", modeId })
-    );
+  const startWith = useCallback((topic: string) => {
+    sessionStorage.setItem("cl:pending", JSON.stringify({ topic, notes: "", modeId: "exam" }));
     router.push("/study");
-  }
+  }, [router]);
 
   return (
     <main id="main" className="min-h-screen flex flex-col">
@@ -119,40 +152,8 @@ export function TemplatesView() {
                 </div>
               </div>
             )}
-            {filtered.map((c, idx) => (
-              <section key={c.id} id={c.id} className="card p-5 item-in" style={{ animationDelay: `${idx * 60}ms` }}>
-                <header className="flex items-baseline justify-between flex-wrap gap-2 mb-1">
-                  <h2 className="text-[17px] font-semibold tracking-tight">
-                    {c.name}
-                  </h2>
-                  <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
-                    {c.region}
-                  </span>
-                </header>
-                <p className="text-[13px] text-[var(--fg-muted)] mb-4">
-                  {c.blurb}
-                </p>
-                <div className="flex flex-col gap-4">
-                  {c.subjects.map((s) => (
-                    <div key={s.name}>
-                      <h3 className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
-                        {s.name}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {s.topics.map((t) => (
-                          <button
-                            key={t}
-                            onClick={() => startWith(t)}
-                            className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left"
-                          >
-                            {t}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
+            {filtered.map((c) => (
+              <CurriculumCard key={c.id} c={c} onStart={startWith} />
             ))}
           </div>
         </div>
