@@ -194,7 +194,7 @@ export function HistoryView() {
                   <div
                     key={i}
                     aria-hidden="true"
-                    className={`aspect-square rounded-[3px]${d.isToday ? " glow" : ""}`}
+                    className={`aspect-square rounded-[3px]${d.isToday ? " glow" : ""}${d.active ? " cell-pop" : ""}`}
                     title={d.key + (d.active ? " · drilled" : d.isToday ? " · today" : "")}
                     style={{
                       background: d.active
@@ -203,6 +203,7 @@ export function HistoryView() {
                         ? "var(--accent-soft)"
                         : "var(--bg-elev)",
                       opacity: d.active ? 0.85 : 1,
+                      ...(d.active && { animationDelay: `${i * 7}ms` }),
                     }}
                   />
                 ))}

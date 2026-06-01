@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 micro-animation: staggered scale-in for heatmap active cells — studied-day cells on the /history heatmap now pop in with a 0.24 s spring animation (cubic-bezier overshoot), each delayed by 7 ms × cell index so they cascade left-to-right top-to-bottom; inactive/today cells appear instantly, preserving the visual hierarchy
+
 - 2026-06-01 perf: memoize CurriculumCard in TemplatesView — extract inline section JSX into a memo component with a stable useCallback for startWith, preventing all 100+ topic buttons from re-rendering on every filter keystroke; animation delays pinned to original CURRICULA index via a module-level map so props stay stable
 
 - 2026-06-01 a11y: fix Exam-mode timer live region — `aria-live` was toggled dynamically between "assertive" and "off" (unreliable in all major screen readers); replaced with a separate stable `aria-live="assertive"` span that is empty when time ≥ 10 s and contains the spoken countdown ("N seconds remaining") only when time is critical, while the visible timer retains its `role="timer"` and sr-only text for manual navigation
