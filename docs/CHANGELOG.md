@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 UI copy polish: "Pick up where you left off" buttons on the landing page now show relative study date (today / yesterday / Xd ago) — topic name truncates cleanly with min-w-0 flex layout so the date label never wraps or gets clipped
+
 - 2026-06-01 micro-animation: staggered scale-in for heatmap active cells — studied-day cells on the /history heatmap now pop in with a 0.24 s spring animation (cubic-bezier overshoot), each delayed by 7 ms × cell index so they cascade left-to-right top-to-bottom; inactive/today cells appear instantly, preserving the visual hierarchy
 
 - 2026-06-01 perf: memoize CurriculumCard in TemplatesView — extract inline section JSX into a memo component with a stable useCallback for startWith, preventing all 100+ topic buttons from re-rendering on every filter keystroke; animation delays pinned to original CURRICULA index via a module-level map so props stay stable

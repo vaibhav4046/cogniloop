@@ -88,6 +88,13 @@ const FeatureGrid = memo(function FeatureGrid() {
   );
 });
 
+function relTime(ts: number): string {
+  const days = Math.floor((Date.now() - ts) / 86400000);
+  if (days === 0) return "today";
+  if (days === 1) return "yesterday";
+  return `${days}d ago`;
+}
+
 export function Landing() {
   const router = useRouter();
   const [topic, setTopic] = useState("");
@@ -95,7 +102,7 @@ export function Landing() {
   const [mode, setMode] = useState<ModeId>("exam");
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const [recentTopics, setRecentTopics] = useState<string[]>([]);
+  const [recentTopics, setRecentTopics] = useState<{ topic: string; createdAt: number }[]>([]);
   const [recentMounted, setRecentMounted] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -106,11 +113,11 @@ export function Landing() {
   useEffect(() => {
     const hist = getHistory();
     const seen = new Set<string>();
-    const recent: string[] = [];
+    const recent: { topic: string; createdAt: number }[] = [];
     for (const r of hist) {
       if (r.topic && !seen.has(r.topic)) {
         seen.add(r.topic);
-        recent.push(r.topic);
+        recent.push({ topic: r.topic, createdAt: r.createdAt });
         if (recent.length >= 3) break;
       }
     }
@@ -299,15 +306,16 @@ export function Landing() {
                 Pick up where you left off
               </div>
               <div className="flex flex-wrap gap-2">
-                {recentTopics.map((t, i) => (
+                {recentTopics.map(({ topic: t, createdAt }, i) => (
                   <button
                     key={t}
                     onClick={() => { setTopic(t); setErr(null); inputRef.current?.focus(); }}
                     title={t}
-                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg max-w-[260px] truncate item-in"
+                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
                     style={{ animationDelay: `${i * 70}ms` }}
                   >
-                    ↻ {t}
+                    <span className="truncate min-w-0">↻ {t}</span>
+                    <span className="text-[10px] text-[var(--fg-dim)] shrink-0">{relTime(createdAt)}</span>
                   </button>
                 ))}
               </div>
