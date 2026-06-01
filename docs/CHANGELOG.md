@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 dependency bump: react + react-dom 19.2.6→19.2.7 (patch)
+
 - 2026-06-01 additional curriculum topic: added "Haloalkanes and haloarenes" to NEET Chemistry (6→7 topics) — classification and nomenclature; SN1 (carbocation, racemization, polar protic, 3° substrate) vs SN2 (backside attack, Walden inversion, polar aprotic, 1° substrate); E1 vs E2 with Zaitsev/Hofmann product distinction; haloarenes (shorter C–X bond, ipso substitution only, o/p directors); Grignard reagent prep and reactions with aldehydes, ketones, CO₂, and water; polyhalogen compounds: CHCl₃, CCl₄, iodoform test (CH₃CO– gives CHI₃), DDT biomagnification, freons/CFCs and ozone depletion; a 3–5 question NEET Chemistry chapter (NCERT Class 12 Ch 10) previously absent from the pack
 
 - 2026-06-01 additional curriculum topic: added "Statistics" to JEE Mathematics (11→12 topics) — measures of central tendency (mean via direct/step-deviation methods, combined mean, median for raw/grouped data using l+((n/2−cf)/f)·h, mode for raw/grouped data using modal-class formula), empirical relation mode≈3 median−2 mean; measures of dispersion (range, mean deviation about mean/median, variance σ² via direct and shortcut step-deviation formula, standard deviation, effect of linear transform σ_{a+bx}=|b|·σ_x); coefficient of variation CV=(σ/x̄)·100 for comparing consistency of two datasets; an NCERT Class 11 Ch 15 chapter (1–2 JEE Main questions per exam) completing the JEE Math syllabus
