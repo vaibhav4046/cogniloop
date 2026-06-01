@@ -27,6 +27,8 @@ export const ENDING_HINTS = [
   "Writing tonight's Feynman journal prompt…",
   "Separating what you understand from what you only recognise…",
   "Assembling your personalized study plan…",
+  "Checking what you can retrieve cold versus what you only recognised…",
+  "Ranking the gaps most likely to trip you in the next session…",
 ];
 
 export function pickHint(list: string[], index: number): string {

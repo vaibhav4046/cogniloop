@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 brand voice: extend ENDING_HINTS pool 6 → 8 to match STARTING_HINTS and GRADING_HINTS (adds "Checking what you can retrieve cold versus what you only recognised…" and "Ranking the gaps most likely to trip you in the next session…"); tighten NEET UG blurb in lib/curricula.ts — removes the spec-list second sentence ("Magnetism, semiconductor electronics… added for complete NEET coverage") in favour of a single coaching-voice line matching the JEE blurb pattern
+
 - 2026-06-01 refactor: extract g+x global nav shortcuts into lib/useGlobalNav.ts — NavBar.tsx no longer duplicates the chord-detection loop; Landing.tsx now calls useGlobalNav() so g+t/g+h/g+w/g+s work on the home page for the first time
 
 - 2026-05-31 refactor: move STRENGTH_COLOR from Session.tsx into lib/labels.ts — removes the duplicate ternary chain in SharedView.tsx that mapped ConceptStrength → CSS variable; both consumers now import from the single source of truth alongside STRENGTH_DESC, QTYPE_DESC and the other label maps

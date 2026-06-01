@@ -69,7 +69,7 @@ export const CURRICULA: Curriculum[] = [
     id: "neet",
     name: "NEET UG",
     region: "India · Medical",
-    blurb: "Physics, Chemistry, Biology — Class 11–12 NCERT. Magnetism, semiconductor electronics, waves and oscillations, electrochemistry, and solutions/colligative properties added for complete NEET coverage.",
+    blurb: "Class 11–12 Physics, Chemistry, and Biology (NCERT-aligned) — full chapter coverage for the actual NEET exam.",
     subjects: [
       {
         name: "Biology",
