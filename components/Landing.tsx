@@ -76,8 +76,8 @@ const CurriculaPicker = memo(function CurriculaPicker() {
 const FeatureGrid = memo(function FeatureGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-      {FEATURES.map((f) => (
-        <div key={f.t} className="card p-4 hover:bg-[var(--bg-elev)] transition-colors duration-150">
+      {FEATURES.map((f, i) => (
+        <div key={f.t} className="card p-4 hover:bg-[var(--bg-elev)] transition-colors duration-150 fade-up" style={{ animationDelay: `${i * 45}ms` }}>
           <div className="text-[13.5px] font-medium tracking-tight">{f.t}</div>
           <div className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
             {f.b}
@@ -280,11 +280,12 @@ export function Landing() {
               Try an example
             </div>
             <div className="flex flex-wrap gap-2">
-              {EXAMPLES.map((ex) => (
+              {EXAMPLES.map((ex, i) => (
                 <button
                   key={ex}
                   onClick={() => pickExample(ex)}
-                  className="btn-ghost px-3 py-1.5 text-xs rounded-lg"
+                  className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in"
+                  style={{ animationDelay: `${i * 35}ms` }}
                 >
                   {ex}
                 </button>

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 micro-animation: staggered fade-up on FeatureGrid cards and item-in on "Try an example" chips in Landing.tsx — both previously appeared without per-item entry animation
+
 - 2026-06-01 additional curriculum topic: expanded NEET Chemistry "Biomolecules" stub into a full NCERT Class 12 Ch 14 topic — carbohydrate classification (reducing vs non-reducing sugars, α/β-D-glucopyranose Haworth projection, mutarotation, amylose/amylopectin/cellulose structural differences), amino acid chemistry (L-configuration, zwitterion form, 9 essential amino acids, peptide bond formation), protein denaturation (disrupts 2°/3°/4° only, agents: heat/pH/urea), enzyme cofactors (metallic ions vs coenzymes derived from B-vitamins: NAD⁺/FAD), vitamins (fat-soluble A/D/E/K vs water-soluble B-complex and C with all deficiency diseases), and nucleic acids (phosphodiester backbone, DNA antiparallel helix with Chargaff's rules, RNA differences); complements the existing Biology Biomolecules expansion with the chemistry-focused lens tested in NEET Chemistry
 
 - 2026-06-01 dependency bump: react + react-dom 19.2.6→19.2.7 (patch)
