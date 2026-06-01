@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 additional curriculum topic: added "Surface chemistry" to JEE Chemistry (12→13 topics) — physisorption vs chemisorption, Freundlich and Langmuir isotherms, heterogeneous and enzyme catalysis, promoters and poisons; lyophilic vs lyophobic colloids, preparation (peptization, condensation), purification (dialysis), Tyndall effect, Brownian motion, electrophoresis, coagulation (Hardy-Schulze rule, gold number); O/W vs W/O emulsions; micelles and CMC; a 2–4 question JEE Main chapter (NCERT Class 12 Ch 5) previously absent from the pack
+
 - 2026-06-01 brand voice: extend ENDING_HINTS pool 6 → 8 to match STARTING_HINTS and GRADING_HINTS (adds "Checking what you can retrieve cold versus what you only recognised…" and "Ranking the gaps most likely to trip you in the next session…"); tighten NEET UG blurb in lib/curricula.ts — removes the spec-list second sentence ("Magnetism, semiconductor electronics… added for complete NEET coverage") in favour of a single coaching-voice line matching the JEE blurb pattern
 
 - 2026-06-01 refactor: extract g+x global nav shortcuts into lib/useGlobalNav.ts — NavBar.tsx no longer duplicates the chord-detection loop; Landing.tsx now calls useGlobalNav() so g+t/g+h/g+w/g+s work on the home page for the first time
