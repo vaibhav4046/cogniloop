@@ -1,53 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { isInTextField } from "@/lib/kbd";
+import { useGlobalNav } from "@/lib/useGlobalNav";
 
 const LINKS = [
-  { href: "/templates", label: "Templates", k: "t" },
-  { href: "/history", label: "History", k: "h" },
-  { href: "/why", label: "Why", k: "w" },
-  { href: "/settings", label: "Settings", k: "s" },
+  { href: "/templates", label: "Templates" },
+  { href: "/history", label: "History" },
+  { href: "/why", label: "Why" },
+  { href: "/settings", label: "Settings" },
 ];
 
 export function NavBar() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  useEffect(() => {
-    let buf = "";
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    function onKey(e: KeyboardEvent) {
-      if (isInTextField(e.target)) return;
-      if (e.key === "g" || e.key === "G") {
-        if (buf === "g") {
-          // G then G → home
-          buf = "";
-          if (timer) { clearTimeout(timer); timer = null; }
-          e.preventDefault();
-          router.push("/");
-        } else {
-          buf = "g";
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(() => (buf = ""), 1500);
-        }
-        return;
-      }
-      if (buf === "g") {
-        const target = LINKS.find((l) => l.k === e.key.toLowerCase());
-        if (target) {
-          e.preventDefault();
-          router.push(target.href);
-        }
-        buf = "";
-      }
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [router]);
+  useGlobalNav();
 
   return (
     <header className="px-6 sm:px-10 py-4 flex items-center justify-between border-b border-[var(--line-soft)] sticky top-0 bg-[var(--bg)]/85 backdrop-blur-md z-20">

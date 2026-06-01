@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-01 refactor: extract g+x global nav shortcuts into lib/useGlobalNav.ts — NavBar.tsx no longer duplicates the chord-detection loop; Landing.tsx now calls useGlobalNav() so g+t/g+h/g+w/g+s work on the home page for the first time
+
 - 2026-05-31 refactor: move STRENGTH_COLOR from Session.tsx into lib/labels.ts — removes the duplicate ternary chain in SharedView.tsx that mapped ConceptStrength → CSS variable; both consumers now import from the single source of truth alongside STRENGTH_DESC, QTYPE_DESC and the other label maps
 
 - 2026-05-31 additional curriculum topic: added "Waves, oscillations and SHM" to NEET Physics (7→8 topics) — SHM equation (x = A sin(ωt+φ)), spring-mass (ω = √(k/m)) and simple pendulum (ω = √(g/L)); energy in SHM; wave equation (y = A sin(kx−ωt)), wave speed in strings and medium; standing waves, harmonics, resonance; beats and Doppler effect; a 6–8 question NEET Physics chapter (NCERT Class 11 Ch 14–15) previously absent from the pack

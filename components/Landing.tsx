@@ -11,6 +11,7 @@ import { getHistory } from "@/lib/storage";
 import type { ModeId } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
 import { useAutoExpand } from "@/lib/useAutoExpand";
+import { useGlobalNav } from "@/lib/useGlobalNav";
 
 const EXAMPLES = [
   "Backpropagation in neural networks",
@@ -100,6 +101,7 @@ export function Landing() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useAutoExpand(taRef, notes, 240);
+  useGlobalNav();
 
   useEffect(() => {
     const hist = getHistory();
