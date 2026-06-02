@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (70+ shipped features)
+## What it does (80+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -55,6 +55,7 @@ Loop until mastered.
 - Live math preview while typing
 - Markdown export of full session
 - URL-encoded shareable session links — no backend, no leaks
+- One-click copy button on the active session question card — paste directly into Notion, Anki, or any notes app; `c` keyboard shortcut
 - Per-round feedback card with strengths + gaps as bullet lists
 - Collapsible round-review in coaching report — question, answer, score, and verdict per round
 - Live word count while typing — color-coded amber / accent / green as explanation depth grows
@@ -157,6 +158,8 @@ components/
 ├── VoiceInput.tsx            → Web Speech API mic
 ├── ReadAloud.tsx             → Speech Synthesis
 ├── ShortcutsModal.tsx        → ? panel
+├── ShortcutsLoader.tsx       → lazy-loads ShortcutsModal out of the critical bundle
+├── ScrollProgress.tsx        → 2 px accent reading-progress bar (/templates, /history, /why)
 ├── Toast.tsx                 → ephemeral error / success notifications
 ├── Math.tsx                  → KaTeX renderer with $...$ + $$...$$
 └── Logo.tsx
@@ -173,7 +176,11 @@ lib/
 ├── storage.ts                → history, streak, lifetime stats
 ├── share.ts                  → URL-safe base64 encode/decode
 ├── fetchRetry.ts             → fetch with exponential-backoff retry
-└── rateLimit.ts              → edge-side rate-limit middleware
+├── rateLimit.ts              → edge-side rate-limit middleware
+├── labels.ts                 → QTYPE_DESC / STRENGTH_DESC / QTYPE_PLACEHOLDER / STUCK_STARTERS / STRENGTH_COLOR
+├── kbd.ts                    → isInTextField keyboard guard (shared across all pages)
+├── useAutoExpand.ts          → auto-expanding textarea hook
+└── useGlobalNav.ts           → g+x chord navigation shortcuts
 ```
 
 ## Run locally

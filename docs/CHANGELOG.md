@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 README/docs update: bump "70+" → "80+" shipped features; add copy-button bullet to Input/output; add 6 missing files to Architecture (ScrollProgress.tsx, ShortcutsLoader.tsx, labels.ts, kbd.ts, useAutoExpand.ts, useGlobalNav.ts)
+
 - 2026-06-02 UI copy polish: fix "rounds" always-plural in coaching report subtitle (now handles "1 round" correctly); add descriptive title tooltip to the "End & report" button explaining why it's disabled until round 2; prepend round count to the markdown export metadata line
 
 - 2026-06-02 brand voice tightening: replaced two near-duplicate ENDING_HINTS ("Assembling your personalized study plan…" and "Checking what you can retrieve cold versus what you only recognised…") with "Scheduling the concepts most likely to slip away first…" and "Finding the foundational gap that's holding the rest back…"; fixed README hint-pool count from 8/8/6 → 8/8/8
