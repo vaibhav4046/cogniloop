@@ -1112,8 +1112,8 @@ function ReportView({
               return (
                 <span
                   key={i}
-                  className="w-[22px] h-[22px] rounded flex items-center justify-center text-[10px] font-bold leading-none"
-                  style={{ background: SCORE_BG[sc], color: "var(--bg)" }}
+                  className="w-[22px] h-[22px] rounded flex items-center justify-center text-[10px] font-bold leading-none pop-in"
+                  style={{ background: SCORE_BG[sc], color: "var(--bg)", animationDelay: `${i * 60}ms`, animationFillMode: "both" }}
                   title={`Round ${r.id}: ${sc}/3 — ${r.evaluation!.verdict.slice(0, 80)}`}
                   aria-label={`Round ${r.id} score: ${sc} out of 3`}
                 >
