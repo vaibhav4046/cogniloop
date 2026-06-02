@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 a11y: add aria-controls + aria-hidden on rounds-review toggle, and role="region" aria-label on BucketCards in coaching report — screen readers can now identify what the expand button controls and jump directly to Mastered/Shaky/Weak result regions
+
 - 2026-06-02 additional curriculum topic: added "Anomaly detection and density estimation" to ML Fundamentals > Unsupervised Learning (3→4 topics) — statistical methods (z-score, IQR), KDE with bandwidth tradeoff, GMMs via EM algorithm, one-class SVM, Isolation Forest path-length intuition, autoencoder reconstruction error, LOF; evaluation with AUROC and precision-recall; novelty detection vs outlier detection distinction; applications in fraud, intrusion detection, and predictive maintenance
 
 - 2026-06-02 dependency bump: next 16.2.6→16.2.7 (patch)

@@ -1226,12 +1226,13 @@ function ReportView({
             onClick={() => setShowRounds((v) => !v)}
             className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors flex items-center gap-1"
             aria-expanded={showRounds}
+            aria-controls="round-review-list"
           >
-            <span>{showRounds ? "▲" : "▼"}</span>
+            <span aria-hidden="true">{showRounds ? "▲" : "▼"}</span>
             <span>Review all {rounds.length} round{rounds.length !== 1 ? "s" : ""}</span>
           </button>
           {showRounds && (
-            <div className="mt-4 flex flex-col gap-3">
+            <div id="round-review-list" className="mt-4 flex flex-col gap-3">
               {rounds.map((r, i) => {
                 const sc = r.evaluation
                   ? (Math.max(0, Math.min(3, r.evaluation.score)) as 0 | 1 | 2 | 3)
@@ -1294,9 +1295,9 @@ const BucketCard = memo(function BucketCard({
   emptyMsg?: string;
 }) {
   return (
-    <div className="card p-4">
+    <div className="card p-4" role="region" aria-label={label}>
       <div className="flex items-center gap-2 mb-2">
-        <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+        <span className="w-1.5 h-1.5 rounded-full" aria-hidden="true" style={{ background: color }} />
         <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
           {label}
         </span>
