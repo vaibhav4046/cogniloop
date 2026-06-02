@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 additional curriculum topic: added "Anomaly detection and density estimation" to ML Fundamentals > Unsupervised Learning (3→4 topics) — statistical methods (z-score, IQR), KDE with bandwidth tradeoff, GMMs via EM algorithm, one-class SVM, Isolation Forest path-length intuition, autoencoder reconstruction error, LOF; evaluation with AUROC and precision-recall; novelty detection vs outlier detection distinction; applications in fraud, intrusion detection, and predictive maintenance
+
 - 2026-06-02 dependency bump: next 16.2.6→16.2.7 (patch)
 
 - 2026-06-02 micro-animation: staggered pop-in for score trend dots in the coaching report — each colored score square now scales+fades in 60 ms after the previous, creating a left-to-right cascade reveal every time the report loads

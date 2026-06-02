@@ -338,6 +338,7 @@ export const CURRICULA: Curriculum[] = [
           "Clustering — k-means, k-means++, hierarchical clustering, DBSCAN, silhouette score, elbow method",
           "Dimensionality reduction — PCA via SVD, kernel PCA, t-SNE, UMAP; autoencoder as encoder-decoder compressor",
           "Self-supervised and contrastive learning — masked autoencoders, SimCLR, BYOL, momentum encoder, contrastive loss",
+          "Anomaly detection and density estimation — statistical methods: z-score, IQR-based outlier flagging, Gaussian (parametric) density estimation; kernel density estimation (KDE): bandwidth h, Gaussian kernel, bias-variance tradeoff; Gaussian mixture models (GMMs): EM algorithm (E-step computes responsibilities, M-step updates μ/Σ/π), BIC for selecting K; one-class SVM (RBF kernel, ν-hyperparameter controls fraction of outliers); Isolation Forest: average path length through random trees, shorter path = anomaly, insensitive to dimensionality; autoencoder-based anomaly detection: high reconstruction error flags unseen patterns; LOF (Local Outlier Factor): compares local reachability density to k-nearest-neighbor densities; evaluation: AUROC, precision-recall on imbalanced positive class; applications — fraud detection, network intrusion detection, predictive maintenance, medical image quality control; distinguishing novelty detection (training on clean data) vs outlier detection (train/test may both contain anomalies)",
         ],
       },
       {
