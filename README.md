@@ -89,7 +89,7 @@ Loop until mastered.
 - Session resume on browser refresh
 - Empty-state coaching card on the home page
 - Score trend sparkline in coaching report — color-coded dots across all rounds
-- Rotating coaching hints during start, grading, and report phases — 8 / 8 / 6 pool, brand voice throughout
+- Rotating coaching hints during start, grading, and report phases — 8 / 8 / 8 pool, brand voice throughout
 
 **Pages**
 - `/` — landing with mode picker, examples, curriculum cards, feature grid

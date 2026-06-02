@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 brand voice tightening: replaced two near-duplicate ENDING_HINTS ("Assembling your personalized study plan…" and "Checking what you can retrieve cold versus what you only recognised…") with "Scheduling the concepts most likely to slip away first…" and "Finding the foundational gap that's holding the rest back…"; fixed README hint-pool count from 8/8/6 → 8/8/8
+
 - 2026-06-02 additional curriculum topic: added "Alcohols, phenols and ethers" to JEE Chemistry (12→13 topics) — alcohol classification (primary/secondary/tertiary), physical properties (H-bonding, solubility), preparation (hydration, NaBH₄/LiAlH₄ reduction, Grignard), reactions (dehydration at 140°C/170°C, oxidation with PCC vs KMnO₄, Lucas test, Fischer esterification, reaction with Na); phenol acidity via resonance-stabilized phenoxide (pKa 10 vs alcohol pKa 16); EAS of phenol (ortho/para-director), Kolbe-Schmitt and Reimer-Tiemann reactions, tribromophenol test; Williamson synthesis for ethers (SN2, primary R-X), ether cleavage by HI/HBr, epoxide ring-opening under acidic (Markovnikov) and basic (anti-Markovnikov, inversion) conditions; a 3–5 question JEE Main chapter (NCERT Class 12 Ch 11) covering most functional-group organic chemistry tested in JEE Main, previously absent from the pack
 
 - 2026-06-02 a11y: add aria-controls + aria-hidden on rounds-review toggle, and role="region" aria-label on BucketCards in coaching report — screen readers can now identify what the expand button controls and jump directly to Mastered/Shaky/Weak result regions

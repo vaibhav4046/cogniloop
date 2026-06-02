@@ -26,8 +26,8 @@ export const ENDING_HINTS = [
   "Building a targeted study plan…",
   "Writing tonight's Feynman journal prompt…",
   "Separating what you understand from what you only recognise…",
-  "Assembling your personalized study plan…",
-  "Checking what you can retrieve cold versus what you only recognised…",
+  "Scheduling the concepts most likely to slip away first…",
+  "Finding the foundational gap that's holding the rest back…",
   "Ranking the gaps most likely to trip you in the next session…",
 ];
 
