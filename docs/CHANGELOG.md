@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 keyboard shortcut: `c` key copies the current session question to clipboard during answering phase — mirrors the copy button; panel and README updated
+
 - 2026-06-02 tiny feature: "Copy" button on the active session question card — one click copies the question text to clipboard (resets after 2 s, clears on each new round); lets users paste questions directly into Notion, Anki, or any notes app without leaving the session
 
 - 2026-06-02 a11y: add aria-labelledby to CurriculumCard <section> elements in TemplatesView so screen readers announce each pack by name; upgrade WhyView use-case cards from <div> to <article>/<h3>/<p> for proper semantic structure

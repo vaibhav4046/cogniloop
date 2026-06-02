@@ -265,6 +265,14 @@ export function Session() {
       if ((e.key === "r" || e.key === "R") && phase === "error") {
         rounds.length === 0 ? retryStart() : location.reload();
       }
+      if ((e.key === "c" || e.key === "C") && phase === "answering") {
+        const q = rounds[rounds.length - 1]?.question;
+        if (q) {
+          navigator.clipboard.writeText(q).catch(() => {});
+          setCopiedQ(true);
+          setTimeout(() => setCopiedQ(false), 2000);
+        }
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);

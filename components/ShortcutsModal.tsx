@@ -29,6 +29,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
     items: [
       { keys: "M", label: "Toggle voice input" },
       { keys: "L", label: "Toggle read-aloud" },
+      { keys: "C", label: "Copy current question to clipboard" },
       { keys: "E", label: "End session & generate report" },
       { keys: "R", label: "Retry after an error" },
     ],
