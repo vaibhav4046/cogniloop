@@ -110,6 +110,7 @@ export function Session() {
   const [timer, setTimer] = useState<number | null>(null);
   const [showHints, setShowHints] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
+  const [copiedQ, setCopiedQ] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const endedAtRef = useRef<number | null>(null);
 
@@ -190,6 +191,7 @@ export function Session() {
     if (phase === "answering" && taRef.current) {
       taRef.current.focus();
     }
+    setCopiedQ(false);
   }, [phase, rounds.length]);
 
   useAutoExpand(taRef, answer, 400);
@@ -514,7 +516,21 @@ export function Session() {
                   {mode.name} mode
                 </span>
               </div>
-              <ReadAloud text={lastRound.question} autoPlayKey={lastRound.id} />
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(lastRound.question).catch(() => {});
+                    setCopiedQ(true);
+                    setTimeout(() => setCopiedQ(false), 2000);
+                  }}
+                  aria-label="Copy question to clipboard"
+                  title="Copy question"
+                  className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
+                >
+                  {copiedQ ? "Copied ✓" : "Copy"}
+                </button>
+                <ReadAloud text={lastRound.question} autoPlayKey={lastRound.id} />
+              </div>
             </div>
             <div id="current-question" className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
               <Tex text={lastRound.question} />

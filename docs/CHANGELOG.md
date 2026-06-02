@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 tiny feature: "Copy" button on the active session question card — one click copies the question text to clipboard (resets after 2 s, clears on each new round); lets users paste questions directly into Notion, Anki, or any notes app without leaving the session
+
 - 2026-06-02 a11y: add aria-labelledby to CurriculumCard <section> elements in TemplatesView so screen readers announce each pack by name; upgrade WhyView use-case cards from <div> to <article>/<h3>/<p> for proper semantic structure
 
 - 2026-06-02 additional curriculum topic: added "Environmental and resource economics" to Economics > Behavioral & International (4→5 topics) — Hotelling's rule for exhaustible resources, Coase theorem and its limitations at scale, Pigouvian tax vs cap-and-trade ETS (cost certainty vs quantity certainty), tragedy of the commons and Ostrom's polycentric governance (Nobel 2009), environmental Kuznets curve, weak vs strong sustainability, discount rate controversy (Stern vs Nordhaus); a 3–5 question topic for AP Environmental Science, AP Macro, college environmental economics, and CFA Level 1 ESG investing previously absent from the pack
