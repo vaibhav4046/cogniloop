@@ -19,9 +19,9 @@ const CurriculumCard = memo(function CurriculumCard({
   onStart: (topic: string) => void;
 }) {
   return (
-    <section id={c.id} className="card p-5 item-in" style={{ animationDelay: `${ANIM_DELAYS[c.id]}ms` }}>
+    <section id={c.id} aria-labelledby={`${c.id}-title`} className="card p-5 item-in" style={{ animationDelay: `${ANIM_DELAYS[c.id]}ms` }}>
       <header className="flex items-baseline justify-between flex-wrap gap-2 mb-1">
-        <h2 className="text-[17px] font-semibold tracking-tight">{c.name}</h2>
+        <h2 id={`${c.id}-title`} className="text-[17px] font-semibold tracking-tight">{c.name}</h2>
         <span className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">{c.region}</span>
       </header>
       <p className="text-[13px] text-[var(--fg-muted)] mb-4">{c.blurb}</p>

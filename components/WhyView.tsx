@@ -129,14 +129,14 @@ export function WhyView() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {USE_CASES.map((u, i) => (
-            <div key={u.who} className="card p-4 item-in" style={{ animationDelay: `${i * 70}ms` }}>
-              <div className="text-[13.5px] font-medium tracking-tight">
+            <article key={u.who} className="card p-4 item-in" style={{ animationDelay: `${i * 70}ms` }}>
+              <h3 className="text-[13.5px] font-medium tracking-tight">
                 {u.who}
-              </div>
-              <div className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
+              </h3>
+              <p className="text-[12.5px] text-[var(--fg-muted)] mt-1.5 leading-relaxed">
                 {u.blurb}
-              </div>
-            </div>
+              </p>
+            </article>
           ))}
         </div>
 

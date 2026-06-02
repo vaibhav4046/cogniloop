@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 a11y: add aria-labelledby to CurriculumCard <section> elements in TemplatesView so screen readers announce each pack by name; upgrade WhyView use-case cards from <div> to <article>/<h3>/<p> for proper semantic structure
+
 - 2026-06-02 additional curriculum topic: added "Environmental and resource economics" to Economics > Behavioral & International (4→5 topics) — Hotelling's rule for exhaustible resources, Coase theorem and its limitations at scale, Pigouvian tax vs cap-and-trade ETS (cost certainty vs quantity certainty), tragedy of the commons and Ostrom's polycentric governance (Nobel 2009), environmental Kuznets curve, weak vs strong sustainability, discount rate controversy (Stern vs Nordhaus); a 3–5 question topic for AP Environmental Science, AP Macro, college environmental economics, and CFA Level 1 ESG investing previously absent from the pack
 
 - 2026-06-01 micro-animation: staggered fade-up on FeatureGrid cards and item-in on "Try an example" chips in Landing.tsx — both previously appeared without per-item entry animation
