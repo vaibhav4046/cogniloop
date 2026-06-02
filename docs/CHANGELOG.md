@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 dependency bump: next 16.2.6→16.2.7 (patch)
+
 - 2026-06-02 micro-animation: staggered pop-in for score trend dots in the coaching report — each colored score square now scales+fades in 60 ms after the previous, creating a left-to-right cascade reveal every time the report loads
 
 - 2026-06-02 additional curriculum topic: added "Strings and string manipulation" to AP CSA (8→9 topics) — String immutability and reference vs value equality (== vs equals()), key methods: length(), charAt(i), substring(begin, end), indexOf(str), compareTo(other), equals(), equalsIgnoreCase(), toLowerCase()/toUpperCase(), trim(); concatenation with + and type coercion rules (String + int → String); Integer wrapper: parseInt(), String.valueOf(), auto-boxing; iterating characters with charAt(i) in a for loop; common patterns: reverse, palindrome check, building result strings; null vs empty string distinction and NullPointerException risk; a major AP CSA Unit 2 chapter previously absent from the pack
