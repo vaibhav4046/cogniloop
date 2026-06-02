@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NavBar } from "./NavBar";
@@ -125,11 +125,11 @@ export function HistoryView() {
     }
   }
 
-  function studyAgain(r: SessionRecord) {
+  const studyAgain = useCallback((r: SessionRecord) => {
     localStorage.removeItem("cl:session");
     sessionStorage.setItem("cl:pending", JSON.stringify({ topic: r.topic, notes: "", modeId: r.modeId }));
     router.push("/study");
-  }
+  }, [router]);
 
   function studyTopic(topic: string) {
     localStorage.removeItem("cl:session");
@@ -324,42 +324,9 @@ export function HistoryView() {
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              {filtered.map((r, i) => {
-                const dur = r.endedAt ? fmtDuration(r.createdAt, r.endedAt) : null;
-                return (
-                  <article key={r.id} className="card p-4 fade-up" style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}>
-                    <div className="flex items-center justify-between gap-3 flex-wrap">
-                      <div className="min-w-0">
-                        <div className="text-[14px] font-medium tracking-tight truncate">
-                          {r.topic || "(untitled)"}
-                        </div>
-                        <div className="text-[11px] text-[var(--fg-muted)] mt-1 flex items-center gap-2 flex-wrap">
-                          <span>{fmtDate(r.createdAt)}</span>
-                          {dur && <><span>·</span><span>{dur}</span></>}
-                          <span>·</span>
-                          <span>{getMode(r.modeId).name}</span>
-                          <span>·</span>
-                          <span>{r.rounds.length} round{r.rounds.length === 1 ? "" : "s"}</span>
-                          <span>·</span>
-                          <span>avg {r.avgScore.toFixed(2)}/3</span>
-                          {r.mastered > 0 && <><span>·</span><span>{r.mastered} mastered</span></>}
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <button
-                          onClick={() => studyAgain(r)}
-                          title={`Re-drill "${r.topic}" in ${getMode(r.modeId).name} mode`}
-                          aria-label={`Study "${r.topic}" again`}
-                          className="btn-ghost text-[11px] px-2.5 py-1 rounded-md"
-                        >
-                          ↻ Study again
-                        </button>
-                        <ScoreBadge score={r.avgScore} />
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+              {filtered.map((r, i) => (
+                <SessionCard key={r.id} r={r} i={i} onStudyAgain={studyAgain} />
+              ))}
             </div>
           )}
         </div>
@@ -370,6 +337,51 @@ export function HistoryView() {
     </main>
   );
 }
+
+const SessionCard = memo(function SessionCard({
+  r,
+  i,
+  onStudyAgain,
+}: {
+  r: SessionRecord;
+  i: number;
+  onStudyAgain: (r: SessionRecord) => void;
+}) {
+  const dur = r.endedAt ? fmtDuration(r.createdAt, r.endedAt) : null;
+  return (
+    <article className="card p-4 fade-up" style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="min-w-0">
+          <div className="text-[14px] font-medium tracking-tight truncate">
+            {r.topic || "(untitled)"}
+          </div>
+          <div className="text-[11px] text-[var(--fg-muted)] mt-1 flex items-center gap-2 flex-wrap">
+            <span>{fmtDate(r.createdAt)}</span>
+            {dur && <><span>·</span><span>{dur}</span></>}
+            <span>·</span>
+            <span>{getMode(r.modeId).name}</span>
+            <span>·</span>
+            <span>{r.rounds.length} round{r.rounds.length === 1 ? "" : "s"}</span>
+            <span>·</span>
+            <span>avg {r.avgScore.toFixed(2)}/3</span>
+            {r.mastered > 0 && <><span>·</span><span>{r.mastered} mastered</span></>}
+          </div>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => onStudyAgain(r)}
+            title={`Re-drill "${r.topic}" in ${getMode(r.modeId).name} mode`}
+            aria-label={`Study "${r.topic}" again`}
+            className="btn-ghost text-[11px] px-2.5 py-1 rounded-md"
+          >
+            ↻ Study again
+          </button>
+          <ScoreBadge score={r.avgScore} />
+        </div>
+      </div>
+    </article>
+  );
+});
 
 function ScoreBadge({ score }: { score: number }) {
   const color =

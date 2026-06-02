@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 perf: memoize SessionCard in HistoryView — extract the inline session article from `filtered.map` into a stable memo component; `studyAgain` converted to `useCallback([router])` so its reference is stable; prevents every session card from re-rendering on unrelated state changes (confirmClear toggle, importErr appear/dismiss), matching the CurriculumCard memo pattern in TemplatesView
+
 - 2026-06-02 keyboard shortcut: `c` key copies the current session question to clipboard during answering phase — mirrors the copy button; panel and README updated
 
 - 2026-06-02 tiny feature: "Copy" button on the active session question card — one click copies the question text to clipboard (resets after 2 s, clears on each new round); lets users paste questions directly into Notion, Anki, or any notes app without leaving the session
