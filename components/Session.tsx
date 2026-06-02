@@ -769,6 +769,7 @@ function SessionShell({
               onClick={onEnd}
               disabled={!canEnd}
               aria-keyshortcuts="e"
+              title={canEnd ? "End session and generate coaching report (press E)" : "Answer at least 2 rounds to end (press E)"}
               className="btn-ghost text-xs px-3 py-1.5 rounded-md"
             >
               End & report
@@ -1006,7 +1007,7 @@ function ReportView({
     lines.push(`# Cogniloop session — ${topic || "untitled"}`);
     lines.push("");
     lines.push(`**Headline:** ${report.headline}`);
-    lines.push(`**Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3${durationMin ? ` · **Duration:** ${durationMin} min` : ""}`);
+    lines.push(`**Rounds:** ${rounds.length} · **Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3${durationMin ? ` · **Duration:** ${durationMin} min` : ""}`);
     lines.push("");
     lines.push("## Mastered");
     report.mastered.forEach((c) => lines.push(`- ${c}`));
@@ -1099,7 +1100,7 @@ function ReportView({
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
           {topic ? `${topic} · ` : ""}
-          {rounds.length} rounds{durationMin ? ` · ${durationMin} min` : ""} · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
+          {rounds.length} round{rounds.length !== 1 ? "s" : ""}{durationMin ? ` · ${durationMin} min` : ""} · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
         </div>
 
         {evald.length > 1 && (
