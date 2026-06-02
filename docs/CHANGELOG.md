@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-02 additional curriculum topic: added "Strings and string manipulation" to AP CSA (8→9 topics) — String immutability and reference vs value equality (== vs equals()), key methods: length(), charAt(i), substring(begin, end), indexOf(str), compareTo(other), equals(), equalsIgnoreCase(), toLowerCase()/toUpperCase(), trim(); concatenation with + and type coercion rules (String + int → String); Integer wrapper: parseInt(), String.valueOf(), auto-boxing; iterating characters with charAt(i) in a for loop; common patterns: reverse, palindrome check, building result strings; null vs empty string distinction and NullPointerException risk; a major AP CSA Unit 2 chapter previously absent from the pack
+
 - 2026-06-02 perf: memoize SessionCard in HistoryView — extract the inline session article from `filtered.map` into a stable memo component; `studyAgain` converted to `useCallback([router])` so its reference is stable; prevents every session card from re-rendering on unrelated state changes (confirmClear toggle, importErr appear/dismiss), matching the CurriculumCard memo pattern in TemplatesView
 
 - 2026-06-02 keyboard shortcut: `c` key copies the current session question to clipboard during answering phase — mirrors the copy button; panel and README updated
