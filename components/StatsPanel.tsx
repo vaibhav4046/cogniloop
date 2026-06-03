@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { getStreak, lifetimeStats, type StreakData } from "@/lib/storage";
 
-export function StatsPanel({ compact }: { compact?: boolean }) {
+export const StatsPanel = memo(function StatsPanel({ compact }: { compact?: boolean }) {
   const [streak, setStreak] = useState<StreakData | null>(null);
   const [stats, setStats] = useState<ReturnType<typeof lifetimeStats> | null>(null);
 
@@ -57,7 +57,7 @@ export function StatsPanel({ compact }: { compact?: boolean }) {
       />
     </div>
   );
-}
+});
 
 function useCountUp(value: string, delay = 0): string {
   const initDisplayed = (): string => {
