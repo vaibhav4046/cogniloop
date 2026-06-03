@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 UI copy polish: truncate verbose curriculum topic labels in TemplatesView to short names before " — " dash (e.g. "Solid state chemistry" instead of full NCERT bullet); full string still passed to AI; hover title reveals complete text
+
 - 2026-06-02 README/docs update: bump "70+" → "80+" shipped features; add copy-button bullet to Input/output; add 6 missing files to Architecture (ScrollProgress.tsx, ShortcutsLoader.tsx, labels.ts, kbd.ts, useAutoExpand.ts, useGlobalNav.ts)
 
 - 2026-06-02 UI copy polish: fix "rounds" always-plural in coaching report subtitle (now handles "1 round" correctly); add descriptive title tooltip to the "End & report" button explaining why it's disabled until round 2; prepend round count to the markdown export metadata line

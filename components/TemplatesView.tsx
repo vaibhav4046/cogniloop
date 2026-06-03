@@ -30,11 +30,19 @@ const CurriculumCard = memo(function CurriculumCard({
           <div key={s.name}>
             <h3 className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">{s.name}</h3>
             <div className="flex flex-wrap gap-2">
-              {s.topics.map((t) => (
-                <button key={t} onClick={() => onStart(t)} className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left">
-                  {t}
-                </button>
-              ))}
+              {s.topics.map((t) => {
+                const label = t.includes(" — ") ? t.split(" — ")[0] : t;
+                return (
+                  <button
+                    key={t}
+                    onClick={() => onStart(t)}
+                    title={label !== t ? t : undefined}
+                    className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left"
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
         ))}
