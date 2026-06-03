@@ -16,15 +16,16 @@ export const ModePicker = memo(function ModePicker({ value, onChange, compact }:
       aria-label="Study mode"
       className={compact ? "flex gap-1.5" : "grid grid-cols-3 gap-2"}
     >
-      {MODES.map((m) => {
+      {MODES.map((m, i) => {
         const active = m.id === value;
         return (
           <button
             key={m.id}
             onClick={() => onChange(m.id)}
             aria-pressed={active}
+            style={compact ? undefined : { animationDelay: `${i * 65}ms` }}
             className={`text-left rounded-lg border transition-all ${
-              compact ? "px-3 py-1.5 text-xs" : "p-3"
+              compact ? "px-3 py-1.5 text-xs" : "p-3 item-in"
             } ${
               active
                 ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--fg)]"
