@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 keyboard shortcut: press H during the answering phase to fill in the question-type-aware "Stuck?" starter phrase — same as clicking the Stuck? button; `aria-keyshortcuts="h"` added to the button, H listed in ShortcutsModal Session section, README keyboard-first blurb updated
+
 - 2026-06-03 micro-animation: staggered item-in entrance on ModePicker buttons — Chill, Exam, and Expert cascade in at 0 / 65 / 130 ms on landing-page load, matching the curriculum card and feature grid stagger patterns; compact (in-session error card) variant is unchanged
 
 - 2026-06-03 additional curriculum topic: added "Gravitation and properties of bulk matter" to NEET Physics (8→9 topics) — universal law of gravitation (F = Gm₁m₂/r²), variation of g with altitude/depth/rotation, gravitational potential energy, escape velocity (v_e = √(2gR) ≈ 11.2 km/s), orbital velocity (v₀ = √(GM/r)), geostationary satellites, Kepler's three laws (ellipse, equal areas, T²∝r³); elastic properties: Young's/bulk/shear modulus, Hooke's law, elastic potential energy; fluid statics: pressure P = P₀+ρgh, Pascal's law, Archimedes' principle, floatation; surface tension: excess pressure in drop (2T/r) vs soap bubble (4T/r), capillary rise h = 2T cosθ/(ρrg); fluid dynamics: continuity equation (A₁v₁=A₂v₂), Bernoulli's equation with Torricelli theorem, Stokes' law (F=6πηrv), terminal velocity, Reynolds number; a 8–12 question NEET Physics combination of NCERT Class 11 Ch 8–10 covering a significant NEET section previously absent from the pack

@@ -273,6 +273,10 @@ export function Session() {
           setTimeout(() => setCopiedQ(false), 2000);
         }
       }
+      if ((e.key === "h" || e.key === "H") && phase === "answering") {
+        const qt = rounds[rounds.length - 1]?.questionType;
+        if (qt) setAnswer(STUCK_STARTERS[qt]);
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -595,7 +599,8 @@ export function Session() {
                   disabled={phase !== "answering"}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
                   aria-label="Fill in a question-type-aware starting phrase to get unstuck"
-                  title={`Click when stuck — seeds a "${lastRound.questionType}"-style opening so you can start thinking out loud`}
+                  aria-keyshortcuts="h"
+                  title={`Click when stuck — seeds a "${lastRound.questionType}"-style opening so you can start thinking out loud (press H)`}
                 >
                   Stuck?
                 </button>

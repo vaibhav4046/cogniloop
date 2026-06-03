@@ -83,7 +83,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `n` new session, `d` download report, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `h` Stuck? starter, `n` new session, `d` download report, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
 - Per-round difficulty dots, mode badges, question-type tags
 - Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
 - Sticky concept tracker on desktop, collapsible mobile
