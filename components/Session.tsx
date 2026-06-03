@@ -823,7 +823,8 @@ const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concep
               aria-valuetext={STRENGTH_DESC[c.strength]}
             >
               <div
-                className="bar-fill"
+                key={c.strength === "mastered" ? "mastered" : "active"}
+                className={`bar-fill${c.strength === "mastered" ? " mastered-flash" : ""}`}
                 style={{
                   width: `${STRENGTH_PCT[c.strength]}%`,
                   background: STRENGTH_COLOR[c.strength],

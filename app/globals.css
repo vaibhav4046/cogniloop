@@ -217,6 +217,15 @@ select:focus-visible {
   animation: speak-pulse 1.1s ease-in-out infinite;
 }
 
+@keyframes mastered-flash {
+  0%   { filter: brightness(1); }
+  35%  { filter: brightness(2.4); }
+  100% { filter: brightness(1); }
+}
+.mastered-flash {
+  animation: mastered-flash 0.75s ease-out;
+}
+
 @keyframes timer-urgent {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.55; transform: scale(1.08); }
