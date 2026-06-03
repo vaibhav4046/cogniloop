@@ -225,9 +225,14 @@ export function Landing() {
               </div>
             )}
 
-            <details className="mt-4 group">
+            <details
+              className="mt-4 group"
+              onToggle={(e) => {
+                if ((e.target as HTMLDetailsElement).open) taRef.current?.focus();
+              }}
+            >
               <summary className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] cursor-pointer select-none list-none flex items-center gap-2">
-                <span className="inline-block transition-transform group-open:rotate-90">›</span>
+                <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-90">›</span>
                 Studying from a textbook or lecture? Drop your notes here
               </summary>
               <textarea

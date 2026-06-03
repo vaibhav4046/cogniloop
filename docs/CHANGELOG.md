@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 a11y: auto-focus notes textarea when the "Drop your notes here" details section opens (saves keyboard users a Tab press), and add `aria-hidden="true"` to decorative `›` chevrons in the notes summary and WhyView FAQ summaries so screen readers skip the punctuation glyph
+
 - 2026-06-03 micro-animation: one-shot brightness flash on the concept progress bar when a concept reaches "mastered" strength — key-driven remount triggers the animation only at the mastery transition
 
 - 2026-06-03 additional curriculum topic: added "Semiconductor electronics and logic gates" to JEE Physics (8→9 topics) — energy bands (conductors/semiconductors/insulators), intrinsic vs extrinsic semiconductors (n-type/p-type, majority/minority carriers), p-n junction (depletion region, forward/reverse bias, I-V characteristics), half-wave and full-wave bridge rectifiers (efficiency 40.6% vs 81.2%), Zener diode voltage regulation, BJT transistor (npn/pnp, α and β current gains, CE configuration as switch and amplifier), logic gates (AND/OR/NOT, NAND/NOR as universal gates, XOR for half-adder), De Morgan's theorems; a 2–4 question JEE Main chapter (NCERT Class 12 Ch 14) previously absent from the JEE Physics pack while already present in NEET Physics

@@ -148,7 +148,7 @@ export function WhyView() {
             <details key={f.q} className="card p-4 group item-in" style={{ animationDelay: `${i * 55}ms` }}>
               <summary className="cursor-pointer flex items-center justify-between gap-4 list-none text-[14px] font-medium tracking-tight">
                 <span>{f.q}</span>
-                <span className="text-[var(--fg-dim)] group-open:rotate-90 transition-transform">
+                <span aria-hidden="true" className="text-[var(--fg-dim)] group-open:rotate-90 transition-transform">
                   ›
                 </span>
               </summary>
