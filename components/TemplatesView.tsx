@@ -36,6 +36,7 @@ const CurriculumCard = memo(function CurriculumCard({
                   <button
                     key={t}
                     onClick={() => onStart(t)}
+                    aria-label={`Study ${label}`}
                     title={label !== t ? t : undefined}
                     className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left"
                   >

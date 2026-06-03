@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 accessibility: add `aria-label="Study [topic]"` to every curriculum topic button in TemplatesView — screen readers now announce the action ("Study Mechanics") instead of just the topic label, improving keyboard navigation for assistive-technology users
+
 - 2026-06-03 keyboard shortcut: press H during the answering phase to fill in the question-type-aware "Stuck?" starter phrase — same as clicking the Stuck? button; `aria-keyshortcuts="h"` added to the button, H listed in ShortcutsModal Session section, README keyboard-first blurb updated
 
 - 2026-06-03 micro-animation: staggered item-in entrance on ModePicker buttons — Chill, Exam, and Expert cascade in at 0 / 65 / 130 ms on landing-page load, matching the curriculum card and feature grid stagger patterns; compact (in-session error card) variant is unchanged
