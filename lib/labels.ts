@@ -37,3 +37,10 @@ export const STUCK_STARTERS: Record<Round["questionType"], string> = {
   predict: "Following the cause-and-effect chain from first principles: if…, then…",
   trace: "Walking through it step by step — first…, then…, and finally…",
 };
+
+export const STRENGTH_PCT: Record<ConceptStrength, number> = {
+  weak: 18,
+  shaky: 45,
+  solid: 75,
+  mastered: 100,
+};

@@ -18,7 +18,7 @@ import { STARTING_HINTS, GRADING_HINTS, ENDING_HINTS, pickHint } from "@/lib/hin
 import { isInTextField } from "@/lib/kbd";
 import { getMode, type ModeId } from "@/lib/modes";
 import { useAutoExpand } from "@/lib/useAutoExpand";
-import { QTYPE_DESC, STRENGTH_DESC, STRENGTH_COLOR, QTYPE_PLACEHOLDER, STUCK_STARTERS } from "@/lib/labels";
+import { QTYPE_DESC, STRENGTH_DESC, STRENGTH_COLOR, STRENGTH_PCT, QTYPE_PLACEHOLDER, STUCK_STARTERS } from "@/lib/labels";
 import type {
   Concept,
   Round,
@@ -86,12 +86,6 @@ function fmtTimeLabel(sec: number): string {
 }
 
 
-const STRENGTH_PCT: Record<ConceptStrength, number> = {
-  weak: 18,
-  shaky: 45,
-  solid: 75,
-  mastered: 100,
-};
 
 
 
