@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 empty state polish: add custom 404 page (`app/not-found.tsx`) — branded card with "Dead link — but your weak concepts are still waiting to be drilled." copy, two CTAs (Start a session, Browse templates), and a 404 tab title; previously Next.js served a plain white fallback
+
 - 2026-06-03 accessibility: add `aria-label="Study [topic]"` to every curriculum topic button in TemplatesView — screen readers now announce the action ("Study Mechanics") instead of just the topic label, improving keyboard navigation for assistive-technology users
 
 - 2026-06-03 keyboard shortcut: press H during the answering phase to fill in the question-type-aware "Stuck?" starter phrase — same as clicking the Stuck? button; `aria-keyshortcuts="h"` added to the button, H listed in ShortcutsModal Session section, README keyboard-first blurb updated
