@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 additional curriculum topic: added "Authentication and authorization patterns" to System Design Core Concepts (8→9 topics) — session-based auth vs stateless JWT (access + refresh token rotation, RS256/HS256, short TTL ~15 min); OAuth 2.0 flows (Authorization Code + PKCE, Client Credentials, deprecated Implicit); OIDC identity layer; API key scoping and rotation; RBAC vs ABAC vs ReBAC (Google Zanzibar); SSO/SAML 2.0 and enterprise IdP federation; password hashing with bcrypt/scrypt/Argon2id; TOTP/FIDO2 MFA; distributed session store (Redis); common pitfalls: JWT revocation gap, IDOR, privilege escalation, confused deputy in microservices; a high-signal system design interview topic previously absent from the pack
+
 - 2026-06-03 empty state polish: add custom 404 page (`app/not-found.tsx`) — branded card with "Dead link — but your weak concepts are still waiting to be drilled." copy, two CTAs (Start a session, Browse templates), and a 404 tab title; previously Next.js served a plain white fallback
 
 - 2026-06-03 accessibility: add `aria-label="Study [topic]"` to every curriculum topic button in TemplatesView — screen readers now announce the action ("Study Mechanics") instead of just the topic label, improving keyboard navigation for assistive-technology users
