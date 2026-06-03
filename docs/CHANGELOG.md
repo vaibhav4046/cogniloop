@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-03 additional curriculum topic: added "Gravitation and properties of bulk matter" to NEET Physics (8→9 topics) — universal law of gravitation (F = Gm₁m₂/r²), variation of g with altitude/depth/rotation, gravitational potential energy, escape velocity (v_e = √(2gR) ≈ 11.2 km/s), orbital velocity (v₀ = √(GM/r)), geostationary satellites, Kepler's three laws (ellipse, equal areas, T²∝r³); elastic properties: Young's/bulk/shear modulus, Hooke's law, elastic potential energy; fluid statics: pressure P = P₀+ρgh, Pascal's law, Archimedes' principle, floatation; surface tension: excess pressure in drop (2T/r) vs soap bubble (4T/r), capillary rise h = 2T cosθ/(ρrg); fluid dynamics: continuity equation (A₁v₁=A₂v₂), Bernoulli's equation with Torricelli theorem, Stokes' law (F=6πηrv), terminal velocity, Reynolds number; a 8–12 question NEET Physics combination of NCERT Class 11 Ch 8–10 covering a significant NEET section previously absent from the pack
+
 - 2026-06-03 UI copy polish: truncate verbose curriculum topic labels in TemplatesView to short names before " — " dash (e.g. "Solid state chemistry" instead of full NCERT bullet); full string still passed to AI; hover title reveals complete text
 
 - 2026-06-02 README/docs update: bump "70+" → "80+" shipped features; add copy-button bullet to Input/output; add 6 missing files to Architecture (ScrollProgress.tsx, ShortcutsLoader.tsx, labels.ts, kbd.ts, useAutoExpand.ts, useGlobalNav.ts)
