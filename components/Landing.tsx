@@ -95,6 +95,18 @@ function relTime(ts: number): string {
   return `${days}d ago`;
 }
 
+const MODE_CHIP_COLOR: Record<string, string> = {
+  chill: "var(--good)",
+  exam: "var(--warn)",
+  expert: "var(--accent)",
+};
+
+const MODE_CHIP_LABEL: Record<string, string> = {
+  chill: "Chill",
+  exam: "Exam",
+  expert: "Expert",
+};
+
 export function Landing() {
   const router = useRouter();
   const [topic, setTopic] = useState("");
@@ -102,7 +114,7 @@ export function Landing() {
   const [mode, setMode] = useState<ModeId>("exam");
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const [recentTopics, setRecentTopics] = useState<{ topic: string; createdAt: number }[]>([]);
+  const [recentTopics, setRecentTopics] = useState<{ topic: string; modeId: string; createdAt: number }[]>([]);
   const [recentMounted, setRecentMounted] = useState(false);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -113,11 +125,11 @@ export function Landing() {
   useEffect(() => {
     const hist = getHistory();
     const seen = new Set<string>();
-    const recent: { topic: string; createdAt: number }[] = [];
+    const recent: { topic: string; modeId: string; createdAt: number }[] = [];
     for (const r of hist) {
       if (r.topic && !seen.has(r.topic)) {
         seen.add(r.topic);
-        recent.push({ topic: r.topic, createdAt: r.createdAt });
+        recent.push({ topic: r.topic, modeId: r.modeId, createdAt: r.createdAt });
         if (recent.length >= 3) break;
       }
     }
@@ -312,14 +324,19 @@ export function Landing() {
                 Pick up where you left off
               </div>
               <div className="flex flex-wrap gap-2">
-                {recentTopics.map(({ topic: t, createdAt }, i) => (
+                {recentTopics.map(({ topic: t, modeId, createdAt }, i) => (
                   <button
                     key={t}
                     onClick={() => { setTopic(t); setErr(null); inputRef.current?.focus(); }}
-                    title={t}
+                    title={`${t} · ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode · ${relTime(createdAt)}`}
                     className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
                     style={{ animationDelay: `${i * 70}ms` }}
                   >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ background: MODE_CHIP_COLOR[modeId] ?? "var(--fg-dim)" }}
+                      aria-hidden="true"
+                    />
                     <span className="truncate min-w-0">↻ {t}</span>
                     <span className="text-[10px] text-[var(--fg-dim)] shrink-0">{relTime(createdAt)}</span>
                   </button>
