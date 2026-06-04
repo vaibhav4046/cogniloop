@@ -532,7 +532,7 @@ export function Session() {
                     setCopiedQ(true);
                     setTimeout(() => setCopiedQ(false), 2000);
                   }}
-                  aria-label="Copy question to clipboard"
+                  aria-label={copiedQ ? "Copied to clipboard" : "Copy question to clipboard"}
                   title="Copy question"
                   className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
                 >
@@ -925,14 +925,14 @@ const Block = memo(function Block({
       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
         {label}
       </div>
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-col gap-1" aria-label={label}>
         {items.map((it, i) => (
           <li
             key={i}
             className="text-[12.5px] text-[var(--fg-muted)] leading-relaxed flex gap-2 item-in"
             style={{ animationDelay: `${100 + i * 55}ms` }}
           >
-            <span style={{ color }}>•</span>
+            <span style={{ color }} aria-hidden="true">•</span>
             <span><Tex text={it} /></span>
           </li>
         ))}

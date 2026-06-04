@@ -172,7 +172,7 @@ export function SharedView({ token }: Props) {
                   {r.evaluation.strengths.length > 0 && (
                     <div className="mt-2">
                       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">What you got</div>
-                      <ul className="flex flex-col gap-0.5">
+                      <ul className="flex flex-col gap-0.5" aria-label="What you got">
                         {r.evaluation.strengths.map((s, i) => (
                           <li key={i} className="text-[12px] text-[var(--fg-muted)] leading-relaxed flex gap-2">
                             <span style={{ color: "var(--good)" }} aria-hidden="true">•</span>
@@ -185,7 +185,7 @@ export function SharedView({ token }: Props) {
                   {r.evaluation.gaps.length > 0 && (
                     <div className="mt-2">
                       <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">Still missing</div>
-                      <ul className="flex flex-col gap-0.5">
+                      <ul className="flex flex-col gap-0.5" aria-label="Still missing">
                         {r.evaluation.gaps.map((g, i) => (
                           <li key={i} className="text-[12px] text-[var(--fg-muted)] leading-relaxed flex gap-2">
                             <span style={{ color: "var(--bad)" }} aria-hidden="true">•</span>

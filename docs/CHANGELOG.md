@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-04 a11y: label strength/gap bullet lists and fix copy-button announcement — Block's <ul> gains aria-label={label} so screen readers distinguish "What you got" from "Still missing"; bullet • spans get aria-hidden="true" (matching SharedView's existing pattern); SharedView's inline strengths/gaps lists gain aria-label="What you got" / "Still missing" for the same reason; copy-question button aria-label is now dynamic ("Copied to clipboard" after activation) so screen readers hear the confirmation rather than always announcing "Copy question to clipboard"
+
 - 2026-06-04 micro-animation: staggered entrance animations on SharedView — concept tags slide in with `item-in` (40 ms per tag, capped at 12) and round cards cascade in with `round-in` (65 ms per round), matching the animation patterns used by history session cards and coaching report items; previously all elements appeared simultaneously without animation
 
 - 2026-06-04 README/docs update: bump "80+" → "90+" shipped features; add Print/PDF button to Input/output section; add `f` focus answer and `p` print PDF to the keyboard-first blurb (both shortcuts shipped today but missing from docs)
