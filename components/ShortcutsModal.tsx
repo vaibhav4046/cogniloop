@@ -42,6 +42,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
       { keys: "D", label: "Export markdown" },
       { keys: "S", label: "Copy share link" },
       { keys: "J", label: "Copy Feynman journal prompt" },
+      { keys: "P", label: "Print / save report as PDF" },
       { keys: "R", label: "Re-drill first weak concept" },
     ],
   },

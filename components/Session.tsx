@@ -1053,18 +1053,21 @@ function ReportView({
     URL.revokeObjectURL(url);
   }
 
-  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal });
-  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal };
+  function printReport() { window.print(); }
+
+  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport });
+  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isInTextField(e.target)) return;
       const k = e.key.toLowerCase();
-      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal } = reportKbdRef.current;
+      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport } = reportKbdRef.current;
       if (k === "d") downloadMd();
       else if (k === "r" && reDrillTarget) onReDrill(reDrillTarget);
       else if (k === "s") makeShareUrl();
       else if (k === "j") copyJournal();
+      else if (k === "p") printReport();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1209,6 +1212,14 @@ function ReportView({
             className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
           >
             {copied ? "Link copied ✓" : "Copy share link"}
+          </button>
+          <button
+            onClick={printReport}
+            aria-keyshortcuts="p"
+            title="Print or save as PDF (press P)"
+            className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
+          >
+            Print / PDF
           </button>
         </div>
         {shareUrl && (
