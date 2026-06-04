@@ -271,6 +271,9 @@ export function Session() {
         const qt = rounds[rounds.length - 1]?.questionType;
         if (qt) setAnswer(STUCK_STARTERS[qt]);
       }
+      if ((e.key === "f" || e.key === "F") && phase === "answering") {
+        taRef.current?.focus();
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -551,6 +554,7 @@ export function Session() {
               disabled={phase !== "answering"}
               aria-label="Your answer"
               aria-describedby="current-question"
+              aria-keyshortcuts="f"
               placeholder={QTYPE_PLACEHOLDER[lastRound.questionType]}
               className="w-full bg-transparent outline-none text-[15px] min-h-[140px] leading-relaxed disabled:opacity-60"
               maxLength={6000}
