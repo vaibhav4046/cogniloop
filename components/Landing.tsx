@@ -300,9 +300,15 @@ export function Landing() {
                 className="w-full bg-transparent outline-none text-[14px] min-h-[100px] mt-3"
                 maxLength={12000}
               />
-              <div className="text-[11px] text-[var(--fg-dim)] mt-1 text-right">
-                {notes.length}/12000
-              </div>
+              {notes.length > 0 && (
+                <div className={`text-[11px] mt-1 text-right ${
+                  notes.length >= 11000 ? "text-[var(--bad)]" :
+                  notes.length >= 8000 ? "text-[var(--warn)]" :
+                  "text-[var(--fg-dim)]"
+                }`}>
+                  {notes.length} / 12000
+                </div>
+              )}
             </details>
 
             <div className="mt-5 pt-4 border-t border-[var(--line-soft)]">
