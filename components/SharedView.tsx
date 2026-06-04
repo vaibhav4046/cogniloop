@@ -115,12 +115,12 @@ export function SharedView({ token }: Props) {
           Concepts
         </h2>
         <div className="flex flex-wrap gap-2">
-          {payload.concepts.map((c) => (
+          {payload.concepts.map((c, i) => (
             <span
               key={c.id}
-              className="tag"
+              className="tag item-in"
               title={STRENGTH_DESC[c.strength]}
-              style={{ color: STRENGTH_COLOR[c.strength] }}
+              style={{ color: STRENGTH_COLOR[c.strength], animationDelay: `${Math.min(i, 12) * 40}ms` }}
             >
               {c.name} · {c.strength}
             </span>
@@ -131,8 +131,8 @@ export function SharedView({ token }: Props) {
           Rounds
         </h2>
         <div className="flex flex-col gap-3">
-          {payload.rounds.map((r) => (
-            <article key={r.id} className="card p-4">
+          {payload.rounds.map((r, i) => (
+            <article key={r.id} className="card p-4 round-in" style={{ animationDelay: `${i * 65}ms` }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="tag">Round {r.id}</span>
                 <span className="tag" title={QTYPE_DESC[r.questionType]}>

@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-04 micro-animation: staggered entrance animations on SharedView — concept tags slide in with `item-in` (40 ms per tag, capped at 12) and round cards cascade in with `round-in` (65 ms per round), matching the animation patterns used by history session cards and coaching report items; previously all elements appeared simultaneously without animation
+
 - 2026-06-04 README/docs update: bump "80+" → "90+" shipped features; add Print/PDF button to Input/output section; add `f` focus answer and `p` print PDF to the keyboard-first blurb (both shortcuts shipped today but missing from docs)
 
 - 2026-06-04 UI copy polish: notes character counter in the landing page input card now hides when the notes field is empty (removes the noisy "0/12000" label on first open) and color-codes as notes approach the limit — amber at 8000+ characters, red at 11000+ — matching the topic-input counter pattern that only appears after 300 characters; space added around the "/" separator for better readability
