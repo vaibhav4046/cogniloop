@@ -1,9 +1,10 @@
 # Cogniloop Changelog
 
+- 2026-06-04 additional curriculum topic: added "Parallel and distributed computing" to AP CSP (7→8 topics) — sequential vs parallel processing, Amdahl's Law speedup bound, multi-core/GPU/distributed memory hardware, map-reduce pattern, race conditions and synchronization, distributed computing trade-offs (latency, fault tolerance, scalability), and AP CSP exam focus on identifying parallelizable tasks and calculating speedup; Big Idea 4 (Computing Systems and Networks) previously absent from the AP CSP pack
+
 - 2026-06-04 tiny feature: "Print / PDF" button added to the coaching report — triggers the browser print dialog (Ctrl+P / ⌘+P or press P) so users can save their session as a PDF; globals.css already had print media styles (light theme, hidden header/sidebar/buttons) so the output is clean; P keyboard shortcut wired into the report keyboard handler alongside D/S/J/R; listed in ShortcutsModal Report section
 
 - 2026-06-04 tiny feature: "Pick up where you left off" chips on the landing page now show a mode-colored dot (green=Chill, amber=Exam, purple=Expert) so returning users can see at a glance which study mode they last used for each recent topic; hover title also updated to include mode name (e.g. "Backpropagation · Exam mode · today")
-
 - 2026-06-03 a11y: auto-focus notes textarea when the "Drop your notes here" details section opens (saves keyboard users a Tab press), and add `aria-hidden="true"` to decorative `›` chevrons in the notes summary and WhyView FAQ summaries so screen readers skip the punctuation glyph
 
 - 2026-06-03 micro-animation: one-shot brightness flash on the concept progress bar when a concept reaches "mastered" strength — key-driven remount triggers the animation only at the mastery transition
