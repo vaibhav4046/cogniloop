@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (80+ shipped features)
+## What it does (90+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -56,6 +56,7 @@ Loop until mastered.
 - Markdown export of full session
 - URL-encoded shareable session links — no backend, no leaks
 - One-click copy button on the active session question card — paste directly into Notion, Anki, or any notes app; `c` keyboard shortcut
+- One-click "Print / PDF" button in the coaching report — triggers the browser print dialog to save the session as a clean PDF (light theme, headers/sidebar hidden); `p` keyboard shortcut
 - Per-round feedback card with strengths + gaps as bullet lists
 - Collapsible round-review in coaching report — question, answer, score, and verdict per round
 - Live word count while typing — color-coded amber / accent / green as explanation depth grows
@@ -83,7 +84,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `h` Stuck? starter, `n` new session, `d` download report, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `f` focus answer, `h` Stuck? starter, `n` new session, `d` download report, `p` print PDF, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
 - Per-round difficulty dots, mode badges, question-type tags
 - Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
 - Sticky concept tracker on desktop, collapsible mobile
