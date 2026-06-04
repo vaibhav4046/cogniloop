@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
 import { ModePicker } from "./ModePicker";
 import { StatsPanel } from "./StatsPanel";
@@ -107,6 +107,44 @@ const MODE_CHIP_LABEL: Record<string, string> = {
   expert: "Expert",
 };
 
+type RecentEntry = { topic: string; modeId: string; createdAt: number };
+
+const RecentTopics = memo(function RecentTopics({
+  topics,
+  onPick,
+}: {
+  topics: RecentEntry[];
+  onPick: (t: string) => void;
+}) {
+  if (topics.length === 0) return null;
+  return (
+    <div className="mt-6 fade-up">
+      <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
+        Pick up where you left off
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {topics.map(({ topic: t, modeId, createdAt }, i) => (
+          <button
+            key={t}
+            onClick={() => onPick(t)}
+            title={`${t} · ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode · ${relTime(createdAt)}`}
+            className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
+            style={{ animationDelay: `${i * 70}ms` }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full shrink-0"
+              style={{ background: MODE_CHIP_COLOR[modeId] ?? "var(--fg-dim)" }}
+              aria-hidden="true"
+            />
+            <span className="truncate min-w-0">↻ {t}</span>
+            <span className="text-[10px] text-[var(--fg-dim)] shrink-0">{relTime(createdAt)}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+});
+
 export function Landing() {
   const router = useRouter();
   const [topic, setTopic] = useState("");
@@ -153,6 +191,12 @@ export function Landing() {
     setTopic(s);
     setErr(null);
   }
+
+  const pickRecent = useCallback((t: string) => {
+    setTopic(t);
+    setErr(null);
+    inputRef.current?.focus();
+  }, []);
 
   async function start() {
     if (submitting) return;
@@ -318,32 +362,9 @@ export function Landing() {
                 <div className="skeleton h-[30px] w-28 rounded-lg" />
               </div>
             </div>
-          ) : recentTopics.length > 0 ? (
-            <div className="mt-6 fade-up">
-              <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
-                Pick up where you left off
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {recentTopics.map(({ topic: t, modeId, createdAt }, i) => (
-                  <button
-                    key={t}
-                    onClick={() => { setTopic(t); setErr(null); inputRef.current?.focus(); }}
-                    title={`${t} · ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode · ${relTime(createdAt)}`}
-                    className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
-                    style={{ animationDelay: `${i * 70}ms` }}
-                  >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ background: MODE_CHIP_COLOR[modeId] ?? "var(--fg-dim)" }}
-                      aria-hidden="true"
-                    />
-                    <span className="truncate min-w-0">↻ {t}</span>
-                    <span className="text-[10px] text-[var(--fg-dim)] shrink-0">{relTime(createdAt)}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : null}
+          ) : (
+            <RecentTopics topics={recentTopics} onPick={pickRecent} />
+          )}
 
           <CurriculaPicker />
 
