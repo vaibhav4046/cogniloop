@@ -301,7 +301,7 @@ export function HistoryView() {
                 href="/"
                 className="btn-primary inline-block px-5 py-2.5 rounded-lg text-sm"
               >
-                Start your first session →
+                Begin the loop →
               </Link>
             </div>
           ) : filtered.length === 0 ? (

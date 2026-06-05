@@ -23,7 +23,7 @@ export default function NotFound() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
             <Link href="/" className="btn-primary px-5 py-2.5 rounded-lg text-sm w-full sm:w-auto">
-              Start a session →
+              Begin the loop →
             </Link>
             <Link href="/templates" className="btn-ghost px-5 py-2.5 rounded-lg text-sm w-full sm:w-auto">
               Browse templates

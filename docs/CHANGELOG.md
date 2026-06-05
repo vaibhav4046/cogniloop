@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-05 brand voice tightening: align 404 and history empty-state CTAs with "Begin the loop →" — the 404 page said "Start a session →" and the /history zero-state said "Start your first session →"; both link to "/" and now match the brand voice established in Landing.tsx and WhyView.tsx
+
 - 2026-06-05 README/docs update: add `t` toggle math syntax panel to keyboard-first blurb and Input/output feature list — the T shortcut shipped in the same run but was missing from the README
 
 - 2026-06-05 perf: memoize "Try an example" chips in Landing — extract the eight example buttons into a stable ExampleChips memo component with a useCallback onPick handler (stable empty-dep reference), so they skip re-renders on every topic-input keystroke; also converts the inline pickExample function to useCallback and adds inputRef.current?.focus() for UX parity with pickRecent (selecting an example now focuses the input so users can immediately press Enter or tweak the topic); matches the CurriculaPicker, FeatureGrid, RecentTopics, and StatsPanel memo pattern already in Landing
