@@ -274,6 +274,9 @@ export function Session() {
       if ((e.key === "f" || e.key === "F") && phase === "answering") {
         taRef.current?.focus();
       }
+      if ((e.key === "t" || e.key === "T") && phase === "answering") {
+        setShowHints((v) => !v);
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -586,9 +589,10 @@ export function Session() {
                 <button
                   onClick={() => setShowHints((v) => !v)}
                   className="btn-ghost text-xs px-2.5 py-1 rounded-md"
-                  title="Math syntax help"
+                  title="Toggle LaTeX math syntax panel (press T)"
                   aria-label="Toggle math syntax help"
                   aria-expanded={showHints}
+                  aria-keyshortcuts="t"
                 >
                   ƒ
                 </button>

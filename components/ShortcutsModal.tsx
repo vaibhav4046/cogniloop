@@ -32,6 +32,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
       { keys: "C", label: "Copy current question to clipboard" },
       { keys: "H", label: "Fill in a type-aware Stuck? starter phrase" },
       { keys: "F", label: "Focus answer field" },
+      { keys: "T", label: "Toggle math syntax panel" },
       { keys: "E", label: "End session & generate report" },
       { keys: "R", label: "Retry after an error" },
     ],
