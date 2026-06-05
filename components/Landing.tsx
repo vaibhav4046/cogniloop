@@ -145,6 +145,32 @@ const RecentTopics = memo(function RecentTopics({
   );
 });
 
+const ExampleChips = memo(function ExampleChips({
+  onPick,
+}: {
+  onPick: (ex: string) => void;
+}) {
+  return (
+    <div className="mt-10">
+      <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
+        Try an example
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {EXAMPLES.map((ex, i) => (
+          <button
+            key={ex}
+            onClick={() => onPick(ex)}
+            className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in"
+            style={{ animationDelay: `${i * 35}ms` }}
+          >
+            {ex}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+});
+
 export function Landing() {
   const router = useRouter();
   const [topic, setTopic] = useState("");
@@ -187,10 +213,11 @@ export function Landing() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  function pickExample(s: string) {
+  const pickExample = useCallback((s: string) => {
     setTopic(s);
     setErr(null);
-  }
+    inputRef.current?.focus();
+  }, []);
 
   const pickRecent = useCallback((t: string) => {
     setTopic(t);
@@ -342,23 +369,7 @@ export function Landing() {
             </div>
           </div>
 
-          <div className="mt-10">
-            <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-3">
-              Try an example
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {EXAMPLES.map((ex, i) => (
-                <button
-                  key={ex}
-                  onClick={() => pickExample(ex)}
-                  className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in"
-                  style={{ animationDelay: `${i * 35}ms` }}
-                >
-                  {ex}
-                </button>
-              ))}
-            </div>
-          </div>
+          <ExampleChips onPick={pickExample} />
 
           {!recentMounted ? (
             <div className="mt-6" aria-hidden="true">
