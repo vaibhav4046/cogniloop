@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-05 README/docs update: add `t` toggle math syntax panel to keyboard-first blurb and Input/output feature list — the T shortcut shipped in the same run but was missing from the README
+
 - 2026-06-05 perf: memoize "Try an example" chips in Landing — extract the eight example buttons into a stable ExampleChips memo component with a useCallback onPick handler (stable empty-dep reference), so they skip re-renders on every topic-input keystroke; also converts the inline pickExample function to useCallback and adds inputRef.current?.focus() for UX parity with pickRecent (selecting an example now focuses the input so users can immediately press Enter or tweak the topic); matches the CurriculaPicker, FeatureGrid, RecentTopics, and StatsPanel memo pattern already in Landing
 
 - 2026-06-05 UI copy polish: answer textarea footer no longer shows a noisy "0/6000" character count when the field is empty — char count now only appears when the user is near the 6000-char limit (>5000); the ⌘/Ctrl + Enter submit hint is now rendered with styled `<kbd>` chips matching the Landing page pattern; consistent with the notes-counter polish shipped on 2026-06-04
