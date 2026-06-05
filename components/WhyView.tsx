@@ -113,7 +113,7 @@ export function WhyView() {
             </thead>
             <tbody>
               {COMPARE.map((r, i) => (
-                <tr key={r.row} className={i % 2 !== 0 ? "bg-[var(--bg-soft)]" : ""}>
+                <tr key={r.row} className={i % 2 !== 0 ? "fade-up bg-[var(--bg-soft)]" : "fade-up"} style={{ animationDelay: `${i * 42}ms` }}>
                   <th scope="row" className="px-4 py-3 text-left font-normal text-[12.5px] text-[var(--fg-muted)]">{r.row}</th>
                   <td className="px-4 py-3 text-[12.5px] text-[var(--fg)]">{r.cogniloop}</td>
                   <td className="px-4 py-3 text-[12.5px] text-[var(--fg-muted)]">{r.chatgpt}</td>
