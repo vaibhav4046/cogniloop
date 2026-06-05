@@ -569,14 +569,19 @@ export function Session() {
               }}
             />
             <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
-              <div className="text-[11px] text-[var(--fg-dim)]">
+              <div className="text-[11px] text-[var(--fg-dim)] flex items-center gap-1 flex-wrap">
                 {(() => {
                   const wc = answer.trim() ? answer.trim().split(/\s+/).filter(Boolean).length : 0;
                   const wcColor = wc === 0 ? undefined : wc < 20 ? "var(--warn)" : wc < 50 ? "var(--accent)" : "var(--good)";
+                  const nearLimit = answer.length > 5000;
                   return (
                     <>
                       {wc > 0 && <span style={{ color: wcColor }}>{wc} words · </span>}
-                      {answer.length}/6000 · ⌘/Ctrl + Enter to submit
+                      {nearLimit && <span style={{ color: "var(--bad)" }}>{answer.length}/6000 · </span>}
+                      <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-1 py-0.5 rounded text-[10px]">⌘/Ctrl</kbd>
+                      <span>+</span>
+                      <kbd className="font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-1 py-0.5 rounded text-[10px]">Enter</kbd>
+                      <span>to submit</span>
                     </>
                   );
                 })()}
