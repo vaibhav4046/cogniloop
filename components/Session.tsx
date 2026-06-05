@@ -792,66 +792,83 @@ function SessionShell({
 const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concept[] }) {
   const masteredCount = concepts.filter((c) => c.strength === "mastered").length;
   const allMastered = concepts.length > 0 && masteredCount === concepts.length;
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="card p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-[12px] font-medium tracking-tight text-[var(--fg)]">
           Concept tracker
         </div>
-        <div
-          className="text-[10px] uppercase tracking-wider"
-          style={{ color: allMastered ? "var(--accent)" : "var(--fg-dim)" }}
-        >
-          {masteredCount > 0
-            ? `${masteredCount} / ${concepts.length} mastered`
-            : `${concepts.length} concepts`}
+        <div className="flex items-center gap-1.5">
+          <div
+            className="text-[10px] uppercase tracking-wider"
+            style={{ color: allMastered ? "var(--accent)" : "var(--fg-dim)" }}
+          >
+            {masteredCount > 0
+              ? `${masteredCount} / ${concepts.length} mastered`
+              : `${concepts.length} concepts`}
+          </div>
+          <button
+            className="lg:hidden text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors p-0.5"
+            onClick={() => setCollapsed((v) => !v)}
+            aria-expanded={!collapsed}
+            aria-controls="concept-tracker-list"
+            aria-label={collapsed ? "Expand concept tracker" : "Collapse concept tracker"}
+          >
+            <span
+              aria-hidden="true"
+              className={`inline-block transition-transform duration-150${!collapsed ? " rotate-90" : ""}`}
+            >›</span>
+          </button>
         </div>
       </div>
-      <ul className="flex flex-col gap-3" aria-label="Concept tracker">
-        {concepts.map((c, idx) => (
-          <li key={c.id} className="flex flex-col gap-1.5 fade-up" style={{ animationDelay: `${idx * 55}ms` }}>
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[13px] tracking-tight truncate">{c.name}</span>
-              <span
-                key={c.strength}
-                className="text-[10px] uppercase tracking-wider font-medium pop-in"
-                style={{ color: STRENGTH_COLOR[c.strength] }}
-                title={STRENGTH_DESC[c.strength]}
-              >
-                {c.strength}
-              </span>
-            </div>
-            <div
-              className="bar-track"
-              role="progressbar"
-              aria-label={`${c.name} mastery`}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={STRENGTH_PCT[c.strength]}
-              aria-valuetext={STRENGTH_DESC[c.strength]}
-            >
-              <div
-                key={c.strength === "mastered" ? "mastered" : "active"}
-                className={`bar-fill${c.strength === "mastered" ? " mastered-flash" : ""}`}
-                style={{
-                  width: `${STRENGTH_PCT[c.strength]}%`,
-                  background: STRENGTH_COLOR[c.strength],
-                }}
-              />
-            </div>
-            {c.attempts > 0 && (
-              <div className="text-[10px] text-[var(--fg-dim)]">
-                drilled {c.attempts}×
+      <div id="concept-tracker-list" className={collapsed ? "hidden lg:block" : ""}>
+        <ul className="flex flex-col gap-3" aria-label="Concept tracker">
+          {concepts.map((c, idx) => (
+            <li key={c.id} className="flex flex-col gap-1.5 fade-up" style={{ animationDelay: `${idx * 55}ms` }}>
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[13px] tracking-tight truncate">{c.name}</span>
+                <span
+                  key={c.strength}
+                  className="text-[10px] uppercase tracking-wider font-medium pop-in"
+                  style={{ color: STRENGTH_COLOR[c.strength] }}
+                  title={STRENGTH_DESC[c.strength]}
+                >
+                  {c.strength}
+                </span>
               </div>
-            )}
-          </li>
-        ))}
-      </ul>
-      {allMastered && (
-        <p className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11px] text-[var(--accent)] text-center leading-snug fade-up">
-          All {concepts.length} concept{concepts.length !== 1 ? "s" : ""} mastered — no gaps left on this topic.
-        </p>
-      )}
+              <div
+                className="bar-track"
+                role="progressbar"
+                aria-label={`${c.name} mastery`}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={STRENGTH_PCT[c.strength]}
+                aria-valuetext={STRENGTH_DESC[c.strength]}
+              >
+                <div
+                  key={c.strength === "mastered" ? "mastered" : "active"}
+                  className={`bar-fill${c.strength === "mastered" ? " mastered-flash" : ""}`}
+                  style={{
+                    width: `${STRENGTH_PCT[c.strength]}%`,
+                    background: STRENGTH_COLOR[c.strength],
+                  }}
+                />
+              </div>
+              {c.attempts > 0 && (
+                <div className="text-[10px] text-[var(--fg-dim)]">
+                  drilled {c.attempts}×
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        {allMastered && (
+          <p className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11px] text-[var(--accent)] text-center leading-snug fade-up">
+            All {concepts.length} concept{concepts.length !== 1 ? "s" : ""} mastered — no gaps left on this topic.
+          </p>
+        )}
+      </div>
     </div>
   );
 });
