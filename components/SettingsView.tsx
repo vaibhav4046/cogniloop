@@ -8,6 +8,7 @@ import {
   clearSettings,
   type UserSettings,
 } from "@/lib/settings";
+import { useDoubleConfirm } from "@/lib/useDoubleConfirm";
 
 const VOICE_LANGS = [
   { v: "en-US", l: "English (US)" },
@@ -26,7 +27,7 @@ export function SettingsView() {
   const [showKey, setShowKey] = useState(false);
   const [saved, setSaved] = useState(false);
   const [keyTest, setKeyTest] = useState<{ status: "idle" | "testing" | "ok" | "err"; msg?: string }>({ status: "idle" });
-  const [confirmClear, setConfirmClear] = useState(false);
+  const { confirming: confirmClear, arm: armClear, disarm: disarmClear } = useDoubleConfirm();
 
   useEffect(() => {
     setS(getSettings());
@@ -66,14 +67,13 @@ export function SettingsView() {
 
   function clearAll() {
     if (!confirmClear) {
-      setConfirmClear(true);
-      setTimeout(() => setConfirmClear(false), 4000);
+      armClear();
       return;
     }
     clearSettings();
     setS(getSettings());
     setKeyTest({ status: "idle" });
-    setConfirmClear(false);
+    disarmClear();
   }
 
   function testTts() {

@@ -16,6 +16,7 @@ import {
 } from "@/lib/storage";
 import { getMode } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
+import { useDoubleConfirm } from "@/lib/useDoubleConfirm";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -37,7 +38,7 @@ export function HistoryView() {
   const [records, setRecords] = useState<SessionRecord[]>([]);
   const [streak, setStreak] = useState<StreakData | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const [confirmClear, setConfirmClear] = useState(false);
+  const { confirming: confirmClear, arm: armClear, disarm: disarmClear } = useDoubleConfirm();
   const [importErr, setImportErr] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
@@ -62,13 +63,12 @@ export function HistoryView() {
 
   function onClear() {
     if (!confirmClear) {
-      setConfirmClear(true);
-      setTimeout(() => setConfirmClear(false), 4000);
+      armClear();
       return;
     }
     clearHistory();
     setRecords([]);
-    setConfirmClear(false);
+    disarmClear();
   }
 
   function exportAll() {
