@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 export type ToastKind = "info" | "success" | "warn" | "error";
 
@@ -69,7 +69,7 @@ export function ToastHost({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const api: ToastApi = { push, dismiss };
+  const api = useMemo<ToastApi>(() => ({ push, dismiss }), [push, dismiss]);
 
   return (
     <ToastCtx.Provider value={api}>

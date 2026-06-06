@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 perf: memoize ToastHost context value — `api` object was re-created on every render, causing all `useToast()` consumers (Session.tsx) to re-render unnecessarily whenever a toast appeared or dismissed; wrapping in `useMemo([push, dismiss])` makes the provider value stable since both callbacks are already `useCallback`-wrapped
+
 - 2026-06-06 docs: document back-to-top button in README UX details — feature shipped in feat(scroll) but was never listed in the README
 
 - 2026-06-06 additional curriculum topic: expanded "Attention and transformers" in ML Fundamentals Models from a 3-word stub to a full topic — scaled dot-product attention (Q/K/V matrices, √d_k scaling), multi-head attention (h parallel heads, d_k=d_model/h), transformer encoder/decoder stack (self-attention + cross-attention + FFN + residual + LayerNorm), positional encoding (sinusoidal and learned), encoder-only (BERT/MLM), decoder-only (GPT/causal LM), encoder-decoder (T5/BART), O(n²) attention complexity, Flash Attention and sparse attention variants, training dynamics (warm-up, gradient clipping, mixed precision); previously the only stub entry in an otherwise fully-detailed subject
