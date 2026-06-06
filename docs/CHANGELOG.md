@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 additional curriculum topic: added "Creative development and program design" to AP CSP (8→9 topics) — program function vs purpose distinction, iterative and incremental development process, decomposition and abstraction (procedural abstraction, hiding implementation), AP pseudocode syntax (PROCEDURE, ←, IF/ELSE, REPEAT TIMES/UNTIL, list operations), flowchart symbols, meaningful naming and documentation, testing strategies (normal/boundary/edge cases, hand-tracing, debugging with DISPLAY), pair programming and collaborative design, event-driven programming; covers Big Idea 1 (CRD — Creative Development), the only AP CSP Big Idea not previously represented in the pack, and explicitly assessed in both the AP CSP Create Performance Task and multiple-choice questions
+
 - 2026-06-06 micro-animation: stagger landing page hero elements — badge, h1, description, StatsPanel, and topic input card now cascade in top-to-bottom (0 / 70 / 140 / 200 / 260 ms) instead of fading as a flat unit; draws the eye down to the input card, the most actionable element on the page
 
 - 2026-06-06 tiny feature: "Back to top" button appears on /templates, /history, and /why after scrolling past 20% — reuses the existing ScrollProgress scroll listener (zero extra DOM events), fades in/out via direct style writes to avoid React re-renders, respects prefers-reduced-motion for smooth vs instant scroll, positions above the ? shortcuts button, aria-label for screen readers
