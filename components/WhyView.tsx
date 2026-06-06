@@ -32,7 +32,7 @@ const FAQ = [
   },
   {
     q: "What LLM does it use?",
-    a: "Default: Pollinations.ai's free public endpoint (openai / openai-fast / mistral — no API key needed). With a server-side GROQ_API_KEY set, it uses Groq's Llama 3.3 70B for higher quality and speed. Multi-provider with retry + automatic fallback.",
+    a: "Default: Pollinations.ai free public endpoint — no API key, no signup required. Paste a free Groq key in Settings to switch to Llama 3.3 70B for sharper questions at higher speed. Multi-provider with automatic fallback, so there's always a model working.",
   },
   {
     q: "What about hallucinations?",
@@ -40,7 +40,7 @@ const FAQ = [
   },
   {
     q: "Why are sessions client-side only?",
-    a: "Privacy + simplicity. No login, no leak, no GDPR. You own your data, it never leaves your browser. The trade-off: clearing browser data deletes your history. Mark sessions to markdown if you want long-term storage.",
+    a: "Privacy + simplicity. No login, no leak, no GDPR. You own your data, it never leaves your browser. The trade-off: clearing browser data deletes your history. Export sessions to markdown from the coaching report if you want long-term storage.",
   },
   {
     q: "When should I NOT use Cogniloop?",
@@ -174,8 +174,9 @@ export function WhyView() {
           </Link>
         </div>
       </section>
-      <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] border-t border-[var(--line-soft)]">
-        Built by Vaibhav Lalwani. MIT licensed.
+      <footer className="px-6 sm:px-10 py-6 text-[11px] text-[var(--fg-dim)] flex flex-col sm:flex-row gap-2 items-center justify-between border-t border-[var(--line-soft)]">
+        <span>Built by <span className="text-[var(--fg-muted)]">Vaibhav Lalwani</span></span>
+        <span>MIT licensed · <a href="https://github.com/vaibhav4046/cogniloop" target="_blank" rel="noreferrer" className="hover:text-[var(--fg)]">github.com/vaibhav4046/cogniloop</a></span>
       </footer>
     </main>
   );
