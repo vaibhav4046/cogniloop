@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 tiny feature: "Back to top" button appears on /templates, /history, and /why after scrolling past 20% — reuses the existing ScrollProgress scroll listener (zero extra DOM events), fades in/out via direct style writes to avoid React re-renders, respects prefers-reduced-motion for smooth vs instant scroll, positions above the ? shortcuts button, aria-label for screen readers
+
 - 2026-06-06 a11y: upgrade ModePicker from role="group"/aria-pressed to role="radiogroup"/role="radio"/aria-checked with roving tabindex and arrow-key navigation — screen readers now understand Chill / Exam / Expert as mutually exclusive radio choices rather than independent toggle buttons; arrow keys (↑ ↓ ← →) cycle through modes once the group is focused, matching the WCAG roving-tabindex radiogroup pattern already used by the provider-preference picker in SettingsView; no visual or behavior change for mouse/touch users
 
 - 2026-06-05 refactor: extract shared useDoubleConfirm hook from HistoryView and SettingsView — both components duplicated the same confirmClear + setTimeout(4000) pattern for the "Clear all" / "Clear settings" double-click confirmation; extracted into lib/useDoubleConfirm.ts with proper timer cleanup on unmount via useEffect; no behavior change
