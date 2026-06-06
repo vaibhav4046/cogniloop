@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 a11y: upgrade ModePicker from role="group"/aria-pressed to role="radiogroup"/role="radio"/aria-checked with roving tabindex and arrow-key navigation — screen readers now understand Chill / Exam / Expert as mutually exclusive radio choices rather than independent toggle buttons; arrow keys (↑ ↓ ← →) cycle through modes once the group is focused, matching the WCAG roving-tabindex radiogroup pattern already used by the provider-preference picker in SettingsView; no visual or behavior change for mouse/touch users
+
 - 2026-06-05 refactor: extract shared useDoubleConfirm hook from HistoryView and SettingsView — both components duplicated the same confirmClear + setTimeout(4000) pattern for the "Clear all" / "Clear settings" double-click confirmation; extracted into lib/useDoubleConfirm.ts with proper timer cleanup on unmount via useEffect; no behavior change
 
 - 2026-06-05 micro-animation: staggered fade-up on comparison table rows in /why — the 12-row Cogniloop vs ChatGPT vs Claude table now cascades in at 42 ms per row, matching the entrance animation pattern already used by the FAQ items and use-case cards on the same page; previously all rows appeared simultaneously

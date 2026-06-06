@@ -10,9 +10,19 @@ interface Props {
 }
 
 export const ModePicker = memo(function ModePicker({ value, onChange, compact }: Props) {
+  function handleKeyDown(e: React.KeyboardEvent, idx: number) {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      onChange(MODES[(idx + 1) % MODES.length].id);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      onChange(MODES[(idx - 1 + MODES.length) % MODES.length].id);
+    }
+  }
+
   return (
     <div
-      role="group"
+      role="radiogroup"
       aria-label="Study mode"
       className={compact ? "flex gap-1.5" : "grid grid-cols-3 gap-2"}
     >
@@ -21,8 +31,11 @@ export const ModePicker = memo(function ModePicker({ value, onChange, compact }:
         return (
           <button
             key={m.id}
+            role="radio"
+            aria-checked={active}
+            tabIndex={active ? 0 : -1}
             onClick={() => onChange(m.id)}
-            aria-pressed={active}
+            onKeyDown={(e) => handleKeyDown(e, i)}
             style={compact ? undefined : { animationDelay: `${i * 65}ms` }}
             className={`text-left rounded-lg border transition-all ${
               compact ? "px-3 py-1.5 text-xs" : "p-3 item-in"
