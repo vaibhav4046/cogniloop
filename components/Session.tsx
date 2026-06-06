@@ -1085,19 +1085,21 @@ function ReportView({
 
   function printReport() { window.print(); }
 
-  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport });
-  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport };
+  const toggleRounds = () => setShowRounds((v) => !v);
+  const reportKbdRef = useRef({ downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport, toggleRounds });
+  reportKbdRef.current = { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport, toggleRounds };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isInTextField(e.target)) return;
       const k = e.key.toLowerCase();
-      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport } = reportKbdRef.current;
+      const { downloadMd, makeShareUrl, onReDrill, reDrillTarget, copyJournal, printReport, toggleRounds } = reportKbdRef.current;
       if (k === "d") downloadMd();
       else if (k === "r" && reDrillTarget) onReDrill(reDrillTarget);
       else if (k === "s") makeShareUrl();
       else if (k === "j") copyJournal();
       else if (k === "p") printReport();
+      else if (k === "v") toggleRounds();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1265,10 +1267,12 @@ function ReportView({
 
         <div className="mt-6 border-t border-[var(--line-soft)] pt-4">
           <button
-            onClick={() => setShowRounds((v) => !v)}
+            onClick={toggleRounds}
             className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors flex items-center gap-1"
             aria-expanded={showRounds}
             aria-controls="round-review-list"
+            aria-keyshortcuts="v"
+            title={`${showRounds ? "Collapse" : "Expand"} round review (press V)`}
           >
             <span aria-hidden="true">{showRounds ? "▲" : "▼"}</span>
             <span>Review all {rounds.length} round{rounds.length !== 1 ? "s" : ""}</span>

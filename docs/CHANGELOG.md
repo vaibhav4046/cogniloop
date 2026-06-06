@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 keyboard shortcut: press V in the coaching report to toggle the "Review all rounds" section — wired into the existing reportKbdRef pattern alongside D/S/J/P/R; `aria-keyshortcuts="v"` added to the toggle button; title tooltip updates between "Expand" and "Collapse" to match the current state; V listed in ShortcutsModal Report section
+
 - 2026-06-06 perf: memoize ToastHost context value — `api` object was re-created on every render, causing all `useToast()` consumers (Session.tsx) to re-render unnecessarily whenever a toast appeared or dismissed; wrapping in `useMemo([push, dismiss])` makes the provider value stable since both callbacks are already `useCallback`-wrapped
 
 - 2026-06-06 docs: document back-to-top button in README UX details — feature shipped in feat(scroll) but was never listed in the README

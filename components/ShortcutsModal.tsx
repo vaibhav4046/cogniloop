@@ -46,6 +46,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
       { keys: "J", label: "Copy Feynman journal prompt" },
       { keys: "P", label: "Print / save report as PDF" },
       { keys: "R", label: "Re-drill first weak concept" },
+      { keys: "V", label: "Toggle round-by-round review" },
     ],
   },
 ];
