@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-06 micro-animation: stagger landing page hero elements — badge, h1, description, StatsPanel, and topic input card now cascade in top-to-bottom (0 / 70 / 140 / 200 / 260 ms) instead of fading as a flat unit; draws the eye down to the input card, the most actionable element on the page
+
 - 2026-06-06 tiny feature: "Back to top" button appears on /templates, /history, and /why after scrolling past 20% — reuses the existing ScrollProgress scroll listener (zero extra DOM events), fades in/out via direct style writes to avoid React re-renders, respects prefers-reduced-motion for smooth vs instant scroll, positions above the ? shortcuts button, aria-label for screen readers
 
 - 2026-06-06 a11y: upgrade ModePicker from role="group"/aria-pressed to role="radiogroup"/role="radio"/aria-checked with roving tabindex and arrow-key navigation — screen readers now understand Chill / Exam / Expert as mutually exclusive radio choices rather than independent toggle buttons; arrow keys (↑ ↓ ← →) cycle through modes once the group is focused, matching the WCAG roving-tabindex radiogroup pattern already used by the provider-preference picker in SettingsView; no visual or behavior change for mouse/touch users

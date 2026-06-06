@@ -266,27 +266,27 @@ export function Landing() {
       </header>
 
       <section className="flex-1 flex flex-col items-center px-6 pt-8 pb-16">
-        <div className="w-full max-w-[720px] fade-up">
-          <div className="flex justify-center mb-6">
+        <div className="w-full max-w-[720px]">
+          <div className="flex justify-center mb-6 fade-up">
             <span className="tag">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
               Free · No signup · No API keys · 100% client-side
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-[54px] font-semibold tracking-tight text-center leading-[1.04]">
+          <h1 className="text-4xl sm:text-[54px] font-semibold tracking-tight text-center leading-[1.04] fade-up" style={{ animationDelay: "70ms" }}>
             The AI tutor that <span className="text-[var(--accent)]">refuses</span> to give you the answer.
           </h1>
 
-          <p className="text-[var(--fg-muted)] text-center mt-5 text-[15.5px] leading-relaxed max-w-[580px] mx-auto">
+          <p className="text-[var(--fg-muted)] text-center mt-5 text-[15.5px] leading-relaxed max-w-[580px] mx-auto fade-up" style={{ animationDelay: "140ms" }}>
             Most AI study tools summarize for you and quietly destroy your understanding. Cogniloop drills you. Paste a topic, explain it back in your own words, and let the loop find your blind spots — round by round.
           </p>
 
-          <div className="mt-8">
+          <div className="mt-8 fade-up" style={{ animationDelay: "200ms" }}>
             <StatsPanel />
           </div>
 
-          <div className="mt-8 card p-5">
+          <div className="mt-8 card p-5 fade-up" style={{ animationDelay: "260ms" }}>
             <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
               Topic
             </div>
