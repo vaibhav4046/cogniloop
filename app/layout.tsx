@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cogniloop-vaibhav4046s-projects.vercel.app"),
   title: "Cogniloop — The AI tutor that refuses to give you the answer",
   description:
-    "Active-recall AI tutor. Feynman technique. Concept tracker. Streaks. Curriculum templates for JEE, NEET, GATE, MCAT. Free, no signup, no API keys. 100% client-side.",
+    "Active-recall AI tutor. Feynman technique. Concept tracker. Streaks. 8 curriculum packs — JEE, NEET, GATE CSE, MCAT, AP CS, ML Fundamentals, System Design, Economics. Free, no signup, no API keys.",
   keywords: [
     "active recall",
     "Feynman technique",
@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     "NEET prep",
     "GATE CSE",
     "MCAT",
+    "AP Computer Science",
+    "machine learning",
+    "system design interview",
+    "economics exam prep",
+    "ML fundamentals",
     "spaced repetition",
     "free LLM",
     "Pollinations",
