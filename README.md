@@ -88,6 +88,7 @@ Loop until mastered.
 - Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `f` focus answer, `h` Stuck? starter, `t` toggle math panel, `n` new session, `d` download report, `p` print PDF, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
 - Per-round difficulty dots, mode badges, question-type tags
 - Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
+- Back-to-top button on long-scrolling pages — appears after 20% scroll depth, smooth-scrolls to top, instant jump when `prefers-reduced-motion` is set
 - Sticky concept tracker on desktop, collapsible mobile
 - Session resume on browser refresh
 - Empty-state coaching card on the home page
