@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-07 additional curriculum topic: expanded "Evidence and reasoning" stub in MCAT CARS from a bare one-liner to a full topic — argument anatomy (conclusion vs premises vs unstated assumptions), question-stem recognition (strengthen/weaken/undermine/support distinction), correlation-vs-causation as the most-tested CARS reasoning flaw, hasty generalisation, false analogy, argument from authority, scope shift, five common answer-choice traps (out-of-scope, extreme language, reversal, too-weak, conditional); strategy: identify the central assumption before reading choices — the correct weakener attacks it, the correct strengthener supports it; covers AAMC "reasoning within the text" and "reasoning beyond the text" score-report categories tested in every CARS passage
+
 - 2026-06-07 README/docs update: bump "90+" to "100+" shipped features; add `v` toggle round review to keyboard-first shortcut blurb; add total-words-written to Input/output feature list; add study time to Persistence lifetime stats
 
 - 2026-06-07 perf: memoize live word count in Session answering phase — the Exam-mode countdown timer re-renders the component every second; replacing the inline IIFE (answer.trim().split(/\s+/).filter(Boolean)) with useMemo([answer]) prevents the O(n) split+filter from running on every timer tick; only recomputes when the user actually types; also simplifies the JSX by eliminating the IIFE pattern entirely
