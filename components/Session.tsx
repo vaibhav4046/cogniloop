@@ -629,7 +629,7 @@ export function Session() {
               </div>
             </div>
             {showHints && (
-              <div className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11.5px] text-[var(--fg-muted)] leading-relaxed">
+              <div className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[11.5px] text-[var(--fg-muted)] leading-relaxed fade-up">
                 <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
                   Math syntax
                 </div>
@@ -641,7 +641,7 @@ export function Session() {
             )}
             {phase === "evaluating" && (
               <div
-                className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[12px] text-[var(--fg-muted)] text-center"
+                className="mt-3 pt-3 border-t border-[var(--line-soft)] text-[12px] text-[var(--fg-muted)] text-center fade-up"
                 aria-live="polite"
                 aria-atomic="true"
               >
@@ -651,7 +651,7 @@ export function Session() {
               </div>
             )}
             {answer.trim() && /\$/.test(answer) && (
-              <div className="mt-3 pt-3 border-t border-[var(--line-soft)]">
+              <div className="mt-3 pt-3 border-t border-[var(--line-soft)] fade-up">
                 <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">
                   Preview
                 </div>
