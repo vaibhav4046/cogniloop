@@ -1031,13 +1031,17 @@ function ReportView({
   const durationMin = endedAt && rounds[0]?.createdAt
     ? Math.max(1, Math.round((endedAt - rounds[0].createdAt) / 60000))
     : null;
+  const totalWords = useMemo(
+    () => rounds.reduce((sum, r) => sum + (r.answer ? r.answer.trim().split(/\s+/).filter(Boolean).length : 0), 0),
+    [rounds]
+  );
 
   function downloadMd() {
     const lines: string[] = [];
     lines.push(`# Cogniloop session — ${topic || "untitled"}`);
     lines.push("");
     lines.push(`**Headline:** ${report.headline}`);
-    lines.push(`**Rounds:** ${rounds.length} · **Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3${durationMin ? ` · **Duration:** ${durationMin} min` : ""}`);
+    lines.push(`**Rounds:** ${rounds.length} · **Mode:** ${getMode(modeId).name} · **Avg score:** ${avg.toFixed(2)} / 3${durationMin ? ` · **Duration:** ${durationMin} min` : ""}${totalWords > 0 ? ` · **Words written:** ${totalWords}` : ""}`);
     lines.push("");
     lines.push("## Mastered");
     report.mastered.forEach((c) => lines.push(`- ${c}`));
@@ -1135,7 +1139,7 @@ function ReportView({
         </h2>
         <div className="text-[var(--fg-muted)] text-sm mt-2">
           {topic ? `${topic} · ` : ""}
-          {rounds.length} round{rounds.length !== 1 ? "s" : ""}{durationMin ? ` · ${durationMin} min` : ""} · avg {avg.toFixed(2)}/3 · {getMode(modeId).name} mode
+          {rounds.length} round{rounds.length !== 1 ? "s" : ""}{durationMin ? ` · ${durationMin} min` : ""} · avg {avg.toFixed(2)}/3{totalWords > 0 ? ` · ${totalWords.toLocaleString()} words written` : ""} · {getMode(modeId).name} mode
         </div>
 
         {evald.length > 1 && (
