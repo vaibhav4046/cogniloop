@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-07 README/docs update: bump "90+" to "100+" shipped features; add `v` toggle round review to keyboard-first shortcut blurb; add total-words-written to Input/output feature list; add study time to Persistence lifetime stats
+
 - 2026-06-07 perf: memoize live word count in Session answering phase — the Exam-mode countdown timer re-renders the component every second; replacing the inline IIFE (answer.trim().split(/\s+/).filter(Boolean)) with useMemo([answer]) prevents the O(n) split+filter from running on every timer tick; only recomputes when the user actually types; also simplifies the JSX by eliminating the IIFE pattern entirely
 
 - 2026-06-07 tiny feature: coaching report subtitle and markdown export now show total words written across all round answers (e.g. "5 rounds · 12 min · avg 2.3/3 · 847 words written · Exam mode") — computed via the same word-splitting regex already used in the per-round live word counter during answering; gives users a concrete sense of explanation depth at a glance; zero when no answers were recorded

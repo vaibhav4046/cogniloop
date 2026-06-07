@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (90+ shipped features)
+## What it does (100+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -65,11 +65,12 @@ Loop until mastered.
 - Question-type-aware "Stuck?" starters — one-click seed phrase opens the right frame for each question type (Feynman, concrete scenario, mechanism diff, cause-effect chain, step-by-step trace)
 - Browser tab title shows the active study topic (e.g. "Backpropagation · Cogniloop")
 - Live running average score in session header — e.g. "Round 3 / 8 · avg 2.5/3" — once the first round is graded
+- Coaching report subtitle and markdown export show total words written across all rounds (e.g. "5 rounds · 12 min · avg 2.3/3 · 847 words written") — concrete measure of explanation depth
 
 **Persistence + accountability**
 - Daily streak counter (Duolingo-style)
 - 90-day activity heatmap
-- Lifetime stats: sessions, rounds, mastered concepts, avg score
+- Lifetime stats: sessions, rounds, mastered concepts, avg score, study time
 - Full session history with searchable list and Study again one-click
 - Session search empty state offers "Study this topic now →" to launch a session directly on any unmatched search phrase
 - localStorage-only — no accounts, no logs, no servers
@@ -85,7 +86,7 @@ Loop until mastered.
 **UX details**
 - Sleek dark theme, Linear-inspired
 - Geist font, KaTeX math styling
-- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `f` focus answer, `h` Stuck? starter, `t` toggle math panel, `n` new session, `d` download report, `p` print PDF, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error
+- Keyboard-first: `?` shortcuts panel, `g+g` home, `g+t` `g+h` `g+w` `g+s` quick-nav, `/` to focus, `Enter` to start · `⌘/Ctrl+Enter` to submit, `1/2/3` mode switch, `e` to end, `m`/`l` mic/read-aloud, `c` copy question, `f` focus answer, `h` Stuck? starter, `t` toggle math panel, `n` new session, `d` download report, `p` print PDF, `s` share link, `j` copy Feynman journal prompt, `r` re-drill weak concept / retry on error, `v` toggle round-by-round review in report
 - Per-round difficulty dots, mode badges, question-type tags
 - Scroll-progress reading bar on `/templates`, `/history`, `/why` — accent-colored 2px bar fills as you scroll
 - Back-to-top button on long-scrolling pages — appears after 20% scroll depth, smooth-scrolls to top, instant jump when `prefers-reduced-motion` is set
