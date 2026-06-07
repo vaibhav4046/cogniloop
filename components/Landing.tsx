@@ -213,14 +213,8 @@ export function Landing() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const pickExample = useCallback((s: string) => {
+  const pickTopic = useCallback((s: string) => {
     setTopic(s);
-    setErr(null);
-    inputRef.current?.focus();
-  }, []);
-
-  const pickRecent = useCallback((t: string) => {
-    setTopic(t);
     setErr(null);
     inputRef.current?.focus();
   }, []);
@@ -369,7 +363,7 @@ export function Landing() {
             </div>
           </div>
 
-          <ExampleChips onPick={pickExample} />
+          <ExampleChips onPick={pickTopic} />
 
           {!recentMounted ? (
             <div className="mt-6" aria-hidden="true">
@@ -380,7 +374,7 @@ export function Landing() {
               </div>
             </div>
           ) : (
-            <RecentTopics topics={recentTopics} onPick={pickRecent} />
+            <RecentTopics topics={recentTopics} onPick={pickTopic} />
           )}
 
           <CurriculaPicker />
