@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-07 a11y: add roving tabindex + arrow-key navigation to the provider preference radiogroup in SettingsView — Auto/Groq/Pollinations buttons now follow the WCAG ARIA radiogroup pattern (only the active option is in the tab order; ← → ↑ ↓ cycle between options), matching the identical fix applied to ModePicker on 2026-06-06; mouse and touch behavior unchanged
+
 - 2026-06-07 micro-animation: add fade-up entrance to three inline panels in the session answer card — the math syntax help panel (T key), the live LaTeX preview panel, and the grading hint section all previously appeared/disappeared abruptly on conditional mount; adding the existing fade-up animation class (0.35 s ease, 6 px vertical slide) makes each panel feel like a deliberate reveal rather than a jarring pop; prefers-reduced-motion collapses all three to an instant swap via the global rule already in globals.css
 
 - 2026-06-07 empty state polish: upgrade SharedView broken-link error card to match the 404 page pattern — adds a proper heading ("Broken link"), promotes the error message from bold-red text to muted helper copy, and replaces the single "Home" button with two CTAs ("Begin the loop →" and "Browse templates") using consistent btn-primary / btn-ghost sizing with full-width-on-mobile responsive layout

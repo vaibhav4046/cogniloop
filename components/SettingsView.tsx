@@ -22,6 +22,12 @@ const VOICE_LANGS = [
   { v: "zh-CN", l: "中文 (普通话)" },
 ];
 
+const PROVIDERS = [
+  { id: "auto" as const, label: "Auto", hint: "Groq → Pollinations fallback" },
+  { id: "groq" as const, label: "Groq only", hint: "Higher quality, requires key" },
+  { id: "pollinations" as const, label: "Pollinations only", hint: "Free, no key" },
+];
+
 export function SettingsView() {
   const [s, setS] = useState<UserSettings | null>(null);
   const [showKey, setShowKey] = useState(false);
@@ -88,6 +94,16 @@ export function SettingsView() {
     u.rate = s.voiceRate ?? 1;
     u.pitch = s.voicePitch ?? 1;
     synth.speak(u);
+  }
+
+  function handleProviderKey(e: React.KeyboardEvent, idx: number) {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      update("preferredProvider", PROVIDERS[(idx + 1) % PROVIDERS.length].id);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      update("preferredProvider", PROVIDERS[(idx - 1 + PROVIDERS.length) % PROVIDERS.length].id);
+    }
   }
 
   if (!s) {
@@ -212,18 +228,16 @@ export function SettingsView() {
               Provider preference
             </div>
             <div role="radiogroup" aria-labelledby="provider-pref-label" className="flex gap-2 flex-wrap">
-              {([
-                { id: "auto", label: "Auto", hint: "Groq → Pollinations fallback" },
-                { id: "groq", label: "Groq only", hint: "Higher quality, requires key" },
-                { id: "pollinations", label: "Pollinations only", hint: "Free, no key" },
-              ] as const).map((p) => {
+              {PROVIDERS.map((p, idx) => {
                 const active = (s.preferredProvider ?? "auto") === p.id;
                 return (
                   <button
                     key={p.id}
                     role="radio"
                     aria-checked={active}
+                    tabIndex={active ? 0 : -1}
                     onClick={() => update("preferredProvider", p.id)}
+                    onKeyDown={(e) => handleProviderKey(e, idx)}
                     className={`px-3 py-2 rounded-lg text-[12.5px] text-left border transition-all ${
                       active
                         ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--fg)]"
