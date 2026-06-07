@@ -1065,17 +1065,17 @@ function ReportView({
     lines.push("");
     lines.push("## Rounds");
     rounds.forEach((r) => {
-      lines.push(`### Round ${r.id} — ${r.questionType} (diff ${r.difficulty})`);
+      lines.push(`### Round ${r.id} · ${r.questionType.charAt(0).toUpperCase() + r.questionType.slice(1)} · difficulty ${r.difficulty}/5`);
       lines.push(`**Q:** ${r.question}`);
       if (r.answer) lines.push(`**A:** ${r.answer}`);
       if (r.evaluation) {
         lines.push(`**Score:** ${r.evaluation.score}/3 — ${r.evaluation.verdict}`);
         if (r.evaluation.strengths.length > 0) {
-          lines.push("**Strengths:**");
+          lines.push("**What you got:**");
           r.evaluation.strengths.forEach((s) => lines.push(`- ${s}`));
         }
         if (r.evaluation.gaps.length > 0) {
-          lines.push("**Gaps:**");
+          lines.push("**Still missing:**");
           r.evaluation.gaps.forEach((g) => lines.push(`- ${g}`));
         }
       }
