@@ -43,9 +43,10 @@ export function NavBar() {
           href="https://github.com/vaibhav4046/cogniloop"
           target="_blank"
           rel="noreferrer"
+          aria-label="Cogniloop on GitHub"
           className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
         >
-          GitHub →
+          GitHub <span aria-hidden="true">→</span>
         </a>
       </nav>
     </header>

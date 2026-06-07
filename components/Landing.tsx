@@ -51,8 +51,8 @@ const CurriculaPicker = memo(function CurriculaPicker() {
         <div className="text-[11px] uppercase tracking-wider text-[var(--fg-dim)]">
           Curriculum packs
         </div>
-        <Link href="/templates" className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]">
-          See all →
+        <Link href="/templates" aria-label="See all curriculum templates" className="text-[11px] text-[var(--fg-muted)] hover:text-[var(--fg)]">
+          See all <span aria-hidden="true">→</span>
         </Link>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -127,6 +127,7 @@ const RecentTopics = memo(function RecentTopics({
           <button
             key={t}
             onClick={() => onPick(t)}
+            aria-label={`Resume ${t} — ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode, ${relTime(createdAt)}`}
             title={`${t} · ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode · ${relTime(createdAt)}`}
             className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
             style={{ animationDelay: `${i * 70}ms` }}
@@ -252,9 +253,10 @@ export function Landing() {
             href="https://github.com/vaibhav4046/cogniloop"
             target="_blank"
             rel="noreferrer"
+            aria-label="Cogniloop on GitHub"
             className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] px-3 py-1.5"
           >
-            GitHub →
+            GitHub <span aria-hidden="true">→</span>
           </a>
         </nav>
       </header>
