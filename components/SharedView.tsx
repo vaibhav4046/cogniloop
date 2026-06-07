@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { decodeShare, type SharePayload } from "@/lib/share";
 import { getMode } from "@/lib/modes";
 import { NavBar } from "./NavBar";
@@ -43,17 +44,25 @@ export function SharedView({ token }: Props) {
     return (
       <main id="main" className="min-h-screen flex flex-col">
         <NavBar />
-        <div className="flex-1 flex items-center justify-center px-6 fade-up">
-          <div className="card p-6 max-w-md text-center">
-            <div className="text-[var(--bad)] text-sm font-medium">
-              {err}
+        <div className="flex-1 flex items-center justify-center px-6">
+          <div className="card p-8 max-w-sm w-full text-center fade-up">
+            <div className="text-[10px] uppercase tracking-widest text-[var(--fg-dim)] mb-3">
+              Shared session
             </div>
-            <button
-              onClick={() => router.push("/")}
-              className="btn-primary mt-4 px-4 py-2 rounded-lg text-sm"
-            >
-              Home
-            </button>
+            <h1 className="text-2xl font-semibold tracking-tight mb-3">
+              Broken link
+            </h1>
+            <p className="text-[13px] text-[var(--fg-muted)] leading-relaxed mb-6">
+              {err}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+              <Link href="/" className="btn-primary px-5 py-2.5 rounded-lg text-sm w-full sm:w-auto">
+                Begin the loop →
+              </Link>
+              <Link href="/templates" className="btn-ghost px-5 py-2.5 rounded-lg text-sm w-full sm:w-auto">
+                Browse templates
+              </Link>
+            </div>
           </div>
         </div>
       </main>

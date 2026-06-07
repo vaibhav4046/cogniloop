@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-07 empty state polish: upgrade SharedView broken-link error card to match the 404 page pattern — adds a proper heading ("Broken link"), promotes the error message from bold-red text to muted helper copy, and replaces the single "Home" button with two CTAs ("Begin the loop →" and "Browse templates") using consistent btn-primary / btn-ghost sizing with full-width-on-mobile responsive layout
+
 - 2026-06-06 brand voice tightening: tighten two /why FAQ answers — "What LLM does it use?" drops the confusing Pollinations internal model aliases ("openai / openai-fast / mistral") in favour of actionable user-facing copy pointing to Settings; "Why are sessions client-side only?" fixes "Mark sessions to markdown" → "Export sessions to markdown from the coaching report" so the CTA matches the real button; footer updated to match the landing-page attribution pattern (two-column flex with github link)
 
 - 2026-06-06 UI copy polish: fix ShortcutsModal to document plain Enter as "Begin loop (home)" in the Global section and move ⌘/Ctrl + Enter to the Session section as "Submit answer" — the Enter shortcut was added on 2026-05-30 but the modal still listed the combined "Submit answer · Begin loop" under ⌘/Ctrl + Enter, conflating two context-specific shortcuts
