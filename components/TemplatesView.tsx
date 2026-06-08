@@ -100,6 +100,11 @@ export function TemplatesView() {
     );
   }, [filter]);
 
+  const filteredTopicCount = useMemo(
+    () => filtered.reduce((n, c) => n + c.subjects.reduce((m, s) => m + s.topics.length, 0), 0),
+    [filtered]
+  );
+
   const startWith = useCallback((topic: string) => {
     sessionStorage.setItem("cl:pending", JSON.stringify({ topic, notes: "", modeId: "exam" }));
     router.push("/study");
@@ -147,12 +152,12 @@ export function TemplatesView() {
             {filter
               ? filtered.length === 0
                 ? `No curriculum packs match "${filter}"`
-                : `${filtered.length} of ${CURRICULA.length} curriculum packs match`
+                : `${filtered.length} of ${CURRICULA.length} curriculum packs match, ${filteredTopicCount} topics`
               : ""}
           </div>
           {filter && filtered.length > 0 && (
             <p className="text-[11px] text-[var(--fg-dim)] mt-2">
-              {filtered.length} of {CURRICULA.length} pack{filtered.length !== 1 ? "s" : ""}
+              {filtered.length} of {CURRICULA.length} pack{filtered.length !== 1 ? "s" : ""} · {filteredTopicCount} topic{filteredTopicCount !== 1 ? "s" : ""}
             </p>
           )}
 
