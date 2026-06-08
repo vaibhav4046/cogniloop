@@ -137,14 +137,14 @@ export function ShortcutsModal() {
           </button>
         </div>
         <div className="flex flex-col gap-4">
-          {SHORTCUT_SECTIONS.map((sec) => (
-            <div key={sec.section}>
+          {SHORTCUT_SECTIONS.map((sec, si) => (
+            <div key={sec.section} className="fade-up" style={{ animationDelay: `${si * 40}ms` }}>
               <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-2">
                 {sec.section}
               </div>
               <ul className="flex flex-col gap-2">
-                {sec.items.map((s) => (
-                  <li key={s.keys} className="flex items-center justify-between gap-4">
+                {sec.items.map((s, i) => (
+                  <li key={s.keys} className="flex items-center justify-between gap-4 item-in" style={{ animationDelay: `${si * 40 + i * 25}ms` }}>
                     <span className="text-[13px] text-[var(--fg-muted)]">{s.label}</span>
                     <kbd className="text-[11px] font-mono bg-[var(--bg-elev)] border border-[var(--line)] px-2 py-0.5 rounded shrink-0">
                       {s.keys}
