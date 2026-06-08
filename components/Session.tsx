@@ -140,6 +140,16 @@ export function Session() {
     }
   }, [topic, notes, modeId, startSession, router]);
 
+  // Stable reference so QuestionCard memo skips re-renders during answer typing.
+  const copyQuestion = useCallback(() => {
+    const q = rounds[rounds.length - 1]?.question;
+    if (q) {
+      navigator.clipboard.writeText(q).catch(() => {});
+      setCopiedQ(true);
+      setTimeout(() => setCopiedQ(false), 2000);
+    }
+  }, [rounds]);
+
   useEffect(() => {
     const raw = sessionStorage.getItem("cl:pending");
     if (!raw) {
@@ -260,12 +270,7 @@ export function Session() {
         rounds.length === 0 ? retryStart() : location.reload();
       }
       if ((e.key === "c" || e.key === "C") && phase === "answering") {
-        const q = rounds[rounds.length - 1]?.question;
-        if (q) {
-          navigator.clipboard.writeText(q).catch(() => {});
-          setCopiedQ(true);
-          setTimeout(() => setCopiedQ(false), 2000);
-        }
+        copyQuestion();
       }
       if ((e.key === "h" || e.key === "H") && phase === "answering") {
         const qt = rounds[rounds.length - 1]?.questionType;
@@ -517,43 +522,13 @@ export function Session() {
         <div className="flex flex-col gap-5 min-w-0">
           {lastEval && <EvalCard evaluation={lastEval} key={`eval-${rounds.length}`} />}
 
-          <div className="card p-5 round-in" key={`q-${rounds.length}`}>
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="tag">Round {lastRound.id}</span>
-                <span
-                  className="tag"
-                  title={QTYPE_DESC[lastRound.questionType]}
-                >
-                  {lastRound.questionType.charAt(0).toUpperCase() + lastRound.questionType.slice(1)}
-                </span>
-                <span className="tag" title={`Difficulty: ${lastRound.difficulty} / 5`}>
-                  <DiffDots level={lastRound.difficulty} />
-                </span>
-                <span className="tag" style={{ color: "var(--accent)" }}>
-                  {mode.name} mode
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(lastRound.question).catch(() => {});
-                    setCopiedQ(true);
-                    setTimeout(() => setCopiedQ(false), 2000);
-                  }}
-                  aria-label={copiedQ ? "Copied to clipboard" : "Copy question to clipboard"}
-                  title="Copy question"
-                  className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
-                >
-                  {copiedQ ? "Copied ✓" : "Copy"}
-                </button>
-                <ReadAloud text={lastRound.question} autoPlayKey={lastRound.id} />
-              </div>
-            </div>
-            <div id="current-question" className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
-              <Tex text={lastRound.question} />
-            </div>
-          </div>
+          <QuestionCard
+            key={`q-${rounds.length}`}
+            round={lastRound}
+            copiedQ={copiedQ}
+            onCopy={copyQuestion}
+            modeName={mode.name}
+          />
 
           <div className="field p-4">
             <textarea
@@ -796,6 +771,51 @@ function SessionShell({
     </main>
   );
 }
+
+const QuestionCard = memo(function QuestionCard({
+  round,
+  copiedQ,
+  onCopy,
+  modeName,
+}: {
+  round: Round;
+  copiedQ: boolean;
+  onCopy: () => void;
+  modeName: string;
+}) {
+  return (
+    <div className="card p-5 round-in">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="tag">Round {round.id}</span>
+          <span className="tag" title={QTYPE_DESC[round.questionType]}>
+            {round.questionType.charAt(0).toUpperCase() + round.questionType.slice(1)}
+          </span>
+          <span className="tag" title={`Difficulty: ${round.difficulty} / 5`}>
+            <DiffDots level={round.difficulty} />
+          </span>
+          <span className="tag" style={{ color: "var(--accent)" }}>
+            {modeName} mode
+          </span>
+        </div>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={onCopy}
+            aria-label={copiedQ ? "Copied to clipboard" : "Copy question to clipboard"}
+            title="Copy question"
+            className="text-[11px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors px-2 py-0.5 rounded hover:bg-[var(--bg-soft)]"
+          >
+            {copiedQ ? "Copied ✓" : "Copy"}
+          </button>
+          <ReadAloud text={round.question} autoPlayKey={round.id} />
+        </div>
+      </div>
+      <div id="current-question" className="text-[18px] sm:text-[19px] leading-relaxed font-medium tracking-tight">
+        <Tex text={round.question} />
+      </div>
+    </div>
+  );
+});
 
 const ConceptPanel = memo(function ConceptPanel({ concepts }: { concepts: Concept[] }) {
   const masteredCount = concepts.filter((c) => c.strength === "mastered").length;
