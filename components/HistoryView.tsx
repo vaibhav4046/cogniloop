@@ -267,6 +267,14 @@ export function HistoryView() {
               )}
             </div>
           </div>
+          {/* Stable live region — screen readers hear session count on each search keystroke */}
+          <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+            {search.trim()
+              ? filtered.length === 0
+                ? `No sessions match "${search.trim()}"`
+                : `${filtered.length} of ${records.length} session${filtered.length !== 1 ? "s" : ""} match`
+              : ""}
+          </div>
           {importErr && (
             <div className="text-[12px] mb-3 flex items-start gap-2" style={{ color: "var(--bad)" }}>
               <span className="flex-1">{importErr}</span>
