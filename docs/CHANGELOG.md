@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-08 curriculum: expand Behavioral economics stub in Economics pack to full topic (dual-process theory, prospect theory, loss aversion, mental accounting, present bias, nudge theory, choice architecture, policy applications — 5–8 question depth)
+
 - 2026-06-08 UI copy polish: add mode-colored dot to session history cards — each SessionCard in /history now shows a 6px colored dot immediately before the mode name (green=Chill, amber=Exam, purple=Expert), matching the identical indicator already used in the "Pick up where you left off" chips on the landing page; makes mode scannable at a glance without changing the text label
 
 - 2026-06-08 micro-animation: stagger shortcut rows in the ? keyboard shortcuts panel — each section fades up at 40 ms per section, and each shortcut item slides in left-to-right (item-in) at 25 ms per row within the section; the dialog already had a single fade-up on open; now the content cascades in rather than appearing as a flat block, matching the stagger pattern used by BucketCard items, ConceptPanel concepts, and the /why FAQ; prefers-reduced-motion handled by the existing global animation-duration: 0.01ms override
