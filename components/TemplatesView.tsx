@@ -14,9 +14,11 @@ const ANIM_DELAYS = Object.fromEntries(CURRICULA.map((c, i) => [c.id, i * 60])) 
 const CurriculumCard = memo(function CurriculumCard({
   c,
   onStart,
+  studiedTopics,
 }: {
   c: Curriculum;
   onStart: (topic: string) => void;
+  studiedTopics: Set<string>;
 }) {
   return (
     <section id={c.id} aria-labelledby={`${c.id}-title`} className="card p-5 item-in" style={{ animationDelay: `${ANIM_DELAYS[c.id]}ms` }}>
@@ -32,15 +34,23 @@ const CurriculumCard = memo(function CurriculumCard({
             <div className="flex flex-wrap gap-2">
               {s.topics.map((t) => {
                 const label = t.includes(" — ") ? t.split(" — ")[0] : t;
+                const drilled = studiedTopics.has(t);
                 return (
                   <button
                     key={t}
                     onClick={() => onStart(t)}
-                    aria-label={`Study ${label}`}
+                    aria-label={`Study ${label}${drilled ? " — previously drilled" : ""}`}
                     title={label !== t ? t : undefined}
-                    className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left"
+                    className="btn-ghost text-[12px] px-3 py-1.5 rounded-md text-left inline-flex items-center gap-1.5"
                   >
                     {label}
+                    {drilled && (
+                      <span
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        aria-hidden="true"
+                        style={{ background: "var(--accent)" }}
+                      />
+                    )}
                   </button>
                 );
               })}
@@ -55,6 +65,7 @@ const CurriculumCard = memo(function CurriculumCard({
 export function TemplatesView() {
   const router = useRouter();
   const [filter, setFilter] = useState("");
+  const [studiedTopics, setStudiedTopics] = useState<Set<string>>(new Set());
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -66,6 +77,15 @@ export function TemplatesView() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("cl:history");
+      if (!raw) return;
+      const hist = JSON.parse(raw) as { topic: string }[];
+      setStudiedTopics(new Set(hist.map((r) => r.topic)));
+    } catch {}
   }, []);
 
   const filtered = useMemo(() => {
@@ -162,7 +182,7 @@ export function TemplatesView() {
               </div>
             )}
             {filtered.map((c) => (
-              <CurriculumCard key={c.id} c={c} onStart={startWith} />
+              <CurriculumCard key={c.id} c={c} onStart={startWith} studiedTopics={studiedTopics} />
             ))}
           </div>
         </div>
