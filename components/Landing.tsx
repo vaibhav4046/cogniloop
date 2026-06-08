@@ -12,6 +12,7 @@ import type { ModeId } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
 import { useAutoExpand } from "@/lib/useAutoExpand";
 import { useGlobalNav } from "@/lib/useGlobalNav";
+import { MODE_COLOR } from "@/lib/labels";
 
 const EXAMPLES = [
   "Backpropagation in neural networks",
@@ -95,12 +96,6 @@ function relTime(ts: number): string {
   return `${days}d ago`;
 }
 
-const MODE_CHIP_COLOR: Record<string, string> = {
-  chill: "var(--good)",
-  exam: "var(--warn)",
-  expert: "var(--accent)",
-};
-
 const MODE_CHIP_LABEL: Record<string, string> = {
   chill: "Chill",
   exam: "Exam",
@@ -134,7 +129,7 @@ const RecentTopics = memo(function RecentTopics({
           >
             <span
               className="w-1.5 h-1.5 rounded-full shrink-0"
-              style={{ background: MODE_CHIP_COLOR[modeId] ?? "var(--fg-dim)" }}
+              style={{ background: MODE_COLOR[modeId] ?? "var(--fg-dim)" }}
               aria-hidden="true"
             />
             <span className="truncate min-w-0">↻ {t}</span>

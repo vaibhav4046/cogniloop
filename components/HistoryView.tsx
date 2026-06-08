@@ -17,12 +17,7 @@ import {
 import { getMode } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
 import { useDoubleConfirm } from "@/lib/useDoubleConfirm";
-
-const MODE_DOT_COLOR: Record<string, string> = {
-  chill: "var(--good)",
-  exam: "var(--warn)",
-  expert: "var(--accent)",
-};
+import { MODE_COLOR } from "@/lib/labels";
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -374,7 +369,7 @@ const SessionCard = memo(function SessionCard({
             {dur && <><span>·</span><span>{dur}</span></>}
             <span>·</span>
             <span className="inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full shrink-0" aria-hidden="true" style={{ background: MODE_DOT_COLOR[r.modeId] ?? "var(--fg-dim)" }} />
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" aria-hidden="true" style={{ background: MODE_COLOR[r.modeId] ?? "var(--fg-dim)" }} />
               {getMode(r.modeId).name}
             </span>
             <span>·</span>

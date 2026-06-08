@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-08 refactor: extract duplicate mode-color maps into lib/labels.ts — Landing.tsx and HistoryView.tsx each defined an identical Record<string,string> (chill→good, exam→warn, expert→accent); consolidated into a single exported MODE_COLOR constant in the labels module and updated both consumers to import it; no behavior change
+
 - 2026-06-08 curriculum: expand Behavioral economics stub in Economics pack to full topic (dual-process theory, prospect theory, loss aversion, mental accounting, present bias, nudge theory, choice architecture, policy applications — 5–8 question depth)
 
 - 2026-06-08 UI copy polish: add mode-colored dot to session history cards — each SessionCard in /history now shows a 6px colored dot immediately before the mode name (green=Chill, amber=Exam, purple=Expert), matching the identical indicator already used in the "Pick up where you left off" chips on the landing page; makes mode scannable at a glance without changing the text label

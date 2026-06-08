@@ -1,5 +1,11 @@
 import type { ConceptStrength, Round } from "./types";
 
+export const MODE_COLOR: Record<string, string> = {
+  chill: "var(--good)",
+  exam: "var(--warn)",
+  expert: "var(--accent)",
+};
+
 export const STRENGTH_COLOR: Record<ConceptStrength, string> = {
   weak: "var(--bad)",
   shaky: "var(--warn)",
