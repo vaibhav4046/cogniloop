@@ -22,7 +22,7 @@ Loop until mastered.
 
 ---
 
-## What it does (100+ shipped features)
+## What it does (115+ shipped features)
 
 **Core loop**
 - Locked Socratic system prompt — refuses to give answers, forces explanation
@@ -95,6 +95,10 @@ Loop until mastered.
 - Empty-state coaching card on the home page
 - Score trend sparkline in coaching report — color-coded dots across all rounds
 - Rotating coaching hints during start, grading, and report phases — 8 / 8 / 8 pool, brand voice throughout
+- Previously-drilled dot on each curriculum topic button in `/templates` — accent dot when that topic exists in session history; `aria-label` appends "— previously drilled" for screen readers; zero network requests, invisible to first-time visitors
+- Filter result in `/templates` shows `N of 8 packs · M topics` — see at a glance how much drill content the current query covers
+- Mode-colored dot on session history cards in `/history` — green=Chill, amber=Exam, purple=Expert for instant visual scan without reading the label
+- Actionable error tips in session error state — 429 rate-limit, 404 not-found, and timeout each show a specific fix (wait+retry, switch provider, use Groq) with a direct Settings link instead of the generic "retry" fallback
 
 **Pages**
 - `/` — landing with mode picker, examples, curriculum cards, feature grid

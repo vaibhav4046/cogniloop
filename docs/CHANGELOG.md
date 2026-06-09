@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-09 README/docs update: bump "100+" to "115+ shipped features"; add four UX detail bullets for recently shipped features — previously-drilled dot on /templates topic buttons, filter result pack+topic count, mode-colored dot on /history session cards, and actionable error tips for 429/404/timeout
+
 - 2026-06-09 micro-animation + empty state polish: the "No sessions yet" card in /history now fades up on mount (matching the filtered-empty-state card); the ↻ loop icon gains a slow 5s infinite spin so the visual reinforces the Cogniloop loop metaphor for first-time users; globals.css gets the reusable .spin-slow class backed by @keyframes spin-slow; prefers-reduced-motion is handled by the existing global animation-duration: 0.01ms override
 
 - 2026-06-09 a11y: upgrade FeatureGrid cards in Landing.tsx from div/div/div to article/h3/p — the "What makes it different" section already has an h2, so h3 titles inside article elements give screen readers a proper h1→h2→h3 heading hierarchy matching the identical pattern used by the WhyView use-case cards; zero visual change
