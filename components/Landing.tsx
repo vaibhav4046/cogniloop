@@ -32,10 +32,10 @@ const FEATURES = [
   { t: "Voice input + read-aloud", b: "Say your answer out loud instead of typing. Questions read back to you. Web Speech API — free, no plugins." },
   { t: "LaTeX rendering", b: "Math renders in questions, your answers, and the coaching report. Type LaTeX inline — no tool switching." },
   { t: "8 curriculum packs", b: "JEE, NEET, GATE-CSE, MCAT, AP-CS, ML Fundamentals, System Design, Economics — pre-loaded." },
-  { t: "3 modes", b: "Chill (gentle), Exam (timed, strict), Expert (first-principles)." },
-  { t: "Streaks + history", b: "Daily streak, lifetime stats, full session history." },
+  { t: "3 study modes", b: "Chill: patient hints, low starting difficulty. Exam: 90-second timer, strict grading. Expert: adversarial, first-principles, no hints." },
+  { t: "Streaks + history", b: "Daily streak, 90-day activity heatmap, lifetime stats, searchable session history — all stored locally." },
   { t: "Shareable sessions", b: "Export any session as a link — encoded locally, nothing ever touches a server." },
-  { t: "Coaching report", b: "Final report with study plan, journal prompt, markdown export." },
+  { t: "Coaching report", b: "Structured: concept buckets (mastered / shaky / weak), study plan, score trend, Feynman journal prompt, markdown + PDF export." },
   { t: "Keyboard-first", b: "Every action has a shortcut. Press ? to open the panel — navigate, submit, and drill without touching the mouse." },
   { t: "100% client-side", b: "Sessions live in your browser only. No accounts, no servers, nothing ever leaves your device." },
 ];

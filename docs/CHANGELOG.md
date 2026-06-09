@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-09 UI copy polish: update three feature cards in the Landing page FeatureGrid — "3 modes" expanded to "3 study modes" with per-mode detail (Chill: patient hints; Exam: 90-second timer; Expert: adversarial, no hints); "Streaks + history" now lists the 90-day activity heatmap and search that were missing; "Coaching report" now mentions concept buckets, score trend, and PDF export that were absent from the description; no visual or behavior change
+
 - 2026-06-09 README/docs update: bump "100+" to "115+ shipped features"; add four UX detail bullets for recently shipped features — previously-drilled dot on /templates topic buttons, filter result pack+topic count, mode-colored dot on /history session cards, and actionable error tips for 429/404/timeout
 
 - 2026-06-09 micro-animation + empty state polish: the "No sessions yet" card in /history now fades up on mount (matching the filtered-empty-state card); the ↻ loop icon gains a slow 5s infinite spin so the visual reinforces the Cogniloop loop metaphor for first-time users; globals.css gets the reusable .spin-slow class backed by @keyframes spin-slow; prefers-reduced-motion is handled by the existing global animation-duration: 0.01ms override
