@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-09 dependency bump: next 16.2.7→16.2.9 (patch)
+
 - 2026-06-09 skeleton loader: add EvalCardSkeleton that appears during the "evaluating" phase in the session — while the LLM grades the submitted answer, a shimmer skeleton of the feedback card (score label, progress bar, verdict line, strengths/gaps bullet rows) now appears below the disabled answer form, showing the user exactly where their feedback will land and that it is loading; disappears when the next round renders with the actual EvalCard; uses the existing .skeleton shimmer class and .bar-track/.card/fade-up conventions already established across HistoryView, SharedView, StatsPanel, and SettingsView
 
 - 2026-06-09 keyboard shortcut: press B in the coaching report to jump directly to Browse templates — adds a "Browse templates" Link button to the report CTA row alongside New session / Re-drill / Export markdown / Share / Print; B key wired into the existing report keyboard handler via window.location.href; `aria-keyshortcuts="b"` on the Link; B listed in ShortcutsModal Report section and README keyboard-first blurb; lets users pivot to a fresh curriculum topic immediately after a session without navigating back to home first
