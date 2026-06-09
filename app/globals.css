@@ -226,6 +226,15 @@ select:focus-visible {
   animation: mastered-flash 0.75s ease-out;
 }
 
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-slow {
+  animation: spin-slow 5s linear infinite;
+  display: inline-block;
+}
+
 @keyframes timer-urgent {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.55; transform: scale(1.08); }

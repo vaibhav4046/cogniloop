@@ -298,8 +298,8 @@ export function HistoryView() {
               ))}
             </div>
           ) : records.length === 0 ? (
-            <div className="card p-8 text-center">
-              <div className="text-[34px] mb-3" aria-hidden>↻</div>
+            <div className="card p-8 text-center fade-up">
+              <div className="text-[34px] mb-3 spin-slow" aria-hidden>↻</div>
               <div className="text-[15px] font-medium tracking-tight mb-1">
                 No sessions yet
               </div>
