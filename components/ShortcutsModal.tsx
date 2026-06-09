@@ -48,6 +48,7 @@ const SHORTCUT_SECTIONS: { section: string; items: { keys: string; label: string
       { keys: "P", label: "Print / save report as PDF" },
       { keys: "R", label: "Re-drill first weak concept" },
       { keys: "V", label: "Toggle round-by-round review" },
+      { keys: "B", label: "Browse curriculum templates" },
     ],
   },
 ];

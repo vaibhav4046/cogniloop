@@ -1135,6 +1135,7 @@ function ReportView({
       else if (k === "j") copyJournal();
       else if (k === "p") printReport();
       else if (k === "v") toggleRounds();
+      else if (k === "b") window.location.href = "/templates";
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1288,6 +1289,14 @@ function ReportView({
           >
             Print / PDF
           </button>
+          <Link
+            href="/templates"
+            aria-keyshortcuts="b"
+            title="Browse curriculum templates (press B)"
+            className="btn-ghost px-5 py-2.5 rounded-lg text-sm"
+          >
+            Browse templates
+          </Link>
         </div>
         {shareUrl && (
           <a
