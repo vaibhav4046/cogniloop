@@ -647,6 +647,7 @@ export function Session() {
               </div>
             )}
           </div>
+          {phase === "evaluating" && <EvalCardSkeleton />}
         </div>
 
         <aside className="lg:sticky lg:top-4 lg:self-start flex flex-col gap-3">
@@ -967,6 +968,31 @@ const EvalCard = memo(function EvalCard({ evaluation }: { evaluation: Evaluation
     </div>
   );
 });
+
+function EvalCardSkeleton() {
+  return (
+    <div className="card p-4 fade-up" aria-busy="true" aria-label="Feedback loading">
+      <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+        <div className="skeleton h-[11px] w-20 rounded" />
+        <div className="skeleton h-[11px] w-40 rounded" />
+      </div>
+      <div className="bar-track mb-3">
+        <div className="skeleton h-full w-1/2 rounded-full" style={{ animation: "none", background: "var(--bg-elev)" }} />
+      </div>
+      <div className="skeleton h-[14px] w-4/5 mb-3 rounded" />
+      <div className="skeleton h-[10px] w-20 mb-2 rounded" />
+      <div className="flex flex-col gap-1.5">
+        <div className="skeleton h-[12px] w-full rounded" />
+        <div className="skeleton h-[12px] w-4/5 rounded" />
+      </div>
+      <div className="skeleton h-[10px] w-20 mt-3 mb-2 rounded" />
+      <div className="flex flex-col gap-1.5">
+        <div className="skeleton h-[12px] w-full rounded" />
+        <div className="skeleton h-[12px] w-2/3 rounded" />
+      </div>
+    </div>
+  );
+}
 
 const Block = memo(function Block({
   label,
