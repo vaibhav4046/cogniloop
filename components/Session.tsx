@@ -48,6 +48,8 @@ function humanizeError(raw: string | null): string {
     return "AI provider is temporarily unavailable — retry in a moment.";
   if (m.includes("401") || m.includes("unauthorized"))
     return "API key rejected — go to Settings and paste a fresh key from console.groq.com/keys.";
+  if (m.includes("404") || m.includes("model not found"))
+    return "AI model or endpoint not found — switch provider in Settings to fix this.";
   if (m.includes("quota") || m.includes("credits") || m.includes("insufficient"))
     return "API key has run out of credits — switch provider to Pollinations in Settings (free, no key needed).";
   if (m.includes("timeout") || m.includes("timed out"))
@@ -75,6 +77,12 @@ function errorTip(raw: string | null) {
     return <>Switch provider to Pollinations in <Link href="/settings" className="underline">Settings</Link> — free, no key needed.</>;
   if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network error") || m.includes("load failed") || m.includes("aborted") || m.includes("aborterror"))
     return <>Check your connection, then retry.</>;
+  if (m.includes("429") || m.includes("rate limit") || m.includes("rate-limit"))
+    return <>Wait a few seconds, then retry. For higher rate limits, paste a free Groq key in <Link href="/settings" className="underline">Settings</Link>.</>;
+  if (m.includes("404") || m.includes("model not found"))
+    return <>Switch provider in <Link href="/settings" className="underline">Settings</Link> to resolve this.</>;
+  if (m.includes("timeout") || m.includes("timed out"))
+    return <>Model under load — Groq in <Link href="/settings" className="underline">Settings</Link> gives consistently faster responses (free key).</>;
   return <>Retry usually fixes this. For unlimited speed, paste a free Groq key in <Link href="/settings" className="underline">Settings</Link>.</>;
 }
 
