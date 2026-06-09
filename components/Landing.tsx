@@ -8,7 +8,7 @@ import { ModePicker } from "./ModePicker";
 import { StatsPanel } from "./StatsPanel";
 import { CURRICULA } from "@/lib/curricula";
 import { getHistory } from "@/lib/storage";
-import type { ModeId } from "@/lib/modes";
+import { getMode, type ModeId } from "@/lib/modes";
 import { isInTextField } from "@/lib/kbd";
 import { useAutoExpand } from "@/lib/useAutoExpand";
 import { useGlobalNav } from "@/lib/useGlobalNav";
@@ -96,12 +96,6 @@ function relTime(ts: number): string {
   return `${days}d ago`;
 }
 
-const MODE_CHIP_LABEL: Record<string, string> = {
-  chill: "Chill",
-  exam: "Exam",
-  expert: "Expert",
-};
-
 type RecentEntry = { topic: string; modeId: string; createdAt: number };
 
 const RecentTopics = memo(function RecentTopics({
@@ -122,8 +116,8 @@ const RecentTopics = memo(function RecentTopics({
           <button
             key={t}
             onClick={() => onPick(t)}
-            aria-label={`Resume ${t} — ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode, ${relTime(createdAt)}`}
-            title={`${t} · ${MODE_CHIP_LABEL[modeId] ?? "Exam"} mode · ${relTime(createdAt)}`}
+            aria-label={`Resume ${t} — ${getMode(modeId).name} mode, ${relTime(createdAt)}`}
+            title={`${t} · ${getMode(modeId).name} mode · ${relTime(createdAt)}`}
             className="btn-ghost px-3 py-1.5 text-xs rounded-lg item-in flex items-center gap-2 max-w-[280px]"
             style={{ animationDelay: `${i * 70}ms` }}
           >
