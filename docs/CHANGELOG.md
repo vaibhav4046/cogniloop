@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-10 brand voice tightening: replace bland coaching-report bucket empty messages — Shaky bucket's "None flagged." replaced with "Nothing in between — mastered or still weak." (maps directly to what an empty Shaky bucket means: concepts are either fully drilled or still drilling, with nothing half-understood) and Weak bucket's "None — solid session." replaced with "No weak links this session." (drops the abrupt "None —" prefix and uses coaching language consistent with the concept-strength vocabulary); Mastered bucket's "None yet — keep drilling." unchanged — it already has the right urgency
+
 - 2026-06-10 additional curriculum topic: expanded "Limits, continuity, differentiability" stub in JEE Mathematics from a bare label to full NCERT Class 11 Ch 13 coverage — limits (LHL/RHL, limit laws), six standard limits (sinx/x, (1−cosx)/x², (eˣ−1)/x, (aˣ−1)/x = ln a, (1+1/n)ⁿ → e, (xⁿ−aⁿ)/(x−a) = naⁿ⁻¹), L'Hôpital's rule and 1^∞ form, continuity three-condition definition, four types of discontinuity (removable/jump/infinite/oscillatory), algebra and composition of continuous functions, differentiability from first principles (LHD/RHD), differentiable ⇒ continuous but not vice versa (|x| counterexample), all standard derivatives, product/quotient/chain rules, implicit differentiation, and logarithmic differentiation for variable-exponent functions; a 4–6 question JEE Main chapter previously a bare stub
 
 - 2026-06-09 dependency bump: next 16.2.7→16.2.9 (patch)

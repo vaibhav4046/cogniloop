@@ -1225,8 +1225,8 @@ function ReportView({
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 fade-up" style={{ animationDelay: "80ms" }}>
           <BucketCard label="Mastered" items={report.mastered} color="var(--accent)" emptyMsg="None yet — keep drilling." />
-          <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" emptyMsg="None flagged." />
-          <BucketCard label="Weak" items={report.weak} color="var(--bad)" emptyMsg="None — solid session." />
+          <BucketCard label="Shaky" items={report.shaky} color="var(--warn)" emptyMsg="Nothing in between — mastered or still weak." />
+          <BucketCard label="Weak" items={report.weak} color="var(--bad)" emptyMsg="No weak links this session." />
         </div>
 
         <div className="card p-5 mt-6 fade-up" style={{ animationDelay: "160ms" }}>
