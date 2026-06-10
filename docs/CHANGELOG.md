@@ -1,5 +1,7 @@
 # Cogniloop Changelog
 
+- 2026-06-10 additional curriculum topic: expanded "Limits, continuity, differentiability" stub in JEE Mathematics from a bare label to full NCERT Class 11 Ch 13 coverage — limits (LHL/RHL, limit laws), six standard limits (sinx/x, (1−cosx)/x², (eˣ−1)/x, (aˣ−1)/x = ln a, (1+1/n)ⁿ → e, (xⁿ−aⁿ)/(x−a) = naⁿ⁻¹), L'Hôpital's rule and 1^∞ form, continuity three-condition definition, four types of discontinuity (removable/jump/infinite/oscillatory), algebra and composition of continuous functions, differentiability from first principles (LHD/RHD), differentiable ⇒ continuous but not vice versa (|x| counterexample), all standard derivatives, product/quotient/chain rules, implicit differentiation, and logarithmic differentiation for variable-exponent functions; a 4–6 question JEE Main chapter previously a bare stub
+
 - 2026-06-09 dependency bump: next 16.2.7→16.2.9 (patch)
 
 - 2026-06-09 skeleton loader: add EvalCardSkeleton that appears during the "evaluating" phase in the session — while the LLM grades the submitted answer, a shimmer skeleton of the feedback card (score label, progress bar, verdict line, strengths/gaps bullet rows) now appears below the disabled answer form, showing the user exactly where their feedback will land and that it is loading; disappears when the next round renders with the actual EvalCard; uses the existing .skeleton shimmer class and .bar-track/.card/fade-up conventions already established across HistoryView, SharedView, StatsPanel, and SettingsView
